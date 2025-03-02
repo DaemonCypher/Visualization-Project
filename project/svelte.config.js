@@ -8,6 +8,7 @@ const config = {
 		}),
 		paths: {
 			// TODO: base path might be wrong here
+			//test
 			base: process.argv.includes('dev') ? '' : '/Visualization-Project/'
 		}
 	}
