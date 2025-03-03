@@ -7,7 +7,7 @@ const config = {
 			fallback: '404.html'
 		}),
 		paths: {
-			base: process.argv.includes('dev') ? '' : '/project'
+			base: process.argv.includes('dev') ? '' : '/Visualization-Project'
 		}
 	}
 };

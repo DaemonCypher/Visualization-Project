@@ -1,0 +1,1716 @@
+[
+    {
+        "@context": "http://schema.org",
+        "name": "20326 Merry Oak Ave, Tampa, FL 33647",
+        "url": "https://www.redfin.com/FL/Tampa/20326-Merry-Oak-Ave-33647/home/47030021",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "20326 Merry Oak Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33647",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.1697851,
+            "longitude": -82.3305027
+        },
+        "numberOfRooms": 5,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 2672,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "20326 Merry Oak Ave, Tampa, FL 33647",
+        "offers": {
+            "@type": "Offer",
+            "price": 469900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/20326-Merry-Oak-Ave-33647/home/47030021"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "20115 Nob Oak Ave, Tampa, FL 33647",
+        "url": "https://www.redfin.com/FL/Tampa/20115-Nob-Oak-Ave-33647/home/46988789",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "20115 Nob Oak Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33647",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.1604452,
+            "longitude": -82.3474777
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 3004,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "20115 Nob Oak Ave, Tampa, FL 33647",
+        "offers": {
+            "@type": "Offer",
+            "price": 619900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/20115-Nob-Oak-Ave-33647/home/46988789"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Event",
+        "startDate": "2025-02-22T20:00:00.000Z",
+        "endDate": "2025-02-22T22:00:00.000Z",
+        "name": "Open House - 3:00 - 5:00 PM",
+        "url": "https://www.redfin.com/FL/Tampa/20115-Nob-Oak-Ave-33647/home/46988789",
+        "description": "Check out an open house at 20115 Nob Oak Ave.",
+        "offers": {
+            "@type": "offer",
+            "price": 619900,
+            "priceCurrency": "USD",
+            "availability": "http://schema.org/InStock",
+            "URL": "https://www.redfin.com/FL/Tampa/20115-Nob-Oak-Ave-33647/home/46988789",
+            "validFrom": "2025-02-22T20:00:00.000Z"
+        },
+        "performer": {
+            "@type": "Thing",
+            "name": "Jim Fletcher"
+        },
+        "location": {
+            "@type": "Place",
+            "name": "20115 Nob Oak Ave",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 28.1604452,
+                "longitude": -82.3474777
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "20115 Nob Oak Ave",
+                "addressLocality": "Tampa",
+                "postalCode": "33647",
+                "addressRegion": "FL",
+                "addressCountry": "US"
+            }
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "3915 N Ola Ave, Tampa, FL 33603",
+        "url": "https://www.redfin.com/FL/Tampa/3915-N-Ola-Ave-33603/home/47325423",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3915 N Ola Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33603",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9811018,
+            "longitude": -82.4633084
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 945,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "3915 N Ola Ave, Tampa, FL 33603",
+        "offers": {
+            "@type": "Offer",
+            "price": 349900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/3915-N-Ola-Ave-33603/home/47325423"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Event",
+        "startDate": "2025-02-22T16:00:00.000Z",
+        "endDate": "2025-02-22T18:00:00.000Z",
+        "name": "Open House - 11:00 - 1:00 PM",
+        "url": "https://www.redfin.com/FL/Tampa/3915-N-Ola-Ave-33603/home/47325423",
+        "description": "Check out an open house at 3915 N Ola Ave.",
+        "offers": {
+            "@type": "offer",
+            "price": 349900,
+            "priceCurrency": "USD",
+            "availability": "http://schema.org/InStock",
+            "URL": "https://www.redfin.com/FL/Tampa/3915-N-Ola-Ave-33603/home/47325423",
+            "validFrom": "2025-02-22T16:00:00.000Z"
+        },
+        "performer": {
+            "@type": "Thing",
+            "name": "Jason Randall"
+        },
+        "location": {
+            "@type": "Place",
+            "name": "3915 N Ola Ave",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 27.9811018,
+                "longitude": -82.4633084
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "3915 N Ola Ave",
+                "addressLocality": "Tampa",
+                "postalCode": "33603",
+                "addressRegion": "FL",
+                "addressCountry": "US"
+            }
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "4101 W Leila Ave, Tampa, FL 33616",
+        "url": "https://www.redfin.com/FL/Tampa/4101-W-Leila-Ave-33616/home/47294773",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4101 W Leila Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33616",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.884867,
+            "longitude": -82.5125686
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1492,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "4101 W Leila Ave, Tampa, FL 33616",
+        "offers": {
+            "@type": "Offer",
+            "price": 425000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/4101-W-Leila-Ave-33616/home/47294773"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Event",
+        "name": "3D Walkthrough - 4101 W Leila Ave, Tampa, FL 33616",
+        "startDate": "2025-02-19",
+        "url": "https://www.redfin.com/FL/Tampa/4101-W-Leila-Ave-33616/home/47294773",
+        "eventAttendanceMode": "http://schema.org/OnlineEventAttendanceMode",
+        "eventStatus": "http://schema.org/EventMovedOnline",
+        "location": [
+            {
+                "@type": "VirtualLocation",
+                "url": "https://www.redfin.com/FL/Tampa/4101-W-Leila-Ave-33616/home/47294773"
+            },
+            {
+                "@type": "Place",
+                "name": "4101 W Leila Ave, Tampa, FL 33616",
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 27.884867,
+                    "longitude": -82.5125686
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "4101 W Leila Ave",
+                    "addressLocality": "Tampa",
+                    "postalCode": "33616",
+                    "addressRegion": "FL",
+                    "addressCountry": "US"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "47 Adalia Ave, Tampa, FL 33606",
+        "url": "https://www.redfin.com/FL/Tampa/47-Adalia-Ave-33606/home/47343580",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "47 Adalia Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33606",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9334576,
+            "longitude": -82.4599268
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 3460,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "47 Adalia Ave, Tampa, FL 33606",
+        "offers": {
+            "@type": "Offer",
+            "price": 2310000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/47-Adalia-Ave-33606/home/47343580"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "1801 E Mcberry St, Tampa, FL 33610",
+        "url": "https://www.redfin.com/FL/Tampa/1801-E-McBerry-St-33610/home/47317609",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1801 E Mcberry St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33610",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9926042,
+            "longitude": -82.4397063
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1505,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "1801 E Mcberry St, Tampa, FL 33610",
+        "offers": {
+            "@type": "Offer",
+            "price": 310000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/1801-E-McBerry-St-33610/home/47317609"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Event",
+        "name": "3D Walkthrough - 1801 E Mcberry St, Tampa, FL 33610",
+        "startDate": "2025-02-19",
+        "url": "https://www.redfin.com/FL/Tampa/1801-E-McBerry-St-33610/home/47317609",
+        "eventAttendanceMode": "http://schema.org/OnlineEventAttendanceMode",
+        "eventStatus": "http://schema.org/EventMovedOnline",
+        "location": [
+            {
+                "@type": "VirtualLocation",
+                "url": "https://www.redfin.com/FL/Tampa/1801-E-McBerry-St-33610/home/47317609"
+            },
+            {
+                "@type": "Place",
+                "name": "1801 E Mcberry St, Tampa, FL 33610",
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 27.9926042,
+                    "longitude": -82.4397063
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "1801 E Mcberry St",
+                    "addressLocality": "Tampa",
+                    "postalCode": "33610",
+                    "addressRegion": "FL",
+                    "addressCountry": "US"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "8431 Camden St, Tampa, FL 33614",
+        "url": "https://www.redfin.com/FL/Tampa/8431-Camden-St-33614/home/54606090",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8431 Camden St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33614",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0287042,
+            "longitude": -82.5143133
+        },
+        "numberOfRooms": 8,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 3680,
+            "unitCode": "FTK"
+        },
+        "@type": "Accommodation"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "8431 Camden St, Tampa, FL 33614",
+        "offers": {
+            "@type": "Offer",
+            "price": 950000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/8431-Camden-St-33614/home/54606090"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Event",
+        "name": "3D Walkthrough - 8431 Camden St, Tampa, FL 33614",
+        "startDate": "2025-02-19",
+        "url": "https://www.redfin.com/FL/Tampa/8431-Camden-St-33614/home/54606090",
+        "eventAttendanceMode": "http://schema.org/OnlineEventAttendanceMode",
+        "eventStatus": "http://schema.org/EventMovedOnline",
+        "location": [
+            {
+                "@type": "VirtualLocation",
+                "url": "https://www.redfin.com/FL/Tampa/8431-Camden-St-33614/home/54606090"
+            },
+            {
+                "@type": "Place",
+                "name": "8431 Camden St, Tampa, FL 33614",
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 28.0287042,
+                    "longitude": -82.5143133
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "8431 Camden St",
+                    "addressLocality": "Tampa",
+                    "postalCode": "33614",
+                    "addressRegion": "FL",
+                    "addressCountry": "US"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "4436 W Trilby Ave, Tampa, FL 33616",
+        "url": "https://www.redfin.com/FL/Tampa/4436-W-Trilby-Ave-33616/home/47292801",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4436 W Trilby Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33616",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.8830823,
+            "longitude": -82.5223934
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1183,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "4436 W Trilby Ave, Tampa, FL 33616",
+        "offers": {
+            "@type": "Offer",
+            "price": 424999,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/4436-W-Trilby-Ave-33616/home/47292801"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "406 W Azeele St #103, Tampa, FL 33606",
+        "url": "https://www.redfin.com/FL/Tampa/406-W-Azeele-St-33606/unit-103/home/178311559",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "406 W Azeele St #103",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33606",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.940315,
+            "longitude": -82.4644965
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 912,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "406 W Azeele St #103, Tampa, FL 33606",
+        "offers": {
+            "@type": "Offer",
+            "price": 358900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/406-W-Azeele-St-33606/unit-103/home/178311559"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "8203 Interbay Blvd, Tampa, FL 33616",
+        "url": "https://www.redfin.com/FL/Tampa/8203-Interbay-Blvd-33616/home/47368117",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8203 Interbay Blvd",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33616",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.8661708,
+            "longitude": -82.5229973
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1647,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "8203 Interbay Blvd, Tampa, FL 33616",
+        "offers": {
+            "@type": "Offer",
+            "price": 459000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/8203-Interbay-Blvd-33616/home/47368117"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "111 N 12th St #1619, Tampa, FL 33602",
+        "url": "https://www.redfin.com/FL/Tampa/111-N-12th-St-33602/unit-1619/home/47059170",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "111 N 12th St #1619",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33602",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9479796,
+            "longitude": -82.4465608
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1237,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "111 N 12th St #1619, Tampa, FL 33602",
+        "offers": {
+            "@type": "Offer",
+            "price": 535000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/111-N-12th-St-33602/unit-1619/home/47059170"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "602 Danube Ave, Tampa, FL 33606",
+        "url": "https://www.redfin.com/FL/Tampa/602-Danube-Ave-33606/home/47345171",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "602 Danube Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33606",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9209433,
+            "longitude": -82.4518557
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1567,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "602 Danube Ave, Tampa, FL 33606",
+        "offers": {
+            "@type": "Offer",
+            "price": 950000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/602-Danube-Ave-33606/home/47345171"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "10809 Fanning Springs Ct, Tampa, FL 33647",
+        "url": "https://www.redfin.com/FL/Tampa/10809-Fanning-Springs-Ct-33647/home/188997735",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "10809 Fanning Springs Ct",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33647",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.142307,
+            "longitude": -82.298284
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1775,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "10809 Fanning Springs Ct, Tampa, FL 33647",
+        "offers": {
+            "@type": "Offer",
+            "price": 318400,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/10809-Fanning-Springs-Ct-33647/home/188997735"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "9819 Bridgeton Dr, Tampa, FL 33626",
+        "url": "https://www.redfin.com/FL/Tampa/9819-Bridgeton-Dr-33626/home/47076582",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "9819 Bridgeton Dr",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33626",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.047873,
+            "longitude": -82.592601
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1544,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "9819 Bridgeton Dr, Tampa, FL 33626",
+        "offers": {
+            "@type": "Offer",
+            "price": 510000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/9819-Bridgeton-Dr-33626/home/47076582"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "9223 Pebble Creek Dr, Tampa, FL 33647",
+        "url": "https://www.redfin.com/FL/Tampa/9223-Pebble-Creek-Dr-33647/home/47182376",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "9223 Pebble Creek Dr",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33647",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.148329,
+            "longitude": -82.3459692
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1079,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "9223 Pebble Creek Dr, Tampa, FL 33647",
+        "offers": {
+            "@type": "Offer",
+            "price": 370000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/9223-Pebble-Creek-Dr-33647/home/47182376"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "1212 E Crawford St, Tampa, FL 33604",
+        "url": "https://www.redfin.com/FL/Tampa/1212-E-Crawford-St-33604/home/47327196",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1212 E Crawford St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33604",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0135649,
+            "longitude": -82.4459989
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1272,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "1212 E Crawford St, Tampa, FL 33604",
+        "offers": {
+            "@type": "Offer",
+            "price": 435000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/1212-E-Crawford-St-33604/home/47327196"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "501 Knights Run Ave #1310, Tampa, FL 33602",
+        "url": "https://www.redfin.com/FL/Tampa/501-Knights-Run-Ave-33602/unit-1310/home/47026845",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "501 Knights Run Ave #1310",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33602",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9376657,
+            "longitude": -82.4509911
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1459,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "501 Knights Run Ave #1310, Tampa, FL 33602",
+        "offers": {
+            "@type": "Offer",
+            "price": 490000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/501-Knights-Run-Ave-33602/unit-1310/home/47026845"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "4006 N 27th St, Tampa, FL 33610",
+        "url": "https://www.redfin.com/FL/Tampa/4006-N-27-St-33610/home/64135665",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4006 N 27th St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33610",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.981961,
+            "longitude": -82.429801
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 2008,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "4006 N 27th St, Tampa, FL 33610",
+        "offers": {
+            "@type": "Offer",
+            "price": 490000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/4006-N-27-St-33610/home/64135665"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "2821 N Morgan St, Tampa, FL 33602",
+        "url": "https://www.redfin.com/FL/Tampa/2821-N-Morgan-St-33602/home/47337499",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2821 N Morgan St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33602",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9700943,
+            "longitude": -82.4577177
+        },
+        "numberOfRooms": 5,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1696,
+            "unitCode": "FTK"
+        },
+        "@type": "Accommodation"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "2821 N Morgan St, Tampa, FL 33602",
+        "offers": {
+            "@type": "Offer",
+            "price": 599000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/2821-N-Morgan-St-33602/home/47337499"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "19317 Hawk Valley Dr, Tampa, FL 33647",
+        "url": "https://www.redfin.com/FL/Tampa/19317-Hawk-Valley-Dr-33647/home/168044778",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "19317 Hawk Valley Dr",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33647",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.1634063,
+            "longitude": -82.3180376
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1760,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "19317 Hawk Valley Dr, Tampa, FL 33647",
+        "offers": {
+            "@type": "Offer",
+            "price": 420000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/19317-Hawk-Valley-Dr-33647/home/168044778"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Event",
+        "name": "3D Walkthrough - 19317 Hawk Valley Dr, Tampa, FL 33647",
+        "startDate": "2025-02-19",
+        "url": "https://www.redfin.com/FL/Tampa/19317-Hawk-Valley-Dr-33647/home/168044778",
+        "eventAttendanceMode": "http://schema.org/OnlineEventAttendanceMode",
+        "eventStatus": "http://schema.org/EventMovedOnline",
+        "location": [
+            {
+                "@type": "VirtualLocation",
+                "url": "https://www.redfin.com/FL/Tampa/19317-Hawk-Valley-Dr-33647/home/168044778"
+            },
+            {
+                "@type": "Place",
+                "name": "19317 Hawk Valley Dr, Tampa, FL 33647",
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 28.1634063,
+                    "longitude": -82.3180376
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "19317 Hawk Valley Dr",
+                    "addressLocality": "Tampa",
+                    "postalCode": "33647",
+                    "addressRegion": "FL",
+                    "addressCountry": "US"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "8025 N Gomez Ave, Tampa, FL 33614",
+        "url": "https://www.redfin.com/FL/Tampa/8025-N-Gomez-Ave-33614/home/47134454",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8025 N Gomez Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33614",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0234557,
+            "longitude": -82.4908013
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1600,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "8025 N Gomez Ave, Tampa, FL 33614",
+        "offers": {
+            "@type": "Offer",
+            "price": 650000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/8025-N-Gomez-Ave-33614/home/47134454"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "9410 N 50th St, Tampa, FL 33617",
+        "url": "https://www.redfin.com/FL/Tampa/9410-N-50th-St-33617/home/47303768",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "9410 N 50th St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33617",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0351478,
+            "longitude": -82.4020126
+        },
+        "numberOfRooms": 8,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 3248,
+            "unitCode": "FTK"
+        },
+        "@type": "Accommodation"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "9410 N 50th St, Tampa, FL 33617",
+        "offers": {
+            "@type": "Offer",
+            "price": 699000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/9410-N-50th-St-33617/home/47303768"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "926 E 120th Ave, Tampa, FL 33612",
+        "url": "https://www.redfin.com/FL/Tampa/926-E-120th-Ave-33612/home/47150979",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "926 E 120th Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33612",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0571299,
+            "longitude": -82.4486208
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1505,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "926 E 120th Ave, Tampa, FL 33612",
+        "offers": {
+            "@type": "Offer",
+            "price": 260000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/926-E-120th-Ave-33612/home/47150979"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "10608 Sassafras St, Tampa, FL 33617",
+        "url": "https://www.redfin.com/FL/Tampa/10608-Sassafras-St-33617/home/47301043",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "10608 Sassafras St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33617",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0454394,
+            "longitude": -82.4005861
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1389,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "10608 Sassafras St, Tampa, FL 33617",
+        "offers": {
+            "@type": "Offer",
+            "price": 369000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/10608-Sassafras-St-33617/home/47301043"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Event",
+        "startDate": "2025-02-22T17:00:00.000Z",
+        "endDate": "2025-02-22T19:00:00.000Z",
+        "name": "Open House - 12:00 - 2:00 PM",
+        "url": "https://www.redfin.com/FL/Tampa/10608-Sassafras-St-33617/home/47301043",
+        "description": "Check out an open house at 10608 Sassafras St.",
+        "offers": {
+            "@type": "offer",
+            "price": 369000,
+            "priceCurrency": "USD",
+            "availability": "http://schema.org/InStock",
+            "URL": "https://www.redfin.com/FL/Tampa/10608-Sassafras-St-33617/home/47301043",
+            "validFrom": "2025-02-22T17:00:00.000Z"
+        },
+        "performer": {
+            "@type": "Thing",
+            "name": "Jenna Utley"
+        },
+        "location": {
+            "@type": "Place",
+            "name": "10608 Sassafras St",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 28.0454394,
+                "longitude": -82.4005861
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "10608 Sassafras St",
+                "addressLocality": "Tampa",
+                "postalCode": "33617",
+                "addressRegion": "FL",
+                "addressCountry": "US"
+            }
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "3505 S Macdill Ave #4, Tampa, FL 33629",
+        "url": "https://www.redfin.com/FL/Tampa/3505-S-Macdill-Ave-33629/unit-4/home/113061631",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3505 S Macdill Ave #4",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33629",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9108276,
+            "longitude": -82.493837
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 2584,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "3505 S Macdill Ave #4, Tampa, FL 33629",
+        "offers": {
+            "@type": "Offer",
+            "price": 889900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/3505-S-Macdill-Ave-33629/unit-4/home/113061631"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "8706 N 34th St, Tampa, FL 33604",
+        "url": "https://www.redfin.com/FL/Tampa/8706-N-34th-St-33604/home/47309244",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8706 N 34th St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33604",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.02967,
+            "longitude": -82.4230174
+        },
+        "numberOfRooms": 5,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1788,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "8706 N 34th St, Tampa, FL 33604",
+        "offers": {
+            "@type": "Offer",
+            "price": 480000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/8706-N-34th-St-33604/home/47309244"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "6330 Woodspray Ln, Temple Terrace, FL 33617",
+        "url": "https://www.redfin.com/FL/Temple-Terrace/6330-Woodspray-Ln-33617/home/47152985",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "6330 Woodspray Ln",
+            "addressLocality": "Temple Terrace",
+            "addressRegion": "FL",
+            "postalCode": "33617",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.056528,
+            "longitude": -82.3827058
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1272,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "6330 Woodspray Ln, Temple Terrace, FL 33617",
+        "offers": {
+            "@type": "Offer",
+            "price": 249900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Temple-Terrace/6330-Woodspray-Ln-33617/home/47152985"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "800 S Dakota Ave #217, Tampa, FL 33606",
+        "url": "https://www.redfin.com/FL/Tampa/800-S-Dakota-Ave-33606/unit-217/home/47012482",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "800 S Dakota Ave #217",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33606",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.935564,
+            "longitude": -82.4757203
+        },
+        "numberOfRooms": 1,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 604,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "800 S Dakota Ave #217, Tampa, FL 33606",
+        "offers": {
+            "@type": "Offer",
+            "price": 440000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/800-S-Dakota-Ave-33606/unit-217/home/47012482"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "3607 S Hubert Ave, Tampa, FL 33629",
+        "url": "https://www.redfin.com/FL/Tampa/3607-S-Hubert-Ave-33629/home/47284429",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3607 S Hubert Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33629",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9100603,
+            "longitude": -82.5165807
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1226,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "3607 S Hubert Ave, Tampa, FL 33629",
+        "offers": {
+            "@type": "Offer",
+            "price": 599999,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/3607-S-Hubert-Ave-33629/home/47284429"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "8020 N 13th St, Tampa, FL 33604",
+        "url": "https://www.redfin.com/FL/Tampa/8020-N-13th-St-33604/home/47308644",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8020 N 13th St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33604",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0209348,
+            "longitude": -82.4467342
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1184,
+            "unitCode": "FTK"
+        },
+        "@type": "Accommodation"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "8020 N 13th St, Tampa, FL 33604",
+        "offers": {
+            "@type": "Offer",
+            "price": 295000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/8020-N-13th-St-33604/home/47308644"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "4727 W Wyoming Ave, Tampa, FL 33616",
+        "url": "https://www.redfin.com/FL/Tampa/4727-W-Wyoming-Ave-33616/home/47292420",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4727 W Wyoming Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33616",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.8827435,
+            "longitude": -82.5257638
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1351,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "4727 W Wyoming Ave, Tampa, FL 33616",
+        "offers": {
+            "@type": "Offer",
+            "price": 320000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/4727-W-Wyoming-Ave-33616/home/47292420"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "6620 Jennifer Dr, Temple Terrace, FL 33617",
+        "url": "https://www.redfin.com/FL/Temple-Terrace/6620-Jennifer-Dr-33617/home/47347349",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "6620 Jennifer Dr",
+            "addressLocality": "Temple Terrace",
+            "addressRegion": "FL",
+            "postalCode": "33617",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0539453,
+            "longitude": -82.3711877
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1836,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "6620 Jennifer Dr, Temple Terrace, FL 33617",
+        "offers": {
+            "@type": "Offer",
+            "price": 439000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Temple-Terrace/6620-Jennifer-Dr-33617/home/47347349"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "3010 W Stovall St Unit B, Tampa, FL 33629",
+        "url": "https://www.redfin.com/FL/Tampa/3010-W-Stovall-St-33629/unit-B/home/47386674",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3010 W Stovall St Unit B",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33629",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9166943,
+            "longitude": -82.4930518
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 2228,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "3010 W Stovall St Unit B, Tampa, FL 33629",
+        "offers": {
+            "@type": "Offer",
+            "price": 855000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/3010-W-Stovall-St-33629/unit-B/home/47386674"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "3117 W Barcelona St Unit A, Tampa, FL 33629",
+        "url": "https://www.redfin.com/FL/Tampa/3117-W-Barcelona-St-33629/unit-A/home/47285764",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3117 W Barcelona St Unit A",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33629",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9219768,
+            "longitude": -82.4948362
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1447,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "3117 W Barcelona St Unit A, Tampa, FL 33629",
+        "offers": {
+            "@type": "Offer",
+            "price": 725000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/3117-W-Barcelona-St-33629/unit-A/home/47285764"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "915 E North Bay St, Tampa, FL 33603",
+        "url": "https://www.redfin.com/FL/Tampa/915-E-North-Bay-St-33603/home/47329468",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "915 E North Bay St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33603",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.98322,
+            "longitude": -82.4496265
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1337,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "915 E North Bay St, Tampa, FL 33603",
+        "offers": {
+            "@type": "Offer",
+            "price": 289000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/915-E-North-Bay-St-33603/home/47329468"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "9403 W Perio Pl, Tampa, FL 33612",
+        "url": "https://www.redfin.com/FL/Tampa/9403-W-Perio-Pl-33612/home/47261774",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "9403 W Perio Pl",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33612",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0359594,
+            "longitude": -82.4782516
+        },
+        "numberOfRooms": 4,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1829,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "9403 W Perio Pl, Tampa, FL 33612",
+        "offers": {
+            "@type": "Offer",
+            "price": 399999,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/9403-W-Perio-Pl-33612/home/47261774"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Event",
+        "name": "3D Walkthrough - 9403 W Perio Pl, Tampa, FL 33612",
+        "startDate": "2025-02-19",
+        "url": "https://www.redfin.com/FL/Tampa/9403-W-Perio-Pl-33612/home/47261774",
+        "eventAttendanceMode": "http://schema.org/OnlineEventAttendanceMode",
+        "eventStatus": "http://schema.org/EventMovedOnline",
+        "location": [
+            {
+                "@type": "VirtualLocation",
+                "url": "https://www.redfin.com/FL/Tampa/9403-W-Perio-Pl-33612/home/47261774"
+            },
+            {
+                "@type": "Place",
+                "name": "9403 W Perio Pl, Tampa, FL 33612",
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 28.0359594,
+                    "longitude": -82.4782516
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "9403 W Perio Pl",
+                    "addressLocality": "Tampa",
+                    "postalCode": "33612",
+                    "addressRegion": "FL",
+                    "addressCountry": "US"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "906 S Sterling Ave, Tampa, FL 33629",
+        "url": "https://www.redfin.com/FL/Tampa/906-S-Sterling-Ave-33629/home/47278951",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "906 S Sterling Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33629",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9315878,
+            "longitude": -82.5034572
+        },
+        "numberOfRooms": 3,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 3180,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "906 S Sterling Ave, Tampa, FL 33629",
+        "offers": {
+            "@type": "Offer",
+            "price": 2499900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/906-S-Sterling-Ave-33629/home/47278951"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "3001 W Chestnut St, Tampa, FL 33607",
+        "url": "https://www.redfin.com/FL/Tampa/3001-W-Chestnut-St-33607/home/47335491",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3001 W Chestnut St",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33607",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.9588933,
+            "longitude": -82.4913902
+        },
+        "numberOfRooms": 7,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 2970,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "3001 W Chestnut St, Tampa, FL 33607",
+        "offers": {
+            "@type": "Offer",
+            "price": 549900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/3001-W-Chestnut-St-33607/home/47335491"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "8302 N Lois Ave, Tampa, FL 33614",
+        "url": "https://www.redfin.com/FL/Tampa/8302-N-Lois-Ave-33614/home/47136635",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8302 N Lois Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33614",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0245079,
+            "longitude": -82.5134574
+        },
+        "numberOfRooms": 2,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 756,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "8302 N Lois Ave, Tampa, FL 33614",
+        "offers": {
+            "@type": "Offer",
+            "price": 349900,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/8302-N-Lois-Ave-33614/home/47136635"
+    },
+    {
+        "@context": "http://schema.org",
+        "name": "3801 Kimball Ave, Tampa, FL 33614",
+        "url": "https://www.redfin.com/FL/Tampa/3801-Kimball-Ave-33614/home/47135945",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3801 Kimball Ave",
+            "addressLocality": "Tampa",
+            "addressRegion": "FL",
+            "postalCode": "33614",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.0139936,
+            "longitude": -82.506125
+        },
+        "numberOfRooms": 7,
+        "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 2035,
+            "unitCode": "FTK"
+        },
+        "@type": "SingleFamilyResidence"
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "3801 Kimball Ave, Tampa, FL 33614",
+        "offers": {
+            "@type": "Offer",
+            "price": 750000,
+            "priceCurrency": "USD"
+        },
+        "url": "https://www.redfin.com/FL/Tampa/3801-Kimball-Ave-33614/home/47135945"
+    }
+]
