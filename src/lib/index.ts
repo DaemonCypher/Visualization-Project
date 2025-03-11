@@ -1,7 +1,7 @@
 // place files you want to import through the `$lib` alias in this folder.
-import Bar from './Bar.svelte'
-export {Bar}
-import Scatter from './Scatter.svelte'
-import Line from './Line.svelte'
+import Frequency from "$lib/Frequency.svelte";
+import Heat from "$lib/Heat.svelte";
+import Scatter from "$lib/Scatter.svelte";
+import Box from "$lib/Box.svelte";
 
-export {Scatter, Line}
+export {Frequency, Heat,Scatter,Box}

@@ -1,11 +1,14 @@
-export type TMovie = {
-    num_votes: number;
-    runtime_minutes:  number;
-    genres: string[];
-    year: Date;
-    average_rating: number;
-    tconst: string;
-    title_type: string;
-    primary_title: string;
-    original_title: string;
+export type TInsurance = {
+    age: number;
+    gender: string;
+    bmi: number;
+    children: number;
+    smoker: string;
+    region: string;
+    medical: string;
+    family_medical: string;
+    exericse: string;
+    occupation: string;
+    coverage_level: string;
+    charge: number;
 }
