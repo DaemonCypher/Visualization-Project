@@ -59,7 +59,7 @@
   const margin = {
     top: 15,
     bottom: 50,
-    left: 30,
+    left: 40,
     right: 10,
   };
 
@@ -76,6 +76,7 @@
       .range([usableArea.left, usableArea.right])
       .domain(Object.keys(yData))
       .padding(0.1)
+      .paddingOuter(.5)
   );
 
   const yScale = $derived(
@@ -111,9 +112,19 @@
     <svg {width} {height}>
         <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis} />
         <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
+        {#each Object.entries(yData) as [key, stats]}
+        <line
+          x1={xScale(key)+ boxWidth + boxWidth/2}
+          x2={xScale(key)+ boxWidth + boxWidth/2 }
+          y1={yScale(stats.min)}
+          y2={yScale(stats.max)}
+          stroke="black"
+          stroke-width="2"
+        />
+      {/each}
       {#each Object.entries(yData) as [key, stats]}
         <rect
-          x={xScale(key) - boxWidth / 2}
+          x={xScale(key)+boxWidth}
           y={yScale(stats.q3)}
           height={yScale(stats.q1) - yScale(stats.q3)}
           width={boxWidth}
@@ -124,8 +135,8 @@
 
       {#each Object.entries(yData) as [key, stats]}
         <line
-          x1={xScale(key) - boxWidth / 2}
-          x2={xScale(key) + boxWidth / 2}
+          x1={xScale(key) + boxWidth*2 }
+          x2={xScale(key) + boxWidth }
           y1={yScale(stats.mid)}
           y2={yScale(stats.mid)}
           stroke="black"
