@@ -119,7 +119,7 @@
           y1={yScale(stats.min)}
           y2={yScale(stats.max)}
           stroke="black"
-          stroke-width="2"
+          stroke-width="0"
         />
       {/each}
       {#each Object.entries(yData) as [key, stats]}
@@ -139,7 +139,7 @@
           x2={xScale(key) + boxWidth }
           y1={yScale(stats.mid)}
           y2={yScale(stats.mid)}
-          stroke="black"
+          stroke="blue"
           stroke-width="2"
         />
       {/each}
