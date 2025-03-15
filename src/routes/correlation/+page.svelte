@@ -6,7 +6,7 @@
   import Heat from "$lib/Heat.svelte";
   import Scatter from "$lib/Scatter.svelte";
   import Box from "$lib/Box.svelte";
-
+  import Line from "$lib/Line.svelte";
   // Reactive variable for storing the data
   let insurance: TInsurance[] = $state([]);
   // hard code selections since different graph will need different selections
@@ -177,6 +177,29 @@
 <Box {insurance} x={axisSelection.boxOptionX} y={axisSelection.boxOptionY} />
 <br />
 {/if}
+
+
+{#if insurance.length > 0}
+<div class="selectors">
+  X Axis:
+  <select bind:value={axisSelection.boxOptionX}>
+    {#each boxOptionX as key}
+      <option value={key}>{key}</option>
+    {/each}
+  </select>
+
+  Y Axis:
+  <select bind:value={axisSelection.boxOptionY}>
+    {#each boxOptionY as key}
+      <option value={key}>{key}</option>
+    {/each}
+  </select>
+</div>
+
+<Line {insurance} x={axisSelection.boxOptionX} y={axisSelection.boxOptionY} />
+<br />
+{/if}
+
 </div>
 </div>
 <style>
