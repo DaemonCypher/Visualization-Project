@@ -206,7 +206,7 @@
           r={sizeScale(point.sizeValue)}
           fill={colorScale(point.colorValue)}
           opacity={selectedPoints.length > 0 ? (selectedPoints.includes(point.id) ? 0.8 : 0.2) : 0.6}
-          stroke={selectedPoints.includes(point.id) ? "black" : "none"}
+          stroke={clickedPoint?.id == point.id ? "black" : "none"}
           stroke-width={selectedPoints.includes(point.id) ? 1 : 0}
           class="data-point"
           on:click={(event) => handlePointClick(point, event)}

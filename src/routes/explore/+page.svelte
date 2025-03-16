@@ -16,16 +16,17 @@
     let frequencyOption = ["sex", "children", "smoker", "region"];
     let scatterOptionX = ["age", "bmi", "charge"];
     let scatterOptionY = ["age", "bmi", "charge"];
-    let scatterOptionSize = ["age", "bmi", "charge", "children"];
-    let scatterOptionColor = ["sex", "children", "smoker", "region"];
-    let boxOptionY =["age", "bmi", "charge"];
-    let boxOptionX =["sex", "children", "smoker", "region"];
+    let scatterOptionSize = ["age", "bmi", "charge", "children", "tier"];
+    let scatterOptionColor = ["sex", "children", "smoker", "region", "tier"];
+    let boxOptionY =["age", "bmi", "charge", "tier"];
+    let boxOptionX =["sex", "children", "smoker", "region", "tier"];
   
     // Function to load the CSV
     async function loadCsv() {
       try {
         const csvUrl = "./insurance.csv";
         insurance = await d3.csv(csvUrl, (row) => {
+          const tier = Number(row.charges) > 30000 ? 1 : Number(row.charges) > 15000 ? 2 : 3;
           return {
             age: row.age,
             sex: row.sex,
@@ -34,6 +35,7 @@
             smoker: row.smoker,
             region: row.region,
             charge: row.charges,
+            tier: tier
             // ...row, // spread syntax to copy all properties from row
             // num_votes: Number(row.num_votes),
             // year: new Date(row.year),
@@ -54,6 +56,8 @@
       scatterSize: keyof TInsurance;
       boxOptionY:keyof TInsurance;
       boxOptionX:keyof TInsurance;
+      scatterColor:keyof TInsurance;
+      tier:keyof TInsurance;
     };
   
     let axisSelection: TAxisSelection = $state({
@@ -65,7 +69,8 @@
       scatterSize: "bmi",
       boxOptionX:"region",
       boxOptionY:"charge",
-      scatterColor:"smoker"
+      scatterColor:"smoker",
+      tier:"tier"
     });
   
     // Call the loader when the component mounts
