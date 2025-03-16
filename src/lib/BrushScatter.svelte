@@ -12,6 +12,8 @@
   export let width: number = 800;
   export let height: number = 500;
 
+  // console.log("insurance", insurance)
+
   // Transform insurance data into our working format using map
   $: data = insurance.map((entry, index) => ({
     xValue: +entry[x],
@@ -63,6 +65,9 @@
   let yAxis: SVGGElement;
   let brushElement: SVGGElement;
 
+  // New state for the clicked data point details
+  let clickedPoint: TInsurance | null = null;
+
   // Function to update axes
   function updateAxis() {
     d3.select(xAxis)
@@ -83,7 +88,7 @@
       );
   }
 
-  // Initialize brush with proper extent and event handlers
+  // Initialize brush on the background rect (using brushElement group)
   function initBrush() {
     const brush = d3.brush()
       .extent([[usableArea.left, usableArea.top], [usableArea.right, usableArea.bottom]])
@@ -94,7 +99,9 @@
     d3.select(brushElement).call(brush);
   }
 
-  function brushStart() {
+  function brushStart(event) {
+    // Prevent brush if click started on a circle
+    if (event.sourceEvent && event.sourceEvent.target.tagName === "circle") return;
     brushActive = true;
     selectedPoints = [];
   }
@@ -147,6 +154,14 @@
     }
   }
 
+  // Handle click on a data point to show its details
+  function handlePointClick(point, event) {
+    // Stop propagation so the brush doesn't start
+    event.stopPropagation();
+    clickedPoint = insurance[point.id];
+    console.log("clickedPoint", clickedPoint)
+  }
+
   // Set up axes and brush when component mounts
   onMount(() => {
     updateAxis();
@@ -164,14 +179,26 @@
   </button>
 </div>
 
-<div class="visualization-container">
+<!-- Main container with scatter plot and details panel side-by-side -->
+<div class="main-container">
   <div class="scatter-container">
     <svg {width} {height}>
+      <!-- Background rectangle for brush events -->
+      <rect
+        x={usableArea.left}
+        y={usableArea.top}
+        width={usableArea.right - usableArea.left}
+        height={usableArea.bottom - usableArea.top}
+        fill="transparent"
+      />
+      <!-- Brush layer attached to the background (placed before circles) -->
+      <g class="brush" bind:this={brushElement}></g>
+
       <!-- Axes -->
       <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis} />
       <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
 
-      <!-- Data points -->
+      <!-- Data points (drawn above the brush layer) -->
       {#each data as point}
         <circle
           cx={xScale(point.xValue)}
@@ -182,11 +209,9 @@
           stroke={selectedPoints.includes(point.id) ? "black" : "none"}
           stroke-width={selectedPoints.includes(point.id) ? 1 : 0}
           class="data-point"
+          on:click={(event) => handlePointClick(point, event)}
         />
       {/each}
-
-      <!-- Brush layer -->
-      <g class="brush" bind:this={brushElement}></g>
 
       <!-- Category legend -->
       <g transform="translate({usableArea.right + 10}, {usableArea.top})">
@@ -201,42 +226,65 @@
     </svg>
   </div>
 
-  <!-- Statistics panel -->
-  <div class="stats-panel">
-    <h4>Selection Statistics</h4>
-    <p>Total selected: {stats.total} points</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>{color} Category</th>
-          <th>Count</th>
-          <th>Avg {x}</th>
-          <th>Avg {y}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each stats.categories as stat}
-          <tr>
-            <td>
-              <span class="color-dot" style="background-color: {colorScale(stat.category)}"></span>
-              {stat.category}
-            </td>
-            <td>{stat.count}</td>
-            <td>{stat.avgX?.toFixed(1) || 'N/A'}</td>
-            <td>{stat.avgY?.toFixed(1) || 'N/A'}</td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
+  <!-- Details panel that displays info of the clicked point -->
+  <div class="details-panel">
+    {#if clickedPoint}
+      <h4>Details for Selected Point</h4>
+      {#each Object.keys(clickedPoint) as key}
+        <p><strong>{key}:</strong> {clickedPoint[key]}</p>
+      {/each}
+    {:else}
+      <p>Click on a data point to see its details here.</p>
+    {/if}
   </div>
 </div>
 
+<!-- Statistics panel remains available -->
+<div class="stats-panel">
+  <h4>Selection Statistics</h4>
+  <p>Total selected: {stats.total} points</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>{color} Category</th>
+        <th>Count</th>
+        <th>Avg {x}</th>
+        <th>Avg {y}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each stats.categories as stat}
+        <tr>
+          <td>
+            <span class="color-dot" style="background-color: {colorScale(stat.category)}"></span>
+            {stat.category}
+          </td>
+          <td>{stat.count}</td>
+          <td>{stat.avgX?.toFixed(1) || 'N/A'}</td>
+          <td>{stat.avgY?.toFixed(1) || 'N/A'}</td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
+
 <style>
-  .visualization-container {
+  .main-container {
     display: flex;
-    flex-direction: column;
     gap: 20px;
+  }
+  
+  .scatter-container {
+    flex: 1;
+  }
+  
+  .details-panel {
+    flex: 0 0 250px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
   }
   
   .controls {
@@ -258,6 +306,7 @@
   
   .data-point {
     transition: opacity 0.3s, r 0.3s;
+    cursor: pointer;
   }
   
   .stats-panel {
