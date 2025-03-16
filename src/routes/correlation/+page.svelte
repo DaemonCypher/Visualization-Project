@@ -16,7 +16,7 @@
   let frequencyOption = ["sex", "children", "smoker", "region"];
   let scatterOptionX = ["age", "bmi", "charge"];
   let scatterOptionY = ["age", "bmi", "charge"];
-  let scatterOptionSize = ["age", "bmi", "charge"];
+  let scatterOptionSize = ["age", "bmi", "charge", "children"];
   let scatterOptionColor = ["sex", "children", "smoker", "region"];
   let boxOptionY =["age", "bmi", "charge"];
   let boxOptionX =["sex", "children", "smoker", "region"];
