@@ -7,6 +7,7 @@
   import Scatter from "$lib/Scatter.svelte";
   import Box from "$lib/Box.svelte";
   import Line from "$lib/Line.svelte";
+  import BrushScatter from "$lib/BrushScatter.svelte";
   // Reactive variable for storing the data
   let insurance: TInsurance[] = $state([]);
   // hard code selections since different graph will need different selections
@@ -15,7 +16,8 @@
   let frequencyOption = ["sex", "children", "smoker", "region"];
   let scatterOptionX = ["age", "bmi", "charge"];
   let scatterOptionY = ["age", "bmi", "charge"];
-  let scatterOptionSize = ["age", "bmi", "charge"];
+  let scatterOptionSize = ["age", "bmi", "charge", "children"];
+  let scatterOptionColor = ["sex", "children", "smoker", "region"];
   let boxOptionY =["age", "bmi", "charge"];
   let boxOptionX =["sex", "children", "smoker", "region"];
 
@@ -63,7 +65,7 @@
     scatterSize: "bmi",
     boxOptionX:"region",
     boxOptionY:"charge",
-
+    scatterColor:"smoker"
   });
 
   // Call the loader when the component mounts
@@ -153,6 +155,49 @@
     />
     <br />
   {/if}
+
+    {#if insurance.length > 0}
+      <div class="selectors">
+        X Axis:
+        <select bind:value={axisSelection.scatterX}>
+          {#each scatterOptionX as key}
+            <option value={key}>{key}</option>
+          {/each}
+        </select>
+  
+        Y Axis:
+        <select bind:value={axisSelection.scatterY}>
+          {#each scatterOptionY as key}
+            <option value={key}>{key}</option>
+          {/each}
+        </select>
+  
+        Size:
+        <select bind:value={axisSelection.scatterSize}>
+          {#each scatterOptionSize as key}
+            <option value={key}>{key}</option>
+          {/each}
+        </select>
+        
+        Color:
+        <select bind:value={axisSelection.scatterColor}>
+          {#each scatterOptionColor as key}
+            <option value={key}>{key}</option>
+          {/each}
+        </select>
+        -
+      </div>
+  
+      <BrushScatter
+        {insurance}
+        x={axisSelection.scatterX}
+        y={axisSelection.scatterY}
+        size={axisSelection.scatterSize}
+        color={axisSelection.scatterColor}
+      />
+      <br />
+    {/if}
+
 </div>
 
 <div class="container">
