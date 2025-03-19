@@ -10,6 +10,7 @@
   import BrushScatter from "$lib/BrushScatter.svelte";
   // Reactive variable for storing the data
   let insurance: TInsurance[] = $state([]);
+  // place holder for build file to be recognized
   // hard code selections since different graph will need different selections
   let attrOptionsX = ["sex", "children", "smoker", "region"];
   let attrOptionsY = ["sex", "children", "smoker", "region"];
