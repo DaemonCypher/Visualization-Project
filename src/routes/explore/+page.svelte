@@ -16,10 +16,10 @@
     let frequencyOption = ["sex", "children", "smoker", "region"];
     let scatterOptionX = ["age", "bmi", "charge"];
     let scatterOptionY = ["age", "bmi", "charge"];
-    let scatterOptionSize = ["age", "bmi", "charge", "children", "tier"];
-    let scatterOptionColor = ["sex", "children", "smoker", "region", "tier"];
-    let boxOptionY =["age", "bmi", "charge", "tier"];
-    let boxOptionX =["sex", "children", "smoker", "region", "tier"];
+    let scatterOptionSize = ["age", "bmi", "charge", "children", "tier", "bmi_category"];
+    let scatterOptionColor = ["sex", "children", "smoker", "region", "tier", "bmi_category"];
+    let boxOptionY =["age", "bmi", "charge", "tier", "bmi_category"];
+    let boxOptionX =["sex", "children", "smoker", "region", "tier", "bmi_category"];
   
     // Function to load the CSV
     async function loadCsv() {
@@ -27,6 +27,8 @@
         const csvUrl = "./insurance.csv";
         insurance = await d3.csv(csvUrl, (row) => {
           const tier = Number(row.charges) > 30000 ? 1 : Number(row.charges) > 15000 ? 2 : 3;
+          const bmi_category = Number(row.bmi) > 30 ? 4 : Number(row.bmi) > 25 ? 3 : Number(row.bmi) > 18.5 ? 2 : 1;
+          // 4: obese, 3: overweight, 2: normal, 1: underweight
           return {
             age: row.age,
             sex: row.sex,
@@ -35,7 +37,8 @@
             smoker: row.smoker,
             region: row.region,
             charge: row.charges,
-            tier: tier
+            tier: tier,
+            bmi_category: bmi_category
             // ...row, // spread syntax to copy all properties from row
             // num_votes: Number(row.num_votes),
             // year: new Date(row.year),
@@ -122,7 +125,6 @@
               <option value={key}>{key}</option>
             {/each}
           </select>
-          -
         </div>
     
         <BrushScatter
