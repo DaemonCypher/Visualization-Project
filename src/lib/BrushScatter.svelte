@@ -9,23 +9,26 @@
   export let y: keyof TInsurance;
   export let size: keyof TInsurance;
   export let color: keyof TInsurance;
-  export let width: number = 800;
-  export let height: number = 500;
+  export let width: number = 1000;
+  export let height: number = 800;
 
   // console.log("insurance", insurance)
 
   // Transform insurance data into our working format using map
   $: data = insurance.map((entry, index) => ({
-    xValue: +entry[x],
-    yValue: +entry[y],
+    xValue: isNumericX ? +entry[x] : String(entry[x]),
+    yValue: isNumericY ? +entry[y] : String(entry[y]),
     sizeValue: +entry[size],
     colorValue: String(entry[color]),
     id: index
   }));
+  // Utility to detect if an attribute is numeric or categorical
+  $: isNumericX = insurance.every(d => !isNaN(+d[x]));
+  $: isNumericY = insurance.every(d => !isNaN(+d[y]));
 
   // Compute extents (min and max) for each numerical field using d3.extent
-  $: xExtent = d3.extent(data, d => d.xValue) as [number, number];
-  $: yExtent = d3.extent(data, d => d.yValue) as [number, number];
+  // $: xExtent = d3.extent(data, d => d.xValue) as [number, number];
+  // $: yExtent = d3.extent(data, d => d.yValue) as [number, number];
   $: sizeExtent = d3.extent(data, d => d.sizeValue) as [number, number];
 
   // Compute unique color categories
@@ -41,25 +44,39 @@
   };
 
   // Define scales using computed extents
-  $: xScale = d3.scaleLinear()
-    .range([usableArea.left, usableArea.right])
-    .domain(xExtent);
+$: xScale = isNumericX
+  ? d3.scaleLinear()
+      .domain(d3.extent(data, d => d.xValue) as [number, number])
+      .range([usableArea.left, usableArea.right])
+  : d3.scalePoint()
+      .domain([...new Set(data.map(d => d.xValue.toString()))])
+      .range([usableArea.left, usableArea.right])
+      .padding(0.5);
 
-  $: yScale = d3.scaleLinear()
-    .range([usableArea.bottom, usableArea.top])
-    .domain(yExtent);
+$: yScale = isNumericY
+  ? d3.scaleLinear()
+      .domain(d3.extent(data, d => d.yValue) as [number, number])
+      .range([usableArea.bottom, usableArea.top])
+  : d3.scalePoint()
+      .domain([...new Set(data.map(d => d.yValue.toString()))])
+      .range([usableArea.bottom, usableArea.top])
+      .padding(0.5);
+
 
   $: sizeScale = d3.scaleSqrt()
     .range([3, 12])
     .domain(sizeExtent);
-
-  $: colorScale = d3.scaleOrdinal<string>()
-    .domain(categories)
-    .range(d3.schemeCategory10);
+  
+    $: colorScale = d3.scaleOrdinal<string>()
+  .domain(categories.map(String))
+  .range(d3.schemeCategory10);
 
   // State for brush and selected points
   let selectedPoints: number[] = [];
   let brushActive = false;
+
+  let scatterOptionColors = ["sex", "children", "smoker", "region", "tier", "bmi_category"];
+  let scatterOptionColor = "region";
 
   let xAxis: SVGGElement;
   let yAxis: SVGGElement;
@@ -70,23 +87,25 @@
 
   // Function to update axes
   function updateAxis() {
+    // X-Axis
     d3.select(xAxis)
       .call(
-        d3.axisBottom(xScale)
-          .tickFormat(d3.format("d"))
-          .ticks(10)
+        (isNumericX ? d3.axisBottom(xScale).ticks(10).tickFormat(d3.format("d")) : d3.axisBottom(xScale))
           .tickSize(-height + margin.top + margin.bottom)
       )
       .selectAll("text")
-      .attr("transform", "rotate(45)")
-      .style("text-anchor", "start");
+      .attr("transform", isNumericX ? "rotate(45)" : "rotate(0)")
+      .style("text-anchor", isNumericX ? "start" : "middle");
 
+    // Y-Axis
     d3.select(yAxis)
       .call(
-        d3.axisLeft(yScale)
+        (isNumericY ? d3.axisLeft(yScale).ticks(10) : d3.axisLeft(yScale))
           .tickSize(-width + margin.left + margin.right)
       );
   }
+
+
 
   // Initialize brush on the background rect (using brushElement group)
   function initBrush() {
@@ -131,16 +150,36 @@
     : data;
 
   $: stats = (() => {
-    // Group data by the encoded color value using d3.group
-    const groups = d3.group(selectedData, d => d.colorValue);
+    const groups = d3.group(selectedData, d => insurance[d.id]?.[scatterOptionColor]);
     const statsArray = Array.from(groups, ([category, points]) => ({
       category,
       count: points.length,
-      avgX: d3.mean(points, d => d.xValue),
-      avgY: d3.mean(points, d => d.yValue),
-      avgSize: d3.mean(points, d => d.sizeValue)
+      avgCharge: d3.mean(points, d => insurance[d.id].charge),
+      avgAge: d3.mean(points, d => insurance[d.id].age),
+      avgBmi: d3.mean(points, d => insurance[d.id].bmi)
     }));
-    return { total: selectedData.length, categories: statsArray };
+    let legends = null;
+    if (scatterOptionColor == "bmi_category") {
+      legends = {
+        1: "underweight",
+        2: "normal",
+        3: "overweight",
+        4: "obese"
+      };
+    } else if (scatterOptionColor == "tier") {
+      legends = {
+        4: "high",
+        3: "medium",
+        2: "low",
+        1: "below 5k"
+      };
+    }
+    return { 
+      total: selectedData.length, 
+      categories: statsArray,
+      statsArray: statsArray,
+      legends: legends,
+    };
   })();
 
   // Toggle brush mode (enable/clear selection)
@@ -164,9 +203,21 @@
 
   // Set up axes and brush when component mounts
   onMount(() => {
-    updateAxis();
+    // updateAxis();
     initBrush();
   });
+
+// Force Svelte to treat xScale and yScale as dependencies:
+$: {
+  xScale;  // “touch” them so Svelte re-runs this block if they change
+  yScale;
+  
+  if (xAxis && yAxis) {
+    updateAxis();
+  }
+}
+
+  
 </script>
 
 <h3>
@@ -201,8 +252,8 @@
       <!-- Data points (drawn above the brush layer) -->
       {#each data as point}
         <circle
-          cx={xScale(point.xValue)}
-          cy={yScale(point.yValue)}
+          cx={isNumericX ? xScale(point.xValue) : xScale(String(point.xValue))}
+          cy={isNumericY ? yScale(point.yValue) : yScale(String(point.yValue))}
           r={sizeScale(point.sizeValue)}
           fill={colorScale(point.colorValue)}
           opacity={selectedPoints.length > 0 ? (selectedPoints.includes(point.id) ? 0.8 : 0.2) : 0.6}
@@ -216,7 +267,7 @@
       <!-- Category legend -->
       <g transform="translate({usableArea.right + 10}, {usableArea.top})">
         <text font-weight="bold" font-size="12">Categories</text>
-        {#each categories as category, i}
+        {#each categories.sort().reverse() as category, i}
           <g transform="translate(0, {20 + i * 20})">
             <circle r="6" fill={colorScale(category)} />
             <text x="10" y="4" font-size="12">{category}</text>
@@ -243,26 +294,32 @@
 <div class="stats-panel">
   <h4>Selection Statistics</h4>
   <p>Total selected: {stats.total} points</p>
-
+  <select bind:value={scatterOptionColor}>
+    {#each scatterOptionColors as key}
+      <option value={key}>{key}</option>
+    {/each}
+  </select>
   <table>
     <thead>
       <tr>
-        <th>{color} Category</th>
+        <th>{scatterOptionColor} Category</th>
         <th>Count</th>
-        <th>Avg {x}</th>
-        <th>Avg {y}</th>
+        <th>Avg Age</th>
+        <th>Avg BMI</th>
+        <th>Avg Charge</th>
       </tr>
     </thead>
     <tbody>
-      {#each stats.categories as stat}
+      {#each stats.categories.sort((a, b) => b.category - a.category) as stat}
         <tr>
           <td>
-            <span class="color-dot" style="background-color: {colorScale(stat.category)}"></span>
-            {stat.category}
+            <span class="color-dot" style="background-color: {colorScale(String(stat.category))}"></span>
+            {stats.legends?stats.legends[stat.category]:stat.category}
           </td>
-          <td>{stat.count}</td>
-          <td>{stat.avgX?.toFixed(1) || 'N/A'}</td>
-          <td>{stat.avgY?.toFixed(1) || 'N/A'}</td>
+          <td>{stat.count} ({((stat.count / stats.total)*100).toFixed(1)}%)</td>
+          <td>{stat.avgAge?.toFixed(1) || 'N/A'}</td>
+          <td>{stat.avgBmi?.toFixed(1) || 'N/A'}</td>
+          <td>{stat.avgCharge?.toFixed(1) || 'N/A'}</td>
         </tr>
       {/each}
     </tbody>
