@@ -14,8 +14,8 @@
     let attrOptionsX = ["sex", "children", "smoker", "region"];
     let attrOptionsY = ["sex", "children", "smoker", "region"];
     let frequencyOption = ["sex", "children", "smoker", "region"];
-    let scatterOptionX = ["age", "bmi", "charge", "children"];
-    let scatterOptionY = ["age", "bmi", "charge", "children"];
+    let scatterOptionX = ["age", "bmi", "charge", "children", "smoker", "region"];
+    let scatterOptionY = ["age", "bmi", "charge", "children", "smoker", "region"];
     let scatterOptionSize = ["age", "children", "tier", "bmi_category"];
     let scatterOptionColor = ["sex", "children", "smoker", "region", "tier", "bmi_category"];
     let boxOptionY =["age", "bmi", "charge", "tier", "bmi_category"];
@@ -30,6 +30,7 @@
           // 1: high, 2: medium, 3: low, 4: below 5k
           const bmi_category = Number(row.bmi) > 30 ? 4 : Number(row.bmi) > 25 ? 3 : Number(row.bmi) > 18.5 ? 2 : 1;
           // 4: obese, 3: overweight, 2: normal, 1: underweight
+          const smoker_category = row.smoker == "yes" ? 1 : 0;
           return {
             age: row.age,
             sex: row.sex,
@@ -39,7 +40,8 @@
             region: row.region,
             charge: row.charges,
             tier: tier,
-            bmi_category: bmi_category
+            bmi_category: bmi_category,
+            smoker_category: smoker_category
             // ...row, // spread syntax to copy all properties from row
             // num_votes: Number(row.num_votes),
             // year: new Date(row.year),
