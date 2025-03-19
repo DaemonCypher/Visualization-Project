@@ -66,10 +66,10 @@ $: yScale = isNumericY
   $: sizeScale = d3.scaleSqrt()
     .range([3, 12])
     .domain(sizeExtent);
-
-  $: colorScale = d3.scaleOrdinal<string>()
-    .domain(categories)
-    .range(d3.schemeCategory10);
+  
+    $: colorScale = d3.scaleOrdinal<string>()
+  .domain(categories.map(String))
+  .range(d3.schemeCategory10);
 
   // State for brush and selected points
   let selectedPoints: number[] = [];
@@ -313,10 +313,10 @@ $: {
       {#each stats.categories.sort((a, b) => b.category - a.category) as stat}
         <tr>
           <td>
-            <span class="color-dot" style="background-color: {colorScale(stat.category)}"></span>
+            <span class="color-dot" style="background-color: {colorScale(String(stat.category))}"></span>
             {stats.legends?stats.legends[stat.category]:stat.category}
           </td>
-          <td>{stat.count}</td>
+          <td>{stat.count} ({((stat.count / stats.total)*100).toFixed(1)}%)</td>
           <td>{stat.avgAge?.toFixed(1) || 'N/A'}</td>
           <td>{stat.avgBmi?.toFixed(1) || 'N/A'}</td>
           <td>{stat.avgCharge?.toFixed(1) || 'N/A'}</td>
