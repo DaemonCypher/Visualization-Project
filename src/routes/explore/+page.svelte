@@ -26,7 +26,8 @@
       try {
         const csvUrl = "./insurance.csv";
         insurance = await d3.csv(csvUrl, (row) => {
-          const tier = Number(row.charges) > 30000 ? 1 : Number(row.charges) > 15000 ? 2 : Number(row.charges) > 5000 ? 3 : 4;
+          const tier = Number(row.charges) > 30000 ? 4 : Number(row.charges) > 15000 ? 3 : Number(row.charges) > 5000 ? 2 : 1;
+          // 1: high, 2: medium, 3: low, 4: below 5k
           const bmi_category = Number(row.bmi) > 30 ? 4 : Number(row.bmi) > 25 ? 3 : Number(row.bmi) > 18.5 ? 2 : 1;
           // 4: obese, 3: overweight, 2: normal, 1: underweight
           return {

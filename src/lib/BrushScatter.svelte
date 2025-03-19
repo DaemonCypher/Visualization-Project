@@ -61,6 +61,9 @@
   let selectedPoints: number[] = [];
   let brushActive = false;
 
+  let scatterOptionColors = ["sex", "children", "smoker", "region", "tier", "bmi_category"];
+  let scatterOptionColor = "region";
+
   let xAxis: SVGGElement;
   let yAxis: SVGGElement;
   let brushElement: SVGGElement;
@@ -131,16 +134,36 @@
     : data;
 
   $: stats = (() => {
-    // Group data by the encoded color value using d3.group
-    const groups = d3.group(selectedData, d => d.colorValue);
+    const groups = d3.group(selectedData, d => insurance[d.id]?.[scatterOptionColor]);
     const statsArray = Array.from(groups, ([category, points]) => ({
       category,
       count: points.length,
-      avgX: d3.mean(points, d => d.xValue),
-      avgY: d3.mean(points, d => d.yValue),
-      avgSize: d3.mean(points, d => d.sizeValue)
+      avgCharge: d3.mean(points, d => insurance[d.id].charge),
+      avgAge: d3.mean(points, d => insurance[d.id].age),
+      avgBmi: d3.mean(points, d => insurance[d.id].bmi)
     }));
-    return { total: selectedData.length, categories: statsArray };
+    let legends = null;
+    if (scatterOptionColor == "bmi_category") {
+      legends = {
+        1: "underweight",
+        2: "normal",
+        3: "overweight",
+        4: "obese"
+      };
+    } else if (scatterOptionColor == "tier") {
+      legends = {
+        4: "high",
+        3: "medium",
+        2: "low",
+        1: "below 5k"
+      };
+    }
+    return { 
+      total: selectedData.length, 
+      categories: statsArray,
+      statsArray: statsArray,
+      legends: legends,
+    };
   })();
 
   // Toggle brush mode (enable/clear selection)
@@ -255,26 +278,32 @@ $: {
 <div class="stats-panel">
   <h4>Selection Statistics</h4>
   <p>Total selected: {stats.total} points</p>
-
+  <select bind:value={scatterOptionColor}>
+    {#each scatterOptionColors as key}
+      <option value={key}>{key}</option>
+    {/each}
+  </select>
   <table>
     <thead>
       <tr>
-        <th>{color} Category</th>
+        <th>{scatterOptionColor} Category</th>
         <th>Count</th>
-        <th>Avg {x}</th>
-        <th>Avg {y}</th>
+        <th>Avg Age</th>
+        <th>Avg BMI</th>
+        <th>Avg Charge</th>
       </tr>
     </thead>
     <tbody>
-      {#each stats.categories as stat}
+      {#each stats.categories.sort((a, b) => b.category - a.category) as stat}
         <tr>
           <td>
             <span class="color-dot" style="background-color: {colorScale(stat.category)}"></span>
-            {stat.category}
+            {stats.legends?stats.legends[stat.category]:stat.category}
           </td>
           <td>{stat.count}</td>
-          <td>{stat.avgX?.toFixed(1) || 'N/A'}</td>
-          <td>{stat.avgY?.toFixed(1) || 'N/A'}</td>
+          <td>{stat.avgAge?.toFixed(1) || 'N/A'}</td>
+          <td>{stat.avgBmi?.toFixed(1) || 'N/A'}</td>
+          <td>{stat.avgCharge?.toFixed(1) || 'N/A'}</td>
         </tr>
       {/each}
     </tbody>
