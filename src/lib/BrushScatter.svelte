@@ -164,9 +164,21 @@
 
   // Set up axes and brush when component mounts
   onMount(() => {
-    updateAxis();
+    // updateAxis();
     initBrush();
   });
+
+// Force Svelte to treat xScale and yScale as dependencies:
+$: {
+  xScale;  // “touch” them so Svelte re-runs this block if they change
+  yScale;
+  
+  if (xAxis && yAxis) {
+    updateAxis();
+  }
+}
+
+  
 </script>
 
 <h3>
@@ -216,7 +228,7 @@
       <!-- Category legend -->
       <g transform="translate({usableArea.right + 10}, {usableArea.top})">
         <text font-weight="bold" font-size="12">Categories</text>
-        {#each categories as category, i}
+        {#each categories.sort().reverse() as category, i}
           <g transform="translate(0, {20 + i * 20})">
             <circle r="6" fill={colorScale(category)} />
             <text x="10" y="4" font-size="12">{category}</text>
