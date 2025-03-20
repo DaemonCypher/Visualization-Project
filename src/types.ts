@@ -11,4 +11,9 @@ export type TInsurance = {
     occupation: string;
     coverage_level: string;
     charge: number;
-}
+};
+
+export type TUninsuredRate = {
+    state: string;
+    rate: number;
+};
