@@ -1,13 +1,14 @@
 <script lang="ts">
     import * as d3 from "d3";
     import { onMount } from "svelte";
+    import { base } from '$app/paths';
     import USMap from "$lib/USMap.svelte";
   
     let uninsuredData: { state: string; rate: number }[] = [];
 
     async function loadCsv() {
       try {
-        const csvUrl = "/uninsured.csv";
+        const csvUrl = `${base}/uninsured.csv`;
         uninsuredData = await d3.csv(csvUrl, (row) => ({
           state: row.State.trim(),
           rate: +row["Uninsured Rate (2015)"],
