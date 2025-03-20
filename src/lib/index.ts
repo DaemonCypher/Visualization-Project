@@ -5,4 +5,5 @@ import Scatter from "$lib/Scatter.svelte";
 import Box from "$lib/Box.svelte";
 import Line from "$lib/Line.svelte";
 import BrushScatter from "$lib/BrushScatter.svelte";
-export {Frequency, Heat,Scatter,Box,Line,BrushScatter}
+import USMap from "$lib/USMap.svelte";
+export {Frequency, Heat,Scatter,Box,Line,BrushScatter, USMap}
