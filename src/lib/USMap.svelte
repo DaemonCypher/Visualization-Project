@@ -53,9 +53,9 @@
 
         // Add a title
         svg.append("text")
-        .attr("x", width / 2) // Center the title horizontally
-        .attr("y", 30) // Position it slightly below the top
-        .attr("text-anchor", "middle") // Center the text
+        .attr("x", width / 2) 
+        .attr("y", 30) 
+        .attr("text-anchor", "middle")
         .style("font-size", "24px")
         .style("font-weight", "bold")
         .text("Uninsured Rate by State");

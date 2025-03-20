@@ -4,10 +4,13 @@ import adapter from '@sveltejs/adapter-static';
 const config = {
 	kit: {
 		adapter: adapter({
-			fallback: '404.html'
+			fallback: '404.html',
+			pages: 'build/Visualization-Project',
+      		assets: 'build/Visualization-Project'
 		}),
 		paths: {
-			base: process.argv.includes('dev') ? '' : '/Visualization-Project'
+			// base: process.argv.includes('dev') ? '' : '/Visualization-Project'
+			base: '/Visualization-Project'
 		}
 	}
 };
