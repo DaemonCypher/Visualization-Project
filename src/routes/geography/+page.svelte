@@ -8,7 +8,7 @@
 
     async function loadCsv() {
       try {
-        const csvUrl = `${base}/uninsured.csv`;
+        const csvUrl = `./uninsured.csv`;
         uninsuredData = await d3.csv(csvUrl, (row) => ({
           state: row.State.trim(),
           rate: +row["Uninsured Rate (2015)"],
