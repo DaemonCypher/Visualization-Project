@@ -8,11 +8,13 @@
 
     async function loadCsv() {
       try {
-        const csvUrl = `./uninsured.csv`;
-        uninsuredData = await d3.csv(csvUrl, (row) => ({
+        const csvUrl = "./uninsured.csv";
+        uninsuredData = await d3.csv(csvUrl, (row) => {
+          return{
           state: row.State.trim(),
           rate: +row["Uninsured Rate (2015)"],
-        }));
+        }
+      });
         console.log("Loaded CSV Data:", uninsuredData);
       } catch (error) {
         console.error("Error loading CSV:", error);

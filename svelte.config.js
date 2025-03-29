@@ -5,12 +5,12 @@ const config = {
 	kit: {
 		adapter: adapter({
 			fallback: '404.html',
-			pages: 'build/Visualization-Project',
-      		assets: 'build/Visualization-Project'
+			// pages: 'build/Visualization-Project',
+      		// assets: 'build/Visualization-Project'
 		}),
 		paths: {
-			// base: process.argv.includes('dev') ? '' : '/Visualization-Project'
-			base: '/Visualization-Project'
+			base: process.argv.includes('dev') ? '' : '/Visualization-Project'
+			// base: '/Visualization-Project'
 		}
 	}
 };
