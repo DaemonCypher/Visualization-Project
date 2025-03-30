@@ -122,7 +122,6 @@
   
   <svg {width} {height}>
     <g transform="translate({margin.left}, {margin.top})">
-      <!-- Parallel coordinate paths -->
       {#each insurance as row}
         <path
           class="line"
@@ -135,7 +134,6 @@
         />
       {/each}
   
-      <!-- Y axes for each dimension -->
       {#each xLabels as key, i}
         <g
           bind:this={axisGroups[i]}
@@ -143,7 +141,6 @@
         />
       {/each}
   
-      <!-- Legend for categories (right of chart) -->
       <g transform="translate({usableArea.right - 300}, 0)">
         <text font-weight="bold" font-size="12">Legend: {colorBy}</text>
         {#each categories.sort() as category, i}
