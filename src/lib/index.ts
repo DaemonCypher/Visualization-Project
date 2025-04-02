@@ -6,4 +6,5 @@ import Box from "$lib/Box.svelte";
 import Line from "$lib/Line.svelte";
 import BrushScatter from "$lib/BrushScatter.svelte";
 import USMap from "$lib/USMap.svelte";
-export {Frequency, Heat,Scatter,Box,Line,BrushScatter, USMap}
+import Scroll from './Scroll.svelte'
+export {Frequency, Heat,Scatter,Box,Line,BrushScatter, USMap,Scroll}
