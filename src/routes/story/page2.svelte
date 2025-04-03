@@ -12,16 +12,23 @@
 
 <Scroll
     bind:progress
-    --scrolly-story-width="0"
+    --scrolly-story-width="0fr"
     --scrolly-viz-width="1fr"
     --scrolly-margin="30px"
     --scrolly-viz-top="2em"
-    --scrolly-gap="4em"
+    --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
-    <div id="virtual"></div>
+
+    <div id="virtual">
+        <h3>
+            Correlation Between Insurance Charges and Insurance Holder Features
+        </h3>
+
+    </div>
+   
     <div slot="viz" class="header">
-        {#if progress > 0}
+        {#if progress > 70}
             <!-- Add a condition to trigger the transition -->
             <div
                 class="image-container"
@@ -30,7 +37,7 @@
                     y: -200,
                 }}
             >
-                <img src={datatype} alt="Data" />
+                <!-- <img src={datatype} alt="Data" /> -->
                 <img src={patient} alt="Patient" />
             </div>
         {/if}

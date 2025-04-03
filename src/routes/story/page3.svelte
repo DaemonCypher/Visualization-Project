@@ -36,18 +36,24 @@
     bind:progress
     --scrolly-story-width="0"
     --scrolly-viz-width="1fr"
-    --scrolly-margin="30px"
-    --scrolly-viz-top="2em"
+    --scrolly-margin="10px"
+    --scrolly-viz-top="4px"
     --scrolly-gap="4em"
     --scrolly-layout="story-first"
 >
-    <div id="virtual"></div>
+    <div id="virtual">
+        {#if progress > 0}
+            <h4>
+                United States Uninsured Rate
+            </h4>
+        {/if}
+    </div>
     <!-- Story here -->
 
     <!-- visualization here, indicated by slot='viz' -->
     <div slot="viz">
         {#if progress > 0}
-            <div>
+            <div in:fly={{ duration: 1000, y: 100 }}>
                 {#if uninsuredData.length > 0}
                     <USMap {uninsuredData} />
                 {/if}
@@ -63,6 +69,7 @@
 <style>
     #virtual {
         height: 150vh; /* Make the page scrollable with a 150% view height */
+        position: 700px;
     }
 
     div {

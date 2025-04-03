@@ -4,12 +4,15 @@
     import Page1 from "./page1.svelte";
     import Page2 from "./page2.svelte";
     import Page3 from "./page3.svelte";
-
+    import Page0 from "./page0.svelte";
     onMount(() => {});
 </script>
 
 <div class="container">
     <div class="story">
+
+       
+        <Page0 />
         <Page1 />
         <Page2 />
         <Page3 />

@@ -20,27 +20,39 @@
 
 <Scroll
     bind:progress
-    --scrolly-story-width="1"
+    --scrolly-story-width="0"
     --scrolly-viz-width="1fr"
     --scrolly-margin="30px"
     --scrolly-viz-top="2em"
     --scrolly-gap="4em"
     --scrolly-layout="story-first"
 >
-    <div id="virtual">
+    <div id="virtual"></div>
     <!-- Story here -->
-     {#if progress>0}
-        <p>
-            A Deep Dive into Insurance Charges and Insurance Holder Features
-        </p>
-     {/if}
-    </div>
+     
 
     <!-- visualization here, indicated by slot='viz' -->
     <div slot="viz" class="header">
-            <p in:fly={{ duration: 800, x: 0, y: 0 }}>
+        <h1>
+            Correlation Between Insurance Charges and Insurance Holder Features
+        </h1>
+
+        <!-- {#if progress > 30}
+            <p
+                in:slide={{
+                    duration: 1000,
+                    axis: "x",
+                }}
+            >
+                A Deep Dive into Insurance Charges and Insurance Holder Features
+            </p>
+        {/if}
+
+        {#if progress > 70}
+            <p in:fly={{ duration: 800, x: 0, y: 200 }}>
                 with data visualizations
             </p>
+        {/if} -->
     </div>
 </Scroll>
 
@@ -48,7 +60,7 @@
 
 <style>
     .header {
-        border: 1px solid rgb(255, 228, 193);
+        background-color: rgb(255, 228, 193);
         padding: 80px 60px;
         height: 60vh;
         width: 800px;
