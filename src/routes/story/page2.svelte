@@ -1,8 +1,8 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import datatype from "/img/datatype.png";
-    import patient from "/img/patient.png";
+    import datatype from "./img/datatype.png";
+    import patient from "./img/patient.png";
 
     type Props = {};
     let {}: Props = $props();
