@@ -33,6 +33,7 @@
 
     <!-- visualization here, indicated by slot='viz' -->
     <div slot="viz" class="header">
+        title page
         <h1>
             Correlation Between Insurance Charges and Insurance Holder Features
         </h1>

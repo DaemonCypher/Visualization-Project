@@ -35,9 +35,8 @@
         </p>
      {/if}
     </div>
-
     <!-- visualization here, indicated by slot='viz' -->
-    <div slot="viz" class="header">
+    <div slot="viz" class="visualization">
             <p in:fly={{ duration: 800, x: 0, y: 0 }}>
                 with data visualizations
             </p>
@@ -47,14 +46,14 @@
 <!-- <svelte:window bind:scrollY={progress} /> -->
 
 <style>
-    .header {
+    .visualization {
         border: 1px solid rgb(255, 228, 193);
         padding: 80px 60px;
         height: 60vh;
         width: 800px;
     }
     #virtual {
-        height: 150vh; /* Make the page scrollable with a 150% view height */
+        height: 100vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 8vh;
