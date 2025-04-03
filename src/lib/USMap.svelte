@@ -20,10 +20,19 @@
   // Helper: Create a radius scale for the circles
   function createRadiusScale(data) {
     const maxRate = d3.max(data, (d) => d.rate) || 0;
-    // Adjust range to taste (e.g., 0–20 px)
+    // Adjust the range to suit your preference
     return d3.scaleLinear()
       .domain([0, maxRate])
-      .range([0, 20]);
+      .range([0, 30]);
+  }
+
+  // Helper: Create a transition duration scale so smaller values animate faster
+  function createTransitionDurationScale(data) {
+    const maxRate = d3.max(data, (d) => d.rate) || 0;
+    // The smaller the rate, the shorter the duration; adjust range to taste
+    return d3.scaleLinear()
+      .domain([0, maxRate])
+      .range([500, 5000]); 
   }
 
   // Helper: Draw the base map (state outlines)
@@ -42,7 +51,7 @@
       .attr("fill", "#eee")
       .attr("stroke", "#fff")
       .attr("stroke-width", 0.7)
-      // Optional transition on the map outlines
+      // Fade in the outlines
       .style("opacity", 0)
       .transition()
       .duration(1000)
@@ -56,7 +65,8 @@
     projection,
     rateByState: Map<string, number>,
     colorScale,
-    radiusScale
+    radiusScale,
+    durationScale
   ) {
     const circleGroup = svg.append("g").attr("class", "state-circles");
 
@@ -76,7 +86,7 @@
         const rate = rateByState.get(d.properties.name);
         return rate ? colorScale(rate) : "#ccc";
       })
-      // Start with radius 0 for transition
+      // Start radius at 0 for transition
       .attr("r", 0)
       .attr("stroke", "#333")
       .attr("stroke-width", 0.5)
@@ -85,10 +95,13 @@
         (d) => `${d.properties.name}: ${rateByState.get(d.properties.name) || "N/A"}`
       );
 
-    // Transition the circles to final size
+    // Transition each circle, using a rate-dependent duration
     circleGroup.selectAll("circle")
       .transition()
-      .duration(1000)
+      .duration((d) => {
+        const rate = rateByState.get(d.properties.name) || 0;
+        return durationScale(rate);
+      })
       .attr("r", (d) => {
         const rate = rateByState.get(d.properties.name) || 0;
         return radiusScale(rate);
@@ -166,6 +179,7 @@
       // Scales
       const colorScale = createColorScale(uninsuredData);
       const radiusScale = createRadiusScale(uninsuredData);
+      const durationScale = createTransitionDurationScale(uninsuredData);
 
       // Projection & path generator
       const projection = d3.geoAlbersUsa().fitSize(
@@ -194,7 +208,7 @@
       drawBaseMap(svg, states, pathGenerator);
 
       // Draw circles for each state
-      drawCircles(svg, states, projection, rateByState, colorScale, radiusScale);
+      drawCircles(svg, states, projection, rateByState, colorScale, radiusScale, durationScale);
 
       // Legend
       drawLegend(svg, colorScale);
