@@ -20,7 +20,7 @@
 
 <Scroll
     bind:progress
-    --scrolly-story-width="1fr"
+    --scrolly-story-width="0"
     --scrolly-viz-width="1fr"
     --scrolly-margin="30px"
     --scrolly-viz-top="2em"
@@ -68,7 +68,7 @@
         height: 150vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
-        font-size: 10vh;
+        font-size: 8vh;
         color: #433417; /* Darker text for better contrast */
         font-weight: 600; /* Slightly bolder font weight */
     }

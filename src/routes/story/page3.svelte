@@ -1,59 +1,71 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-
     import { slide, fly } from "svelte/transition";
+    import * as d3 from "d3";
+    import { onMount } from "svelte";
+    import USMap from "$lib/USMap.svelte";
 
-    type Props = {
-        movieNum: number;
-    };
-    let { movieNum }: Props = $props();
+    type Props = {};
+    let {}: Props = $props();
 
     let progress: number = $state(0);
+
+    let uninsuredData = $state<{ state: string; rate: number }[]>([]);
+
+    async function loadCsv() {
+        try {
+            const csvUrl = "/uninsured.csv"; // Adjust the path to your CSV file";
+            uninsuredData = await d3.csv(csvUrl, (row) => {
+                return {
+                    state: row.State.trim(),
+                    rate: +row["Uninsured Rate (2015)"],
+                };
+            });
+            console.log("Loaded CSV Data:", uninsuredData);
+        } catch (error) {
+            console.error("Error loading CSV:", error);
+        }
+    }
+
+    onMount(async () => {
+        await loadCsv();
+    });
 </script>
 
-<Scroll bind:progress --scrolly-story-width="0">
+<Scroll
+    bind:progress
+    --scrolly-story-width="0"
+    --scrolly-viz-width="1fr"
+    --scrolly-margin="30px"
+    --scrolly-viz-top="2em"
+    --scrolly-gap="4em"
+    --scrolly-layout="story-first"
+>
     <div id="virtual"></div>
-    <div slot="viz" class="header">
-        <h1>Summer Movies</h1>
+    <!-- Story here -->
 
-        {#if progress > 30}
-            <p
-                in:slide={{
-                    duration: 1000,
-                    axis: "x",
-                }}
-            >
-                A Deep Dive into {movieNum} Movies Released Between 1945 and 2023
-            </p>
+    <!-- visualization here, indicated by slot='viz' -->
+    <div slot="viz">
+        {#if progress > 0}
+            <div>
+                {#if uninsuredData.length > 0}
+                    <USMap {uninsuredData} />
+                {/if}
+            </div>
         {/if}
 
         {#if progress > 70}
-            <p in:fly={{ duration: 800, x: 0, y: 200 }}>
-                with data visualizations
-            </p>
+            <div style="height: 50vh;"></div>
         {/if}
     </div>
 </Scroll>
 
-<!-- <svelte:window bind:scrollY={progress} /> -->
-
 <style>
-    .header {
-        background-color: rgb(255, 228, 193);
-        padding: 80px 60px;
-        height: 60vh;
-        width: 800px;
-    }
     #virtual {
         height: 150vh; /* Make the page scrollable with a 150% view height */
     }
-    h1 {
-        font-size: 10vh;
-        color: #433417; /* Darker text for better contrast */
-        font-weight: 600; /* Slightly bolder font weight */
-    }
-    p {
-        font-size: 3vh;
-        color: #666;
+
+    div {
+        text-align: center;
     }
 </style>

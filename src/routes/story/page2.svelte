@@ -1,51 +1,45 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-
     import { slide, fly } from "svelte/transition";
+    import datatype from "/img/datatype.png";
+    import patient from "/img/patient.png";
 
-    type Props = {
-        movieNum: number;
-    };
-    let { movieNum }: Props = $props();
+    type Props = {};
+    let {}: Props = $props();
 
     let progress: number = $state(0);
 </script>
 
-<Scroll bind:progress --scrolly-story-width="0">
+<Scroll
+    bind:progress
+    --scrolly-story-width="0"
+    --scrolly-viz-width="1fr"
+    --scrolly-margin="30px"
+    --scrolly-viz-top="2em"
+    --scrolly-gap="4em"
+    --scrolly-layout="story-first"
+>
     <div id="virtual"></div>
     <div slot="viz" class="header">
-        <h1>Summer Movies</h1>
-
-        {#if progress > 30}
-            <p
-                in:slide={{
-                    duration: 1000,
-                    axis: "x",
+        {#if progress > 0}
+            <!-- Add a condition to trigger the transition -->
+            <div
+                class="image-container"
+                in:fly={{
+                    duration: 2000,
+                    y: -200,
                 }}
             >
-                A Deep Dive into {movieNum} Movies Released Between 1945 and 2023
-            </p>
-        {/if}
-
-        {#if progress > 70}
-            <p in:fly={{ duration: 800, x: 0, y: 200 }}>
-                with data visualizations
-            </p>
+                <img src={datatype} alt="Data" />
+                <img src={patient} alt="Patient" />
+            </div>
         {/if}
     </div>
 </Scroll>
 
-<!-- <svelte:window bind:scrollY={progress} /> -->
-
 <style>
-    .header {
-        background-color: rgb(255, 228, 193);
-        padding: 80px 60px;
-        height: 60vh;
-        width: 800px;
-    }
     #virtual {
-        height: 150vh; /* Make the page scrollable with a 150% view height */
+        height: 50vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 10vh;
@@ -55,5 +49,17 @@
     p {
         font-size: 3vh;
         color: #666;
+    }
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5em; /* Add spacing between images */
     }
 </style>
