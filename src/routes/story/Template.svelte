@@ -20,7 +20,7 @@
 
 <Scroll
     bind:progress
-    --scrolly-story-width="1fr"
+    --scrolly-story-width="0"
     --scrolly-viz-width="1fr"
     --scrolly-margin="30px"
     --scrolly-viz-top="2em"
