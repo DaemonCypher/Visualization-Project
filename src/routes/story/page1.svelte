@@ -2,6 +2,7 @@
     import { Scroll } from "$lib";
 
     import { slide, fly } from "svelte/transition";
+    import charge_age from "./sketch/charge-age-sex.png";
 
     type Props = {};
     let {}: Props = $props();
@@ -40,6 +41,7 @@
             <p in:fly={{ duration: 800, x: 0, y: 0 }}>
                 with data visualizations
             </p>
+            <img src={charge_age} alt="charge_age" class="image" />
     </div>
 </Scroll>
 
@@ -51,6 +53,10 @@
         padding: 80px 60px;
         height: 60vh;
         width: 800px;
+    }
+    .image {
+        width: 80%;
+        height: 80%;
     }
     #virtual {
         height: 100vh; /* Make the page scrollable with a 150% view height */
