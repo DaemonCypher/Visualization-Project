@@ -1,8 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import datatype from "./img/datatype.png";
-    import patient from "./img/patient.png";
+    import charge_age_smoker_children from "./sketch/charge-age-smoker-children.png";
 
     type Props = {};
     let {}: Props = $props();
@@ -22,7 +21,7 @@
 
     <div id="virtual">
         <h3>
-            Correlation Between Insurance Charges and Insurance Holder Features
+            Now, we can split the data by insurance tier.
         </h3>
 
     </div>
@@ -38,7 +37,7 @@
                 }}
             >
                 <!-- <img src={datatype} alt="Data" /> -->
-                <img src={patient} alt="Patient" />
+                <img src={charge_age_smoker_children} alt="Patient" />
             </div>
         {/if}
     </div>
@@ -46,7 +45,7 @@
 
 <style>
     #virtual {
-        height: 50vh; /* Make the page scrollable with a 150% view height */
+        height: 100vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 10vh;

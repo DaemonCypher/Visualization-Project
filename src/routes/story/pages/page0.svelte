@@ -38,22 +38,6 @@
             Correlation Between Insurance Charges and Insurance Holder Features
         </h1>
 
-        <!-- {#if progress > 30}
-            <p
-                in:slide={{
-                    duration: 1000,
-                    axis: "x",
-                }}
-            >
-                A Deep Dive into Insurance Charges and Insurance Holder Features
-            </p>
-        {/if}
-
-        {#if progress > 70}
-            <p in:fly={{ duration: 800, x: 0, y: 200 }}>
-                with data visualizations
-            </p>
-        {/if} -->
     </div>
 </Scroll>
 
@@ -67,7 +51,7 @@
         width: 800px;
     }
     #virtual {
-        height: 150vh; /* Make the page scrollable with a 150% view height */
+        height: 100vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 8vh;
