@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import charge_age_bmi from "./sketch/charge-age-bmiLevel-children.png";
 
     type Props = {};
     let {}: Props = $props();
@@ -20,14 +19,11 @@
 >
 
     <div id="virtual">
-        <h3>
-            Now, we can split the data by region and age, and children.
-        </h3>
-
+       
     </div>
    
     <div slot="viz" class="header">
-        {#if progress > 10}
+        {#if progress > 1}
             <!-- Add a condition to trigger the transition -->
             <div
                 class="image-container"
@@ -36,8 +32,11 @@
                     y: -200,
                 }}
             >
+            <h3>
+                This is a page for interaction in the beginning for users to guess the insurance charges based on other attributes.
+             </h3>
                 <!-- <img src={datatype} alt="Data" /> -->
-                <img src={charge_age_bmi} alt="Patient" />
+                <!-- <img src={charge_age_smoker_children} alt="Patient" /> -->
             </div>
         {/if}
     </div>
@@ -45,7 +44,7 @@
 
 <style>
     #virtual {
-        height: 120vh; /* Make the page scrollable with a 150% view height */
+        height: 100vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 10vh;

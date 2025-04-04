@@ -1,8 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import datatype from "./img/datatype.png";
-    import patient from "./img/patient.png";
+    import charge_age_sex_tier from "./sketch/charge-age-sex-tier.png";
 
     type Props = {};
     let {}: Props = $props();
@@ -12,16 +11,23 @@
 
 <Scroll
     bind:progress
-    --scrolly-story-width="0"
+    --scrolly-story-width="0fr"
     --scrolly-viz-width="1fr"
     --scrolly-margin="30px"
     --scrolly-viz-top="2em"
-    --scrolly-gap="4em"
+    --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
-    <div id="virtual"></div>
+
+    <div id="virtual">
+        <h3>
+            Now, we can split the data by insurance tier.
+        </h3>
+
+    </div>
+   
     <div slot="viz" class="header">
-        {#if progress > 0}
+        {#if progress > 10}
             <!-- Add a condition to trigger the transition -->
             <div
                 class="image-container"
@@ -30,8 +36,8 @@
                     y: -200,
                 }}
             >
-                <img src={datatype} alt="Data" />
-                <img src={patient} alt="Patient" />
+                <!-- <img src={datatype} alt="Data" /> -->
+                <img src={charge_age_sex_tier} alt="Patient" />
             </div>
         {/if}
     </div>
@@ -39,7 +45,7 @@
 
 <style>
     #virtual {
-        height: 50vh; /* Make the page scrollable with a 150% view height */
+        height: 100vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 10vh;

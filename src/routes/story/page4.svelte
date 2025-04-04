@@ -21,7 +21,7 @@
 
     <div id="virtual">
         <h3>
-            Now, we can split the data by region and age, and children.
+            Now, we can split the data by insurance tier.
         </h3>
 
     </div>
@@ -36,7 +36,6 @@
                     y: -200,
                 }}
             >
-                <!-- <img src={datatype} alt="Data" /> -->
                 <img src={charge_age_bmi} alt="Patient" />
             </div>
         {/if}
@@ -45,7 +44,7 @@
 
 <style>
     #virtual {
-        height: 120vh; /* Make the page scrollable with a 150% view height */
+        height: 100vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 10vh;
