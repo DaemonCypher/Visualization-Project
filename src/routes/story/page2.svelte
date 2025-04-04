@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import charge_age_sex from "./sketch/charge-age-sex-tier.png";
+    import charge_age_sex_tier from "./sketch/charge-age-sex-tier.png";
 
     type Props = {};
     let {}: Props = $props();
@@ -37,7 +37,7 @@
                 }}
             >
                 <!-- <img src={datatype} alt="Data" /> -->
-                <img src={charge_age_sex} alt="Patient" />
+                <img src={charge_age_sex_tier} alt="Patient" />
             </div>
         {/if}
     </div>

@@ -1,15 +1,16 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import * as d3 from "d3";
-    import Page1 from "./pages/page1.svelte";
-    import Page2 from "./pages/page2.svelte";
-    import Page3 from "./pages/page3.svelte";
-    import Page0 from "./pages/page0.svelte";
-    import Page4 from "./pages/page4.svelte";
-    import Page5 from "./pages/page5.svelte";
+    import Page1 from "./page1.svelte";
+    import Page2 from "./page2.svelte";
+    import Page3 from "./page3.svelte";
+    import Page0 from "./page0.svelte";
+    import Page4 from "./page4.svelte";
+    import Page5 from "./page5.svelte";
 
-    import PageMap from "./pages/page-map.svelte";
-    import PageParallel from "./pages/page-parallel.svelte";
+    import PageInteract from "./page-interact.svelte";
+    import PageMap from "./page-map.svelte";
+    import PageParallel from "./page-parallel.svelte";
 
     import type { TInsurance } from "../../types";
 
@@ -72,12 +73,15 @@
 <div class="container">
     <div class="story">
         <Page0 />
+        <PageInteract />
         <Page1 />
         <Page2 />
         <Page3 />
         <Page4 />
         <Page5 />
         <PageMap {uninsuredData} />
+
+
         <PageParallel {insurance} colorBy="smoker"/>
     </div>
 </div>
