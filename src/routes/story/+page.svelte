@@ -11,13 +11,40 @@
     import PageInteract from "./page-interact.svelte";
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
+    import PageHeap from "./page-heap.svelte";
 
     import type { TInsurance } from "../../types";
 
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
-    
+    let data = $state<{ variable1: string; variable2: string; value: number }[]>([]);
     // load csv data only once
+    async function loadCorrelation() {
+    try {
+      const csvUrl = "./corr.csv";
+      const raw = await d3.csv(csvUrl);
+      
+      const reshaped = [];
+
+      for (const row of raw) {
+        const variable1 = row[""];
+        for (const [key, value] of Object.entries(row)) {
+          if (key === "") continue;
+          reshaped.push({
+            variable1,
+            variable2: key,
+            value: +value
+          });
+        }
+      }
+
+      data = reshaped;
+      console.log("Reshaped correlation data:", data);
+    } catch (error) {
+      console.error("Error loading CSV:", error);
+    }
+  }
+
     async function loadCsv() {
       try {
         const csvUrl = "./insurance.csv";
@@ -80,9 +107,8 @@
         <Page4 />
         <Page5 />
         <PageMap {uninsuredData} />
-
-
         <PageParallel {insurance} colorBy="smoker"/>
+        <PageHeap {data} />
     </div>
 </div>
 
