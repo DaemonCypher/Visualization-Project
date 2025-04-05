@@ -39,6 +39,8 @@
                     y="charge"
                     size="children"
                     color="sex"
+                    uniSize="true"
+                    hidePanel="true"
                 />
             </div>
         {/if}

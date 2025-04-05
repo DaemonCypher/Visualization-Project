@@ -12,6 +12,7 @@
     export let width: number = 1000;
     export let height: number = 800;
     export let hidePanel: boolean = false;
+    export let uniSize: boolean = false;
 
     // console.log("insurance", insurance)
 
@@ -67,7 +68,9 @@
               .range([usableArea.bottom, usableArea.top])
               .padding(0.5);
 
-    $: sizeScale = d3.scaleSqrt().range([3, 12]).domain(sizeExtent);
+    $: sizeScale = uniSize
+        ? d3.scaleSqrt().range([5, 5]).domain(sizeExtent)
+        : d3.scaleSqrt().range([3, 12]).domain(sizeExtent);
 
     $: colorScale = d3
         .scaleOrdinal<string>()
@@ -120,6 +123,7 @@
 
     // Initialize brush on the background rect (using brushElement group)
     function initBrush() {
+        if (hidePanel) return; // Skip brush if hidePanel is true
         const brush = d3
             .brush()
             .extent([
@@ -284,78 +288,83 @@
             {/each}
 
             <!-- Category legend -->
-            <g transform="translate({usableArea.right + 10}, {usableArea.top})">
-                <text font-weight="bold" font-size="12">Categories</text>
+            <g
+                transform="translate({usableArea.right + 20}, {usableArea.top +
+                    20})"
+            >
+                <text font-weight="bold" font-size="15">Categories</text>
                 {#each categories.sort().reverse() as category, i}
                     <g transform="translate(0, {20 + i * 20})">
                         <circle r="6" fill={colorScale(category)} />
-                        <text x="10" y="4" font-size="12">{category}</text>
+                        <text x="15" y="5" font-size="15">{category}</text>
                     </g>
                 {/each}
             </g>
         </svg>
     </div>
-    <div style="display: flex; flex-direction: column;">
-        <!-- Details panel that displays info of the clicked point -->
-        <div class="details-panel">
-            {#if clickedPoint}
-                <h4>Details for Selected Point</h4>
-                {#each Object.keys(clickedPoint) as key}
-                    <p><strong>{key}:</strong> {clickedPoint[key]}</p>
-                {/each}
-            {:else}
-                <p>Click on a data point to see its details here.</p>
-            {/if}
-        </div>
-
-        <!-- Statistics panel remains available -->
-        <div class="stats-panel">
-            <h4>Selection Statistics</h4>
-            <p>Total selected: {stats.total} points</p>
-            <select bind:value={scatterOptionColor}>
-                {#each scatterOptionColors as key}
-                    <option value={key}>{key}</option>
-                {/each}
-            </select>
-            <table>
-                <thead>
-                    <tr>
-                        <th>{scatterOptionColor} Category</th>
-                        <th>Count</th>
-                        <th>Avg Age</th>
-                        <th>Avg BMI</th>
-                        <th>Avg Charge</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each stats.categories.sort((a, b) => b.category - a.category) as stat}
-                        <tr>
-                            <td>
-                                <span
-                                    class="color-dot"
-                                    style="background-color: {colorScale(
-                                        String(stat.category),
-                                    )}"
-                                ></span>
-                                {stats.legends
-                                    ? stats.legends[stat.category]
-                                    : stat.category}
-                            </td>
-                            <td
-                                >{stat.count} ({(
-                                    (stat.count / stats.total) *
-                                    100
-                                ).toFixed(1)}%)</td
-                            >
-                            <td>{stat.avgAge?.toFixed(1) || "N/A"}</td>
-                            <td>{stat.avgBmi?.toFixed(1) || "N/A"}</td>
-                            <td>{stat.avgCharge?.toFixed(1) || "N/A"}</td>
-                        </tr>
+    {#if !hidePanel}
+        <div style="display: flex; flex-direction: column;">
+            <!-- Details panel that displays info of the clicked point -->
+            <div class="details-panel">
+                {#if clickedPoint}
+                    <h4>Details for Selected Point</h4>
+                    {#each Object.keys(clickedPoint) as key}
+                        <p><strong>{key}:</strong> {clickedPoint[key]}</p>
                     {/each}
-                </tbody>
-            </table>
+                {:else}
+                    <p>Click on a data point to see its details here.</p>
+                {/if}
+            </div>
+
+            <!-- Statistics panel remains available -->
+            <div class="stats-panel">
+                <h4>Selection Statistics</h4>
+                <p>Total selected: {stats.total} points</p>
+                <select bind:value={scatterOptionColor}>
+                    {#each scatterOptionColors as key}
+                        <option value={key}>{key}</option>
+                    {/each}
+                </select>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{scatterOptionColor} Category</th>
+                            <th>Count</th>
+                            <th>Avg Age</th>
+                            <th>Avg BMI</th>
+                            <th>Avg Charge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each stats.categories.sort((a, b) => b.category - a.category) as stat}
+                            <tr>
+                                <td>
+                                    <span
+                                        class="color-dot"
+                                        style="background-color: {colorScale(
+                                            String(stat.category),
+                                        )}"
+                                    ></span>
+                                    {stats.legends
+                                        ? stats.legends[stat.category]
+                                        : stat.category}
+                                </td>
+                                <td
+                                    >{stat.count} ({(
+                                        (stat.count / stats.total) *
+                                        100
+                                    ).toFixed(1)}%)</td
+                                >
+                                <td>{stat.avgAge?.toFixed(1) || "N/A"}</td>
+                                <td>{stat.avgBmi?.toFixed(1) || "N/A"}</td>
+                                <td>{stat.avgCharge?.toFixed(1) || "N/A"}</td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    {/if}
 </div>
 
 <style>
