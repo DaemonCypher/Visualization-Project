@@ -1,16 +1,16 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
+    import type { TInsurance } from "../../types";
     import charge_age_sex from "./sketch/charge-age-sex.png";
     import ScatterTemplate from "$lib/ScatterTemplate.svelte";
 
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
-    let male = insurance.filter((item) => item.sex === "male");
-    let female = insurance.filter((item) => item.sex === "female");
-    console.log("Insurance data:", insurance);
-    console.log("Male data:", male);
-    console.log("Female data:", female);
+    let male = $derived(() => insurance.filter((item) => item.sex === "male"));
+    let female = $derived(() =>
+        insurance.filter((item) => item.sex === "female"),
+    );
 
     let progress: number = $state(0);
 </script>
@@ -38,15 +38,6 @@
                     y: -200,
                 }}
             >
-                <ScatterTemplate
-                    {male}
-                    x="age"
-                    y="charge"
-                    size="children"
-                    color="sex"
-                    uniSize="true"
-                    hidePanel="true"
-                />
                 <ScatterTemplate
                     {female}
                     x="age"
