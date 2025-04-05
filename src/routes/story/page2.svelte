@@ -18,24 +18,14 @@
     --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
-
     <div id="virtual">
-        <h3>
-            Now, we can split the data by insurance tier.
-        </h3>
-
+        <h3>Now, we can split the data by insurance tier.</h3>
     </div>
-   
+
     <div slot="viz" class="header">
         {#if progress > 10}
             <!-- Add a condition to trigger the transition -->
-            <div
-                class="image-container"
-                in:fly={{
-                    duration: 2000,
-                    y: -200,
-                }}
-            >
+            <div class="image-container">
                 <!-- <img src={datatype} alt="Data" /> -->
                 <img src={charge_age_sex_tier} alt="Patient" />
             </div>
