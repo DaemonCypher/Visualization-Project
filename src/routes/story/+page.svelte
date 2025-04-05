@@ -112,7 +112,7 @@
         <Page0 />
         <PageInteract />
         <Page1 {insurance} />
-        <Page2 />
+        <Page2 {insurance} />
         <Page3 />
         <Page4 />
         <Page5 />

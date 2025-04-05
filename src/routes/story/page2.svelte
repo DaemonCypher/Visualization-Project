@@ -1,10 +1,16 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import charge_age_sex_tier from "./sketch/charge-age-sex-tier.png";
+    import charge_age_sex from "./sketch/charge-age-sex.png";
+    import ScatterTemplate from "$lib/ScatterTemplate.svelte";
 
-    type Props = {};
-    let {}: Props = $props();
+    type Props = { insurance: any[] };
+    let { insurance }: Props = $props();
+    let male = insurance.filter((item) => item.sex === "male");
+    let female = insurance.filter((item) => item.sex === "female");
+    console.log("Insurance data:", insurance);
+    console.log("Male data:", male);
+    console.log("Female data:", female);
 
     let progress: number = $state(0);
 </script>
@@ -25,9 +31,31 @@
     <div slot="viz" class="header">
         {#if progress > 10}
             <!-- Add a condition to trigger the transition -->
-            <div class="image-container">
-                <!-- <img src={datatype} alt="Data" /> -->
-                <img src={charge_age_sex_tier} alt="Patient" />
+            <div
+                class="image-container"
+                in:fly={{
+                    duration: 2000,
+                    y: -200,
+                }}
+            >
+                <ScatterTemplate
+                    {male}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="sex"
+                    uniSize="true"
+                    hidePanel="true"
+                />
+                <ScatterTemplate
+                    {female}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="sex"
+                    uniSize="true"
+                    hidePanel="true"
+                />
             </div>
         {/if}
     </div>
@@ -35,7 +63,7 @@
 
 <style>
     #virtual {
-        height: 100vh; /* Make the page scrollable with a 150% view height */
+        height: 150vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 10vh;

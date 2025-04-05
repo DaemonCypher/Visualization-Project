@@ -10,7 +10,7 @@
     export let size: keyof TInsurance;
     export let color: keyof TInsurance;
     export let width: number = 1000;
-    export let height: number = 800;
+    export let height: number = 600;
     export let hidePanel: boolean = false;
     export let uniSize: boolean = false;
 
