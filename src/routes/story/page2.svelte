@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import type { TInsurance } from "../../types";
     import charge_age_sex from "./sketch/charge-age-sex.png";
     import ScatterTemplate from "$lib/ScatterTemplate.svelte";
 
@@ -39,13 +38,25 @@
                 }}
             >
                 <ScatterTemplate
-                    {female}
+                    {insurance}
                     x="age"
                     y="charge"
                     size="children"
                     color="sex"
                     uniSize="true"
                     hidePanel="true"
+                    hideLegend="true"
+                    width="500"
+                />
+                <ScatterTemplate
+                    {insurance}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="sex"
+                    uniSize="true"
+                    hidePanel="true"
+                    width="500"
                 />
             </div>
         {/if}

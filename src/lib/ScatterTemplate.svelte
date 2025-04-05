@@ -12,6 +12,7 @@
     export let width: number = 1000;
     export let height: number = 600;
     export let hidePanel: boolean = false;
+    export let hideLegend: boolean = false;
     export let uniSize: boolean = false;
 
     // console.log("insurance", insurance)
@@ -288,18 +289,20 @@
             {/each}
 
             <!-- Category legend -->
-            <g
-                transform="translate({usableArea.right + 20}, {usableArea.top +
-                    20})"
-            >
-                <text font-weight="bold" font-size="15">Categories</text>
-                {#each categories.sort().reverse() as category, i}
-                    <g transform="translate(0, {20 + i * 20})">
-                        <circle r="6" fill={colorScale(category)} />
-                        <text x="15" y="5" font-size="15">{category}</text>
-                    </g>
-                {/each}
-            </g>
+            {#if !hideLegend}
+                <g
+                    transform="translate({usableArea.right +
+                        20}, {usableArea.top + 20})"
+                >
+                    <text font-weight="bold" font-size="15">Categories</text>
+                    {#each categories.sort().reverse() as category, i}
+                        <g transform="translate(0, {20 + i * 20})">
+                            <circle r="6" fill={colorScale(category)} />
+                            <text x="15" y="5" font-size="15">{category}</text>
+                        </g>
+                    {/each}
+                </g>
+            {/if}
         </svg>
     </div>
     {#if !hidePanel}
