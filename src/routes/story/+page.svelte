@@ -114,7 +114,7 @@
         <Page1 {insurance} />
         <Page2 {insurance} />
         <Page3 {insurance} />
-        <Page4 />
+        <Page4 {insurance} />
         <Page5 />
         <PageMap {uninsuredData} />
         <PageParallel {insurance} colorBy="smoker" />
