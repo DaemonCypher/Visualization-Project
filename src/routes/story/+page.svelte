@@ -113,7 +113,7 @@
         <PageInteract />
         <Page1 {insurance} />
         <Page2 {insurance} />
-        <Page3 />
+        <Page3 {insurance} />
         <Page4 />
         <Page5 />
         <PageMap {uninsuredData} />
