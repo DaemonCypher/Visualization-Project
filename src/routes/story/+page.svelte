@@ -47,7 +47,7 @@
 
     async function loadCsv() {
       try {
-        const csvUrl = "/insurance.csv";
+        const csvUrl = "./insurance.csv";
         insurance = await d3.csv(csvUrl, (row) => {
           const tier = Number(row.charges) > 30000 ? 3 : Number(row.charges) > 15000 ? 2 : 1;
           // 1: high, 2: medium, 3: low, 4: below 5k
@@ -71,7 +71,7 @@
         console.log("Loaded CSV Data:", insurance);
 
 
-        const insuranceUrl = "/uninsured.csv";
+        const insuranceUrl = "./uninsured.csv";
         uninsuredData = await d3.csv(insuranceUrl, (row) => {
             return {
                     state: row.State.trim(),
@@ -86,6 +86,7 @@
     onMount(
       async () => {
         await loadCsv();
+        await loadCorrelation();
       }
     );
 
