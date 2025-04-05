@@ -86,6 +86,7 @@
     onMount(
       async () => {
         await loadCsv();
+        await loadCorrelation();
       }
     );
 
