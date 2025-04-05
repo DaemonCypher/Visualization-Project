@@ -14,6 +14,7 @@
     export let hidePanel: boolean = false;
     export let hideLegend: boolean = false;
     export let uniSize: boolean = false;
+    export let title: string = "";
 
     // console.log("insurance", insurance)
 
@@ -303,6 +304,15 @@
                     {/each}
                 </g>
             {/if}
+            <text
+                x={width / 2 - 35}
+                y={height}
+                text-anchor="middle"
+                font-size="20"
+                font-weight="bold"
+            >
+                {title}
+            </text>
         </svg>
     </div>
     {#if !hidePanel}

@@ -38,7 +38,7 @@
                 }}
             >
                 <ScatterTemplate
-                    {insurance}
+                    insurance={male()}
                     x="age"
                     y="charge"
                     size="children"
@@ -47,9 +47,10 @@
                     hidePanel="true"
                     hideLegend="true"
                     width="500"
+                    title="male"
                 />
                 <ScatterTemplate
-                    {insurance}
+                    insurance={female()}
                     x="age"
                     y="charge"
                     size="children"
@@ -57,6 +58,7 @@
                     uniSize="true"
                     hidePanel="true"
                     width="500"
+                    title="female"
                 />
             </div>
         {/if}
