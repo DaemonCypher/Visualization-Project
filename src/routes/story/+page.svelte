@@ -49,25 +49,25 @@
 
     async function loadCsv() {
         try {
-            const csvUrl = "./insurance.csv";
+            const csvUrl = "./insurance_augmented.csv";
             insurance = await d3.csv(csvUrl, (row) => {
-                const tier =
-                    Number(row.charges) > 30000
-                        ? 3
-                        : Number(row.charges) > 15000
-                          ? 2
-                          : 1;
-                // 1: high, 2: medium, 3: low, 4: below 5k
-                const bmi_category =
-                    Number(row.bmi) > 30
-                        ? 4
-                        : Number(row.bmi) > 25
-                          ? 3
-                          : Number(row.bmi) > 18.5
-                            ? 2
-                            : 1;
-                // 4: obese, 3: overweight, 2: normal, 1: underweight
-                const smoker_category = row.smoker == "yes" ? 1 : 0;
+                // const tier =
+                //     Number(row.charges) > 30000
+                //         ? 3
+                //         : Number(row.charges) > 15000
+                //           ? 2
+                //           : 1;
+                // // 1: high, 2: medium, 3: low, 4: below 5k
+                // const bmi_category =
+                //     Number(row.bmi) > 30
+                //         ? 4
+                //         : Number(row.bmi) > 25
+                //           ? 3
+                //           : Number(row.bmi) > 18.5
+                //             ? 2
+                //             : 1;
+                // // 4: obese, 3: overweight, 2: normal, 1: underweight
+                // const smoker_category = row.smoker == "yes" ? 1 : 0;
                 return {
                     age: row.age,
                     sex: row.sex,
@@ -76,9 +76,9 @@
                     smoker: row.smoker,
                     region: row.region,
                     charge: row.charges,
-                    tier: tier,
-                    bmi_category: bmi_category,
-                    smoker_category: smoker_category,
+                    tier: row.tier,
+                    bmi_category: row.bmi_category,
+                    smoker_category: row.smoker_category,
                 };
             });
             console.log("Loaded CSV Data:", insurance);
