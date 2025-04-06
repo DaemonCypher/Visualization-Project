@@ -44,8 +44,12 @@
     // Margins and the usable plotting area
     const margin = { top: 15, right: 120, bottom: 50, left: 40 };
     if (hideLegend) {
-        margin.right = 0;
+        margin.right = 10;
     }
+    if (hideYAxis) {
+        margin.left = 10;
+    }
+
     $: usableArea = {
         top: margin.top,
         right: width - margin.right,

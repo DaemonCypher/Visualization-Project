@@ -14,6 +14,7 @@
     );
     const xDomain = [15, 65];
     const yDomain = [0, 70000];
+    const width = 400;
     let progress: number = $state(0);
 </script>
 
@@ -49,7 +50,7 @@
                     uniSize="true"
                     hidePanel="true"
                     hideLegend="true"
-                    width="450"
+                    width={width + 30}
                     title="nonsmoker"
                     {xDomain}
                     {yDomain}
@@ -63,7 +64,7 @@
                     uniSize="true"
                     hidePanel="true"
                     hideYAxis="true"
-                    width="550"
+                    width={width + 110}
                     title="smoker"
                     {xDomain}
                     {yDomain}

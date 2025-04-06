@@ -20,6 +20,7 @@
     );
     const xDomain = [15, 65];
     const yDomain = [0, 70000];
+    const width = 200;
     let progress: number = $state(0);
 </script>
 
@@ -54,7 +55,7 @@
                     color="sex"
                     hidePanel="true"
                     hideLegend="true"
-                    width="225"
+                    width={width + 30}
                     title="underweight"
                     {xDomain}
                     {yDomain}
@@ -68,7 +69,7 @@
                     hidePanel="true"
                     hideLegend="true"
                     hideYAxis="true"
-                    width="225"
+                    {width}
                     title="normal"
                     {xDomain}
                     {yDomain}
@@ -82,7 +83,7 @@
                     hidePanel="true"
                     hideLegend="true"
                     hideYAxis="true"
-                    width="225"
+                    {width}
                     title="overweight"
                     {xDomain}
                     {yDomain}
@@ -95,7 +96,7 @@
                     color="sex"
                     hidePanel="true"
                     hideYAxis="true"
-                    width="325"
+                    width={width + 110}
                     title="obese"
                     {xDomain}
                     {yDomain}
