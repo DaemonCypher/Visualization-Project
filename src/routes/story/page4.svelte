@@ -62,6 +62,7 @@
                     color="tier"
                     uniSize="true"
                     hidePanel="true"
+                    hideYAxis="true"
                     width="550"
                     title="smoker"
                     {xDomain}

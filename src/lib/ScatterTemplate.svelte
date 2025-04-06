@@ -13,6 +13,7 @@
     export let height: number = 550;
     export let hidePanel: boolean = false;
     export let hideLegend: boolean = false;
+    export let hideYAxis: boolean = false;
     export let uniSize: boolean = false;
     export let title: string = "";
     export let xDomain: [number, number] | null = null;
@@ -129,11 +130,17 @@
             .style("text-anchor", isNumericX ? "start" : "middle");
 
         // Y-Axis
+        const yAxisGenerator = isNumericY
+            ? d3.axisLeft(yScale).ticks(10)
+            : d3.axisLeft(yScale);
+
+        if (hideYAxis) {
+            // Override tick format to return empty string, but keep tick lines
+            yAxisGenerator.tickFormat(() => "");
+        }
+
         d3.select(yAxis).call(
-            (isNumericY
-                ? d3.axisLeft(yScale).ticks(10)
-                : d3.axisLeft(yScale)
-            ).tickSize(-width + margin.left + margin.right),
+            yAxisGenerator.tickSize(-width + margin.left + margin.right),
         );
     }
 
