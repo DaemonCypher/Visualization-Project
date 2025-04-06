@@ -60,9 +60,9 @@
             </div>
         {/if}
 
-        {#if progress > 70}
+        <!-- {#if progress > 70}
             <div style="height: 50vh;"></div>
-        {/if}
+        {/if} -->
     </div>
 </Scroll>
 

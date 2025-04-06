@@ -48,63 +48,49 @@
     }
 
     async function loadCsv() {
-        try {
-            const csvUrl = "./insurance_augmented.csv";
-            insurance = await d3.csv(csvUrl, (row) => {
-                // const tier =
-                //     Number(row.charges) > 30000
-                //         ? 3
-                //         : Number(row.charges) > 15000
-                //           ? 2
-                //           : 1;
-                // // 1: high, 2: medium, 3: low, 4: below 5k
-                // const bmi_category =
-                //     Number(row.bmi) > 30
-                //         ? 4
-                //         : Number(row.bmi) > 25
-                //           ? 3
-                //           : Number(row.bmi) > 18.5
-                //             ? 2
-                //             : 1;
-                // // 4: obese, 3: overweight, 2: normal, 1: underweight
-                // const smoker_category = row.smoker == "yes" ? 1 : 0;
-                return {
-                    age: row.age,
-                    sex: row.sex,
-                    bmi: row.bmi,
-                    children: row.children,
-                    smoker: row.smoker,
-                    region: row.region,
-                    charge: row.charges,
-                    tier: row.tier,
-                    bmi_category: row.bmi_category,
-                    smoker_category: row.smoker_category,
-                };
-            });
-            console.log("Loaded CSV Data:", insurance);
-        } catch (error) {
-            console.error("Error loading CSV:", error);
-        }
-    }
-    onMount(async () => {
-        await loadCsv();
-        await loadCsvMap();
-    });
+      try {
+        const csvUrl = "./insurance_augmented.csv";
+        insurance = await d3.csv(csvUrl, (row) => {
+          const tier = Number(row.charges) > 30000 ? 3 : Number(row.charges) > 15000 ? 2 : 1;
+          // 1: high, 2: medium, 3: low, 4: below 5k
+          const bmi_category = Number(row.bmi) > 30 ? 4 : Number(row.bmi) > 25 ? 3 : Number(row.bmi) > 18.5 ? 2 : 1;
+          // 4: obese, 3: overweight, 2: normal, 1: underweight
+          const smoker_category = row.smoker == "yes" ? 1 : 0;
+          return {
+            age: row.age,
+            sex: row.sex,
+            bmi: row.bmi,
+            children: row.children,
+            smoker: row.smoker,
+            region: row.region,
+            charge: row.charges,
+            tier: tier,
+            bmi_category: bmi_category,
+            smoker_category: smoker_category
 
-    async function loadCsvMap() {
-        try {
-            const csvUrl = "/uninsured.csv"; // Adjust the path to your CSV file";
-            uninsuredData = await d3.csv(csvUrl, (row) => {
-                return {
+          };
+        });
+        console.log("Loaded CSV Data:", insurance);
+
+
+        const insuranceUrl = "./uninsured.csv";
+        uninsuredData = await d3.csv(insuranceUrl, (row) => {
+            return {
                     state: row.State.trim(),
                     rate: +row["Uninsured Rate (2015)"],
                 };
-            });
-            console.log("Loaded CSV Data:", uninsuredData);
-        } catch (error) {
-            console.error("Error loading CSV:", error);
-        }
+        });
+        console.log("Loaded CSV Data Map:", uninsuredData);
+      } catch (error) {
+        console.error("Error loading CSV:", error);
+      }
     }
+    onMount(async () => {
+        await loadCsv();
+        await loadCorrelation();
+      }
+    );
+
 </script>
 
 <div class="container">
