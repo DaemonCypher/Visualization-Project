@@ -10,7 +10,8 @@
     let female = $derived(() =>
         insurance.filter((item) => item.sex === "female"),
     );
-
+    const xDomain = [15, 65];
+    const yDomain = [0, 70000];
     let progress: number = $state(0);
 </script>
 
@@ -48,6 +49,8 @@
                     hideLegend="true"
                     width="450"
                     title="male"
+                    {xDomain}
+                    {yDomain}
                 />
                 <ScatterTemplate
                     insurance={female()}
@@ -59,6 +62,8 @@
                     hidePanel="true"
                     width="550"
                     title="female"
+                    {xDomain}
+                    {yDomain}
                 />
             </div>
         {/if}

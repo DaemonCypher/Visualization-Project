@@ -12,7 +12,8 @@
     let nonsmoker = $derived(() =>
         insurance.filter((item) => item.smoker == "no"),
     );
-
+    const xDomain = [15, 65];
+    const yDomain = [0, 70000];
     let progress: number = $state(0);
 </script>
 
@@ -50,6 +51,8 @@
                     hideLegend="true"
                     width="450"
                     title="nonsmoker"
+                    {xDomain}
+                    {yDomain}
                 />
                 <ScatterTemplate
                     insurance={smoker()}
@@ -61,6 +64,8 @@
                     hidePanel="true"
                     width="550"
                     title="smoker"
+                    {xDomain}
+                    {yDomain}
                 />
             </div>
         {/if}

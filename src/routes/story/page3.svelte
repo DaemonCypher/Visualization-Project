@@ -18,7 +18,8 @@
     let bmi4 = $derived(() =>
         insurance.filter((item) => item.bmi_category == "4"),
     );
-
+    const xDomain = [15, 65];
+    const yDomain = [0, 70000];
     let progress: number = $state(0);
 </script>
 
@@ -56,6 +57,8 @@
                     hideLegend="true"
                     width="225"
                     title="underweight"
+                    {xDomain}
+                    {yDomain}
                 />
                 <ScatterTemplate
                     insurance={bmi2()}
@@ -68,6 +71,8 @@
                     hideLegend="true"
                     width="225"
                     title="normal"
+                    {xDomain}
+                    {yDomain}
                 />
                 <ScatterTemplate
                     insurance={bmi3()}
@@ -80,6 +85,8 @@
                     hideLegend="true"
                     width="225"
                     title="overweight"
+                    {xDomain}
+                    {yDomain}
                 />
                 <ScatterTemplate
                     insurance={bmi4()}
@@ -91,6 +98,8 @@
                     hidePanel="true"
                     width="325"
                     title="obese"
+                    {xDomain}
+                    {yDomain}
                 />
             </div>
         {/if}
