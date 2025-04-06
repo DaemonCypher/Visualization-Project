@@ -60,7 +60,7 @@
                     color="tier"
                     uniSize="true"
                     hidePanel="true"
-                    width="550"
+                    width="450"
                     title="female"
                     {xDomain}
                     {yDomain}
@@ -93,6 +93,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 0.5em; /* Add spacing between images */
+        gap: 0.0em; /* Add spacing between images */
     }
 </style>

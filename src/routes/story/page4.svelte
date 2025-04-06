@@ -49,7 +49,7 @@
                     uniSize="true"
                     hidePanel="true"
                     hideLegend="true"
-                    width="450"
+                    width="400"
                     title="nonsmoker"
                     {xDomain}
                     {yDomain}
