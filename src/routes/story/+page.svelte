@@ -17,37 +17,39 @@
 
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
-    let data = $state<{ variable1: string; variable2: string; value: number }[]>([]);
+    let data = $state<
+        { variable1: string; variable2: string; value: number }[]
+    >([]);
     // load csv data only once
     async function loadCorrelation() {
-    try {
-      const csvUrl = "./corr.csv";
-      const raw = await d3.csv(csvUrl);
-      
-      const reshaped = [];
+        try {
+            const csvUrl = "./corr.csv";
+            const raw = await d3.csv(csvUrl);
 
-      for (const row of raw) {
-        const variable1 = row[""];
-        for (const [key, value] of Object.entries(row)) {
-          if (key === "") continue;
-          reshaped.push({
-            variable1,
-            variable2: key,
-            value: +value
-          });
+            const reshaped = [];
+
+            for (const row of raw) {
+                const variable1 = row[""];
+                for (const [key, value] of Object.entries(row)) {
+                    if (key === "") continue;
+                    reshaped.push({
+                        variable1,
+                        variable2: key,
+                        value: +value,
+                    });
+                }
+            }
+
+            data = reshaped;
+            console.log("Reshaped correlation data:", data);
+        } catch (error) {
+            console.error("Error loading CSV:", error);
         }
-      }
-
-      data = reshaped;
-      console.log("Reshaped correlation data:", data);
-    } catch (error) {
-      console.error("Error loading CSV:", error);
     }
-  }
 
     async function loadCsv() {
       try {
-        const csvUrl = "./insurance.csv";
+        const csvUrl = "./insurance_augmented.csv";
         insurance = await d3.csv(csvUrl, (row) => {
           const tier = Number(row.charges) > 30000 ? 3 : Number(row.charges) > 15000 ? 2 : 1;
           // 1: high, 2: medium, 3: low, 4: below 5k
@@ -83,8 +85,7 @@
         console.error("Error loading CSV:", error);
       }
     }
-    onMount(
-      async () => {
+    onMount(async () => {
         await loadCsv();
         await loadCorrelation();
       }
@@ -96,13 +97,13 @@
     <div class="story">
         <Page0 />
         <PageInteract />
-        <Page1 />
-        <Page2 />
-        <Page3 />
-        <Page4 />
+        <Page1 {insurance} />
+        <Page2 {insurance} />
+        <Page3 {insurance} />
+        <Page4 {insurance} />
         <Page5 />
         <PageMap {uninsuredData} />
-        <PageParallel {insurance} colorBy="smoker"/>
+        <PageParallel {insurance} colorBy="smoker" />
         <PageHeap {data} />
     </div>
 </div>

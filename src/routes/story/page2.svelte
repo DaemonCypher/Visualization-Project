@@ -1,11 +1,17 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import charge_age_sex_tier from "./sketch/charge-age-sex-tier.png";
+    import charge_age_sex from "./sketch/charge-age-sex.png";
+    import ScatterTemplate from "$lib/ScatterTemplate.svelte";
 
-    type Props = {};
-    let {}: Props = $props();
-
+    type Props = { insurance: any[] };
+    let { insurance }: Props = $props();
+    let male = $derived(() => insurance.filter((item) => item.sex === "male"));
+    let female = $derived(() =>
+        insurance.filter((item) => item.sex === "female"),
+    );
+    const xDomain = [15, 65];
+    const yDomain = [0, 70000];
     let progress: number = $state(0);
 </script>
 
@@ -18,14 +24,10 @@
     --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
-
     <div id="virtual">
-        <h3>
-            Now, we can split the data by insurance tier.
-        </h3>
-
+        <h3>Now, we can split the data by insurance tier.</h3>
     </div>
-   
+
     <div slot="viz" class="header">
         {#if progress > 10}
             <!-- Add a condition to trigger the transition -->
@@ -36,8 +38,33 @@
                     y: -200,
                 }}
             >
-                <!-- <img src={datatype} alt="Data" /> -->
-                <img src={charge_age_sex_tier} alt="Patient" />
+                <ScatterTemplate
+                    insurance={male()}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="tier"
+                    uniSize="true"
+                    hidePanel="true"
+                    hideLegend="true"
+                    width="450"
+                    title="male"
+                    {xDomain}
+                    {yDomain}
+                />
+                <ScatterTemplate
+                    insurance={female()}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="tier"
+                    uniSize="true"
+                    hidePanel="true"
+                    width="450"
+                    title="female"
+                    {xDomain}
+                    {yDomain}
+                />
             </div>
         {/if}
     </div>
@@ -45,7 +72,7 @@
 
 <style>
     #virtual {
-        height: 100vh; /* Make the page scrollable with a 150% view height */
+        height: 150vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 10vh;
@@ -66,6 +93,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 0.5em; /* Add spacing between images */
+        gap: 0.0em; /* Add spacing between images */
     }
 </style>

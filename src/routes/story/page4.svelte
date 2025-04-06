@@ -1,11 +1,19 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import charge_age_smoker_children from "./sketch/charge-age-smoker-children.png";
+    import charge_age_sex from "./sketch/charge-age-sex.png";
+    import ScatterTemplate from "$lib/ScatterTemplate.svelte";
 
-    type Props = {};
-    let {}: Props = $props();
-
+    type Props = { insurance: any[] };
+    let { insurance }: Props = $props();
+    let smoker = $derived(() =>
+        insurance.filter((item) => item.smoker == "yes"),
+    );
+    let nonsmoker = $derived(() =>
+        insurance.filter((item) => item.smoker == "no"),
+    );
+    const xDomain = [15, 65];
+    const yDomain = [0, 70000];
     let progress: number = $state(0);
 </script>
 
@@ -18,14 +26,10 @@
     --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
-
     <div id="virtual">
-        <h3>
-            Now, we can split the data by insurance tier.
-        </h3>
-
+        <h3>Now, we can split the data by insurance tier.</h3>
     </div>
-   
+
     <div slot="viz" class="header">
         {#if progress > 10}
             <!-- Add a condition to trigger the transition -->
@@ -36,7 +40,33 @@
                     y: -200,
                 }}
             >
-                <img src={charge_age_smoker_children} alt="Patient" />
+                <ScatterTemplate
+                    insurance={nonsmoker()}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="tier"
+                    uniSize="true"
+                    hidePanel="true"
+                    hideLegend="true"
+                    width="400"
+                    title="nonsmoker"
+                    {xDomain}
+                    {yDomain}
+                />
+                <ScatterTemplate
+                    insurance={smoker()}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="tier"
+                    uniSize="true"
+                    hidePanel="true"
+                    width="550"
+                    title="smoker"
+                    {xDomain}
+                    {yDomain}
+                />
             </div>
         {/if}
     </div>
@@ -44,7 +74,7 @@
 
 <style>
     #virtual {
-        height: 100vh; /* Make the page scrollable with a 150% view height */
+        height: 150vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
         font-size: 10vh;
