@@ -46,7 +46,7 @@
                     uniSize="true"
                     hidePanel="true"
                     hideLegend="true"
-                    width="500"
+                    width="450"
                     title="male"
                 />
                 <ScatterTemplate
@@ -57,7 +57,7 @@
                     color="tier"
                     uniSize="true"
                     hidePanel="true"
-                    width="500"
+                    width="550"
                     title="female"
                 />
             </div>

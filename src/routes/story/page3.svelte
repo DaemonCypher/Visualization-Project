@@ -54,7 +54,7 @@
                     uniSize="true"
                     hidePanel="true"
                     hideLegend="true"
-                    width="250"
+                    width="225"
                     title="underweight"
                 />
                 <ScatterTemplate
@@ -65,7 +65,8 @@
                     color="sex"
                     uniSize="true"
                     hidePanel="true"
-                    width="250"
+                    hideLegend="true"
+                    width="225"
                     title="normal"
                 />
                 <ScatterTemplate
@@ -77,7 +78,7 @@
                     uniSize="true"
                     hidePanel="true"
                     hideLegend="true"
-                    width="250"
+                    width="225"
                     title="overweight"
                 />
                 <ScatterTemplate
@@ -88,8 +89,7 @@
                     color="sex"
                     uniSize="true"
                     hidePanel="true"
-                    hideLegend="true"
-                    width="250"
+                    width="325"
                     title="obese"
                 />
             </div>
