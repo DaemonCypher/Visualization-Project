@@ -10,11 +10,13 @@
     export let size: keyof TInsurance;
     export let color: keyof TInsurance;
     export let width: number = 1000;
-    export let height: number = 600;
+    export let height: number = 550;
     export let hidePanel: boolean = false;
     export let hideLegend: boolean = false;
     export let uniSize: boolean = false;
     export let title: string = "";
+    export let xDomain: [number, number] | null = null;
+    export let yDomain: [number, number] | null = null;
 
     // console.log("insurance", insurance)
 
@@ -36,10 +38,13 @@
     $: sizeExtent = d3.extent(data, (d) => d.sizeValue) as [number, number];
 
     // Compute unique color categories
-    $: categories = Array.from(new Set(data.map((d) => d.colorValue)));
+    $: categories = Array.from(new Set(data.map((d) => d.colorValue))).sort();
 
     // Margins and the usable plotting area
     const margin = { top: 15, right: 120, bottom: 50, left: 40 };
+    if (hideLegend) {
+        margin.right = 0;
+    }
     $: usableArea = {
         top: margin.top,
         right: width - margin.right,
@@ -48,10 +53,15 @@
     };
 
     // Define scales using computed extents
+
     $: xScale = isNumericX
         ? d3
               .scaleLinear()
-              .domain(d3.extent(data, (d) => d.xValue) as [number, number])
+              .domain(
+                  xDomain
+                      ? (xDomain as [number, number])
+                      : (d3.extent(data, (d) => d.xValue) as [number, number]),
+              )
               .range([usableArea.left, usableArea.right])
         : d3
               .scalePoint()
@@ -62,7 +72,11 @@
     $: yScale = isNumericY
         ? d3
               .scaleLinear()
-              .domain(d3.extent(data, (d) => d.yValue) as [number, number])
+              .domain(
+                  yDomain
+                      ? (yDomain as [number, number])
+                      : (d3.extent(data, (d) => d.yValue) as [number, number]),
+              )
               .range([usableArea.bottom, usableArea.top])
         : d3
               .scalePoint()
@@ -305,8 +319,8 @@
                 </g>
             {/if}
             <text
-                x={width / 2 - 35}
-                y={height}
+                x={hideLegend ? width / 2 + 10 : width / 2 - 35}
+                y={height - 5}
                 text-anchor="middle"
                 font-size="20"
                 font-weight="bold"
