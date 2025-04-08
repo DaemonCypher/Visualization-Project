@@ -190,7 +190,7 @@
 
       // Create SVG
       svg = d3
-        .select("svg")
+        .select("#us-map")
         .attr("width", width)
         .attr("height", height);
 
@@ -219,7 +219,7 @@
   });
 </script>
 
-<svg></svg>
+<svg id="us-map"></svg>
 
 <style>
   svg {
