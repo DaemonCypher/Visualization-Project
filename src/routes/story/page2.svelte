@@ -12,6 +12,7 @@
     );
     const xDomain = [15, 65];
     const yDomain = [0, 70000];
+    const width = 400;
     let progress: number = $state(0);
 </script>
 
@@ -47,7 +48,7 @@
                     uniSize="true"
                     hidePanel="true"
                     hideLegend="true"
-                    width="450"
+                    width={width + 30}
                     title="male"
                     {xDomain}
                     {yDomain}
@@ -60,7 +61,9 @@
                     color="tier"
                     uniSize="true"
                     hidePanel="true"
-                    width="450"
+                    hideYAxis="true"
+                    width={width + 110}
+
                     title="female"
                     {xDomain}
                     {yDomain}

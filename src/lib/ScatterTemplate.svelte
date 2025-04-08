@@ -9,12 +9,16 @@
     export let y: keyof TInsurance;
     export let size: keyof TInsurance;
     export let color: keyof TInsurance;
-    export let width: number = 400;
-    export let height: number = 400;
+    export let width: number = 1000;
+    export let height: number = 550;
+
     export let hidePanel: boolean = false;
     export let hideLegend: boolean = false;
+    export let hideYAxis: boolean = false;
     export let uniSize: boolean = false;
     export let title: string = "";
+    export let xDomain: [number, number] | null = null;
+    export let yDomain: [number, number] | null = null;
 
     // console.log("insurance", insurance)
 
@@ -36,10 +40,18 @@
     $: sizeExtent = d3.extent(data, (d) => d.sizeValue) as [number, number];
 
     // Compute unique color categories
-    $: categories = Array.from(new Set(data.map((d) => d.colorValue)));
+    $: categories = Array.from(new Set(data.map((d) => d.colorValue))).sort();
 
     // Margins and the usable plotting area
-    const margin = { top: 0, right: 0, bottom: 0, left:0 };
+    const margin = { top: 15, right: 120, bottom: 50, left: 40 };
+    if (hideLegend) {
+        margin.right = 10;
+    }
+    if (hideYAxis) {
+        margin.left = 10;
+    }
+
+
     $: usableArea = {
         top: margin.top,
         right: width - margin.right,
@@ -48,10 +60,15 @@
     };
 
     // Define scales using computed extents
+
     $: xScale = isNumericX
         ? d3
               .scaleLinear()
-              .domain(d3.extent(data, (d) => d.xValue) as [number, number])
+              .domain(
+                  xDomain
+                      ? (xDomain as [number, number])
+                      : (d3.extent(data, (d) => d.xValue) as [number, number]),
+              )
               .range([usableArea.left, usableArea.right])
         : d3
               .scalePoint()
@@ -62,7 +79,11 @@
     $: yScale = isNumericY
         ? d3
               .scaleLinear()
-              .domain(d3.extent(data, (d) => d.yValue) as [number, number])
+              .domain(
+                  yDomain
+                      ? (yDomain as [number, number])
+                      : (d3.extent(data, (d) => d.yValue) as [number, number]),
+              )
               .range([usableArea.bottom, usableArea.top])
         : d3
               .scalePoint()
@@ -101,11 +122,17 @@
             .style("text-anchor", isNumericX ? "start" : "middle");
 
         // Y-Axis
+        const yAxisGenerator = isNumericY
+            ? d3.axisLeft(yScale).ticks(10)
+            : d3.axisLeft(yScale);
+
+        if (hideYAxis) {
+            // Override tick format to return empty string, but keep tick lines
+            yAxisGenerator.tickFormat(() => "");
+        }
+
         d3.select(yAxis).call(
-            (isNumericY
-                ? d3.axisLeft(yScale).ticks(10)
-                : d3.axisLeft(yScale)
-            ).tickSize(-width + margin.left + margin.right),
+            yAxisGenerator.tickSize(-width + margin.left + margin.right),
         );
     }
     $: {
@@ -149,6 +176,32 @@
                     class="data-point"
                 />
             {/each}
+
+            <!-- Category legend -->
+            {#if !hideLegend}
+                <g
+                    transform="translate({usableArea.right +
+                        20}, {usableArea.top + 20})"
+                >
+                    <text font-weight="bold" font-size="15">Categories</text>
+                    {#each categories.sort().reverse() as category, i}
+                        <g transform="translate(0, {20 + i * 20})">
+                            <circle r="6" fill={colorScale(category)} />
+                            <text x="15" y="5" font-size="15">{category}</text>
+                        </g>
+                    {/each}
+                </g>
+            {/if}
+            <text
+                x={hideLegend ? width / 2 + 10 : width / 2 - 35}
+                y={height - 5}
+                text-anchor="middle"
+                font-size="20"
+                font-weight="bold"
+            >
+                {title}
+            </text>
+
         </svg>
 
 <style>
