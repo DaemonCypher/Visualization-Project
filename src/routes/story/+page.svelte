@@ -95,10 +95,10 @@
 
 </script>
 
-<!-- <video autoplay muted loop playsinline id="background-video">
+<video autoplay muted loop playsinline id="background-video">
     <source src="./videos/smoke.mp4" type="video/mp4" />
     Your browser does not support the video tag.
-</video> -->
+</video>
 
 <div class="container">
     <div class="story">
