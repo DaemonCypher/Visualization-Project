@@ -33,11 +33,11 @@
 
     <!-- visualization here, indicated by slot='viz' -->
     <div slot="viz" class="header">
-        title page
         <h1>
-            Correlation Between Insurance Charges and Insurance Holder Features
+            Examining the Correlation Between Insurance Charges and Policy Holder Features
         </h1>
 
+        <h2>By William Yang, Peilin Li, Pan Hao, and Ariel Larin</h2>
     </div>
 </Scroll>
 
@@ -45,7 +45,7 @@
 
 <style>
     .header {
-        background-color: rgb(255, 228, 193);
+        background-color: rgba(149, 149, 149, 0.8);
         padding: 80px 60px;
         height: 60vh;
         width: 800px;
@@ -55,7 +55,7 @@
     }
     h1 {
         font-size: 8vh;
-        color: #433417; /* Darker text for better contrast */
+        color: #000000; /* Darker text for better contrast */
         font-weight: 600; /* Slightly bolder font weight */
     }
     p {
