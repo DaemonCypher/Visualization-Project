@@ -59,9 +59,9 @@
     #virtual {
         height: 100vh; /* Make the page scrollable with a 150% view height */
     }
-    h1 {
+    h3 {
         font-size: 10vh;
-        color: #433417; /* Darker text for better contrast */
+        color: white; /* Darker text for better contrast */
         font-weight: 600; /* Slightly bolder font weight */
     }
     p {
