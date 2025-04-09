@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import type { TInsurance } from "../types";
     import * as d3 from "d3";
-
+    import { slide, fly } from "svelte/transition";
     // Define input properties
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
@@ -160,7 +160,7 @@
             />
             <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
 
-            {#each data as point}
+            {#each data as point (point.id)}
                 <circle
                     cx={isNumericX
                         ? xScale(point.xValue)

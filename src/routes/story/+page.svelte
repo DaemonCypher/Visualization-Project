@@ -12,6 +12,7 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
+    import PageScatter from "./page-scatter.svelte";
 
     import type { TInsurance } from "../../types";
 
@@ -50,6 +51,7 @@
     async function loadCsv() {
       try {
         const csvUrl = "./insurance_augmented.csv";
+        let id = 1
         insurance = await d3.csv(csvUrl, (row) => {
           const tier = Number(row.charges) > 30000 ? 3 : Number(row.charges) > 15000 ? 2 : 1;
           // 1: high, 2: medium, 3: low, 4: below 5k
@@ -66,8 +68,8 @@
             charge: row.charges,
             tier: tier,
             bmi_category: bmi_category,
-            smoker_category: smoker_category
-
+            smoker_category: smoker_category,
+            id: id++,
           };
         });
         console.log("Loaded CSV Data:", insurance);
@@ -93,15 +95,16 @@
 
 </script>
 
-<video autoplay muted loop playsinline id="background-video">
-    <source src="/videos/smoke.mp4" type="video/mp4" />
+<!-- <video autoplay muted loop playsinline id="background-video">
+    <source src="./videos/smoke.mp4" type="video/mp4" />
     Your browser does not support the video tag.
-</video>
+</video> -->
 
 <div class="container">
     <div class="story">
         <Page0 />
         <PageInteract />
+        <PageScatter {insurance} />
         <Page1 {insurance} />
         <Page2 {insurance} />
         <Page3 {insurance} />
@@ -123,6 +126,7 @@
         height: 100%;
         object-fit: cover; /* Ensures the video covers the entire viewport */
         z-index: -1; /* Places the video behind all other content */
+        opacity: 0.9;
     }
     .container {
         width: 80vw;
