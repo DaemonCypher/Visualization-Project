@@ -94,7 +94,7 @@
 </script>
 
 <video autoplay muted loop playsinline id="background-video">
-    <source src="/videos/smoke.mp4" type="video/mp4" />
+    <source src="./videos/smoke.mp4" type="video/mp4" />
     Your browser does not support the video tag.
 </video>
 
@@ -123,6 +123,7 @@
         height: 100%;
         object-fit: cover; /* Ensures the video covers the entire viewport */
         z-index: -1; /* Places the video behind all other content */
+        opacity: 0.9;
     }
     .container {
         width: 80vw;
