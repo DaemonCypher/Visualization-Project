@@ -210,9 +210,11 @@
     .data-point {
         transition:
             opacity 0.3s,
-            r 1s;
-
+            r 1s,
+            x 1s,
+            y 1s;
         cursor: pointer;
+        opacity: 0.6;
     }
 
 

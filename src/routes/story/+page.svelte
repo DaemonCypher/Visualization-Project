@@ -13,7 +13,7 @@
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
     import PageScatter from "./page-scatter-plots.svelte";
-
+    import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
 
     let insurance: TInsurance[] = $state([]);
