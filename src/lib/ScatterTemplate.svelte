@@ -19,8 +19,10 @@
     export let title: string = "";
     export let xDomain: [number, number] | null = null;
     export let yDomain: [number, number] | null = null;
+    export let plotId: string = "";
 
-    // console.log("insurance", insurance)
+    $: isNumericX = insurance.every((d) => !isNaN(+d[x]));
+    $: isNumericY = insurance.every((d) => !isNaN(+d[y]));
 
     // Transform insurance data into our working format using map
     $: data = insurance.map((entry, index) => ({
@@ -28,11 +30,9 @@
         yValue: isNumericY ? +entry[y] : String(entry[y]),
         sizeValue: +entry[size],
         colorValue: String(entry[color]),
-        id: index,
+        id: entry.id,
     }));
     // Utility to detect if an attribute is numeric or categorical
-    $: isNumericX = insurance.every((d) => !isNaN(+d[x]));
-    $: isNumericY = insurance.every((d) => !isNaN(+d[y]));
 
     // Compute extents (min and max) for each numerical field using d3.extent
     // $: xExtent = d3.extent(data, d => d.xValue) as [number, number];
@@ -43,7 +43,7 @@
     $: categories = Array.from(new Set(data.map((d) => d.colorValue))).sort();
 
     // Margins and the usable plotting area
-    const margin = { top: 15, right: 120, bottom: 50, left: 40 };
+    const margin = { top: 5, right: 120, bottom: 20, left: 40 };
     if (hideLegend) {
         margin.right = 10;
     }
@@ -115,7 +115,8 @@
                 (isNumericX
                     ? d3.axisBottom(xScale).ticks(10).tickFormat(d3.format("d"))
                     : d3.axisBottom(xScale)
-                ).tickSize(-height + margin.top + margin.bottom),
+                )
+                // .tickSize(-height + margin.top + margin.bottom),
             )
             .selectAll("text")
             .attr("transform", isNumericX ? "rotate(45)" : "rotate(0)")
@@ -132,7 +133,8 @@
         }
 
         d3.select(yAxis).call(
-            yAxisGenerator.tickSize(-width + margin.left + margin.right),
+            yAxisGenerator
+            // .tickSize(-width + margin.left + margin.right),
         );
     }
     $: {
@@ -146,7 +148,7 @@
 </script>
 
 
-        <svg {width} {height}>
+        <svg {width} {height} id = {plotId}>
             <rect
                 x={usableArea.left}
                 y={usableArea.top}
@@ -208,7 +210,8 @@
     .data-point {
         transition:
             opacity 0.3s,
-            r 0.3s;
+            r 1s;
+
         cursor: pointer;
     }
 

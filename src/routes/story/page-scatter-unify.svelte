@@ -104,7 +104,19 @@
             {yDomain}
             width={800}
         />
-    </div>
+    <!-- <ScatterTemplate
+    insurance={insurance}
+    x={attributes()[0]}
+    y={attributes()[1]}
+    size={attributes()[2]}
+    color={attributes()[3]}
+    uniSize="true"
+    hidePanel="true"
+    {xDomain}
+    {yDomain}
+    width={800}
+/> -->
+</div>
 </Scroll>
 
 <style>

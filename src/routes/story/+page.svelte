@@ -12,7 +12,7 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
-    import PageScatter from "./page-scatter.svelte";
+    import PageScatter from "./page-scatter-plots.svelte";
 
     import type { TInsurance } from "../../types";
 
@@ -50,7 +50,7 @@
 
     async function loadCsv() {
       try {
-        const csvUrl = "./insurance_augmented.csv";
+        const csvUrl = "./insurance.csv";
         let id = 1
         insurance = await d3.csv(csvUrl, (row) => {
           const tier = Number(row.charges) > 30000 ? 3 : Number(row.charges) > 15000 ? 2 : 1;
@@ -62,7 +62,7 @@
             age: row.age,
             sex: row.sex,
             bmi: row.bmi,
-            children: row.children,
+            children: Number(row.children),
             smoker: row.smoker,
             region: row.region,
             charge: row.charges,
@@ -95,10 +95,10 @@
 
 </script>
 
-<!-- <video autoplay muted loop playsinline id="background-video">
+<video autoplay muted loop playsinline id="background-video">
     <source src="./videos/smoke.mp4" type="video/mp4" />
     Your browser does not support the video tag.
-</video> -->
+</video>
 
 <div class="container">
     <div class="story">
