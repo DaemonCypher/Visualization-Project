@@ -110,7 +110,7 @@
     <div class="story">
         <Page0 />
         <PageInteract {insurance} />
-        <!-- <PageScatter {insurance} /> -->
+        <PageScatter {insurance} />
         <!-- <UnifyScatter {insurance} /> -->
         <Page1 {insurance} />
         <Page2 {insurance} />
