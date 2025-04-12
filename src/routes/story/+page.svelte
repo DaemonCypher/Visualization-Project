@@ -12,8 +12,8 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
-    import PageScatter from "./page-scatter.svelte";
-
+    import PageScatter from "./page-scatter-plots.svelte";
+    import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
 
     let insurance: TInsurance[] = $state([]);
@@ -50,7 +50,7 @@
 
     async function loadCsv() {
       try {
-        const csvUrl = "./insurance_augmented.csv";
+        const csvUrl = "./insurance.csv";
         let id = 1
         insurance = await d3.csv(csvUrl, (row) => {
           const tier = Number(row.charges) > 30000 ? 3 : Number(row.charges) > 15000 ? 2 : 1;
@@ -58,17 +58,23 @@
           const bmi_category = Number(row.bmi) > 30 ? 4 : Number(row.bmi) > 25 ? 3 : Number(row.bmi) > 18.5 ? 2 : 1;
           // 4: obese, 3: overweight, 2: normal, 1: underweight
           const smoker_category = row.smoker == "yes" ? 1 : 0;
+          const guess = Number(row.charges) === 35160.13457 ? true : false;
+          const overcharge_outlier = tier > 2 && !smoker_category && bmi_category < 4 ? true : false;
+          const undercharge_outlier = tier < 2 && smoker_category && bmi_category > 2 ? true : false;
           return {
             age: row.age,
             sex: row.sex,
             bmi: row.bmi,
-            children: row.children,
+            children: Number(row.children),
             smoker: row.smoker,
             region: row.region,
             charge: row.charges,
             tier: tier,
             bmi_category: bmi_category,
             smoker_category: smoker_category,
+            guess: guess,
+            overcharge_outlier: overcharge_outlier,
+            undercharge_outlier: undercharge_outlier,
             id: id++,
           };
         });
@@ -103,8 +109,9 @@
 <div class="container">
     <div class="story">
         <Page0 />
-        <PageInteract />
+        <PageInteract {insurance} />
         <PageScatter {insurance} />
+        <!-- <UnifyScatter {insurance} /> -->
         <Page1 {insurance} />
         <Page2 {insurance} />
         <Page3 {insurance} />
@@ -126,7 +133,7 @@
         height: 100%;
         object-fit: cover; /* Ensures the video covers the entire viewport */
         z-index: -1; /* Places the video behind all other content */
-        opacity: 0.9;
+        opacity: 1;
     }
     .container {
         width: 80vw;
