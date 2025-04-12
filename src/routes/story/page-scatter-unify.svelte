@@ -2,7 +2,7 @@
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
     import charge_age_sex from "./sketch/charge-age-sex.png";
-    import ScatterTemplate from "$lib/ScatterTemplate.svelte";
+    import ScatterTemplate from "$lib/ScatterTemplateTest.svelte";
 
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
@@ -91,7 +91,7 @@
         <h3>Scatter Plots </h3>
     </div>
 
-    <div slot="viz" class="header">
+    <div slot="viz" class="header" style="background-color: white;">
         <ScatterTemplate
             insurance={insurance}
             x={attributes()[0]}

@@ -104,7 +104,8 @@
     <div class="story">
         <Page0 />
         <PageInteract />
-        <PageScatter {insurance} />
+        <!-- <PageScatter {insurance} /> -->
+        <!-- <UnifyScatter {insurance} /> -->
         <Page1 {insurance} />
         <Page2 {insurance} />
         <Page3 {insurance} />
@@ -126,7 +127,7 @@
         height: 100%;
         object-fit: cover; /* Ensures the video covers the entire viewport */
         z-index: -1; /* Places the video behind all other content */
-        opacity: 0.9;
+        opacity: 1;
     }
     .container {
         width: 80vw;
