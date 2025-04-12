@@ -20,8 +20,7 @@
     let width = 1000;
     let height = 700;
   
-    let uniSize = true;
-    let hideLegend = true;
+    let uniSize = false;
     let hideYAxis = false;
     let title = "";
     let xDomain: [number, number] | null = null;
@@ -46,9 +45,9 @@
 
     const margin = { 
       top: 10, 
-      right: hideLegend ? 10 : 120, 
+      right: 220, 
       bottom: 10, 
-      left: hideYAxis ? 10 : 40 
+      left: 40 
     };
     let usableArea = $derived({
       top: margin.top,
@@ -141,7 +140,7 @@
         const maxDelay = data.length * 3;
         setTimeout(() => {
             colorize = true;
-        }, 1200 + maxDelay); // fly duration + staggered delay
+        }, 800 + maxDelay); // fly duration + staggered delay
     }
     });
         
@@ -180,7 +179,7 @@
     </div>
     </div>
     <div slot="viz" class="header">
-      <div class="image-container" style="border: 1px solid white;">
+      <div class="image-container">
         <!-- Inline scatter plot; the only difference is that the fill colors change when the `colorProp` is set. -->
         <svg {width} {height} id={plotId}>
           <!-- <rect
