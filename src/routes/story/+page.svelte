@@ -58,6 +58,9 @@
           const bmi_category = Number(row.bmi) > 30 ? 4 : Number(row.bmi) > 25 ? 3 : Number(row.bmi) > 18.5 ? 2 : 1;
           // 4: obese, 3: overweight, 2: normal, 1: underweight
           const smoker_category = row.smoker == "yes" ? 1 : 0;
+          const guess = Number(row.charges) === 35160.13457 ? true : false;
+          const overcharge_outlier = tier > 2 && !smoker_category && bmi_category < 4 ? true : false;
+          const undercharge_outlier = tier < 2 && smoker_category && bmi_category > 2 ? true : false;
           return {
             age: row.age,
             sex: row.sex,
@@ -69,6 +72,9 @@
             tier: tier,
             bmi_category: bmi_category,
             smoker_category: smoker_category,
+            guess: guess,
+            overcharge_outlier: overcharge_outlier,
+            undercharge_outlier: undercharge_outlier,
             id: id++,
           };
         });
@@ -103,7 +109,7 @@
 <div class="container">
     <div class="story">
         <Page0 />
-        <PageInteract />
+        <PageInteract {insurance} />
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
         <Page1 {insurance} />

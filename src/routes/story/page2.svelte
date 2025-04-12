@@ -139,12 +139,7 @@
     --scrolly-viz-top="2em"
     --scrolly-gap="1em"
   >
-    <div id="virtual" >
-      <div class="text-container" >
-        <h4>The charges can be split into 3 tiers based on the trends</h4>
-        <progress value={progress} max="50"></progress>
-    </div>
-    </div>
+
     <div slot="viz" class="header">
       <div class="image-container">
 
@@ -181,6 +176,12 @@
 
       </div>
     </div>
+    <div id="virtual" >
+        <div class="text-container" >
+          <h4>The charges can be split into 3 tiers based on the trends</h4>
+          <progress value={progress} max="50"></progress>
+      </div>
+      </div>
   </Scroll>
   
   <style>
