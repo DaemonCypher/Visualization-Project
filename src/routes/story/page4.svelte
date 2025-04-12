@@ -99,5 +99,6 @@
         justify-content: space-between;
         align-items: center;
         gap: 0.5em; /* Add spacing between images */
+        background-color: rgba(149, 149, 149, 0.8);
     }
 </style>

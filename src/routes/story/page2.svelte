@@ -63,7 +63,6 @@
                     hidePanel="true"
                     hideYAxis="true"
                     width={width + 110}
-
                     title="female"
                     {xDomain}
                     {yDomain}
@@ -97,6 +96,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 0.0em; /* Add spacing between images */
+        gap: 0em; /* Add spacing between images */
+        background-color: rgba(149, 149, 149, 0.8);
     }
 </style>

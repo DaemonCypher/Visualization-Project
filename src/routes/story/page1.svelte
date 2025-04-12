@@ -52,6 +52,7 @@
         height: 150vh; /* Make the page scrollable with a 150% view height */
         color: white;
     }
+
     h1 {
         font-size: 10vh;
         color: #433417; /* Darker text for better contrast */
@@ -72,5 +73,6 @@
         justify-content: space-between;
         align-items: center;
         gap: 0.5em; /* Add spacing between images */
+        background-color: rgba(149, 149, 149, 0.8);
     }
 </style>
