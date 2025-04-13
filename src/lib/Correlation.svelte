@@ -9,12 +9,11 @@
 
   type Props = {
     data: CorrelationEntry[];
-
     width?: number;
     height?: number;
   };
 
-  const { data, height = 300, width = 350 }: Props = $props();
+  const { data, height = 600, width = 600 }: Props = $props();
 
   // Convert correlation list to nested dictionary
   function create2DLookup(data: CorrelationEntry[]) {
@@ -33,8 +32,6 @@
 
 
 
-
-
   const xwithY = $derived(create2DLookup(data));
   const labels = ["age","sex","bmi","children","smoker","region","charges"]
 
@@ -44,8 +41,8 @@
 
   const margin = {
     top: 15,
-    bottom: 50,
-    left: 75,
+    bottom: 65,
+    left: 85,
     right: 75,
   };
 
@@ -72,18 +69,27 @@
       .call(d3.axisBottom(xScale))
       .selectAll("text")
       .attr("transform", "rotate(45)")
-      .style("text-anchor", "start");
+      .style("text-anchor", "start")
+      .style("fill", "white")
+      .style("font-weight", "bold")   
+      .style("font-size", "18px"); // Increase text size
 
-    d3.select(yAxis).call(d3.axisLeft(yScale));
+
+    d3.select(yAxis)
+    .call(d3.axisLeft(yScale))
+    .selectAll("text")
+    .style("fill", "white")
+    .style("font-weight", "bold") 
+    .style("font-size", "18px"); // Increase text size
+
+
+
   }
 
   $effect(() => {
     updateAxis();
   });
 </script>
-
-<h3>Correlation between insurance attributes</h3>
-
 {#if data.length > 0}
   <svg {width} {height}>
     <!-- Axes -->
@@ -99,7 +105,7 @@
           width={xScale.bandwidth()}
           height={yScale.bandwidth()}
           fill={colorScale(xwithY[labelX][labelY])}
-          stroke="grey"
+          stroke="black"
 
         />
         <text
