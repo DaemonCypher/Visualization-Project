@@ -37,7 +37,7 @@
                     {insurance}
                     x="bmi_category"
                     y="charge"
-                    color="tier"
+                    color="smoker_category"
                     width="1000"
                     height="550"
                 />
