@@ -5,6 +5,8 @@
     import * as d3 from "d3";
     import { cubicOut } from "svelte/easing";
     import { derived } from "svelte/store";
+    import ScatterTemplate from "$lib/ScatterTemplate.svelte";
+
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     // console.log("Insurance data:", insurance);
@@ -154,7 +156,7 @@
           <!-- <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}  /> -->
           <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
           {#if progress > 0}  
-          {#each data as point, i (point.id)}
+            {#each data as point, i (point.id)}
               <circle
                 in:fly={{ 
                   y: +200,
@@ -191,7 +193,8 @@
                     {xDomain}
                     {yDomain}
                 />
-            </div>
+              </circle>
+            {/each}
         {/if}
 
     </div>
