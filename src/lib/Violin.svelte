@@ -15,7 +15,7 @@
 
     onMount(() => {
         const margin = { top: 10, right: 30, bottom: 30, left: 40 },
-            chartWidth = width - margin.left - margin.right,
+            chartWidth = width - margin.left - margin.right - 100,
             chartHeight = height - margin.top - margin.bottom;
 
         d3.select(container).selectAll("*").remove();
@@ -36,8 +36,26 @@
 
         console.log("colorInsurance", colorInsurance);
 
-        const grouped = d3.group(insurance, (d) => String(d[x]));
-        const groupedColor = d3.group(colorInsurance, (d) => String(d[x]));
+        const labelMap: Record<string, string> = {
+            "1": "underweight",
+            "2": "normal",
+            "3": "overweight",
+            "4": "obese",
+        };
+
+        const grouped = new Map(
+            Array.from(d3.group(insurance, (d) => String(d[x])))
+                .sort((a, b) => a[0].localeCompare(b[0]))
+                .map(([key, values]) => [labelMap[key] ?? key, values]),
+        );
+        const groupedColor = new Map(
+            Array.from(d3.group(colorInsurance, (d) => String(d[x])))
+                .sort((a, b) => a[0].localeCompare(b[0]))
+                .map(([key, values]: [string, TInsurance[]]) => [
+                    labelMap[key] ?? key,
+                    values,
+                ]),
+        );
         console.log("groupedColor", groupedColor);
 
         const xScale = d3
@@ -123,6 +141,41 @@
         drawViolins(grouped, "#0000FF", 0.8);
         // Draw overlay smaller violins (scaled down)
         drawViolins(groupedColor, "#ff7f0e", 0.8);
+
+        const legendGroup = svg
+            .append("g")
+            .attr(
+                "transform",
+                `translate(${chartWidth + 40}, ${chartHeight / 20})`,
+            );
+
+        legendGroup
+            .append("text")
+            .text("Categories")
+            .attr("font-weight", "bold")
+            .attr("font-size", 15)
+            .attr("y", -10);
+
+        const sortedCategories = [
+            { label: "smoker", color: "#ff7f0e" },
+            { label: "non-smoker", color: "#0000FF" },
+        ];
+        sortedCategories.forEach((category, i) => {
+            const g = legendGroup
+                .append("g")
+                .attr("transform", `translate(0, ${i * 20})`);
+
+            g.append("circle")
+                .attr("r", 6)
+                .attr("fill", category.color)
+                .attr("cy", 6);
+
+            g.append("text")
+                .attr("x", 15)
+                .attr("y", 10)
+                .attr("font-size", 12)
+                .text(category.label);
+        });
     });
 </script>
 
