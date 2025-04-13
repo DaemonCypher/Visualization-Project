@@ -16,6 +16,7 @@
 
     onMount(() => {
         // Define margins and adjust drawing area dimensions
+        console.log("Insurance data:", insurance);
         const margin = { top: 10, right: 30, bottom: 30, left: 40 },
             chartWidth = width - margin.left - margin.right,
             chartHeight = height - margin.top - margin.bottom;
@@ -35,6 +36,7 @@
         // Group the insurance data by the x key.
         // We convert the key value to a string to ensure proper grouping.
         const grouped = d3.group(insurance, (d) => String(d[x]));
+        console.log("Grouped data:", grouped);
 
         // Build the X scale using a band scale.
         // The domain is the set of unique group values from the insurance data.
@@ -69,7 +71,7 @@
             const histogram = d3
                 .histogram()
                 .domain(yScale.domain() as [number, number])
-                .thresholds(yScale.ticks(20))
+                .thresholds(yScale.ticks(40))
                 .value((d) => d);
 
             // Compute the bins for the histogram
@@ -95,7 +97,7 @@
                     // d.x0 and d.x1 are the bin boundaries; take their average for the y position.
                     return yScale((d.x0! + d.x1!) / 2);
                 })
-                .curve(d3.curveCatmullRom);
+                .curve(d3.curveBasis);
 
             // Determine the fill color for the group:
             // Use the first record’s value for the provided color key, if available; otherwise, default.

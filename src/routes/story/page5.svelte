@@ -35,11 +35,11 @@
             >
                 <Violin
                     {insurance}
-                    x="age"
+                    x="bmi_category"
                     y="charge"
-                    size="children"
                     color="tier"
                     width="1000"
+                    height="550"
                 />
             </div>
         {/if}
@@ -48,7 +48,7 @@
 
 <style>
     #virtual {
-        height: 100vh; /* Make the page scrollable with a 150% view height */
+        height: 150vh; /* Make the page scrollable with a 150% view height */
         color: white;
     }
     h1 {
@@ -71,5 +71,6 @@
         justify-content: space-between;
         align-items: center;
         gap: 0.5em; /* Add spacing between images */
+        background-color: rgba(149, 149, 149, 0.8);
     }
 </style>
