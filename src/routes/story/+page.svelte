@@ -17,11 +17,11 @@
     import type { TInsurance } from "../../types";
 
     import Header from "./header.svelte";
+    import Coefficient from "./coefficient.svelte";
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
-    let data = $state<
-        { variable1: string; variable2: string; value: number }[]
-    >([]);
+    let data: { variable1: string; variable2: string; value: number }[] = $state([]);
+
     // load csv data only once
     async function loadCorrelation() {
         try {
@@ -113,10 +113,12 @@
 
 <div class="container">
     <div class="story">
-        <Header />        
         <!-- <Page0 /> -->
-        <PageInteract {insurance} />
-        <PageScatter {insurance} />
+        <Header />        
+        <Coefficient {data}/>
+        <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
+        <!-- <PageInteract {insurance} /> -->
+        <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
         <Page1 {insurance} />
         <Page2 {insurance} />
