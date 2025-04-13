@@ -2,9 +2,10 @@
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
     import charge_smoker_bmiLevel from "./sketch/charge-smoker-bmiLevel.png";
+    import Violin from "$lib/Violin.svelte";
 
-    type Props = {};
-    let {}: Props = $props();
+    type Props = { insurance: any[] };
+    let { insurance }: Props = $props();
 
     let progress: number = $state(0);
 </script>
@@ -18,14 +19,10 @@
     --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
-
     <div id="virtual">
-        <h3>
-            Now, we can split the data by insurance tier.
-        </h3>
-
+        <h3>Now, we can split the data by insurance tier.</h3>
     </div>
-   
+
     <div slot="viz" class="header">
         {#if progress > 10}
             <!-- Add a condition to trigger the transition -->
@@ -36,8 +33,14 @@
                     y: -200,
                 }}
             >
-                <!-- <img src={datatype} alt="Data" /> -->
-                <img src={charge_smoker_bmiLevel} alt="Patient" />
+                <Violin
+                    {insurance}
+                    x="bmi_category"
+                    y="charge"
+                    color="smoker_category"
+                    width="1000"
+                    height="550"
+                />
             </div>
         {/if}
     </div>
@@ -45,7 +48,7 @@
 
 <style>
     #virtual {
-        height: 100vh; /* Make the page scrollable with a 150% view height */
+        height: 150vh; /* Make the page scrollable with a 150% view height */
         color: white;
     }
     h1 {
@@ -68,5 +71,6 @@
         justify-content: space-between;
         align-items: center;
         gap: 0.5em; /* Add spacing between images */
+        background-color: rgba(149, 149, 149, 0.8);
     }
 </style>

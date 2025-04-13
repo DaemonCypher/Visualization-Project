@@ -162,19 +162,38 @@
                   delay: i * 3,
                   easing: cubicOut
                 }}
-                cx={isNumericX ? xScale(point.xValue) : xScale(String(point.xValue))}
-                cy={isNumericY ? yScale(point.yValue) : yScale(String(point.yValue))}
-                r={sizeScale(point.sizeValue)}
-                fill={colorize ? colorScale(point.colorValue) : "white"}
-                opacity={0.8}
-                stroke="none"
-                stroke-width="0"
-              />
-            {/each}
-            {/if}
-        </svg>
+            >
+                <ScatterTemplate
+                    insurance={male()}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="tier"
+                    uniSize="true"
+                    hidePanel="true"
+                    hideLegend="true"
+                    width={width + 30}
+                    title="male"
+                    {xDomain}
+                    {yDomain}
+                />
+                <ScatterTemplate
+                    insurance={female()}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="tier"
+                    uniSize="true"
+                    hidePanel="true"
+                    hideYAxis="true"
+                    width={width + 110}
+                    title="female"
+                    {xDomain}
+                    {yDomain}
+                />
+            </div>
+        {/if}
 
-      </div>
     </div>
     <div id="virtual" >
         <div class="text-container" >
@@ -196,14 +215,12 @@
       color: white;
     }
     .image-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.1em;
-    }
-    svg {
-      max-width: 100%;
-      max-height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0em; /* Add spacing between images */
+        background-color: rgba(149, 149, 149, 0.8);
+
     }
   </style>
   
