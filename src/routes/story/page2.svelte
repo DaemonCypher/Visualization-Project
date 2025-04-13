@@ -5,6 +5,8 @@
     import * as d3 from "d3";
     import { cubicOut } from "svelte/easing";
     import { derived } from "svelte/store";
+    import ScatterTemplate from "$lib/ScatterTemplate.svelte";
+
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     // console.log("Insurance data:", insurance);
@@ -191,7 +193,6 @@
                     {xDomain}
                     {yDomain}
                 />
-            </div>
         {/if}
 
     </div>
