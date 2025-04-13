@@ -39,7 +39,7 @@
   const labels = ["age","sex","bmi","children","smoker","region","charges"]
 
   const colorScale = $derived(
-    d3.scaleSequential(d3.interpolateOranges).domain([0, 1])
+    d3.scaleSequential(d3.interpolateOranges).domain([-0.16, 1])
   );
 
   const margin = {
