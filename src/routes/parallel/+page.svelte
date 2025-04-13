@@ -39,7 +39,7 @@
         await loadCsv();
       }
     );
-    let categoryOption = ["sex", "children", "smoker", "region"];
+    let categoryOption = ["sex", "children", "smoker", "region","tier","bmi_category"];
     type TAxisSelection = {
     category: keyof TInsurance;
   };
