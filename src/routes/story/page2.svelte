@@ -156,7 +156,7 @@
           <!-- <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}  /> -->
           <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
           {#if progress > 0}  
-          {#each data as point, i (point.id)}
+            {#each data as point, i (point.id)}
               <circle
                 in:fly={{ 
                   y: +200,
@@ -193,6 +193,8 @@
                     {xDomain}
                     {yDomain}
                 />
+              </circle>
+            {/each}
         {/if}
 
     </div>
