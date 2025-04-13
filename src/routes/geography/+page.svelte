@@ -1,7 +1,7 @@
 <script lang="ts">
     import * as d3 from "d3";
     import { onMount } from "svelte";
-    import { base } from '$app/paths';
+    import { base } from "$app/paths";
     import USMap from "$lib/USMap.svelte";
   
     let uninsuredData: { state: string; rate: number }[] = [];
