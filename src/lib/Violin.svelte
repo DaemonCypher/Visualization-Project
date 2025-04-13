@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import type { TInsurance } from "../types";
+    import { draw } from "svelte/transition";
 
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
@@ -125,15 +126,34 @@
                         ? String(values[0][color])
                         : "#69b3a2");
 
-                svg.append("path")
+                const path = svg
+                    .append("path")
                     .datum(bins)
                     .attr("transform", `translate(${xScale(groupKey) ?? 0},0)`)
                     .style("fill", finalFill)
                     .style("opacity", 0.9)
                     .style("stroke", "white")
-                    .style("stroke-width", 1)
-                    .attr("d", area as any)
-                    .raise();
+                    .style("stroke-width", 0);
+
+                // Generate final shape once (for transition target)
+                const finalPath = area(bins);
+
+                // Create an interpolator: start from a flat line at bottom → full violin
+                const initialArea = d3
+                    .area()
+                    .x0((d) => xNum(-d.length))
+                    .x1((d) => xNum(d.length))
+                    .y((d) => yScale(yScale.domain()[0])) // all start at bottom
+                    .curve(d3.curveBasis);
+
+                path.attr("d", initialArea as any) // starting shape
+                    .transition()
+                    .duration(1000)
+                    .ease(d3.easeCubicIn)
+                    .attr("d", finalPath) // transition to final violin
+                    .on("end", () => {
+                        path.raise(); // bring to top after animating
+                    });
             }
         }
 
