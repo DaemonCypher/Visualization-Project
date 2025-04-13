@@ -173,41 +173,41 @@
     <path 
       d={lineMin} 
       stroke="black" 
-      stroke-width={getLineWidth('min')} 
+      stroke-width={getLineWidth("min")} 
       fill="none" 
-      opacity={getLineOpacity('min')}
+      opacity={getLineOpacity("min")}
       transition:opacity={{ duration: 300 }}
     />
     <path 
       d={lineQ1} 
       stroke="green" 
-      stroke-width={getLineWidth('q1')} 
+      stroke-width={getLineWidth("q1")} 
       fill="none" 
-      opacity={getLineOpacity('q1')}
+      opacity={getLineOpacity("q1")}
       transition:opacity={{ duration: 300 }}
     />
     <path 
       d={lineMid} 
       stroke="blue" 
-      stroke-width={getLineWidth('mid')} 
+      stroke-width={getLineWidth("mid")} 
       fill="none" 
-      opacity={getLineOpacity('mid')}
+      opacity={getLineOpacity("mid")}
       transition:opacity={{ duration: 300 }}
     />
     <path 
       d={lineQ3} 
       stroke="orange" 
-      stroke-width={getLineWidth('q3')} 
+      stroke-width={getLineWidth("q3")} 
       fill="none" 
-      opacity={getLineOpacity('q3')}
+      opacity={getLineOpacity("q3")}
       transition:opacity={{ duration: 300 }}
     />
     <path 
       d={lineMax} 
       stroke="red" 
-      stroke-width={getLineWidth('max')} 
+      stroke-width={getLineWidth("max")} 
       fill="none" 
-      opacity={getLineOpacity('max')}
+      opacity={getLineOpacity("max")}
       transition:opacity={{ duration: 300 }}
     />
   
@@ -216,50 +216,50 @@
       <!-- Max (now at the top) -->
       <g 
         class="legend-item" 
-        on:click={() => setActiveLine('max')}
-        class:active={activeLine === 'max'}
+        on:click={() => setActiveLine("max")}
+        class:active={activeLine === "max"}
       >
-        <rect x="0" y="0" width="10" height="10" fill="none" stroke="red" stroke-width={activeLine === 'max' ? 2 : 1} />
+        <rect x="0" y="0" width="10" height="10" fill="none" stroke="red" stroke-width={activeLine === "max" ? 2 : 1} />
         <text x="15" y="10" font-size="12">Max</text>
       </g>
       
       <!-- Q3 -->
       <g 
         class="legend-item" 
-        on:click={() => setActiveLine('q3')}
-        class:active={activeLine === 'q3'}
+        on:click={() => setActiveLine("q3")}
+        class:active={activeLine === "q3"}
       >
-        <rect x="0" y="20" width="10" height="10" fill="none" stroke="orange" stroke-width={activeLine === 'q3' ? 2 : 1} />
+        <rect x="0" y="20" width="10" height="10" fill="none" stroke="orange" stroke-width={activeLine === "q3" ? 2 : 1} />
         <text x="15" y="30" font-size="12">Q3 (75%)</text>
       </g>
       
       <!-- Median -->
       <g 
         class="legend-item" 
-        on:click={() => setActiveLine('mid')}
-        class:active={activeLine === 'mid'}
+        on:click={() => setActiveLine("mid")}
+        class:active={activeLine === "mid"}
       >
-        <rect x="0" y="40" width="10" height="10" fill="none" stroke="blue" stroke-width={activeLine === 'mid' ? 2 : 1} />
+        <rect x="0" y="40" width="10" height="10" fill="none" stroke="blue" stroke-width={activeLine === "mid" ? 2 : 1} />
         <text x="15" y="50" font-size="12">Median</text>
       </g>
       
       <!-- Q1 -->
       <g 
         class="legend-item" 
-        on:click={() => setActiveLine('q1')}
-        class:active={activeLine === 'q1'}
+        on:click={() => setActiveLine("q1")}
+        class:active={activeLine === "q1"}
       >
-        <rect x="0" y="60" width="10" height="10" fill="none" stroke="green" stroke-width={activeLine === 'q1' ? 2 : 1} />
+        <rect x="0" y="60" width="10" height="10" fill="none" stroke="green" stroke-width={activeLine === "q1" ? 2 : 1} />
         <text x="15" y="70" font-size="12">Q1 (25%)</text>
       </g>
       
       <!-- Min (now at the bottom) -->
       <g 
         class="legend-item" 
-        on:click={() => setActiveLine('min')}
-        class:active={activeLine === 'min'}
+        on:click={() => setActiveLine("min")}
+        class:active={activeLine === "min"}
       >
-        <rect x="0" y="80" width="10" height="10" fill="none" stroke="black" stroke-width={activeLine === 'min' ? 2 : 1} />
+        <rect x="0" y="80" width="10" height="10" fill="none" stroke="black" stroke-width={activeLine === "min" ? 2 : 1} />
         <text x="15" y="90" font-size="12">Min</text>
       </g>
     </g>

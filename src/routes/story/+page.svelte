@@ -16,6 +16,7 @@
     import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
 
+    import Header from "./header.svelte";
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
     let data = $state<
@@ -108,7 +109,8 @@
 
 <div class="container">
     <div class="story">
-        <Page0 />
+        <Header />        
+        <!-- <Page0 /> -->
         <PageInteract {insurance} />
         <PageScatter {insurance} />
         <!-- <UnifyScatter {insurance} /> -->
