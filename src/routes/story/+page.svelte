@@ -12,10 +12,11 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
-    import PageScatter from "./page-scatter.svelte";
-
+    import PageScatter from "./page-scatter-plots.svelte";
+    import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
 
+    import Header from "./header.svelte";
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
     let data = $state<
@@ -86,6 +87,7 @@
             });
             console.log("Loaded CSV Data:", insurance);
 
+
             const insuranceUrl = "./uninsured.csv";
             uninsuredData = await d3.csv(insuranceUrl, (row) => {
                 return {
@@ -111,9 +113,11 @@
 
 <div class="container">
     <div class="story">
-        <Page0 />
-        <PageInteract />
+        <Header />        
+        <!-- <Page0 /> -->
+        <PageInteract {insurance} />
         <PageScatter {insurance} />
+        <!-- <UnifyScatter {insurance} /> -->
         <Page1 {insurance} />
         <Page2 {insurance} />
         <Page3 {insurance} />
@@ -135,7 +139,7 @@
         height: 100%;
         object-fit: cover; /* Ensures the video covers the entire viewport */
         z-index: -1; /* Places the video behind all other content */
-        opacity: 0.9;
+        opacity: 1;
     }
     .container {
         width: 80vw;

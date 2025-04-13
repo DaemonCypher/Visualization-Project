@@ -3,8 +3,6 @@
     import type { TInsurance } from "../types";
     import * as d3 from "d3";
     import { slide, fly } from "svelte/transition";
-    import { cubicOut } from "svelte/easing";
-
     // Define input properties
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
@@ -22,8 +20,6 @@
     export let xDomain: [number, number] | null = null;
     export let yDomain: [number, number] | null = null;
     export let plotId: string = "";
-
-    let animation: boolean = false;
 
     $: isNumericX = insurance.every((d) => !isNaN(+d[x]));
     $: isNumericY = insurance.every((d) => !isNaN(+d[y]));
@@ -149,13 +145,15 @@
             updateAxis();
         }
     }
-    onMount(() => {
-        animation = true;
-    });
+
+    function pointDelay(point) {
+      const index = data.findIndex(p => p.id === point.id);
+      return index * 30;
+  }
 </script>
 
 
-        <svg {width} {height} id = {plotId}>
+        <svg {width} {height}>
             <rect
                 x={usableArea.left}
                 y={usableArea.top}
@@ -168,15 +166,9 @@
                 bind:this={xAxis}
             />
             <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
-            {#if animation}
-            {#each data as point, i (point.id)}
+
+            {#each data as point (point.id)}
                 <circle
-                in:fly={{ 
-                  y: -50,               // start 50px above the final position
-                  duration: 1000,        // transition duration in milliseconds
-                  delay: i * 50,        // stagger the appearance of each circle
-                  easing: cubicOut      // easing function for a smooth transition
-                }}
                     cx={isNumericX
                         ? xScale(point.xValue)
                         : xScale(String(point.xValue))}
@@ -188,12 +180,13 @@
                     opacity={0.6}
                     stroke={clickedPoint?.id == point.id ? "black" : "none"}
                     stroke-width={0}
+                    in:fly="{{ x: 0, y: 50, duration: 500, delay: pointDelay(point) }}"
+                    out:fly="{{ x: 0, y: -50, duration: 500 }}"
                 />
             {/each}
-            {/if}
 
             <!-- Category legend -->
-            <!-- {#if !hideLegend}
+            {#if !hideLegend}
                 <g
                     transform="translate({usableArea.right +
                         20}, {usableArea.top + 20})"
@@ -206,7 +199,7 @@
                         </g>
                     {/each}
                 </g>
-            {/if} -->
+            {/if}
             <text
                 x={hideLegend ? width / 2 + 10 : width / 2 - 35}
                 y={height - 5}
@@ -220,15 +213,5 @@
         </svg>
 
 <style>
-    .data-point {
-        transition:
-            opacity 0.3s,
-            r 1s,
-            x 1s,
-            y 1s;
-        cursor: pointer;
-        opacity: 0.6;
-    }
-
 
 </style>
