@@ -30,7 +30,7 @@
             {insurance} 
             x="bmi" 
             y="charge" 
-            size="bmi" 
+            size="age" 
             color="tier" 
             />
         </div>
