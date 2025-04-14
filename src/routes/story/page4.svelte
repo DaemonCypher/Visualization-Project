@@ -22,12 +22,12 @@
     <div id="virtual">
         <div class="text-container">
             <h3>Now, we can split the data by insurance tier.</h3>
+            <progress value={progress} max="50"></progress>
         </div>
     </div>
 
     <div slot="viz" class="header">
         {#if progress > 10}
-            <!-- Add a condition to trigger the transition -->
             <div
                 class="image-container"
             >
@@ -36,8 +36,6 @@
                     x="smoker"
                     y="charge"
                     color="smoker_category"
-                    width="1000"
-                    height="700"
                 />
             </div>
         {/if}
@@ -61,5 +59,8 @@
       padding-left: 100px;
       padding-right: 100px;
       border: 1px solid white;
+    }
+    progress {
+        width: 100%;
     }
 </style>

@@ -10,7 +10,7 @@
     export let size: keyof TInsurance;
     export let color: keyof TInsurance;
     export let width: number = 1000;
-    export let height: number = 550;
+    export let height: number = 700;
 
     let container: HTMLDivElement;
 
@@ -200,7 +200,7 @@
 </script>
 
 <!-- The chart will be rendered inside this container -->
-<div bind:this={container}></div>
+<div bind:this={container} style="width:100%"></div>
 
 <style>
     path:hover {
