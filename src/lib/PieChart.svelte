@@ -55,7 +55,7 @@
         arcs.append("text")
             .attr("transform", d => `translate(${arcGenerator.centroid(d)})`)
             .attr("text-anchor", "middle")
-            .style("font-size", "11px" )
+            .style("font-size", "9px" )
             .style("fill", "white")
             .text(d => `${d.data.key}: ${d.data.count}`);
     });

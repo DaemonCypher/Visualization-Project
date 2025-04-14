@@ -67,7 +67,7 @@
 
 <style>
     #virtual {
-        height: 150vh; /* Make the page scrollable with a 150% view height */
+        height: 200vh; /* Make the page scrollable with a 150% view height */
         color: white;
     }
 

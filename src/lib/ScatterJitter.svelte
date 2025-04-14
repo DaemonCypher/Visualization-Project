@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import type { TInsurance } from "../types";
-    import { colorScaleMap } from "../types";
+    import { colorScaleMap, labelMaps } from "../types";
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
     export let y: keyof TInsurance;
@@ -12,42 +12,8 @@
     export let height: number = 700;
   
     let container: HTMLDivElement;
-    let labelMap = {}
-    let labelMap_bmi = {
-        "1": "Underweight",
-        "2": "Normal",
-        "3": "Overweight",
-        "4": "Obese",
-    }
-    let labelMap_smoker = {
-        "no": "Non-smoker",
-        "yes": "Smoker",
-    }
-    let childMap = {
-        "0": "No children",
-        "1": "1 child",
-        "2": "2 children",
-        "3": "3 children",
-        "4": "4 children",
-        "5": "5 children",
-    }
-    let regionMap = {
-        "northeast": "Northeast",
-        "northwest": "Northwest",
-        "southeast": "Southeast",
-        "southwest": "Southwest",
-    }
-    if (x.includes("bmi")) {
-        labelMap = labelMap_bmi;
-    } else if (x.includes("smoker")) {
-        labelMap = labelMap_smoker;
-    } else if (x.includes("children")) {
-        labelMap = childMap;
-    } else if (x.includes("region")) {
-        labelMap = regionMap;
-    }
+    let labelMap = labelMaps[x] ?? {}
 
-  
     onMount(() => {
       d3.select(container).selectAll("*").remove();
   
