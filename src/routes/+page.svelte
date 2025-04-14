@@ -3,8 +3,6 @@
   </script>
 <h1>tmp</h1>
 
-
-
 <h2>
     <a href="{base}/correlation">Correlation</a>
     <a href="{base}/explore">Explore</a>

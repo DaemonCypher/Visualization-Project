@@ -1,4 +1,4 @@
-age,sex,bmi,children,smoker,region,charges,tier,obesity
+age,sex,bmi,children,smoker,region,charges,tier,weight
 19,0,27,0,1,1,16884,2,3
 18,1,33,1,0,2,1725,1,4
 28,1,33,3,0,2,4449,1,4

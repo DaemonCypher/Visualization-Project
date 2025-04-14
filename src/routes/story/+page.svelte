@@ -16,11 +16,13 @@
     import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
 
+    import ScatterMatrix from "./scatterMatrix.svelte";
     import Header from "./header.svelte";
     import Coefficient from "./coefficient.svelte";
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
     let data: { variable1: string; variable2: string; value: number }[] = $state([]);
+    let matrixData: TInsurance[] = $state([]);
 
     // load csv data only once
     async function loadCorrelation() {
@@ -29,7 +31,6 @@
             const raw = await d3.csv(csvUrl);
 
             const reshaped = [];
-
             for (const row of raw) {
                 const variable1 = row[""];
                 for (const [key, value] of Object.entries(row)) {
@@ -100,8 +101,31 @@
             console.error("Error loading CSV:", error);
         }
     }
+
+    async function loadMatrix() {
+    try {
+      const csvUrl = "./matrix.csv";
+      matrixData = await d3.csv(csvUrl, (row) => {
+        return {
+          age: row.age,
+          sex: row.sex,
+          bmi: row.bmi,
+          children: row.children,
+          smoker: row.smoker,
+          region: row.region,
+          charges: row.charges,    
+          tier: row.tier,
+          weight:row.weight
+        };
+      });
+      console.log("Loaded CSV Data:", matrixData);
+    } catch (error) {
+      console.error("Error loading CSV:", error);
+    }
+  }
     onMount(async () => {
         await loadCsv();
+        await loadMatrix();
         await loadCorrelation();
     });
 </script>
@@ -113,9 +137,12 @@
 
 <div class="container">
     <div class="story">
+
+
         <!-- <Page0 /> -->
         <Header />        
         <Coefficient {data}/>
+        <ScatterMatrix {matrixData}/>
         <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
         <!-- <PageInteract {insurance} /> -->
         <!-- <PageScatter {insurance} /> -->
@@ -124,11 +151,13 @@
         <Page2 {insurance} />
         <Page3 {insurance} />
         <Page4 {insurance} />
+        <Page6 />
         <Page5 {insurance} />
         <Page6 />
+
         <PageMap {uninsuredData} />
         <PageParallel {insurance} colorBy="smoker" />
-        <PageHeap {data} />
+        <!-- <PageHeap {data} /> -->
     </div>
     <!-- <h1>Hello World!</h1> -->
 </div>

@@ -111,10 +111,11 @@
         <text
           x={xScale(labelX) + xScale.bandwidth() / 2}
           y={yScale(labelY) + yScale.bandwidth() / 2}
-          font-size="14"
+          font-size="18"
           text-anchor="middle"
           alignment-baseline="middle"
           fill="black"
+          font-weight="bold"
         >
           {(xwithY[labelX][labelY]).toFixed(2)}
         </text>
