@@ -3,7 +3,7 @@
     import type { TInsurance } from "../types";
     import * as d3 from "d3";
     import { slide, fly } from "svelte/transition";
-    import { cubicOut } from 'svelte/easing';
+    import { cubicOut } from "svelte/easing";
 
     // Define input properties
     export let insurance: TInsurance[];

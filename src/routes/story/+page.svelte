@@ -16,11 +16,12 @@
     import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
 
+    import Header from "./header.svelte";
+    import Coefficient from "./coefficient.svelte";
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
-    let data = $state<
-        { variable1: string; variable2: string; value: number }[]
-    >([]);
+    let data: { variable1: string; variable2: string; value: number }[] = $state([]);
+
     // load csv data only once
     async function loadCorrelation() {
         try {
@@ -49,56 +50,60 @@
     }
 
     async function loadCsv() {
-      try {
-        const csvUrl = "./insurance.csv";
-        let id = 1
-        insurance = await d3.csv(csvUrl, (row) => {
-          const tier = Number(row.charges) > 30000 ? 3 : Number(row.charges) > 15000 ? 2 : 1;
-          // 1: high, 2: medium, 3: low, 4: below 5k
-          const bmi_category = Number(row.bmi) > 30 ? 4 : Number(row.bmi) > 25 ? 3 : Number(row.bmi) > 18.5 ? 2 : 1;
-          // 4: obese, 3: overweight, 2: normal, 1: underweight
-          const smoker_category = row.smoker == "yes" ? 1 : 0;
-          const guess = Number(row.charges) === 35160.13457 ? true : false;
-          const overcharge_outlier = tier > 2 && !smoker_category && bmi_category < 4 ? true : false;
-          const undercharge_outlier = tier < 2 && smoker_category && bmi_category > 2 ? true : false;
-          return {
-            age: row.age,
-            sex: row.sex,
-            bmi: row.bmi,
-            children: Number(row.children),
-            smoker: row.smoker,
-            region: row.region,
-            charge: row.charges,
-            tier: tier,
-            bmi_category: bmi_category,
-            smoker_category: smoker_category,
-            guess: guess,
-            overcharge_outlier: overcharge_outlier,
-            undercharge_outlier: undercharge_outlier,
-            id: id++,
-          };
-        });
-        console.log("Loaded CSV Data:", insurance);
+        try {
+            const csvUrl = "./insurance_augmented.csv";
+            let id = 1;
+            insurance = await d3.csv(csvUrl, (row) => {
+                const tier =
+                    Number(row.charges) > 30000
+                        ? 3
+                        : Number(row.charges) > 15000
+                          ? 2
+                          : 1;
+                // 1: high, 2: medium, 3: low, 4: below 5k
+                const bmi_category =
+                    Number(row.bmi) > 30
+                        ? 4
+                        : Number(row.bmi) > 25
+                          ? 3
+                          : Number(row.bmi) > 18.5
+                            ? 2
+                            : 1;
+                // 4: obese, 3: overweight, 2: normal, 1: underweight
+                const smoker_category = row.smoker == "yes" ? 1 : 0;
+                return {
+                    age: row.age,
+                    sex: row.sex,
+                    bmi: row.bmi,
+                    children: row.children,
+                    smoker: row.smoker,
+                    region: row.region,
+                    charge: row.charges,
+                    tier: tier,
+                    bmi_category: bmi_category,
+                    smoker_category: smoker_category,
+                    id: id++,
+                };
+            });
+            console.log("Loaded CSV Data:", insurance);
 
 
-        const insuranceUrl = "./uninsured.csv";
-        uninsuredData = await d3.csv(insuranceUrl, (row) => {
-            return {
+            const insuranceUrl = "./uninsured.csv";
+            uninsuredData = await d3.csv(insuranceUrl, (row) => {
+                return {
                     state: row.State.trim(),
                     rate: +row["Uninsured Rate (2015)"],
                 };
-        });
-        console.log("Loaded CSV Data Map:", uninsuredData);
-      } catch (error) {
-        console.error("Error loading CSV:", error);
-      }
+            });
+            console.log("Loaded CSV Data Map:", uninsuredData);
+        } catch (error) {
+            console.error("Error loading CSV:", error);
+        }
     }
     onMount(async () => {
         await loadCsv();
         await loadCorrelation();
-      }
-    );
-
+    });
 </script>
 
 <video autoplay muted loop playsinline id="background-video">
@@ -108,8 +113,13 @@
 
 <div class="container">
     <div class="story">
-        <Page0 />
-        <PageInteract {insurance} />
+
+
+        <!-- <Page0 /> -->
+        <Header />        
+        <Coefficient {data}/>
+        <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
+        <!-- <PageInteract {insurance} /> -->
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
         <Page1 {insurance} />
@@ -117,7 +127,8 @@
         <Page3 {insurance} />
         <Page4 {insurance} />
         <Page6 />
-        <Page5 />
+        <Page5 {insurance} />
+
         <PageMap {uninsuredData} />
         <PageParallel {insurance} colorBy="smoker" />
         <PageHeap {data} />
@@ -126,7 +137,7 @@
 </div>
 
 <style>
-        #background-video {
+    #background-video {
         position: fixed;
         top: 0;
         left: 0;

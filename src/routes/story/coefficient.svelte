@@ -1,11 +1,10 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
-    import charge_smoker_bmiLevel from "./sketch/charge-smoker-bmiLevel.png";
-    import Violin from "$lib/Violin.svelte";
+    import Correlation from "$lib/Correlation.svelte";
 
-    type Props = { insurance: any[] };
-    let { insurance }: Props = $props();
+    type Props = { data: any[] };
+    let { data }: Props = $props();
 
     let progress: number = $state(0);
 </script>
@@ -20,7 +19,9 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <h3>Now, we can split the data by insurance tier.</h3>
+        <h3>Let take a look into what combination of attributes leads to an higher insurance charge</h3>
+        <h3>We can note that that individuals who are smokers have a strong correlation with charges at 0.79 correlation</h3>
+        <h3>We can also note that that individuals who have high age or BMI have some correlation with insurance charge as well</h3>
     </div>
 
     <div slot="viz" class="header">
@@ -32,15 +33,8 @@
                     duration: 2000,
                     y: -200,
                 }}
-            >
-                <Violin
-                    {insurance}
-                    x="bmi_category"
-                    y="charge"
-                    color="smoker_category"
-                    width="1000"
-                    height="550"
-                />
+            >        
+            <Correlation {data}/>
             </div>
         {/if}
     </div>
@@ -50,9 +44,10 @@
     #virtual {
         height: 150vh; /* Make the page scrollable with a 150% view height */
         color: white;
+        width: 300px;
     }
     h1 {
-        font-size: 10vh;
+        font-size: 14vh;
         color: #433417; /* Darker text for better contrast */
         font-weight: 600; /* Slightly bolder font weight */
     }
@@ -68,9 +63,8 @@
 
     .image-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         gap: 0.5em; /* Add spacing between images */
-        background-color: rgba(149, 149, 149, 0.8);
     }
 </style>

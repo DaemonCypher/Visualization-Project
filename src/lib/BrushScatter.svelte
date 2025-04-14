@@ -226,7 +226,7 @@ $: {
 
 <div class="controls">
   <button on:click={toggleBrush} class:active={brushActive}>
-    {brushActive ? 'Clear Selection' : 'Enable Brush Selection'}
+    {brushActive ? "Clear Selection" : "Enable Brush Selection"}
   </button>
 </div>
 
@@ -317,9 +317,9 @@ $: {
             {stats.legends?stats.legends[stat.category]:stat.category}
           </td>
           <td>{stat.count} ({((stat.count / stats.total)*100).toFixed(1)}%)</td>
-          <td>{stat.avgAge?.toFixed(1) || 'N/A'}</td>
-          <td>{stat.avgBmi?.toFixed(1) || 'N/A'}</td>
-          <td>{stat.avgCharge?.toFixed(1) || 'N/A'}</td>
+          <td>{stat.avgAge?.toFixed(1) || "N/A"}</td>
+          <td>{stat.avgBmi?.toFixed(1) || "N/A"}</td>
+          <td>{stat.avgCharge?.toFixed(1) || "N/A"}</td>
         </tr>
       {/each}
     </tbody>

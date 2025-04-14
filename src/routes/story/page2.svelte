@@ -5,6 +5,8 @@
     import * as d3 from "d3";
     import { cubicOut } from "svelte/easing";
     import { derived } from "svelte/store";
+    import ScatterTemplate from "$lib/ScatterTemplate.svelte";
+
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     // console.log("Insurance data:", insurance);
@@ -154,7 +156,7 @@
           <!-- <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}  /> -->
           <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
           {#if progress > 0}  
-          {#each data as point, i (point.id)}
+            {#each data as point, i (point.id)}
               <circle
                 in:fly={{ 
                   y: +200,
@@ -162,19 +164,39 @@
                   delay: i * 3,
                   easing: cubicOut
                 }}
-                cx={isNumericX ? xScale(point.xValue) : xScale(String(point.xValue))}
-                cy={isNumericY ? yScale(point.yValue) : yScale(String(point.yValue))}
-                r={sizeScale(point.sizeValue)}
-                fill={colorize ? colorScale(point.colorValue) : "white"}
-                opacity={0.8}
-                stroke="none"
-                stroke-width="0"
-              />
+            >
+                <ScatterTemplate
+                    insurance={male()}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="tier"
+                    uniSize="true"
+                    hidePanel="true"
+                    hideLegend="true"
+                    width={width + 30}
+                    title="male"
+                    {xDomain}
+                    {yDomain}
+                />
+                <ScatterTemplate
+                    insurance={female()}
+                    x="age"
+                    y="charge"
+                    size="children"
+                    color="tier"
+                    uniSize="true"
+                    hidePanel="true"
+                    hideYAxis="true"
+                    width={width + 110}
+                    title="female"
+                    {xDomain}
+                    {yDomain}
+                />
+              </circle>
             {/each}
-            {/if}
-        </svg>
+        {/if}
 
-      </div>
     </div>
     <div id="virtual" >
         <div class="text-container" >
@@ -196,14 +218,12 @@
       color: white;
     }
     .image-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.1em;
-    }
-    svg {
-      max-width: 100%;
-      max-height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0em; /* Add spacing between images */
+        background-color: rgba(149, 149, 149, 0.8);
+
     }
   </style>
   
