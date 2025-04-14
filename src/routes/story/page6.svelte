@@ -2,7 +2,7 @@
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
     import charge_children_region_smoker from "./sketch/charge-children-region-smoker.png";
-    import StackArea from "$lib/StackArea.svelte";
+    import StackArea from "$lib/ScatterJitter.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -40,7 +40,7 @@
                     {insurance}
                     x="children"
                     y="charge"
-                    color="smoker"
+                    color="smoker_category"
                 />
             </div>
         {/if}

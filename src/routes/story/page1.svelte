@@ -62,9 +62,5 @@
         /* background-color: rgba(149, 149, 149, 0.8); */
 
     }
-    svg {
-      max-width: 100%;
-      max-height: 100%;
-    }
   </style>
   
