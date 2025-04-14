@@ -2,7 +2,6 @@
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
     import charge_age_sex from "./sketch/charge-age-sex.png";
-    import ScatterTemplate from "$lib/ScatterAnimation.svelte";
 
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();

@@ -12,8 +12,8 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
-    import PageScatter from "./page-scatter-plots.svelte";
-    import UnifyScatter from "./page-scatter-unify.svelte";
+    // import PageScatter from "./page-scatter-plots.svelte";
+    // import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
 
     import ScatterMatrix from "./scatterMatrix.svelte";
