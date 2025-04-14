@@ -35,7 +35,7 @@
             return v === 1 || v === "yes"; // you can expand this if needed
         });
 
-        console.log("colorInsurance", colorInsurance);
+        // console.log("colorInsurance", colorInsurance);
 
         const labelMap: Record<string, string> = {
             "1": "underweight",
@@ -57,7 +57,7 @@
                     values,
                 ]),
         );
-        console.log("groupedColor", groupedColor);
+        // console.log("groupedColor", groupedColor);
 
         const xScale = d3
             .scaleBand()
@@ -84,7 +84,7 @@
             const bins = d3
                 .histogram()
                 .domain(yScale.domain() as [number, number])
-                .thresholds(yScale.ticks(40))(input);
+                .thresholds(yScale.ticks(45))(input);
             const maxBin = d3.max(bins, (d) => d.length) ?? 0;
             globalMaxBinCount = Math.max(globalMaxBinCount, maxBin);
         }
@@ -158,9 +158,9 @@
         }
 
         // Draw large base violins
-        drawViolins(grouped, "#0000FF", 0.8);
+        drawViolins(grouped, "#fdae6b", 0.9);
         // Draw overlay smaller violins (scaled down)
-        drawViolins(groupedColor, "#ff7f0e", 0.8);
+        drawViolins(groupedColor, "#fee6ce", 0.8);
 
         // const legendGroup = svg
         //     .append("g")

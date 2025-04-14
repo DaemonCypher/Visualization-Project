@@ -140,7 +140,7 @@
     });
   </script>
   
-  <div bind:this={container} style="width:100%"></div>
+  <div bind:this={container} style="width:100%" id="violin-smoker"></div>
   
   <style>
     svg:hover {

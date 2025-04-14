@@ -1,8 +1,5 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import { slide, fly } from "svelte/transition";
-    import charge_smoker_bmiLevel from "./sketch/charge-smoker-bmiLevel.png";
-    import Violin from "$lib/Violin.svelte";
     import ViolinSmoker from "$lib/ViolinSmoker.svelte";
 
     type Props = { insurance: any[] };
@@ -22,7 +19,7 @@
 >
     <div id="virtual">
         <div class="text-container">
-            <h3>Now, we can split the data by insurance tier.</h3>
+            We can see those who tend to pay more are those who smoke.
             <progress value={progress} max="50"></progress>
         </div>
     </div>
@@ -53,15 +50,13 @@
         justify-content: center;
         align-items: center;
         gap: 0.1em; /* Add spacing between images */
-        /* background-color: rgba(149, 149, 149, 0.8); */
+        width: 90%;
     }
     .text-container {
       margin-top: 500px;
       padding-left: 100px;
       padding-right: 100px;
       border: 1px solid white;
-    }
-    progress {
-        width: 100%;
+      /* width: 40%; */
     }
 </style>

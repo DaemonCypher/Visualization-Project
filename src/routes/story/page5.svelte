@@ -1,8 +1,6 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import { slide, fly } from "svelte/transition";
-    import charge_smoker_bmiLevel from "./sketch/charge-smoker-bmiLevel.png";
-    import Violin from "$lib/Violin.svelte";
+    import Violin from "$lib/ViolinBmi.svelte";
 
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
@@ -21,7 +19,8 @@
 >
     <div id="virtual">
         <div class="text-container">
-            <h3>Now, we can split the data by insurance tier.</h3>
+            Those who have higher BMI and smoke tend to pay more for insurance.
+            <!-- <progress value={progress} max="50"></progress> -->
         </div>
     </div>
 
@@ -36,8 +35,6 @@
                     x="bmi_category"
                     y="charge"
                     color="smoker_category"
-                    width="1000"
-                    height="700"
                 />
             </div>
         {/if}
@@ -54,12 +51,14 @@
         justify-content: center;
         align-items: center;
         gap: 0.1em; /* Add spacing between images */
-        /* background-color: rgba(149, 149, 149, 0.8); */
+        width: 90%;
+        /* border: 1px solid white; */
     }
     .text-container {
       margin-top: 500px;
       padding-left: 100px;
       padding-right: 100px;
       border: 1px solid white;
+      width: 150px;
     }
 </style>

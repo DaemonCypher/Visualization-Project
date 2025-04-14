@@ -142,17 +142,17 @@
         <!-- <Page0 /> -->
         <Header />        
         <Coefficient {data}/>
-        <!-- <ScatterMatrix {matrixData}/> -->
+        <ScatterMatrix {matrixData}/>
         <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
         <!-- <PageInteract {insurance} /> -->
-        <PageScatter {insurance} />
+        <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
         <Page1 {insurance} />
         <Page2 {insurance} />
         <Page3 {insurance} />
         <Page4 {insurance} />
-        <Page6 />
         <Page5 {insurance} />
+        <Page6 {insurance} />
         <!-- <Page6 /> -->
 
         <PageMap {uninsuredData} />
