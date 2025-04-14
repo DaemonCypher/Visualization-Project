@@ -10,7 +10,7 @@
     let { insurance }: Props = $props();
     console.log("Insurance data:", insurance);
     let progress: number = $state(0);
-  
+
     let xProp = "age";
     let yProp = "charge";
     let sizeProp = "children";
@@ -113,34 +113,33 @@
       d3.select(yAxis).call(yAxisGenerator);
     }
 
-    let stackedData = derived(data.slice().sort((a, b) => d3.ascending(a.colorValue, b.colorValue)), (arr) => {
-        let totalPoints = arr.length;
-        let sliceHeight = 100 / totalPoints;
+    // let stackedData = derived(data.slice().sort((a, b) => d3.ascending(a.colorValue, b.colorValue)), (arr) => {
+    //     let totalPoints = arr.length;
+    //     let sliceHeight = 100 / totalPoints;
 
-        let offset = 0;
-        return arr.map((dp) => {
-        let rect = {
-            id: dp.id,
-            fill: colorScale(dp.colorValue),
-            y: 100 - offset - sliceHeight,
-            height: sliceHeight
-        };
-        offset += sliceHeight;
-        return rect;
-        });
-    });
+    //     let offset = 0;
+    //     return arr.map((dp) => {
+    //     let rect = {
+    //         id: dp.id,
+    //         fill: colorScale(dp.colorValue),
+    //         y: 100 - offset - sliceHeight,
+    //         height: sliceHeight
+    //     };
+    //     offset += sliceHeight;
+    //     return rect;
+    //     });
+    // });
     $effect(() => {
       xScale; yScale;
       if (xAxis && yAxis) {
         updateAxis();
       }
     })
+
+
     $effect(() => {
-    if (progress > 0 && !colorize) {
-        const maxDelay = data.length * 3;
-        setTimeout(() => {
-            colorize = true;
-        }, 800 + maxDelay); // fly duration + staggered delay
+    if (progress > 30 && !colorize) {
+        colorize = true;
     }
     });
         
@@ -157,7 +156,8 @@
     <div id="virtual" >
       <div class="text-container" >
         <h4>There are 1338 people in this dataset. Insurance charges increase with age, and average across the gender.</h4>
-        <svg width="80" height="100" id="page1-bar-chart">
+        {progress.toFixed(2)}
+        <!-- <svg width="80" height="100" id="page1-bar-chart">
             {#each $stackedData as d, i (d.id)}
               <rect
                 x={0}
@@ -174,8 +174,8 @@
               />
             {/each}
           </svg>
-          
-        <progress value={progress} max="50"></progress>
+           -->
+        <progress value={progress} max="50"></progress> 
     </div>
     </div>
     <div slot="viz" class="header">
@@ -190,7 +190,9 @@
             fill="transparent"
           /> -->
           <!-- <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}  /> -->
+
           <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
+          {#if progress > 30}
             {#each data as point, i (point.id)}
               <circle
                 in:fly={{ 
@@ -208,6 +210,7 @@
                 stroke-width="0"
               />
             {/each}
+          {/if}
         </svg>
       </div>
     </div>

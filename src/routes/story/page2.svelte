@@ -121,11 +121,8 @@
       }
     })
     $effect(() => {
-        if (progress > 0 && !colorize) {
-            const maxDelay = data.length * 3;
-            setTimeout(() => {
-                colorize = true;
-            }, 1200 + maxDelay); // fly duration + staggered delay
+        if (progress > 30 && !colorize) {
+            colorize = true;
         }
     });
         
@@ -158,7 +155,7 @@
           /> -->
           <!-- <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}  /> -->
           <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
-          {#if progress > 0}  
+          {#if progress > 30}  
           {#each data as point, i (point.id)}
               <circle
                 in:fly={{ 
