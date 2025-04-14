@@ -2,6 +2,7 @@
     import { Scroll } from "$lib";
     import ScatterP3 from "$lib/ScatterP3.svelte";
     import PieChart from "$lib/PieChart.svelte";
+    import Histogram from "$lib/Histogram.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -24,10 +25,16 @@
           But for the 3rd tier, most of the people are obese (BMI>30), and the charges increase with BMI.</h4>
         <!-- <progress value={progress} max="50"></progress> -->
         {#if progress > 10}
+        <div class="chart-container">
           <PieChart
           {insurance} 
           group="bmi_category" 
           />
+          <Histogram
+            {insurance}
+            group="bmi"
+          />
+        </div>
         {/if}
       </div>
     </div>
@@ -65,6 +72,12 @@
       align-items: center;
       gap: 0.1em;
       width: 90%;
+    }
+    .chart-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.1em;
     }
   </style>
   

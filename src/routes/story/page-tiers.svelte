@@ -2,6 +2,7 @@
     import { Scroll } from "$lib";
     import ScatterP2 from "$lib/ScatterP2.svelte";
     import PieChart from "$lib/PieChart.svelte";
+    import Histogram from "$lib/Histogram.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     // console.log("Insurance data:", insurance);
@@ -22,10 +23,16 @@
         <h4>Most of the charges are within 15k. All charges can be roughly split into 3 tiers based on the trends. Within each tier, the charges increase with age.</h4>
         <!-- <progress value={progress} max="50"></progress> -->
         {#if progress > 10}
-          <PieChart
+        <div class="chart-container">
+        <PieChart
           {insurance} 
           group="tier" 
           />
+          <Histogram
+            {insurance}
+            group="charge"
+          />
+        </div>
         {/if}
     </div>
     </div>
@@ -60,6 +67,12 @@
       color: white;
     }
     .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.1em;
+    }
+    .chart-container {
       display: flex;
       justify-content: center;
       align-items: center;

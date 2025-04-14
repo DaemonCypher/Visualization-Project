@@ -25,6 +25,7 @@
       // Create a tooltip element
       const tooltip = d3.select(container)
         .append("div")
+        .attr("class", "tooltip")
         .style("position", "absolute")
         .style("text-align", "center")
         .style("padding", "6px")
@@ -38,10 +39,39 @@
 
       const values = insurance.map(d => +d[group]);
   
-      // Calculate the median value of the data.
       const median = d3.median(values);
-  
-      // Create histogram bins using d3.bin() 
+      const average = d3.mean(values);
+      const max = d3.max(values);
+      const min = d3.min(values);
+      // min max avg median top right
+      const statsLine2 = `Md: ${median?.toFixed(1)}, Avg: ${average?.toFixed(1)}`;
+      const statsLine1 = `Max: ${max?.toFixed(1)}, Min: ${min?.toFixed(1)}`;
+      const statsLine3 = `${group}`;
+
+      svg.append("text")
+        .attr("x", width)
+        .attr("y", -10)
+        .attr("text-anchor", "end")
+        .attr("font-size", "10px")
+        .attr("fill", "white")
+        .text(statsLine1);
+
+      svg.append("text")
+        .attr("x", width)
+        .attr("y", 2) // 12px below the previous line
+        .attr("text-anchor", "end")
+        .attr("font-size", "10px")
+        .attr("fill", "white")
+        .text(statsLine2);  
+
+      svg.append("text")
+        .attr("x", width-45)
+        .attr("y",-21) 
+        .attr("text-anchor", "end")
+        .attr("font-size", "10px")
+        .attr("fill", "white")
+        .text(statsLine3);
+
       const histogramGenerator = d3.bin()
         .domain(d3.extent(values) as [number, number])
         .thresholds(50);
@@ -105,4 +135,17 @@
   </script>
   
   <div bind:this={container} style="width:100%; position: relative;" id="histogram-chart"></div>
-  
+  <style>
+    .tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 6px;
+      font: 12px sans-serif;
+      background: lightsteelblue;
+      border: 0;
+      border-radius: 8px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+  </style>
