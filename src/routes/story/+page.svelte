@@ -153,6 +153,7 @@
         <Page4 {insurance} />
         <Page6 />
         <Page5 {insurance} />
+        <Page6 />
 
         <PageMap {uninsuredData} />
         <PageParallel {insurance} colorBy="smoker" />

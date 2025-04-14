@@ -1,149 +1,10 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import { onMount } from "svelte";
-    import { fly } from "svelte/transition";
-    import * as d3 from "d3";
-    import { cubicOut } from "svelte/easing";
-    import { derived } from "svelte/store";
-  
+    import ScatterP1 from "$lib/ScatterP1.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
-    console.log("Insurance data:", insurance);
     let progress: number = $state(0);
-  
-    let xProp = "age";
-    let yProp = "charge";
-    let sizeProp = "children";
-    let colorProp = $derived(progress < 0 ? null : "sex");
-    let colorize = $state(false);
-  
-    let width = 1000;
-    let height = 700;
-  
-    let uniSize = false;
-    let hideYAxis = false;
-    let title = "";
-    let xDomain: [number, number] | null = null;
-    let yDomain: [number, number] | null = null;
-    let plotId = "age-charge-gender";
-  
-    // Determine if x and y fields are numeric.
-    let isNumericX = $derived(insurance.every(d => !isNaN(+d[xProp])));
-    let isNumericY = $derived(insurance.every(d => !isNaN(+d[yProp])));
-  
-    // Prepare the data for plotting.
-    let data = $derived(insurance.map((entry) => ({
-      xValue: isNumericX ? +entry[xProp] : String(entry[xProp]),
-      yValue: isNumericY ? +entry[yProp] : String(entry[yProp]),
-      sizeValue: +entry[sizeProp],
-      colorValue: colorProp ? String(entry[colorProp]) : "",
-      id: entry.id,
-    })).sort((a, b) => a.xValue - b.xValue))
 
-    let sizeExtent = $derived(d3.extent(data, d => d.sizeValue) as [number, number]);
-    let categories = $derived(colorProp ? Array.from(new Set(data.map(d => d.colorValue))).sort() : []);
-
-    const margin = { 
-      top: 10, 
-      right: 220, 
-      bottom: 10, 
-      left: 40 
-    };
-    let usableArea = $derived({
-      top: margin.top,
-      right: width - margin.right,
-      bottom: height - margin.bottom,
-      left: margin.left,
-    });
-  
-    let xScale = $derived(isNumericX 
-        ? d3.scaleLinear()
-              .domain(
-                xDomain 
-                  ? xDomain 
-                  : (d3.extent(data, d => d.xValue) as [number, number])
-              )
-              .range([usableArea.left, usableArea.right])
-        : d3.scalePoint()
-              .domain([...new Set(data.map(d => d.xValue.toString()))])
-              .range([usableArea.left, usableArea.right])
-              .padding(0.5)
-    );
-  
-    let yScale = $derived(isNumericY 
-        ? d3.scaleLinear()
-              .domain(
-                yDomain 
-                  ? yDomain 
-                  : (d3.extent(data, d => d.yValue) as [number, number])
-              )
-              .range([usableArea.bottom, usableArea.top])
-        : d3.scalePoint()
-              .domain([...new Set(data.map(d => d.yValue.toString()))])
-              .range([usableArea.bottom, usableArea.top])
-              .padding(0.5)
-    );
-    let sizeScale = $derived(uniSize
-        ? d3.scaleSqrt().range([8, 8]).domain(sizeExtent)
-        : d3.scaleSqrt().range([3, 12]).domain(sizeExtent));
-  
-    let colorScale = $derived(colorProp
-        ? d3.scaleOrdinal<string>()
-             .domain(categories.map(String))
-             .range(["#305cde", "#ff6ec7"])
-        : (() => { return () => "#888"; })());
-    
-    let xAxis: SVGGElement;
-    let yAxis: SVGGElement;
-  
-    function updateAxis() {
-      d3.select(xAxis)
-        .call(
-          isNumericX
-            ? d3.axisBottom(xScale).ticks(10).tickFormat(d3.format("d"))
-            : d3.axisBottom(xScale)
-        )
-        .selectAll("text")
-        .attr("transform", isNumericX ? "rotate(45)" : "rotate(0)")
-        .style("text-anchor", isNumericX ? "start" : "middle");
-      let yAxisGenerator = isNumericY ? d3.axisLeft(yScale).ticks(10) : d3.axisLeft(yScale);
-      if (hideYAxis) {
-        yAxisGenerator.tickFormat(() => "");
-      }
-      d3.select(yAxis).call(yAxisGenerator);
-    }
-
-    let stackedData = derived(data.slice().sort((a, b) => d3.ascending(a.colorValue, b.colorValue)), (arr) => {
-        let totalPoints = arr.length;
-        let sliceHeight = 100 / totalPoints;
-
-        let offset = 0;
-        return arr.map((dp) => {
-        let rect = {
-            id: dp.id,
-            fill: colorScale(dp.colorValue),
-            y: 100 - offset - sliceHeight,
-            height: sliceHeight
-        };
-        offset += sliceHeight;
-        return rect;
-        });
-    });
-    $effect(() => {
-      xScale; yScale;
-      if (xAxis && yAxis) {
-        updateAxis();
-      }
-    })
-    $effect(() => {
-    if (progress > 0 && !colorize) {
-        const maxDelay = data.length * 3;
-        setTimeout(() => {
-            colorize = true;
-        }, 800 + maxDelay); // fly duration + staggered delay
-    }
-    });
-        
   </script>
   
   <Scroll
@@ -157,59 +18,23 @@
     <div id="virtual" >
       <div class="text-container" >
         <h4>There are 1338 people in this dataset. Insurance charges increase with age, and average across the gender.</h4>
-        <svg width="80" height="100" id="page1-bar-chart">
-            {#each $stackedData as d, i (d.id)}
-              <rect
-                x={0}
-                y={d.y}
-                width={800}
-                height={d.height}
-                fill={d.fill}
-                in:fly={{
-                  y: 200,
-                  duration: 800,
-                  delay: i * 3,
-                  easing: cubicOut
-                }}
-              />
-            {/each}
-          </svg>
-          
-        <progress value={progress} max="50"></progress>
+        {progress.toFixed(2)}
+
+        <progress value={progress} max="50"></progress> 
     </div>
     </div>
     <div slot="viz" class="header">
+        {#if progress > 10}
       <div class="image-container">
-        <!-- Inline scatter plot; the only difference is that the fill colors change when the `colorProp` is set. -->
-        <svg {width} {height} id={plotId}>
-          <!-- <rect
-            x={usableArea.left}
-            y={usableArea.top}
-            width={usableArea.right - usableArea.left}
-            height={usableArea.bottom - usableArea.top}
-            fill="transparent"
-          /> -->
-          <!-- <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}  /> -->
-          <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
-            {#each data as point, i (point.id)}
-              <circle
-                in:fly={{ 
-                  y: 200,
-                  duration: 800,
-                  delay: i * 3,
-                  easing: cubicOut
-                }}
-                cx={isNumericX ? xScale(point.xValue) : xScale(String(point.xValue))}
-                cy={isNumericY ? yScale(point.yValue) : yScale(String(point.yValue))}
-                r={sizeScale(point.sizeValue)}
-                fill={colorize ? colorScale(point.colorValue) : "#888"}
-                opacity={1}
-                stroke="none"
-                stroke-width="0"
-              />
-            {/each}
-        </svg>
+        <ScatterP1
+            {insurance}
+            x="age"
+            y="charge"
+            size="children"
+            color="sex"
+        />
       </div>
+        {/if}
     </div>
 </Scroll>
 
@@ -219,23 +44,27 @@
         color: white;
     }
 
-    h1 {
-        font-size: 10vh;
-        color: #433417; /* Darker text for better contrast */
-        font-weight: 600; /* Slightly bolder font weight */
-
-    }
     #virtual {
       height: 200vh; /* Makes the page scrollable */
       color: white;
+    }
+    .text-container {
+      margin-top: 500px;
+      padding-left: 100px;
+      padding-right: 100px;
+      border: 1px solid white;
     }
     .image-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 0.5em; /* Add spacing between images */
-        background-color: rgba(149, 149, 149, 0.8);
+        gap: 0.1em; /* Add spacing between images */
+        /* background-color: rgba(149, 149, 149, 0.8); */
 
+    }
+    svg {
+      max-width: 100%;
+      max-height: 100%;
     }
   </style>
   
