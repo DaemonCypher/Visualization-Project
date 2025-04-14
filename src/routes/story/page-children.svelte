@@ -23,10 +23,10 @@
             <h3>
                 Now, we can split the data by insurance tier.
             </h3>
-            <PieChart
+            <!-- <PieChart
                 {insurance} 
                 group="children" 
-            />
+            /> -->
         </div>
 
     </div>

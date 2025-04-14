@@ -23,10 +23,10 @@
             <h3>
                 Now, we can split the data by insurance tier.
             </h3>
-            <PieChart
+            <!-- <PieChart
                 {insurance} 
                 group="region" 
-            />
+            /> -->
         </div>
 
     </div>
@@ -41,7 +41,7 @@
                     {insurance}
                     x="region"
                     y="charge"
-                    color="tier"
+                    color="smoker_category"
                     size="age"
                 />
             </div>
