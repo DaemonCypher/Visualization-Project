@@ -81,16 +81,6 @@
         width: 200px;
         color: white;
     }
-    p {
-        font-size: 3vh;
-        color: #666;
-    }
-    img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
     .image-container {
         display: flex;
         justify-content: center;

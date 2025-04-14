@@ -24,15 +24,17 @@
   --scrolly-layout="story-first"
 >
   <div id="virtual">
-    <h2>asdfefaweafasfwefaw</h2>
-    <label>
-      Category:
+    <div class="text-container">
+      <h2>asdfefaweafasfwefaw</h2>
+      <label>
+        Category:
       <select bind:value={axisSelection.category}>
         {#each categoryOption as key}
           <option value={key}>{key}</option>
         {/each}
-      </select>
-    </label>
+        </select>
+      </label>
+    </div>
   </div>
 
   <div slot="viz" class="header">
@@ -60,4 +62,11 @@
     align-items: center;
     gap: 0.5em;
   }
+  .text-container {
+      margin-top: 500px;
+      padding-left: 100px;
+      padding-right: 100px;
+      border: 1px solid white;
+      width: 70%;
+    }
 </style>

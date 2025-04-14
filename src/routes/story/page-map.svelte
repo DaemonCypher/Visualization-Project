@@ -34,19 +34,19 @@
 
 <Scroll
     bind:progress
-    --scrolly-story-width="0"
+    --scrolly-story-width="0.5fr"
     --scrolly-viz-width="1fr"
     --scrolly-margin="10px"
-    --scrolly-viz-top="4px"
-    --scrolly-gap="4em"
+    --scrolly-viz-top="2px"
+    --scrolly-gap="1em"
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        {#if progress > 0}
-            <h4>
-                United States Uninsured Rate
-            </h4>
-        {/if}
+            <div class="text-container">
+                <h4>
+                    United States Uninsured Rate
+                </h4>
+            </div>
     </div>
     <!-- Story here -->
 
@@ -71,9 +71,16 @@
         height: 150vh; /* Make the page scrollable with a 150% view height */
         position: relative;
         top: 100px;
+        color: white;
     }
 
     div {
         text-align: center;
+    }
+    .text-container {
+      margin-top: 500px;
+      padding-left: 100px;
+      padding-right: 100px;
+      border: 1px solid white;
     }
 </style>

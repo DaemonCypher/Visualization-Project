@@ -225,7 +225,7 @@
   svg {
     display: block;
     margin: 0 auto;
-    border: 1px solid black;
+    /* border: 1px solid black; */
   }
   .states path {
     cursor: pointer;
