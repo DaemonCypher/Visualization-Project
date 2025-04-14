@@ -162,40 +162,40 @@
         // Draw overlay smaller violins (scaled down)
         drawViolins(groupedColor, "#ff7f0e", 0.8);
 
-        const legendGroup = svg
-            .append("g")
-            .attr(
-                "transform",
-                `translate(${chartWidth + 40}, ${chartHeight / 20})`,
-            );
+        // const legendGroup = svg
+        //     .append("g")
+        //     .attr(
+        //         "transform",
+        //         `translate(${chartWidth + 40}, ${chartHeight / 20})`,
+        //     );
 
-        legendGroup
-            .append("text")
-            .text("Categories")
-            .attr("font-weight", "bold")
-            .attr("font-size", 15)
-            .attr("y", -10);
+        // legendGroup
+        //     .append("text")
+        //     .text("Categories")
+        //     .attr("font-weight", "bold")
+        //     .attr("font-size", 15)
+        //     .attr("y", -10);
 
-        const sortedCategories = [
-            { label: "smoker", color: "#ff7f0e" },
-            { label: "non-smoker", color: "#0000FF" },
-        ];
-        sortedCategories.forEach((category, i) => {
-            const g = legendGroup
-                .append("g")
-                .attr("transform", `translate(0, ${i * 20})`);
+        // const sortedCategories = [
+        //     { label: "smoker", color: "#ff7f0e" },
+        //     { label: "non-smoker", color: "#0000FF" },
+        // ];
+        // sortedCategories.forEach((category, i) => {
+        //     const g = legendGroup
+        //         .append("g")
+        //         .attr("transform", `translate(0, ${i * 20})`);
 
-            g.append("circle")
-                .attr("r", 6)
-                .attr("fill", category.color)
-                .attr("cy", 6);
+        //     g.append("circle")
+        //         .attr("r", 6)
+        //         .attr("fill", category.color)
+        //         .attr("cy", 6);
 
-            g.append("text")
-                .attr("x", 15)
-                .attr("y", 10)
-                .attr("font-size", 12)
-                .text(category.label);
-        });
+        //     g.append("text")
+        //         .attr("x", 15)
+        //         .attr("y", 10)
+        //         .attr("font-size", 12)
+        //         .text(category.label);
+        // });
     });
 </script>
 
