@@ -3,6 +3,7 @@
     import { slide, fly } from "svelte/transition";
     import charge_smoker_bmiLevel from "./sketch/charge-smoker-bmiLevel.png";
     import Violin from "$lib/Violin.svelte";
+    import ViolinSmoker from "$lib/ViolinSmoker.svelte";
 
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
@@ -31,11 +32,11 @@
             <div
                 class="image-container"
             >
-                <Violin
+                <ViolinSmoker
                     {insurance}
                     x="smoker"
                     y="charge"
-                    color="smoker_category"
+                    color="tier"
                 />
             </div>
         {/if}
