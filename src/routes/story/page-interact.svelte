@@ -13,8 +13,9 @@
     ));
   
     let progress = $state(0);
-    let userGuess = $state(0);
+    let userGuess = $state(5000);
     let hasSubmitted = $state(false);
+    let guessStarted = $state(false);
   
     let container: HTMLDivElement;
   
@@ -70,12 +71,10 @@
   
       const bins = histogramGenerator(values);
   
-      // Swap: xScale now maps counts (frequency) and yScale maps charge values.
       const yMax = d3.max(bins, (d) => d.length) ?? 0;
       xScale = d3.scaleLinear().domain([0, yMax]).nice().range([0, width]);
       yScale = d3.scaleLinear().domain([minVal, maxVal]).range([height, 0]);
   
-      // Draw the x-axis (now showing frequency).
       svg.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale))
@@ -88,7 +87,6 @@
             g.selectAll("path").style("stroke", "white");
         });
   
-      // Append the y-axis (now showing charge values).
       svg.append("g")
         .call(d3.axisLeft(yScale))
         .call((g) => {
@@ -116,9 +114,9 @@
         .attr("fill", "white");
     }
   
-    // Minimal change: add drag behavior to the guess line.
     function updateGuessLine() {
       svg.select("#guess-line").remove();
+      svg.select("#guess-label").remove();
   
       if (guessValue < minVal || guessValue > maxVal) return;
   
@@ -131,8 +129,26 @@
         .attr("y2", yScale(guessValue))
         .attr("stroke", "red")
         .attr("stroke-width", 5)
+        .style("cursor", "grab")
         .call(
           d3.drag<SVGLineElement, unknown>()
+            .on("drag", function(event) {
+              let newGuess = yScale.invert(event.y);
+              newGuess = Math.max(minVal, Math.min(maxVal, newGuess));
+              userGuess = newGuess;
+            })
+        );
+  
+      svg.append("text")
+        .attr("id", "guess-label")
+        .attr("x", width - 500)
+        .attr("y", yScale(guessValue) - 5)
+        .attr("fill", "red")
+        .attr("font-size", "18px")
+        .text(`Guess: ${guessValue.toFixed(0)}`)
+        .style("cursor", "grab")
+        .call(
+          d3.drag<SVGTextElement, unknown>()
             .on("drag", function(event) {
               let newGuess = yScale.invert(event.y);
               newGuess = Math.max(minVal, Math.min(maxVal, newGuess));
@@ -147,7 +163,6 @@
   
       if (realAnswer < minVal || realAnswer > maxVal) return;
   
-      // Draw the real answer line horizontally.
       svg.append("line")
         .attr("id", "real-answer-line")
         .attr("x1", 0)
@@ -174,8 +189,11 @@
   
     function tryAgain() {
       hasSubmitted = false;
+      guessStarted = false;
+      userGuess = 5000; // reset to initial guess value
       svg.select("#real-answer-line").remove();
       svg.select("#real-answer-label").remove();
+      updateGuessLine();
     }
   </script>
   
@@ -188,7 +206,6 @@
     --scrolly-gap="1em"
   >
     <div id="virtual">
-      <!-- Swapped transition property: now using x instead of y -->
       <div class="text-container" in:fly={{ duration: 1500, x: -100 }}>
         <h3>Guess Insurance Charges!</h3>
         {#each dp as item}
@@ -203,29 +220,25 @@
               <!-- <li>Charge: {item.charge}</li> -->
             </ul>
         {/each}
+        {#if !guessStarted && userGuess === 5000}
+          <button on:click={() => { guessStarted = true; }}>
+            Start to Guess
+          </button>
+        {:else if !hasSubmitted}
+          <button on:click={submitGuess}>
+            Submit Guess
+          </button>
+        {:else}
+          <button on:click={tryAgain}>
+            Try Again
+          </button>
+        {/if}
       </div>
     </div>
   
     <div slot="viz">
       <div class="chart-container" bind:this={container}></div>
       <div>
-        <input
-          id="guess"
-          type="range"
-          min="0"
-          max="70000"
-          step="100"
-          bind:value={userGuess}
-          disabled={hasSubmitted}
-        />
-        <span style="color: white; font-size: 2vh;">
-          {(+userGuess).toLocaleString()}
-        </span>
-        {#if hasSubmitted}
-          <button on:click={tryAgain}>Try Again</button>
-        {:else}
-          <button on:click={submitGuess}>Submit Guess</button>
-        {/if}
       </div>
     </div>
   </Scroll>
@@ -245,12 +258,9 @@
       width: 100%;
     }
     button {
-      font-size: 2.5vh;
-      padding: 0.4em 1em;
+      font-size: 15px;
       border: none;
       border-radius: 4px;
-      background-color: #0b5ed7;
-      color: #fff;
       cursor: pointer;
     }
     
@@ -261,8 +271,8 @@
       margin-top: 500px;
       padding-left: 10px;
       padding-right: 10px;
+      padding-bottom: 10px;
       border: 1px solid white;
       width: 350px;
     }
   </style>
-  
