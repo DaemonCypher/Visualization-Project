@@ -13,11 +13,28 @@
     export let height: number = 700;
   
     let container: HTMLDivElement;
+    let labelMap = {}
+    let labelMap_bmi = {
+        "1": "Underweight",
+        "2": "Normal",
+        "3": "Overweight",
+        "4": "Obese",
+    }
+    let labelMap_smoker = {
+        "no": "Non-smoker",
+        "yes": "Smoker",
+    }
+    if (x.includes("bmi")) {
+        labelMap = labelMap_bmi;
+    }
+    if (x.includes("smoker")) {
+        labelMap = labelMap_smoker;
+    }
   
     onMount(() => {
       d3.select(container).selectAll("*").remove();
   
-      const margin = { top: 10, right: 30, bottom: 30, left: 40 },
+      const margin = { top: 10, right: 30, bottom: 30, left: 70 },
         chartWidth = width - margin.left - margin.right - 100,
         chartHeight = height - margin.top - margin.bottom;
   
@@ -32,8 +49,9 @@
       const grouped = new Map(
         Array.from(d3.group(insurance, (d) => String(d[x])))
           .sort((a, b) => a[0].localeCompare(b[0]))
+          .map(([key, value]) => [labelMap[key as keyof typeof labelMap], value])
       );
-      console.log("grouped", grouped);
+      // console.log("grouped", grouped);
 
       const colorScale = d3.scaleOrdinal<string>()
         .domain([...new Set(insurance.map(d => String(d[color])))] as string[])
@@ -50,11 +68,6 @@
         .domain(Array.from(grouped.keys()))
         .padding(0.1);
   
-      svg
-        .append("g")
-        .attr("transform", `translate(0,${chartHeight})`)
-        .call(d3.axisBottom(xScale));
-  
       const maxY = d3.max(insurance, (d) => +d[y]) ?? 0;
       const yScale = d3
         .scaleLinear()
@@ -62,7 +75,31 @@
         .range([chartHeight, 0]);
   
       // Append Y axis
-      svg.append("g").call(d3.axisLeft(yScale));
+      svg
+        .append("g")
+        .call(d3.axisLeft(yScale).ticks(5))
+        .call((g) => {
+          g.selectAll("text")
+            .style("fill", "white")
+            .style("font-size", "15px")
+            .style("font-weight", "bold");
+          g.selectAll("line").style("stroke", "white");
+          g.selectAll("path").style("stroke", "white");
+        });
+        // x
+        svg
+          .append("g")
+          .attr("transform", `translate(0, ${chartHeight})`)
+          .call(d3.axisBottom(xScale).ticks(5))
+          .call((g) => {
+            g.selectAll("text")
+              .style("fill", "white")
+              .style("font-size", "18px")
+              .style("font-weight", "bold");
+            g.selectAll("line").style("stroke", "white");
+            g.selectAll("path").style("stroke", "white");
+          });
+
 
       let globalMaxBinCount = 0;
       for (const [, values] of grouped.entries()) {

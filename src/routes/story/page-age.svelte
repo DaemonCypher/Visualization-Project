@@ -18,7 +18,8 @@
   >
     <div id="virtual" >
       <div class="text-container" >
-        <h4>There are 1338 people in this dataset. Insurance charges increase with age, and average across the gender.</h4>
+        <h4>There are 1338 datapoints, female and male are almost equal. 
+          As the age increases, insurance charges increase.</h4>
         <!-- {progress.toFixed(2)} -->
 
         <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
@@ -26,6 +27,8 @@
          {insurance} 
          group="sex" 
          />
+
+         <!-- TODO: age distribution avg / median -->
     </div>
     </div>
     <div slot="viz" class="header">
@@ -55,10 +58,10 @@
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
-      width: 180px;
+      width: 350px;
     }
     .image-container {
         display: flex;

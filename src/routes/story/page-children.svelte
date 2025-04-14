@@ -2,6 +2,7 @@
     import { Scroll } from "$lib";
     import StackArea from "$lib/ScatterJitter.svelte";
     import PieChart from "$lib/PieChart.svelte";
+    import { colorScaleMap } from "../../types";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -21,12 +22,27 @@
     <div id="virtual">
         <div class="text-container">
             <h3>
-                Now, we can split the data by insurance tier.
+                Most of the people have no children. 
+                For insurance holders with different numbers of children, 
+                smokers tend to pay more too.
             </h3>
             <!-- <PieChart
                 {insurance} 
                 group="children" 
             /> -->
+            <div style="display: flex; justify-content: center; gap:5px">
+            <span 
+                style="background-color: {colorScaleMap["smoker_category"][0]};
+                color: white;
+                padding: 3px;
+                border-radius: 5px;
+                ">Smoker</span>
+            <span 
+                style="background-color: {colorScaleMap["smoker_category"][1]};
+                color: white;
+                padding: 3px;
+                border-radius: 5px;">Non-smoker</span>
+            </div>
         </div>
 
     </div>
@@ -64,10 +80,11 @@
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
       border: 1px solid white;
-      width: 180px;
+      width: 350px;
       /* width: 80%; */
     }
 </style>

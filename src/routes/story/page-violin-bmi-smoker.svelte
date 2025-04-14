@@ -2,7 +2,7 @@
     import { Scroll } from "$lib";
     import Violin from "$lib/ViolinBmi.svelte";
     import ViolinScatter from "$lib/ViolinSmoker.svelte";
-
+    import { colorScaleMap } from "../../types";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -20,9 +20,23 @@
 >
     <div id="virtual">
         <div class="text-container">
-            Those who have higher BMI and smoke tend to pay more for insurance.
+            <h4>Those who pay in tier 3 (charges > 30k) tend to have higher BMI and smoke.</h4>
             <!-- <progress value={progress} max="50"></progress> -->
+            <div style="display: flex; justify-content: center; gap:5px">
+                <span 
+                    style="background-color: {colorScaleMap["smoker_category"][0]};
+                    color: white;
+                    padding: 3px;
+                    border-radius: 5px;
+                    ">Smoker</span>
+                <span 
+                    style="background-color: {colorScaleMap["smoker_category"][1]};
+                    color: white;
+                    padding: 3px;
+                    border-radius: 5px;">Non-smoker</span>
+            </div>
         </div>
+       
     </div>
 
     <div slot="viz" class="header">
@@ -60,9 +74,10 @@
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
       border: 1px solid white;
-      width: 150px;
+      width: 350px;
     }
 </style>

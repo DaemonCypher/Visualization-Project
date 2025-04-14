@@ -20,7 +20,8 @@
 >
     <div id="virtual">
         <div class="text-container">
-            We can see those who tend to pay more are those who smoke.
+            <h4>Most of the people do not smoke. 
+              Smokers tend to pay more for insurance.
             <!-- <progress value={progress} max="50"></progress> -->
             <PieChart
                 {insurance} 
@@ -61,9 +62,9 @@
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
-      /* width: 40%; */
+      width: 350px;
     }
 </style>

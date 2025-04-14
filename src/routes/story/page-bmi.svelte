@@ -19,7 +19,9 @@
   >
     <div id="virtual">
       <div class="text-container">
-        <h4>We can see that those tend to pay more for insurance are those who have higher BMI</h4>
+        <h4>Most of the people are overweight (BMI>25) or obese (BMI>30). 
+          For the 1st tier, the charges are similar across BMI. 
+          But for the 3rd tier, most of the people are obese (BMI>30), and the charges increase with BMI.</h4>
         <!-- <progress value={progress} max="50"></progress> -->
         <PieChart
          {insurance} 
@@ -46,10 +48,10 @@
   <style>
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
-      width: 180px;
+      width: 350px;
     }
     #virtual {
       height: 200vh; /* Makes the page scrollable */

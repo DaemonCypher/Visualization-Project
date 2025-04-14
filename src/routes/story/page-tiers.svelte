@@ -19,7 +19,7 @@
   >
     <div id="virtual" >
       <div class="text-container" >
-        <h4>The charges can be split into 3 tiers based on the trends</h4>
+        <h4>Most of the charges are within 15k. All charges can be roughly split into 3 tiers based on the trends. Within each tier, the charges increase with age.</h4>
         <!-- <progress value={progress} max="50"></progress> -->
         <PieChart
          {insurance} 
@@ -48,10 +48,10 @@
   <style>
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
-      width: 180px;
+      width: 350px;
     }
     #virtual {
       height: 200vh; /* Makes the page scrollable */
