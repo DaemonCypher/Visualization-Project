@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import ScatterP3 from "$lib/ScatterP3.svelte";
+    import PieChart from "$lib/PieChart.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -19,7 +20,11 @@
     <div id="virtual">
       <div class="text-container">
         <h4>We can see that those tend to pay more for insurance are those who have higher BMI</h4>
-        <progress value={progress} max="50"></progress>
+        <!-- <progress value={progress} max="50"></progress> -->
+        <PieChart
+         {insurance} 
+         group="bmi_category" 
+         />
       </div>
     </div>
   
@@ -44,6 +49,7 @@
       padding-left: 100px;
       padding-right: 100px;
       border: 1px solid white;
+      width: 180px;
     }
     #virtual {
       height: 200vh; /* Makes the page scrollable */

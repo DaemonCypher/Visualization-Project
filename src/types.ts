@@ -19,8 +19,11 @@ export type TUninsuredRate = {
 };
 
 export const colorScaleMap = {
-    "tier": ["#d95f0e", "#fff7bc","#fec44f", "#7fc97f"],
+    "tier": ["#fec44f","#fed98e","#d95f0e"],
     "sex": ["#305cde", "#ff6ec7", "#ffa600", "#008000"],
-    "smoker": ["#edf8b1", "#7fcdbb"],
-    "smoker_category": ["#fee6ce",  "#fdae6b"],
+    "smoker": ["#d7191c", "#1a9641"],
+    "smoker_category": ["#fc8d59",  "#91cf60"],
+    "bmi_category": ["#2c7fb8","#253494","#41b6c4","#ffffcc","#a1dab4"],
+    "children": ["#cbc9e2","#bcbddc","#756bb1","#9e9ac8","54278f", "#54278f"],
+    "region": ["#b3cde3","#decbe4","#fed9a6","#fbb4ae"],
 }

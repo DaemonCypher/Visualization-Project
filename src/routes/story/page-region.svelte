@@ -1,8 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import { slide, fly } from "svelte/transition";
-    import charge_children_region_smoker from "./sketch/charge-children-region-smoker.png";
     import StackArea from "$lib/ScatterJitter.svelte";
+    import PieChart from "$lib/PieChart.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -24,6 +23,10 @@
             <h3>
                 Now, we can split the data by insurance tier.
             </h3>
+            <PieChart
+                {insurance} 
+                group="region" 
+            />
         </div>
 
     </div>
@@ -34,8 +37,6 @@
             <div
                 class="image-container"
             >
-                <!-- <img src={datatype} alt="Data" /> -->
-                <!-- <img src={charge_children_region_smoker} alt="Patient" /> -->
                 <StackArea
                     {insurance}
                     x="region"

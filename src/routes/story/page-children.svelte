@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import StackArea from "$lib/ScatterJitter.svelte";
+    import PieChart from "$lib/PieChart.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -22,6 +23,10 @@
             <h3>
                 Now, we can split the data by insurance tier.
             </h3>
+            <PieChart
+                {insurance} 
+                group="children" 
+            />
         </div>
 
     </div>

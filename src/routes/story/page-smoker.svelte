@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import ViolinSmoker from "$lib/ViolinSmoker.svelte";
+    import PieChart from "$lib/PieChart.svelte";
 
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
@@ -20,7 +21,11 @@
     <div id="virtual">
         <div class="text-container">
             We can see those who tend to pay more are those who smoke.
-            <progress value={progress} max="50"></progress>
+            <!-- <progress value={progress} max="50"></progress> -->
+            <PieChart
+                {insurance} 
+                group="smoker_category" 
+            />
         </div>
     </div>
 
@@ -51,7 +56,8 @@
         justify-content: center;
         align-items: center;
         gap: 0.1em; /* Add spacing between images */
-        width: 90%;
+        width: 180spx; 
+
     }
     .text-container {
       margin-top: 500px;
