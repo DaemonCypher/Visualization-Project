@@ -1,14 +1,14 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import * as d3 from "d3";
-    import Page1 from "./page1.svelte";
-    import Page2 from "./page2.svelte";
-    import Page3 from "./page3.svelte";
+    import PageAge from "./page-age.svelte";
+    import PageTiers from "./page-tiers.svelte";
+    import PageBmi from "./page-bmi.svelte";
     import Page0 from "./page0.svelte";
-    import Page4 from "./page4.svelte";
-    import Page5 from "./page5.svelte";
-    import Page6 from "./page6.svelte";
-    import PageRegionCharge from "./page-region-charge.svelte";
+    import PageSmoker from "./page-smoker.svelte";
+    import PageViolinBmiSmoker from "./page-violin-bmi-smoker.svelte";
+    import PageChildren from "./page-children.svelte";
+    import PageRegion from "./page-region.svelte";
     import PageInteract from "./page-interact.svelte";
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
@@ -148,13 +148,13 @@
         <!-- <PageInteract {insurance} /> -->
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
-        <Page1 {insurance} />
-        <Page2 {insurance} />
-        <Page3 {insurance} />
-        <Page4 {insurance} />
-        <Page5 {insurance} />
-        <Page6 {insurance} />
-        <PageRegionCharge {insurance} />
+        <PageAge {insurance} /> 
+        <PageTiers {insurance} />
+        <PageBmi {insurance} />
+        <PageSmoker {insurance} />
+        <PageViolinBmiSmoker {insurance} />
+        <PageChildren {insurance} />
+        <PageRegion {insurance} />
         <!-- <Page6 /> -->
 
         <PageMap {uninsuredData} />

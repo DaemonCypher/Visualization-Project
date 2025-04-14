@@ -73,7 +73,7 @@
       const sizeExtent = d3.extent(insurance, d => +d[size]) as [number, number];
       const sizeScale = d3.scaleSqrt()
         .domain(sizeExtent)
-        .range([3, 10]);
+        .range([2, 8]);
 
       // Y axis
       svg.append("g").call(d3.axisLeft(yScale));

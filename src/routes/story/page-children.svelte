@@ -1,7 +1,5 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import { slide, fly } from "svelte/transition";
-    import charge_children_region_smoker from "./sketch/charge-children-region-smoker.png";
     import StackArea from "$lib/ScatterJitter.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
@@ -34,8 +32,6 @@
             <div
                 class="image-container"
             >
-                <!-- <img src={datatype} alt="Data" /> -->
-                <!-- <img src={charge_children_region_smoker} alt="Patient" /> -->
                 <StackArea
                     {insurance}
                     x="children"

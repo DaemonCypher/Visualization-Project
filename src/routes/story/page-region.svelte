@@ -41,7 +41,7 @@
                     x="region"
                     y="charge"
                     color="tier"
-                    size="children"
+                    size="age"
                 />
             </div>
         {/if}

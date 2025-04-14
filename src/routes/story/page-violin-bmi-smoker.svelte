@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import Violin from "$lib/ViolinBmi.svelte";
+    import ViolinScatter from "$lib/ViolinSmoker.svelte";
 
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
@@ -30,11 +31,12 @@
             <div
                 class="image-container"
             >
-                <Violin
+                <ViolinScatter
                     {insurance}
                     x="bmi_category"
                     y="charge"
                     color="smoker_category"
+                    size="age"
                     width="1200"
                     height="700"
                 />
