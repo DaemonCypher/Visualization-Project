@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { TInsurance } from "../types";
+  import { colorScaleMap } from "../types";
   import * as d3 from "d3";
 
   type Props = {
@@ -43,27 +44,33 @@
       case "children":
         return d3.scaleOrdinal<string>()
           .domain(["0", "1", "2", "3", "4", "5"])
-          .range(d3.schemeSet2);
+          .range(colorScaleMap["children"]);
+          // .range(d3.schemeSet2);
       case "smoker":
         return d3.scaleOrdinal<string>()
           .domain(["0", "1"])
-          .range(["#2ca02c", "#d62728"]);
+          .range(colorScaleMap["smoker_category"]);
+          // .range(["#2ca02c", "#d62728"]);
       case "sex":
         return d3.scaleOrdinal<string>()
           .domain(["0", "1"])
-          .range(["#1f77b4", "#ff7f0e"]);
+          .range(colorScaleMap[colorBy]);
+          // .range(["#1f77b4", "#ff7f0e"]);
       case "tier":
         return d3.scaleOrdinal<string>()
           .domain(["0", "1", "2"])
-          .range(["#9467bd", "#8c564b", "e377c2"]);
+          .range(colorScaleMap[colorBy]);
+          // .range(["#9467bd", "#8c564b", "e377c2"]);
       case "weight":
         return d3.scaleOrdinal<string>()
           .domain(["0", "1", "2", "3"])
-          .range(["#aec7e8", "#ffbb78", "#98df8a", "#c5b0d5"]);
+          .range(colorScaleMap["bmi_category"]);
+          // .range(["#aec7e8", "#ffbb78", "#98df8a", "#c5b0d5"]);
       default:
         return d3.scaleOrdinal<string>()
           .domain(categories.map(String))
-          .range(d3.schemeTableau10);
+          .range(colorScaleMap[colorBy]);
+          // .range(d3.schemeTableau10);
     }
   });
 
