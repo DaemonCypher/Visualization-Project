@@ -219,23 +219,27 @@
         color: white;
     }
 
-    h1 {
-        font-size: 10vh;
-        color: #433417; /* Darker text for better contrast */
-        font-weight: 600; /* Slightly bolder font weight */
-
-    }
     #virtual {
       height: 200vh; /* Makes the page scrollable */
       color: white;
+    }
+    .text-container {
+      margin-top: 500px;
+      padding-left: 100px;
+      padding-right: 100px;
+      border: 1px solid white;
     }
     .image-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 0.5em; /* Add spacing between images */
-        background-color: rgba(149, 149, 149, 0.8);
+        gap: 0.1em; /* Add spacing between images */
+        /* background-color: rgba(149, 149, 149, 0.8); */
 
+    }
+    svg {
+      max-width: 100%;
+      max-height: 100%;
     }
   </style>
   
