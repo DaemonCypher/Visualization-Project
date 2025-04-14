@@ -1,139 +1,258 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { Scroll } from "$lib";
-    import { slide, fly } from "svelte/transition";
+    import { fly } from "svelte/transition";
+    import * as d3 from "d3";
+  
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
-    let progress: number = $state(0);
-    const dp = $derived(insurance.filter((item) => item.guess === true));
-    console.log("dp", dp);
-    let userGuess = $state("");
-    let hasSubmitted = false;
-    function submitGuess() {
-        hasSubmitted = true;
-    }
-</script>
+  
+    let dp = $derived(insurance.filter(
+      (item) =>
+        item.age < 50 && item.bmi <= 30.7 && item.smoker_category == 0 && item.tier > 2
+    ));
+  
+    let progress = $state(0);
+    let userGuess = $state(0);
+    let hasSubmitted = $state(false);
+  
+    let container: HTMLDivElement;
+  
+    let guessValue = $derived(+userGuess || 0);
+    let realAnswer =  $derived(dp[0].charge);
+    const group = "charge";
+  
+    const margin = { top: 30, right: 20, bottom: 30, left: 40 };
+    const width = 1000 - margin.left - margin.right;
+    const height = 700 - margin.top - margin.bottom;
+  
+    let svg: d3.Selection<SVGGElement, unknown, null, undefined>;
+    let xScale: d3.ScaleLinear<number, number>;
+    let yScale: d3.ScaleLinear<number, number>;
+    let minVal: number;
+    let maxVal: number;
+  
+    onMount(() => {
+      createChart();
+      updateGuessLine(); // Always show the guess line (red)
+    });
+  
+    $effect(() => {
+      if (svg && xScale) {
+        updateGuessLine();
+      }
+    });
+  
+    function createChart() {
+      d3.select(container).selectAll("*").remove();
+  
+      const baseSvg = d3
+        .select(container)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom);
+  
+      svg = baseSvg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
-<Scroll
+  
+      const values = insurance
+        .map((d) => +d[group])
+        .filter((v) => !isNaN(v));
+  
+      const statsMax = d3.max(values);
+      const statsMin = d3.min(values);
+  
+      minVal = statsMin ?? 0;
+      maxVal = statsMax ?? 1;
+  
+      const histogramGenerator = d3.bin()
+        .domain([minVal, maxVal])
+        .thresholds(100);
+  
+      const bins = histogramGenerator(values);
+  
+      xScale = d3.scaleLinear().domain([minVal, maxVal]).range([0, width]);
+      const yMax = d3.max(bins, (d) => d.length) ?? 0;
+      yScale = d3.scaleLinear().domain([0, yMax]).nice().range([height, 0]);
+  
+  
+      svg.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(xScale))
+        .call((g) => {
+            g.selectAll("text")
+            .style("fill", "white")
+            .style("font-size", "15px")
+            .style("font-weight", "bold");
+            g.selectAll("line").style("stroke", "white");
+            g.selectAll("path").style("stroke", "white");
+        });
+      // Append the y-axis.
+      
+    //   svg.append("g")
+    //     .call(d3.axisLeft(yScale))
+    //     .call((g) => {
+    //         g.selectAll("text")
+    //         .style("fill", "white")
+    //         .style("font-size", "15px")
+    //         .style("font-weight", "bold");
+    //         g.selectAll("line").style("stroke", "white");
+    //         g.selectAll("path").style("stroke", "white");
+    //     });
+
+  
+      // Draw histogram bars.
+      svg
+        .selectAll("rect")
+        .data(bins)
+        .enter()
+        .append("rect")
+        .attr("x", (d) => xScale(d.x0 ?? 0))
+        .attr("y", (d) => yScale(d.length))
+        .attr("width", (d) => {
+          const w = (xScale(d.x1 ?? 0) - xScale(d.x0 ?? 0)) - 1;
+          return Math.max(0, w);
+        })
+        .attr("height", (d) => height - yScale(d.length))
+        .attr("fill", "white")
+    }
+  
+    function updateGuessLine() {
+      svg.select("#guess-line").remove();
+  
+      if (guessValue < minVal || guessValue > maxVal) return;
+  
+      svg
+        .append("line")
+        .attr("id", "guess-line")
+        .attr("x1", xScale(guessValue))
+        .attr("x2", xScale(guessValue))
+        .attr("y1", 0)
+        .attr("y2", height)
+        .attr("stroke", "red")
+        .attr("stroke-width", 2);
+    }
+  
+    function drawRealAnswerLine() {
+      svg.select("#real-answer-line").remove();
+      svg.select("#real-answer-label").remove();
+  
+      if (realAnswer < minVal || realAnswer > maxVal) return;
+  
+      svg.append("line")
+        .attr("id", "real-answer-line")
+        .attr("x1", xScale(realAnswer))
+        .attr("x2", xScale(realAnswer))
+        .attr("y1", 0)
+        .attr("y2", height)
+        .attr("stroke", "green")
+        .attr("stroke-width", 2)
+        .attr("stroke-dasharray", "4,2");
+  
+      svg.append("text")
+        .attr("id", "real-answer-label")
+        .attr("x", xScale(realAnswer) + 5) 
+        .attr("y", 40)
+        .attr("fill", "green")
+        .attr("font-size", "12px")
+        .text(`Real Answer: ${realAnswer.toFixed(0)}`);
+    }
+  
+    function submitGuess() {
+      hasSubmitted = true;
+      drawRealAnswerLine();
+    }
+  
+    function tryAgain() {
+      hasSubmitted = false;
+      svg.select("#real-answer-line").remove();
+      svg.select("#real-answer-label").remove();
+    }
+  </script>
+  
+  <Scroll
     bind:progress
     --scrolly-story-width="0.8fr"
     --scrolly-viz-width="1fr"
     --scrolly-margin="10px"
     --scrolly-viz-top="2em"
     --scrolly-gap="1em"
->
-    <!-- Use a large area to cause scrolling -->
+  >
     <div id="virtual">
-        <div class="intro-container" in:fly={{ duration: 1500, y: -100 }}>
-            <h3>Guess Insurance Charges!</h3>
-            <!-- <p>
-                There is a data point with certain attributes 
-                (e.g., age, sex, bmi, smoker). Enter your best guess 
-                for the insurance charges, and then scroll down to check 
-                the actual value in the dataset.
-            </p> -->
-            {#each dp as item}
-                    <div class="dp-attributes">
-                        <h4>User ID: {item.id}</h4>
-                        <ul>
-                            <li>Age: {item.age}</li>
-                            <li>Sex: {item.sex}</li>
-                            <li>BMI: {item.bmi}</li>
-                            <li>Children: {item.children}</li>
-                            <li>Smoker: {item.smoker}</li>
-                            <li>Region: {item.region}</li>
-                            <!-- Show more attributes as you wish -->
-                        </ul>
-                    </div>
-                {/each}
-                <div class="form-section">
-                    <label for="guess"> Charge Estimation:</label>
-                    <input
-                        id="guess"
-                        type="range"
-                        bind:value={userGuess}
-                        placeholder="e.g. 35000"
-                    />
-                    <button on:click={submitGuess}>Submit Guess</button>
-                </div>
-        </div>
+      <div class="text-container" in:fly={{ duration: 1500, y: -100 }}>
+        <h3>Guess Insurance Charges!</h3>
+        {#each dp as item}
+            <!-- <h4>User ID: {item.id}</h4> -->
+            <ul>
+              <li>Age: {item.age}</li>
+              <li>Sex: {item.sex}</li>
+              <li>BMI: {item.bmi}</li>
+              <li>Children: {item.children}</li>
+              <li>Smoker: {item.smoker}</li>
+              <li>Region: {item.region}</li>
+              <!-- <li>Charge: {item.charge}</li> -->
+            </ul>
+        {/each}
+      </div>
     </div>
-
-    <div slot="viz" class="header">
-        
-           
+  
+    <div slot="viz">
+      <div class="chart-container" bind:this={container} ></div>
+      <div>
+        <input
+          id="guess"
+          type="range"
+          min="0"
+          max="70000"
+          step="100"
+          bind:value={userGuess}
+          disabled={hasSubmitted}
+        />
+        <span style="color: white; font-size: 2vh;">
+          {(+userGuess).toLocaleString()}
+        </span>
+        {#if hasSubmitted}
+          <button on:click={tryAgain}>Try Again</button>
+        {:else}
+          <button on:click={submitGuess}>Submit Guess</button>
+        {/if}
+      </div>
     </div>
-</Scroll>
-
-<style>
+  </Scroll>
+  
+  <style>
     #virtual {
-        height: 200vh;
-        width: 100%;
+      height: 200vh;
+      width: 100%;
+      color: white;
     }
-
-    h3 {
-        font-size: 5vh;
-        color: #fff;
-        font-weight: 600;
-    }
-
-    h4 {
-        font-size: 3vh;
-        margin-bottom: 0.5em;
-        color: #fdfdfd;
-    }
-
-    p {
-        font-size: 2.5vh;
-        color: #cacaca;
-        margin: 0 0 1em 0;
-    }
-    .intro-container {
-        background-color: #222;
-    }
-    .dp-attributes {
-        margin-bottom: 1em;
-        color: white;
-    }
-
-    .dp-attributes ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .dp-attributes li {
-        margin: 0.2em 0;
-    }
-
-    .form-section {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-        margin-top: 1em;
-    }
-
-    label {
-        font-size: 2.5vh;
-        color: #fff;
-    }
-
-    input {
-        font-size: 2.5vh;
-        padding: 0.2em 0.5em;
-        border-radius: 4px;
-        border: 1px solid #ccc;
+    
+    .chart-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.1em;
+      width: 100%;
     }
     button {
-        font-size: 2.5vh;
-        padding: 0.4em 1em;
-        border: none;
-        border-radius: 4px;
-        background-color: #0b5ed7;
-        color: #fff;
-        cursor: pointer;
+      font-size: 2.5vh;
+      padding: 0.4em 1em;
+      border: none;
+      border-radius: 4px;
+      background-color: #0b5ed7;
+      color: #fff;
+      cursor: pointer;
     }
-
+    
     button:hover {
-        background-color: #0948a0;
+      background-color: #0948a0;
     }
-</style>
+    .text-container {
+      margin-top: 500px;
+      padding-left: 10px;
+      padding-right: 10px;
+      border: 1px solid white;
+      width: 350px;
+    }
+  </style>
+  

@@ -155,6 +155,7 @@
         <PageViolinBmiSmoker {insurance} />
         <PageChildren {insurance} />
         <PageRegion {insurance} />
+        <PageInteract {insurance} />
         <!-- <Page6 /> -->
 
         <PageMap {uninsuredData} />
