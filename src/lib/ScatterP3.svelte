@@ -14,7 +14,7 @@
     let container: HTMLDivElement;
   
     onMount(() => {
-      const margin = { top: 10, right: 30, bottom: 20, left: 40 },
+      const margin = { top: 10, right: 30, bottom: 30, left: 70 },
         chartWidth = width - margin.left - margin.right - 100,
         chartHeight = height - margin.top - margin.bottom;
       
@@ -57,16 +57,33 @@
         .scaleOrdinal<string>()
         .domain([...new Set(data.map(d => d.colorValue))])
         .range(["#305cde", "#ff6ec7", "#ffa600", "#008000"]); 
-      svg
-        .append("g")
-        .attr("transform", `translate(0, ${chartHeight})`)
-        .call(d3.axisBottom(xScale).ticks(5))
-        .selectAll("text")
-        .style("text-anchor", "middle");
-  
-      svg
-        .append("g")
-        .call(d3.axisLeft(yScale).ticks(5));
+// X Axis with white text and ticks
+svg
+  .append("g")
+  .attr("transform", `translate(0, ${chartHeight})`)
+  .call(d3.axisBottom(xScale).ticks(5))
+  .call((g) => {
+    g.selectAll("text")
+      .style("fill", "white")
+      .style("font-size", "18px")
+      .style("font-weight", "bold");
+    g.selectAll("line").style("stroke", "white");
+    g.selectAll("path").style("stroke", "white");
+  });
+
+// Y Axis with white text and ticks
+svg
+  .append("g")
+  .call(d3.axisLeft(yScale).ticks(5))
+  .call((g) => {
+    g.selectAll("text")
+      .style("fill", "white")
+      .style("font-size", "18px")
+      .style("font-weight", "bold");
+    g.selectAll("line").style("stroke", "white");
+    g.selectAll("path").style("stroke", "white");
+  });
+
   
       svg
         .selectAll("circle")
@@ -83,6 +100,8 @@
         .ease(d3.easeCubicOut)
         .attr("cy", d => yScale(d.yValue));
     });
+
+    
   </script>
   
   <div bind:this={container} style="width:100%"></div>
