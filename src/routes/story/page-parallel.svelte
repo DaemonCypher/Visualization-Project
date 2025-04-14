@@ -10,6 +10,14 @@
     let { insurance }: Props = $props();
 
     let progress: number = $state(0);
+    let categoryOption = ["sex", "children", "smoker", "region","tier","bmi_category"];
+    type TAxisSelection = {
+    category: keyof TInsurance;
+  };
+
+  let axisSelection: TAxisSelection = $state({
+    category:"smoker"
+  });
 </script>
 
 <!-- 
@@ -27,15 +35,22 @@
     --scrolly-viz-width="1fr"
     --scrolly-margin="30px"
     --scrolly-viz-top="2em"
-    --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
 
     <div id="virtual">
-        <h3>
+        <!-- TODO: add a better explanation -->
+        <h2>
             Overall, insurance charges are influenced by different features.
-        </h3>
-
+        </h2>
+        <label>
+            Category:
+            <select bind:value={axisSelection.category}>
+              {#each categoryOption as key}
+                <option value={key}>{key}</option>
+              {/each}
+            </select>
+          </label>
     </div>
    
     <div slot="viz" class="header">
@@ -51,9 +66,9 @@
                 <!-- <img src={datatype} alt="Data" /> -->
                 <Parallel 
                     {insurance} 
-                    colorBy="smoker" 
-                    width={1000}
-                    height={600}
+                    colorBy = {axisSelection.category}
+                    width={1400}
+                    height={800}
                 />
             </div>
         {/if}
@@ -63,11 +78,8 @@
 <style>
     #virtual {
         height: 100vh; /* Make the page scrollable with a 150% view height */
-    }
-    h1 {
-        font-size: 10vh;
-        color: #433417; /* Darker text for better contrast */
-        font-weight: 600; /* Slightly bolder font weight */
+        width: 200px;
+        color: white;
     }
     p {
         font-size: 3vh;
@@ -81,7 +93,7 @@
 
     .image-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         gap: 0.5em; /* Add spacing between images */
     }

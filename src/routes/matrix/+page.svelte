@@ -19,7 +19,7 @@
           region: row.region,
           charges: row.charges,    
           tier: row.tier,
-          obesity:row.obesity
+          weight:row.weight
         };
       });
       console.log("Loaded CSV Data:", insurance);
@@ -34,7 +34,7 @@
   );
 
 
-  let categoryOption = ["sex", "children", "smoker","tier","obesity","bmi"];
+  let categoryOption = ["sex", "children", "smoker","tier","weight"];
   type TAxisSelection = {
   category: keyof TInsurance;
 };
