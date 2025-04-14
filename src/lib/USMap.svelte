@@ -202,6 +202,7 @@
         .attr("text-anchor", "middle")
         .style("font-size", "24px")
         .style("font-weight", "bold")
+        .style("fill", "white")
         .text("Uninsured Rate by State");
 
       // Draw base map
