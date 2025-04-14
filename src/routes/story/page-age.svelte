@@ -2,6 +2,8 @@
     import { Scroll } from "$lib";
     import ScatterP1 from "$lib/ScatterP1.svelte";
     import PieChart from "$lib/PieChart.svelte";
+    import BarChart from "$lib/BarChart.svelte";
+    import Histogram from "$lib/Histogram.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     let progress: number = $state(0);
@@ -24,10 +26,20 @@
 
         <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
         {#if progress > 10}
+        <div class="chart-container">
           <PieChart
           {insurance} 
           group="sex" 
           />
+          <!-- <BarChart
+            {insurance}
+            group="sex"
+          /> -->
+          <Histogram
+            {insurance}
+            group="age"
+          />
+        </div>
         {/if}
 
          <!-- TODO: age distribution avg / median -->
@@ -72,6 +84,13 @@
         gap: 0.1em; /* Add spacing between images */
         /* background-color: rgba(149, 149, 149, 0.8); */
 
+    }
+    .chart-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.1em; /* Add spacing between images */
+        /* border: 1px solid white; */
     }
   </style>
   
