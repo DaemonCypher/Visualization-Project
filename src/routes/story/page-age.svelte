@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import ScatterP1 from "$lib/ScatterP1.svelte";
+    import PieChart from "$lib/PieChart.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     let progress: number = $state(0);
@@ -18,9 +19,13 @@
     <div id="virtual" >
       <div class="text-container" >
         <h4>There are 1338 people in this dataset. Insurance charges increase with age, and average across the gender.</h4>
-        {progress.toFixed(2)}
+        <!-- {progress.toFixed(2)} -->
 
-        <progress value={progress} max="50"></progress> 
+        <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
+        <PieChart
+         {insurance} 
+         group="sex" 
+         />
     </div>
     </div>
     <div slot="viz" class="header">
@@ -30,7 +35,7 @@
             {insurance}
             x="age"
             y="charge"
-            size="children"
+            size="age"
             color="sex"
         />
       </div>
@@ -53,6 +58,7 @@
       padding-left: 100px;
       padding-right: 100px;
       border: 1px solid white;
+      width: 180px;
     }
     .image-container {
         display: flex;

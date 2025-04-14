@@ -35,6 +35,7 @@
             color="tier" 
             width="1000"
             height="700" 
+            {progress}
         />
         </div>
         {/if}

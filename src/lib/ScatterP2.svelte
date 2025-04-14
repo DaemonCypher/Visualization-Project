@@ -10,6 +10,7 @@
     export let color: keyof TInsurance;
     export let width: number = 1000;
     export let height: number = 550;
+    // let progress: number = $props();
   
     let container: HTMLDivElement;
   
@@ -98,6 +99,11 @@ svg
         .ease(d3.easeCubicOut)
         .attr("cy", d => yScale(d.yValue));
     });
+    // $effect(() => {
+    //   if (progress > 50) {
+    //     color = "smoker_category";
+    //   }
+    // });
   </script>
   
   <div bind:this={container} style="width:100%"></div>
