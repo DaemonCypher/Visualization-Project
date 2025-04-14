@@ -116,12 +116,12 @@
         .attr("fill", "white");
     }
   
+    // Minimal change: add drag behavior to the guess line.
     function updateGuessLine() {
       svg.select("#guess-line").remove();
   
       if (guessValue < minVal || guessValue > maxVal) return;
   
-      // Draw the guess line horizontally using the yScale.
       svg
         .append("line")
         .attr("id", "guess-line")
@@ -130,7 +130,15 @@
         .attr("y1", yScale(guessValue))
         .attr("y2", yScale(guessValue))
         .attr("stroke", "red")
-        .attr("stroke-width", 2);
+        .attr("stroke-width", 5)
+        .call(
+          d3.drag<SVGLineElement, unknown>()
+            .on("drag", function(event) {
+              let newGuess = yScale.invert(event.y);
+              newGuess = Math.max(minVal, Math.min(maxVal, newGuess));
+              userGuess = newGuess;
+            })
+        );
     }
   
     function drawRealAnswerLine() {
@@ -147,7 +155,7 @@
         .attr("y1", yScale(realAnswer))
         .attr("y2", yScale(realAnswer))
         .attr("stroke", "green")
-        .attr("stroke-width", 2)
+        .attr("stroke-width", 5)
         .attr("stroke-dasharray", "4,2");
   
       svg.append("text")
@@ -257,3 +265,4 @@
       width: 350px;
     }
   </style>
+  
