@@ -19,10 +19,10 @@
     let container: HTMLDivElement;
   
     let guessValue = $derived(+userGuess || 0);
-    let realAnswer =  $derived(dp[0].charge);
+    let realAnswer = $derived(dp[0].charge);
     const group = "charge";
   
-    const margin = { top: 30, right: 20, bottom: 30, left: 40 };
+    const margin = { top: 30, right: 20, bottom: 30, left: 60 };
     const width = 1000 - margin.left - margin.right;
     const height = 700 - margin.top - margin.bottom;
   
@@ -38,7 +38,7 @@
     });
   
     $effect(() => {
-      if (svg && xScale) {
+      if (svg && yScale) {  // swapped check from xScale to yScale
         updateGuessLine();
       }
     });
@@ -53,7 +53,6 @@
         .attr("height", height + margin.top + margin.bottom);
   
       svg = baseSvg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-
   
       const values = insurance
         .map((d) => +d[group])
@@ -71,50 +70,50 @@
   
       const bins = histogramGenerator(values);
   
-      xScale = d3.scaleLinear().domain([minVal, maxVal]).range([0, width]);
+      // Swap: xScale now maps counts (frequency) and yScale maps charge values.
       const yMax = d3.max(bins, (d) => d.length) ?? 0;
-      yScale = d3.scaleLinear().domain([0, yMax]).nice().range([height, 0]);
+      xScale = d3.scaleLinear().domain([0, yMax]).nice().range([0, width]);
+      yScale = d3.scaleLinear().domain([minVal, maxVal]).range([height, 0]);
   
-  
+      // Draw the x-axis (now showing frequency).
       svg.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale))
         .call((g) => {
             g.selectAll("text")
-            .style("fill", "white")
-            .style("font-size", "15px")
-            .style("font-weight", "bold");
+              .style("fill", "white")
+              .style("font-size", "15px")
+              .style("font-weight", "bold");
             g.selectAll("line").style("stroke", "white");
             g.selectAll("path").style("stroke", "white");
         });
-      // Append the y-axis.
-      
-    //   svg.append("g")
-    //     .call(d3.axisLeft(yScale))
-    //     .call((g) => {
-    //         g.selectAll("text")
-    //         .style("fill", "white")
-    //         .style("font-size", "15px")
-    //         .style("font-weight", "bold");
-    //         g.selectAll("line").style("stroke", "white");
-    //         g.selectAll("path").style("stroke", "white");
-    //     });
-
   
-      // Draw histogram bars.
+      // Append the y-axis (now showing charge values).
+      svg.append("g")
+        .call(d3.axisLeft(yScale))
+        .call((g) => {
+            g.selectAll("text")
+              .style("fill", "white")
+              .style("font-size", "15px")
+              .style("font-weight", "bold");
+            g.selectAll("line").style("stroke", "white");
+            g.selectAll("path").style("stroke", "white");
+        });
+  
+      // Draw histogram bars horizontally.
       svg
         .selectAll("rect")
         .data(bins)
         .enter()
         .append("rect")
-        .attr("x", (d) => xScale(d.x0 ?? 0))
-        .attr("y", (d) => yScale(d.length))
+        .attr("x", 0)
+        .attr("y", (d) => yScale(d.x1 ?? 0))
         .attr("width", (d) => {
-          const w = (xScale(d.x1 ?? 0) - xScale(d.x0 ?? 0)) - 1;
+          const w = xScale(d.length) - 1;
           return Math.max(0, w);
         })
-        .attr("height", (d) => height - yScale(d.length))
-        .attr("fill", "white")
+        .attr("height", (d) => yScale(d.x0 ?? 0) - yScale(d.x1 ?? 0))
+        .attr("fill", "white");
     }
   
     function updateGuessLine() {
@@ -122,13 +121,14 @@
   
       if (guessValue < minVal || guessValue > maxVal) return;
   
+      // Draw the guess line horizontally using the yScale.
       svg
         .append("line")
         .attr("id", "guess-line")
-        .attr("x1", xScale(guessValue))
-        .attr("x2", xScale(guessValue))
-        .attr("y1", 0)
-        .attr("y2", height)
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("y1", yScale(guessValue))
+        .attr("y2", yScale(guessValue))
         .attr("stroke", "red")
         .attr("stroke-width", 2);
     }
@@ -139,20 +139,21 @@
   
       if (realAnswer < minVal || realAnswer > maxVal) return;
   
+      // Draw the real answer line horizontally.
       svg.append("line")
         .attr("id", "real-answer-line")
-        .attr("x1", xScale(realAnswer))
-        .attr("x2", xScale(realAnswer))
-        .attr("y1", 0)
-        .attr("y2", height)
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("y1", yScale(realAnswer))
+        .attr("y2", yScale(realAnswer))
         .attr("stroke", "green")
         .attr("stroke-width", 2)
         .attr("stroke-dasharray", "4,2");
   
       svg.append("text")
         .attr("id", "real-answer-label")
-        .attr("x", xScale(realAnswer) + 5) 
-        .attr("y", 40)
+        .attr("x", 5)
+        .attr("y", yScale(realAnswer) - 5)
         .attr("fill", "green")
         .attr("font-size", "12px")
         .text(`Real Answer: ${realAnswer.toFixed(0)}`);
@@ -179,7 +180,8 @@
     --scrolly-gap="1em"
   >
     <div id="virtual">
-      <div class="text-container" in:fly={{ duration: 1500, y: -100 }}>
+      <!-- Swapped transition property: now using x instead of y -->
+      <div class="text-container" in:fly={{ duration: 1500, x: -100 }}>
         <h3>Guess Insurance Charges!</h3>
         {#each dp as item}
             <!-- <h4>User ID: {item.id}</h4> -->
@@ -197,7 +199,7 @@
     </div>
   
     <div slot="viz">
-      <div class="chart-container" bind:this={container} ></div>
+      <div class="chart-container" bind:this={container}></div>
       <div>
         <input
           id="guess"
@@ -255,4 +257,3 @@
       width: 350px;
     }
   </style>
-  
