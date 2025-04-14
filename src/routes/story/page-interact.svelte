@@ -6,6 +6,7 @@
   
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
+    console.log("insurance interact", insurance);
   
     let dp = $derived(insurance.filter(
       (item) =>
@@ -111,7 +112,12 @@
           return Math.max(0, w);
         })
         .attr("height", (d) => yScale(d.x0 ?? 0) - yScale(d.x1 ?? 0))
-        .attr("fill", "white");
+        .attr("fill", (d) => {
+            const mid = ((d.x0 ?? 0) + (d.x1 ?? 0)) / 2;
+            if (mid > 30000) return "#d95f0e";
+            else if (mid > 15000) return "#fec44f";
+            else return "#fed98e";
+        });
     }
   
     function updateGuessLine() {
@@ -127,8 +133,8 @@
         .attr("x2", width)
         .attr("y1", yScale(guessValue))
         .attr("y2", yScale(guessValue))
-        .attr("stroke", "red")
-        .attr("stroke-width", 5)
+        .attr("stroke", "white")
+        .attr("stroke-width", 3)
         .style("cursor", "grab")
         .call(
           d3.drag<SVGLineElement, unknown>()
@@ -141,9 +147,9 @@
   
       svg.append("text")
         .attr("id", "guess-label")
-        .attr("x", width - 500)
+        .attr("x", width - 400)
         .attr("y", yScale(guessValue) - 5)
-        .attr("fill", "red")
+        .attr("fill", "white")
         .attr("font-size", "18px")
         .text(`Guess: ${guessValue.toFixed(0)}`)
         .style("cursor", "grab")
@@ -169,15 +175,15 @@
         .attr("x2", width)
         .attr("y1", yScale(realAnswer))
         .attr("y2", yScale(realAnswer))
-        .attr("stroke", "green")
-        .attr("stroke-width", 5)
+        .attr("stroke", "#fbb4ae")
+        .attr("stroke-width", 3)
         .attr("stroke-dasharray", "4,2");
   
       svg.append("text")
         .attr("id", "real-answer-label")
-        .attr("x", 5)
+        .attr("x", 50)
         .attr("y", yScale(realAnswer) - 5)
-        .attr("fill", "green")
+        .attr("fill", "white")
         .attr("font-size", "12px")
         .text(`Real Answer: ${realAnswer.toFixed(0)}`);
     }
@@ -237,9 +243,7 @@
     </div>
   
     <div slot="viz">
-      <div class="chart-container" bind:this={container}></div>
-      <div>
-      </div>
+        <div class="chart-container" bind:this={container}></div>
     </div>
   </Scroll>
   
