@@ -3,6 +3,7 @@
     import { Scroll } from "$lib";
     import { fly } from "svelte/transition";
     import * as d3 from "d3";
+    import { fill } from "three/src/extras/TextureUtils.js";
   
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
@@ -21,7 +22,7 @@
     let container: HTMLDivElement;
   
     let guessValue = $derived(+userGuess || 0);
-    let realAnswer = $derived(dp[0].charge);
+    let realAnswer = $derived(Number(dp[0].charge));
     const group = "charge";
   
     const margin = { top: 30, right: 20, bottom: 30, left: 60 };
@@ -34,15 +35,18 @@
     let minVal: number;
     let maxVal: number;
   
-    onMount(() => {
-      createChart();
-      updateGuessLine(); // Always show the guess line (red)
-    });
+    // onMount(() => {
+    //   createChart();
+    //   updateGuessLine(); 
+    // });
   
     $effect(() => {
-      if (svg && yScale) {  // swapped check from xScale to yScale
+      if (svg && yScale) { 
         updateGuessLine();
       }
+      createChart();
+      updateGuessLine();
+    //   drawRealAnswerLine();
     });
   
     function createChart() {
@@ -92,9 +96,20 @@
         .call(d3.axisLeft(yScale))
         .call((g) => {
             g.selectAll("text")
-              .style("fill", "white")
-              .style("font-size", "15px")
-              .style("font-weight", "bold");
+                // .style("fill", "white")
+                .style("fill", (d) => {
+                        if (d == 30000) return "#d95f0e";
+                        else if (d == 15000) return "#fec44f";
+                        else if (d == 10000) return "#fed98e";
+                        else return "white";
+                        })
+              .style("font-size", (d) => {
+                if (d == 30000) return "14px";
+                else if (d == 15000) return "14px";
+                else if (d == 10000) return "14px";
+                else return "12px";
+              })
+              .style("font-weight", "bold")
             g.selectAll("line").style("stroke", "white");
             g.selectAll("path").style("stroke", "white");
         });
@@ -147,12 +162,13 @@
   
       svg.append("text")
         .attr("id", "guess-label")
-        .attr("x", width - 400)
+        .attr("x", width - 350)
         .attr("y", yScale(guessValue) - 5)
         .attr("fill", "white")
         .attr("font-size", "18px")
-        .text(`Guess: ${guessValue.toFixed(0)}`)
+        .text(`Estimate: $${guessValue.toFixed(0)}`)
         .style("cursor", "grab")
+        .style("font-weight", "bold")
         .call(
           d3.drag<SVGTextElement, unknown>()
             .on("drag", function(event) {
@@ -181,11 +197,12 @@
   
       svg.append("text")
         .attr("id", "real-answer-label")
-        .attr("x", 50)
-        .attr("y", yScale(realAnswer) - 5)
+        .attr("x", 250)
+        .attr("y", yScale(realAnswer) - 10)
         .attr("fill", "white")
-        .attr("font-size", "12px")
-        .text(`Real Answer: ${realAnswer.toFixed(0)}`);
+        .attr("font-size", "18px")
+        .attr("font-weight", "bold")
+        .text(`Pay extra: $${realAnswer.toFixed(0)}`);
     }
   
     function submitGuess() {
@@ -196,7 +213,7 @@
     function tryAgain() {
       hasSubmitted = false;
       guessStarted = false;
-      userGuess = 5000; // reset to initial guess value
+      userGuess = 5000; 
       svg.select("#real-answer-line").remove();
       svg.select("#real-answer-label").remove();
       updateGuessLine();
@@ -213,7 +230,7 @@
   >
     <div id="virtual">
       <div class="text-container" in:fly={{ duration: 1500, x: -100 }}>
-        <h3>Guess Insurance Charges!</h3>
+        <h3>Estimate Insurance Charges for a 40-year-old non-smoker male with a BMI of 29.7 and 2 children living in the southeast region.</h3>
         {#each dp as item}
             <!-- <h4>User ID: {item.id}</h4> -->
             <ul>
