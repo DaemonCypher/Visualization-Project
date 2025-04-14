@@ -8,6 +8,7 @@
     import Page4 from "./page4.svelte";
     import Page5 from "./page5.svelte";
     import Page6 from "./page6.svelte";
+    import PageRegionCharge from "./page-region-charge.svelte";
     import PageInteract from "./page-interact.svelte";
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
@@ -153,6 +154,7 @@
         <Page4 {insurance} />
         <Page5 {insurance} />
         <Page6 {insurance} />
+        <PageRegionCharge {insurance} />
         <!-- <Page6 /> -->
 
         <PageMap {uninsuredData} />

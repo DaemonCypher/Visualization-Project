@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import type { TInsurance } from "../types";
-  
+    import { colorScaleMap } from "../types";
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
     export let y: keyof TInsurance;
@@ -56,7 +56,7 @@
       const colorScale = d3
         .scaleOrdinal<string>()
         .domain([...new Set(data.map(d => d.colorValue))])
-        .range(["#d95f0e", "#fff7bc","#fec44f", "#7fc97f"]); 
+        .range(colorScaleMap[color] ?? ["#d95f0e", "#fff7bc","#fec44f", "#7fc97f"]); 
         svg
   .append("g")
   .attr("transform", `translate(0, ${chartHeight})`)
@@ -90,8 +90,8 @@ svg
         .append("circle")
         .attr("cx", d => xScale(d.xValue))
         .attr("cy", chartHeight) 
-        .attr("r", d => sizeScale(d.sizeValue))
-        .attr("fill", d => colorScale(d.colorValue))
+        .attr("r", size? (d) => sizeScale(d.sizeValue): 5)
+        .attr("fill", (d) => colorScale(String(d.colorValue)))
         .attr("opacity",0.85)
         .transition()
         .duration(1000)

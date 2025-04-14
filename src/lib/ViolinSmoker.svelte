@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import type { TInsurance } from "../types";
-  
+    import { colorScaleMap } from "../types";
     // Props
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
@@ -13,13 +13,6 @@
     export let height: number = 700;
   
     let container: HTMLDivElement;
-
-    let colorScaleMap = {
-        "tier": ["#d95f0e", "#fff7bc","#fec44f", "#7fc97f"],
-        "sex": ["#305cde", "#ff6ec7", "#ffa600", "#008000"],
-        "smoker": ["#edf8b1", "#7fcdbb"],
-        "smoker_category": [ "#fdae6b","#fee6ce"],
-    }
   
     onMount(() => {
       d3.select(container).selectAll("*").remove();

@@ -31,7 +31,7 @@
             x="bmi" 
             y="charge" 
             size="bmi" 
-            color="sex" 
+            color="tier" 
             />
         </div>
         {/if}

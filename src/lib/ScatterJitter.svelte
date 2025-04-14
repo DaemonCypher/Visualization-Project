@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import type { TInsurance } from "../types";
-  
+    import { colorScaleMap } from "../types";
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
     export let y: keyof TInsurance;
@@ -13,12 +13,6 @@
   
     let container: HTMLDivElement;
 
-    const colorScaleMap = {
-        "tier": ["#d95f0e", "#fff7bc","#fec44f", "#7fc97f"],
-        "sex": ["#305cde", "#ff6ec7", "#ffa600", "#008000"],
-        "smoker": ["#edf8b1", "#7fcdbb"],
-        "smoker_category": ["#fee6ce",  "#fdae6b"],
-    }
   
     onMount(() => {
       d3.select(container).selectAll("*").remove();
@@ -50,7 +44,7 @@
           .sort((a, b) => a[0].localeCompare(b[0]))
         //   .map(([key, values]) => [labelMap[key] ?? key, values])
       );
-      console.log("grouped", grouped);
+      // console.log("grouped", grouped);
   
       // X scale
       const xScale = d3
@@ -198,7 +192,7 @@
             .attr("class", `scatter-${groupKey}`)
             .attr("cx", () => groupCenter + (Math.random() * 2 - 1) * maxJitter)
             .attr("cy", (d) => yScale(+d[y]))
-            .attr("r", 5)
+            .attr("r", size? (d) => sizeScale(+d[size]): 5)
             .style("fill", (d) => colorScale(String(d[color])))
             .style("opacity", 0.8);
         });

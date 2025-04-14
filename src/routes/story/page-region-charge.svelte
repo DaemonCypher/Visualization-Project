@@ -38,10 +38,10 @@
                 <!-- <img src={charge_children_region_smoker} alt="Patient" /> -->
                 <StackArea
                     {insurance}
-                    x="children"
+                    x="region"
                     y="charge"
-                    color="smoker_category"
-                    size="age"
+                    color="tier"
+                    size="children"
                 />
             </div>
         {/if}

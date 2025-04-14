@@ -34,6 +34,7 @@
                     x="smoker"
                     y="charge"
                     color="tier"
+                    size="children"
                 />
             </div>
         {/if}
