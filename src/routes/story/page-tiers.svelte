@@ -1,8 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import { fly } from "svelte/transition";
-    import { cubicOut } from "svelte/easing";
     import ScatterP2 from "$lib/ScatterP2.svelte";
+    import PieChart from "$lib/PieChart.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     // console.log("Insurance data:", insurance);
@@ -21,7 +20,11 @@
     <div id="virtual" >
       <div class="text-container" >
         <h4>The charges can be split into 3 tiers based on the trends</h4>
-        <progress value={progress} max="50"></progress>
+        <!-- <progress value={progress} max="50"></progress> -->
+        <PieChart
+         {insurance} 
+         group="tier" 
+         />
     </div>
     </div>
     <div slot="viz" class="header">
@@ -48,6 +51,7 @@
       padding-left: 100px;
       padding-right: 100px;
       border: 1px solid white;
+      width: 180px;
     }
     #virtual {
       height: 200vh; /* Makes the page scrollable */
