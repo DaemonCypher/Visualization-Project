@@ -1,10 +1,12 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import ScatterP3 from "$lib/ScatterP3.svelte";
+    import ScatterP2 from "$lib/ScatterP2.svelte";
+    import PieChart from "$lib/PieChart.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
-
+    // console.log("Insurance data:", insurance);
     let progress: number = $state(0);
+        
   </script>
   
   <Scroll
@@ -14,25 +16,32 @@
     --scrolly-margin="10px"
     --scrolly-viz-top="2em"
     --scrolly-gap="1em"
-    --scrolly-layout="story-first"
   >
-    <div id="virtual">
-      <div class="text-container">
-        <h4>We can see that those tend to pay more for insurance are those who have higher BMI</h4>
-        <progress value={progress} max="50"></progress>
-      </div>
+    <div id="virtual" >
+      <div class="text-container" >
+        <h4>Most of the charges are within 15k. All charges can be roughly split into 3 tiers based on the trends. Within each tier, the charges increase with age.</h4>
+        <!-- <progress value={progress} max="50"></progress> -->
+        {#if progress > 10}
+          <PieChart
+          {insurance} 
+          group="tier" 
+          />
+        {/if}
     </div>
-  
+    </div>
     <div slot="viz" class="header">
         {#if progress > 10}
       <div class="image-container">
-        <ScatterP3 
+        <ScatterP2 
             {insurance} 
-            x="bmi" 
+            x="age" 
             y="charge" 
-            size="bmi" 
-            color="sex" 
-            />
+            size="charge" 
+            color="tier" 
+            width="1000"
+            height="700" 
+            {progress}
+        />
         </div>
         {/if}
     </div>
@@ -41,9 +50,10 @@
   <style>
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
+      width: 350px;
     }
     #virtual {
       height: 200vh; /* Makes the page scrollable */
@@ -54,7 +64,6 @@
       justify-content: center;
       align-items: center;
       gap: 0.1em;
-      width: 90%;
     }
   </style>
   

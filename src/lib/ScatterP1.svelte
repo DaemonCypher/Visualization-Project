@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import type { TInsurance } from "../types";
-  
+    import { colorScaleMap } from "../types";
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
     export let y: keyof TInsurance;
@@ -56,32 +56,33 @@
       const colorScale = d3
         .scaleOrdinal<string>()
         .domain([...new Set(data.map(d => d.colorValue))])
-        .range(["#305cde", "#ff6ec7", "#ffa600", "#008000"]); 
+        .range(colorScaleMap[color] ?? ["#305cde", "#ff6ec7", "#ffa600", "#008000"]); 
+      
         svg
-  .append("g")
-  .attr("transform", `translate(0, ${chartHeight})`)
-  .call(d3.axisBottom(xScale).ticks(5))
-  .call((g) => {
-    g.selectAll("text")
-      .style("fill", "white")
-      .style("font-size", "18px")
-      .style("font-weight", "bold");
-    g.selectAll("line").style("stroke", "white");
-    g.selectAll("path").style("stroke", "white");
-  });
+        .append("g")
+        .attr("transform", `translate(0, ${chartHeight})`)
+        .call(d3.axisBottom(xScale).ticks(5))
+        .call((g) => {
+          g.selectAll("text")
+            .style("fill", "white")
+            .style("font-size", "15px")
+            .style("font-weight", "bold");
+          g.selectAll("line").style("stroke", "white");
+          g.selectAll("path").style("stroke", "white");
+        });
 
-// Y Axis with white text and ticks
-svg
-  .append("g")
-  .call(d3.axisLeft(yScale).ticks(5))
-  .call((g) => {
-    g.selectAll("text")
-      .style("fill", "white")
-      .style("font-size", "18px")
-      .style("font-weight", "bold");
-    g.selectAll("line").style("stroke", "white");
-    g.selectAll("path").style("stroke", "white");
-  });
+        // Y Axis with white text and ticks
+        svg
+          .append("g")
+          .call(d3.axisLeft(yScale).ticks(5))
+          .call((g) => {
+            g.selectAll("text")
+              .style("fill", "white")
+              .style("font-size", "15px")
+              .style("font-weight", "bold");
+            g.selectAll("line").style("stroke", "white");
+            g.selectAll("path").style("stroke", "white");
+          });
   
       // svg
       //   .append("g")

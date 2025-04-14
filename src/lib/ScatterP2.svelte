@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import type { TInsurance } from "../types";
-  
+    import { colorScaleMap } from "../types";
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
     export let y: keyof TInsurance;
@@ -10,6 +10,7 @@
     export let color: keyof TInsurance;
     export let width: number = 1000;
     export let height: number = 550;
+    // let progress: number = $props();
   
     let container: HTMLDivElement;
   
@@ -56,7 +57,7 @@
       const colorScale = d3
         .scaleOrdinal<string>()
         .domain([...new Set(data.map(d => d.colorValue))])
-        .range(["#d95f0e", "#fff7bc","#fec44f", "#7fc97f"]); 
+        .range(colorScaleMap[color] ?? ["#d95f0e", "#fff7bc","#fec44f", "#7fc97f"]); 
         svg
   .append("g")
   .attr("transform", `translate(0, ${chartHeight})`)
@@ -64,7 +65,7 @@
   .call((g) => {
     g.selectAll("text")
       .style("fill", "white")
-      .style("font-size", "18px")
+      .style("font-size", "15px")
       .style("font-weight", "bold");
     g.selectAll("line").style("stroke", "white");
     g.selectAll("path").style("stroke", "white");
@@ -77,7 +78,7 @@ svg
   .call((g) => {
     g.selectAll("text")
       .style("fill", "white")
-      .style("font-size", "18px")
+      .style("font-size", "15px")
       .style("font-weight", "bold");
     g.selectAll("line").style("stroke", "white");
     g.selectAll("path").style("stroke", "white");
@@ -90,14 +91,19 @@ svg
         .append("circle")
         .attr("cx", d => xScale(d.xValue))
         .attr("cy", chartHeight) 
-        .attr("r", d => sizeScale(d.sizeValue))
-        .attr("fill", d => colorScale(d.colorValue))
+        .attr("r", size? (d) => sizeScale(d.sizeValue): 5)
+        .attr("fill", (d) => colorScale(String(d.colorValue)))
         .attr("opacity",0.85)
         .transition()
         .duration(1000)
         .ease(d3.easeCubicOut)
         .attr("cy", d => yScale(d.yValue));
     });
+    // $effect(() => {
+    //   if (progress > 50) {
+    //     color = "smoker_category";
+    //   }
+    // });
   </script>
   
   <div bind:this={container} style="width:100%"></div>

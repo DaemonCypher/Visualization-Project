@@ -1,9 +1,7 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import { slide, fly } from "svelte/transition";
-    import charge_smoker_bmiLevel from "./sketch/charge-smoker-bmiLevel.png";
-    import Violin from "$lib/Violin.svelte";
     import ViolinSmoker from "$lib/ViolinSmoker.svelte";
+    import PieChart from "$lib/PieChart.svelte";
 
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
@@ -22,8 +20,15 @@
 >
     <div id="virtual">
         <div class="text-container">
-            <h3>Now, we can split the data by insurance tier.</h3>
-            <progress value={progress} max="50"></progress>
+            <h4>Most of the people do not smoke. 
+              Smokers tend to pay more for insurance.
+            <!-- <progress value={progress} max="50"></progress> -->
+            {#if progress > 10}
+                <PieChart
+                    {insurance} 
+                    group="smoker_category" 
+                />
+            {/if}
         </div>
     </div>
 
@@ -37,6 +42,7 @@
                     x="smoker"
                     y="charge"
                     color="tier"
+                    size="age"
                 />
             </div>
         {/if}
@@ -53,15 +59,14 @@
         justify-content: center;
         align-items: center;
         gap: 0.1em; /* Add spacing between images */
-        /* background-color: rgba(149, 149, 149, 0.8); */
+        width: 180spx; 
+
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
-    }
-    progress {
-        width: 100%;
+      width: 350px;
     }
 </style>

@@ -1,9 +1,8 @@
 <script lang="ts">
     import { Scroll } from "$lib";
-    import { slide, fly } from "svelte/transition";
-    import charge_smoker_bmiLevel from "./sketch/charge-smoker-bmiLevel.png";
-    import Violin from "$lib/Violin.svelte";
-
+    import Violin from "$lib/ViolinBmi.svelte";
+    import ViolinScatter from "$lib/ViolinSmoker.svelte";
+    import { colorScaleMap } from "../../types";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -21,8 +20,23 @@
 >
     <div id="virtual">
         <div class="text-container">
-            <h3>Now, we can split the data by insurance tier.</h3>
+            <h4>Those who pay in tier 3 (charges > 30k) tend to have higher BMI and smoke.</h4>
+            <!-- <progress value={progress} max="50"></progress> -->
+            <div style="display: flex; justify-content: center; gap:5px">
+                <span 
+                    style="background-color: {colorScaleMap["smoker_category"][0]};
+                    color: white;
+                    padding: 3px;
+                    border-radius: 5px;
+                    ">Smoker</span>
+                <span 
+                    style="background-color: {colorScaleMap["smoker_category"][1]};
+                    color: white;
+                    padding: 3px;
+                    border-radius: 5px;">Non-smoker</span>
+            </div>
         </div>
+       
     </div>
 
     <div slot="viz" class="header">
@@ -31,11 +45,12 @@
             <div
                 class="image-container"
             >
-                <Violin
+                <ViolinScatter
                     {insurance}
                     x="bmi_category"
                     y="charge"
                     color="smoker_category"
+                    size="age"
                     width="1200"
                     height="700"
                 />
@@ -54,12 +69,15 @@
         justify-content: center;
         align-items: center;
         gap: 0.1em; /* Add spacing between images */
-        /* background-color: rgba(149, 149, 149, 0.8); */
+        width: 90%;
+        /* border: 1px solid white; */
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
       border: 1px solid white;
+      width: 350px;
     }
 </style>
