@@ -23,10 +23,12 @@
           For the 1st tier, the charges are similar across BMI. 
           But for the 3rd tier, most of the people are obese (BMI>30), and the charges increase with BMI.</h4>
         <!-- <progress value={progress} max="50"></progress> -->
-        <PieChart
-         {insurance} 
-         group="bmi_category" 
-         />
+        {#if progress > 10}
+          <PieChart
+          {insurance} 
+          group="bmi_category" 
+          />
+        {/if}
       </div>
     </div>
   

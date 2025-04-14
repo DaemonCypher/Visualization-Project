@@ -57,31 +57,32 @@
         .scaleOrdinal<string>()
         .domain([...new Set(data.map(d => d.colorValue))])
         .range(colorScaleMap[color] ?? ["#305cde", "#ff6ec7", "#ffa600", "#008000"]); 
+      
         svg
-  .append("g")
-  .attr("transform", `translate(0, ${chartHeight})`)
-  .call(d3.axisBottom(xScale).ticks(5))
-  .call((g) => {
-    g.selectAll("text")
-      .style("fill", "white")
-      .style("font-size", "18px")
-      .style("font-weight", "bold");
-    g.selectAll("line").style("stroke", "white");
-    g.selectAll("path").style("stroke", "white");
-  });
+        .append("g")
+        .attr("transform", `translate(0, ${chartHeight})`)
+        .call(d3.axisBottom(xScale).ticks(5))
+        .call((g) => {
+          g.selectAll("text")
+            .style("fill", "white")
+            .style("font-size", "15px")
+            .style("font-weight", "bold");
+          g.selectAll("line").style("stroke", "white");
+          g.selectAll("path").style("stroke", "white");
+        });
 
-// Y Axis with white text and ticks
-svg
-  .append("g")
-  .call(d3.axisLeft(yScale).ticks(5))
-  .call((g) => {
-    g.selectAll("text")
-      .style("fill", "white")
-      .style("font-size", "18px")
-      .style("font-weight", "bold");
-    g.selectAll("line").style("stroke", "white");
-    g.selectAll("path").style("stroke", "white");
-  });
+        // Y Axis with white text and ticks
+        svg
+          .append("g")
+          .call(d3.axisLeft(yScale).ticks(5))
+          .call((g) => {
+            g.selectAll("text")
+              .style("fill", "white")
+              .style("font-size", "15px")
+              .style("font-weight", "bold");
+            g.selectAll("line").style("stroke", "white");
+            g.selectAll("path").style("stroke", "white");
+          });
   
       // svg
       //   .append("g")

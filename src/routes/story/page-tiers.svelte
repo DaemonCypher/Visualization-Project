@@ -21,10 +21,12 @@
       <div class="text-container" >
         <h4>Most of the charges are within 15k. All charges can be roughly split into 3 tiers based on the trends. Within each tier, the charges increase with age.</h4>
         <!-- <progress value={progress} max="50"></progress> -->
-        <PieChart
-         {insurance} 
-         group="tier" 
-         />
+        {#if progress > 10}
+          <PieChart
+          {insurance} 
+          group="tier" 
+          />
+        {/if}
     </div>
     </div>
     <div slot="viz" class="header">

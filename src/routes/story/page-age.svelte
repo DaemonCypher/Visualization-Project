@@ -23,10 +23,12 @@
         <!-- {progress.toFixed(2)} -->
 
         <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
-        <PieChart
-         {insurance} 
-         group="sex" 
-         />
+        {#if progress > 10}
+          <PieChart
+          {insurance} 
+          group="sex" 
+          />
+        {/if}
 
          <!-- TODO: age distribution avg / median -->
     </div>

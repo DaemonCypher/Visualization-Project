@@ -10,6 +10,7 @@
     let container: HTMLDivElement;
     const groupData = d3.group(insurance, d => String(d[group]));
     const data = Array.from(groupData, ([key, values]) => ({ key, count: values.length }));
+    // console.log("pie data", data);
 
     onMount(() => {
         d3.select(container).selectAll("*").remove();

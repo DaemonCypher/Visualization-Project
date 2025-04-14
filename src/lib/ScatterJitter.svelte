@@ -12,13 +12,47 @@
     export let height: number = 700;
   
     let container: HTMLDivElement;
+    let labelMap = {}
+    let labelMap_bmi = {
+        "1": "Underweight",
+        "2": "Normal",
+        "3": "Overweight",
+        "4": "Obese",
+    }
+    let labelMap_smoker = {
+        "no": "Non-smoker",
+        "yes": "Smoker",
+    }
+    let childMap = {
+        "0": "No children",
+        "1": "1 child",
+        "2": "2 children",
+        "3": "3 children",
+        "4": "4 children",
+        "5": "5 children",
+    }
+    let regionMap = {
+        "northeast": "Northeast",
+        "northwest": "Northwest",
+        "southeast": "Southeast",
+        "southwest": "Southwest",
+    }
+    if (x.includes("bmi")) {
+        labelMap = labelMap_bmi;
+    } else if (x.includes("smoker")) {
+        labelMap = labelMap_smoker;
+    } else if (x.includes("children")) {
+        labelMap = childMap;
+    } else if (x.includes("region")) {
+        labelMap = regionMap;
+    }
 
   
     onMount(() => {
       d3.select(container).selectAll("*").remove();
   
       // Basic margin & chart area
-      const margin = { top: 10, right: 30, bottom: 30, left: 40 },
+      const margin = { top: 10, right: 30, bottom: 30, left: 70 },
         chartWidth = width - margin.left - margin.right - 100,
         chartHeight = height - margin.top - margin.bottom;
   
@@ -42,7 +76,7 @@
       const grouped = new Map(
         Array.from(d3.group(insurance, (d) => String(d[x])))
           .sort((a, b) => a[0].localeCompare(b[0]))
-        //   .map(([key, values]) => [labelMap[key] ?? key, values])
+          .map(([key, values]) => [labelMap[key] ?? key, values])
       );
       // console.log("grouped", grouped);
   
@@ -53,11 +87,6 @@
         .domain(Array.from(grouped.keys()))
         .padding(0.1);
   
-      // X axis
-      svg
-        .append("g")
-        .attr("transform", `translate(0,${chartHeight})`)
-        .call(d3.axisBottom(xScale));
   
       // Y scale
       const maxY = d3.max(insurance, (d) => +d[y]) ?? 0;
@@ -75,8 +104,33 @@
         .domain(sizeExtent)
         .range([2, 8]);
 
-      // Y axis
-      svg.append("g").call(d3.axisLeft(yScale));
+       // Append Y axis
+       svg
+        .append("g")
+        .call(d3.axisLeft(yScale).ticks(5))
+        .call((g) => {
+          g.selectAll("text")
+            .style("fill", "white")
+            .style("font-size", "15px")
+            .style("font-weight", "bold");
+          g.selectAll("line").style("stroke", "white");
+          g.selectAll("path").style("stroke", "white");
+        });
+        // x
+        svg
+          .append("g")
+          .attr("transform", `translate(0, ${chartHeight})`)
+          .call(d3.axisBottom(xScale).ticks(5))
+          .call((g) => {
+            g.selectAll("text")
+              .style("fill", "white")
+              .style("font-size", "15px")
+              .style("font-weight", "bold");
+            g.selectAll("line").style("stroke", "white");
+            g.selectAll("path").style("stroke", "white");
+          });
+
+
   
       let globalMaxBinCount = 0;
       for (const [, values] of grouped.entries()) {
@@ -210,7 +264,7 @@
     });
   </script>
   
-  <div bind:this={container} style="width:100%;"></div>
+  <div bind:this={container} style="width:100%;" id="scatter-jitter"></div>
   
   <style>
     path:hover {

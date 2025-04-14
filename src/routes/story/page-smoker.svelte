@@ -23,10 +23,12 @@
             <h4>Most of the people do not smoke. 
               Smokers tend to pay more for insurance.
             <!-- <progress value={progress} max="50"></progress> -->
-            <PieChart
-                {insurance} 
-                group="smoker_category" 
-            />
+            {#if progress > 10}
+                <PieChart
+                    {insurance} 
+                    group="smoker_category" 
+                />
+            {/if}
         </div>
     </div>
 
