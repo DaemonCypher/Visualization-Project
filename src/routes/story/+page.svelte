@@ -7,7 +7,7 @@
     import Page0 from "./page0.svelte";
     import Page4 from "./page4.svelte";
     import Page5 from "./page5.svelte";
-
+    import Page6 from "./page6.svelte";
     import PageInteract from "./page-interact.svelte";
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
@@ -125,6 +125,7 @@
         <Page3 {insurance} />
         <Page4 {insurance} />
         <Page5 {insurance} />
+        <Page6 />
         <PageMap {uninsuredData} />
         <PageParallel {insurance} colorBy="smoker" />
         <PageHeap {data} />
