@@ -15,7 +15,7 @@
     let container: HTMLDivElement;
 
     onMount(() => {
-        const margin = { top: 10, right: 30, bottom: 30, left: 40 },
+        const margin = { top: 10, right: 70, bottom: 30, left: 70 },
             chartWidth = width - margin.left - margin.right - 100,
             chartHeight = height - margin.top - margin.bottom;
 
@@ -65,9 +65,18 @@
             .domain(Array.from(grouped.keys()))
             .padding(0.1);
 
-        svg.append("g")
-            .attr("transform", `translate(0,${chartHeight})`)
-            .call(d3.axisBottom(xScale));
+            svg.append("g")
+                .attr("transform", `translate(0,${chartHeight})`)
+                .call(d3.axisBottom(xScale))
+                .call((g) => {
+                    g.selectAll("text")
+                    .style("fill", "white")
+                    .style("font-size", "18px")
+                    .style("font-weight", "bold");
+                    g.selectAll("line").style("stroke", "white");
+                    g.selectAll("path").style("stroke", "white");
+                });
+
 
         const maxY = d3.max(insurance, (d) => +d[y]) ?? 0;
         const yScale = d3
@@ -75,7 +84,17 @@
             .domain([0, maxY])
             .range([chartHeight, 0]);
 
-        svg.append("g").call(d3.axisLeft(yScale));
+            svg.append("g")
+            .call(d3.axisLeft(yScale))
+            .call((g) => {
+                g.selectAll("text")
+                .style("fill", "white")
+                .style("font-size", "18px")
+                .style("font-weight", "bold");
+                g.selectAll("line").style("stroke", "white");
+                g.selectAll("path").style("stroke", "white");
+            });
+
 
         // === Compute a global max bin count to normalize violin widths ===
         let globalMaxBinCount = 0;
@@ -161,6 +180,49 @@
         drawViolins(grouped, "#fdae6b", 0.9);
         // Draw overlay smaller violins (scaled down)
         drawViolins(groupedColor, "#fee6ce", 0.8);
+
+
+
+
+
+        // === LEGEND ===
+        const legendGroup = svg
+            .append("g")
+            .attr("transform", `translate(${chartWidth + 60}, ${chartHeight / 3})`);
+
+        legendGroup
+            .append("text")
+            .text("Legend")
+            .attr("font-weight", "bold")
+            .attr("font-size", 16)
+            .attr("y", -15)
+            .style("fill", "white");
+
+        // You can change these if color encoding differs
+        const legendData = [
+            { label: `Smoker`, color: "#ff7f0e" },
+            { label: `Non-Smoker`, color: "#0000FF" },
+        ];
+
+        legendData.forEach((category, i) => {
+            const g = legendGroup
+                .append("g")
+                .attr("transform", `translate(0, ${i * 25})`);
+
+            g.append("rect")
+                .attr("width", 14)
+                .attr("height", 14)
+                .attr("fill", category.color)
+                .attr("y", -10);
+
+            g.append("text")
+                .attr("x", 20)
+                .attr("y", 2)
+                .attr("font-size", 14)
+                .style("fill", "white")
+                .text(category.label);
+        });
+
 
         // const legendGroup = svg
         //     .append("g")

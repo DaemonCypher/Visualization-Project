@@ -111,11 +111,12 @@
 
     cell.append("rect")
       .attr("fill", "none")
-      .attr("stroke", "#aaa")
+      .attr("stroke", "white")
       .attr("x", padding / 2 + 0.5)
       .attr("y", padding / 2 + 0.5)
       .attr("width", size - padding)
-      .attr("height", size - padding);
+      .attr("height", size - padding)
+      .attr("stroke-width", 3);
 
     cell.each(function ([i, j]) {
       d3.select(this)
@@ -130,7 +131,7 @@
     });
 
     svg.append("g")
-      .style("font", "bold 10px sans-serif")
+      .style("font", "bold 18px sans-serif")
       .style("pointer-events", "none")
       .selectAll("text")
       .data(columns)
@@ -139,7 +140,8 @@
       .attr("x", padding)
       .attr("y", padding)
       .attr("dy", ".71em")
-      .text((d) => d);
+      .text((d) => d)
+      .style("fill", "white"); 
   });
 </script>
 
