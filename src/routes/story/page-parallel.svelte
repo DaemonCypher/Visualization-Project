@@ -41,9 +41,10 @@
     <div id="virtual">
         <!-- TODO: add a better explanation -->
         <div class="text-container">
-            <h2>
-                Overall, insurance charges are influenced by different features.
-            </h2>
+            <p style="font-size: 18px;">
+                Overall, in this dataset, insurance charges are influenced especially by bmi, smoke or not, and age,
+                 but there are <span style="font-weight: bold;">outliers</span> who pay much more or less than others with similar characteristics.
+            </p>
             <label>
                 Category:
                 <select bind:value={axisSelection.category}>
@@ -91,9 +92,9 @@
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
-      width: 70%;
+      width: 350px;
     }
 </style>
