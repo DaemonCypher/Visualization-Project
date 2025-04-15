@@ -150,8 +150,8 @@
         <!-- <UnifyScatter {insurance} /> -->
         <PageAge {insurance} /> 
         <PageTiers {insurance} />
-        <PageBmi {insurance} />
         <PageSmoker {insurance} />
+        <PageBmi {insurance} />
         <PageViolinBmiSmoker {insurance} />
         <PageChildren {insurance} />
         <PageRegion {insurance} />

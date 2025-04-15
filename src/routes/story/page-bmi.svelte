@@ -47,7 +47,7 @@
             x="bmi" 
             y="charge" 
             size="age" 
-            color="tier" 
+            color="smoker_category" 
             />
         </div>
         {/if}
