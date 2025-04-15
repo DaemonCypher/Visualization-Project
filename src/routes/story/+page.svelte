@@ -132,7 +132,7 @@
 </script>
 
 <video autoplay muted loop playsinline id="background-video">
-    <source src="./videos/smoke.mp4" type="video/mp4" />
+    <source src="./videos/money.mp4" type="video/mp4" />
     Your browser does not support the video tag.
 </video>
 
