@@ -13,6 +13,13 @@
       (item) =>
         item.age < 50 && item.bmi <= 30.7 && item.smoker_category == 0 && item.tier > 2
     ));
+    console.log("dp", dp);
+    let dp_ = $derived(insurance.filter(
+      (item) =>
+        item.age < 50 && item.age > 38 && item.bmi <= 30.7  && item.sex == "male" && item.bmi > 25 && item.children == 2 && item.smoker_category == 0
+    ));
+    // console.log("dp_ male children", dp_);
+  
   
     let progress = $state(0);
     let userGuess = $state(5000);
@@ -225,7 +232,7 @@
       <div class="text-container" in:fly={{ duration: 1500, x: -100 }}>
         <h3>Estimate Insurance Charges for a 40-year-old non-smoker male with a BMI of 29.7 and 2 children living in the southeast region.</h3>
         {#each dp as item}
-          <ul>
+          <ul style="font-size: 15px; font-weight: bold;">
             <li>Age: {item.age}</li>
             <li>Sex: {item.sex}</li>
             <li>BMI: {item.bmi}</li>
@@ -251,7 +258,19 @@
         {#if hasSubmitted}
           <!-- Extra text box displayed after submission -->
           <div class="extra-box">
-            The insurance holder was paying more than others with similar background.
+            The insurance holder was paying more than others with similar background. 
+            <div class="extra-box">
+                One similar case is:
+                <ul>
+                    Age: {dp_[1].age}<br>
+                    Sex: {dp_[1].sex}<br>
+                    BMI: {dp_[1].bmi}<br>
+                    Children: {dp_[1].children}<br>
+                    Smoker: {dp_[1].smoker}<br>
+                    Region: {dp_[1].region}<br>
+                    Charge: {dp_[1].charge}<br>
+                </ul>
+            </div>
           </div>
           <!-- todo -->
         {/if}
