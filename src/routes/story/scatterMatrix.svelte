@@ -69,7 +69,7 @@
 
 <style>
   #virtual {
-    height: 150vh;
+    height: 300vh;
     color: white;
     width: 400px;
   }
