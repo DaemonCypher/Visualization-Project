@@ -41,7 +41,7 @@
                     {insurance}
                     x="smoker"
                     y="charge"
-                    color="tier"
+                    color="bmi_category"
                     size="age"
                 />
             </div>

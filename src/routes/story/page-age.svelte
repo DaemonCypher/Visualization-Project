@@ -52,7 +52,7 @@
             {insurance}
             x="age"
             y="charge"
-            size="age"
+            size="children"
             color="sex"
         />
       </div>
