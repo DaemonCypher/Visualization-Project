@@ -15,7 +15,7 @@
     let container: HTMLDivElement;
 
     onMount(() => {
-        const margin = { top: 10, right: 70, bottom: 30, left: 70 },
+        const margin = { top: 10, right: 20, bottom: 30, left: 70 },
             chartWidth = width - margin.left - margin.right - 100,
             chartHeight = height - margin.top - margin.bottom;
 
@@ -35,7 +35,7 @@
             return v === 1 || v === "yes"; // you can expand this if needed
         });
 
-        console.log("colorInsurance", colorInsurance);
+        // console.log("colorInsurance", colorInsurance);
 
         const labelMap: Record<string, string> = {
             "1": "underweight",
@@ -57,7 +57,7 @@
                     values,
                 ]),
         );
-        console.log("groupedColor", groupedColor);
+        // console.log("groupedColor", groupedColor);
 
         const xScale = d3
             .scaleBand()
@@ -71,7 +71,7 @@
                 .call((g) => {
                     g.selectAll("text")
                     .style("fill", "white")
-                    .style("font-size", "18px")
+                    .style("font-size", "15px")
                     .style("font-weight", "bold");
                     g.selectAll("line").style("stroke", "white");
                     g.selectAll("path").style("stroke", "white");
@@ -103,7 +103,7 @@
             const bins = d3
                 .histogram()
                 .domain(yScale.domain() as [number, number])
-                .thresholds(yScale.ticks(40))(input);
+                .thresholds(yScale.ticks(45))(input);
             const maxBin = d3.max(bins, (d) => d.length) ?? 0;
             globalMaxBinCount = Math.max(globalMaxBinCount, maxBin);
         }
@@ -177,51 +177,51 @@
         }
 
         // Draw large base violins
-        drawViolins(grouped, "#0000FF", 0.8);
+        drawViolins(grouped, "#fdae6b", 0.9);
         // Draw overlay smaller violins (scaled down)
-        drawViolins(groupedColor, "#ff7f0e", 0.8);
+        drawViolins(groupedColor, "#fee6ce", 0.8);
 
 
 
 
 
         // === LEGEND ===
-        const legendGroup = svg
-            .append("g")
-            .attr("transform", `translate(${chartWidth + 60}, ${chartHeight / 3})`);
+        // const legendGroup = svg
+        //     .append("g")
+        //     .attr("transform", `translate(${chartWidth + 60}, ${chartHeight / 3})`);
 
-        legendGroup
-            .append("text")
-            .text("Legend")
-            .attr("font-weight", "bold")
-            .attr("font-size", 16)
-            .attr("y", -15)
-            .style("fill", "white");
+        // legendGroup
+        //     .append("text")
+        //     .text("Legend")
+        //     .attr("font-weight", "bold")
+        //     .attr("font-size", 16)
+        //     .attr("y", -15)
+        //     .style("fill", "white");
 
-        // You can change these if color encoding differs
-        const legendData = [
-            { label: `Smoker`, color: "#ff7f0e" },
-            { label: `Non-Smoker`, color: "#0000FF" },
-        ];
+        // // You can change these if color encoding differs
+        // const legendData = [
+        //     { label: `Smoker`, color: "#ff7f0e" },
+        //     { label: `Non-Smoker`, color: "#0000FF" },
+        // ];
 
-        legendData.forEach((category, i) => {
-            const g = legendGroup
-                .append("g")
-                .attr("transform", `translate(0, ${i * 25})`);
+        // legendData.forEach((category, i) => {
+        //     const g = legendGroup
+        //         .append("g")
+        //         .attr("transform", `translate(0, ${i * 25})`);
 
-            g.append("rect")
-                .attr("width", 14)
-                .attr("height", 14)
-                .attr("fill", category.color)
-                .attr("y", -10);
+        //     g.append("rect")
+        //         .attr("width", 14)
+        //         .attr("height", 14)
+        //         .attr("fill", category.color)
+        //         .attr("y", -10);
 
-            g.append("text")
-                .attr("x", 20)
-                .attr("y", 2)
-                .attr("font-size", 14)
-                .style("fill", "white")
-                .text(category.label);
-        });
+        //     g.append("text")
+        //         .attr("x", 20)
+        //         .attr("y", 2)
+        //         .attr("font-size", 14)
+        //         .style("fill", "white")
+        //         .text(category.label);
+        // });
 
 
         // const legendGroup = svg

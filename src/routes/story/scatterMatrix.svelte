@@ -25,7 +25,25 @@
 >
   <div id="virtual">
     <div class="text-container">
-      <h2>asdfefaweafasfwefaw</h2>
+      <h2>Here we took the most notable data attirbutes from before charges, age, bmi, and smoker and plotted them pairwise against each other</h2>
+      <br>
+
+      <h2>We have highlighted the higest correlated value with charges (i.e. smoker)</h2>
+      <br>
+
+      <h2>We can note some intresting shapes from the visualization. Specifically with charges and bmi, and charges with age</h2>
+      <br>
+
+      <h2>Where there is a linear correlation with chagres and ages, and cluster of data points with bmi and charges</h2>
+      <br>
+      <h2>Additionally with the highlighted datapoints we can observe that smokers on general tend to pay more</h2>
+      <br>
+      <h2>We will take a deeper look into these observations below</h2>
+      <br>
+      <br>
+
+      <h3>Feel free to explore more with category highlight below</h3>
+
       <label>
         Category:
       <select bind:value={axisSelection.category}>
@@ -51,9 +69,9 @@
 
 <style>
   #virtual {
-    height: 150vh;
+    height: 300vh;
     color: white;
-    width: 300px;
+    width: 400px;
   }
 
   .image-container {

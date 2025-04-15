@@ -44,8 +44,12 @@
     <div id="virtual">
             <div class="text-container">
                 <h4>
-                    United States Uninsured Rate
+                    United States Uninsured Rate in 2015
                 </h4>
+                <p><a href="https://www.kaggle.com/datasets/hhs/health-insurance?resource=download" style="color: white;">The data</a> 
+                    was compiled from the US Department of Health and Human Services and US Census Bureau.</p>
+                <p style="font-size: 12px;">Previous data from <a href="https://www.kaggle.com/datasets/teertha/ushealthinsurancedataset" style="color: white;">Kaggle</a></p> 
+                <p style="font-size: 12px;">We couldn't find more opensource info about the Insurance Premium Charges in US with important details for risk underwriting, which may be due to privacy or proprietary issues.</p>
             </div>
     </div>
     <!-- Story here -->
@@ -79,8 +83,9 @@
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
+      width: 350px;
     }
 </style>

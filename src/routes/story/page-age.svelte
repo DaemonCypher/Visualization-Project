@@ -1,6 +1,9 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import ScatterP1 from "$lib/ScatterP1.svelte";
+    import PieChart from "$lib/PieChart.svelte";
+    import BarChart from "$lib/BarChart.svelte";
+    import Histogram from "$lib/Histogram.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     let progress: number = $state(0);
@@ -17,10 +20,29 @@
   >
     <div id="virtual" >
       <div class="text-container" >
-        <h4>There are 1338 people in this dataset. Insurance charges increase with age, and average across the gender.</h4>
-        {progress.toFixed(2)}
+        <h4>There are 1338 datapoints, female and male are almost equal. 
+          As the age increases, insurance charges increase.</h4>
+        <!-- {progress.toFixed(2)} -->
 
-        <progress value={progress} max="50"></progress> 
+        <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
+        {#if progress > 10}
+        <div class="chart-container">
+          <PieChart
+          {insurance} 
+          group="sex" 
+          />
+          <!-- <BarChart
+            {insurance}
+            group="sex"
+          /> -->
+          <Histogram
+            {insurance}
+            group="age"
+          />
+        </div>
+        {/if}
+
+         <!-- TODO: age distribution avg / median -->
     </div>
     </div>
     <div slot="viz" class="header">
@@ -30,7 +52,7 @@
             {insurance}
             x="age"
             y="charge"
-            size="children"
+            size="age"
             color="sex"
         />
       </div>
@@ -50,9 +72,10 @@
     }
     .text-container {
       margin-top: 500px;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid white;
+      width: 350px;
     }
     .image-container {
         display: flex;
@@ -62,9 +85,12 @@
         /* background-color: rgba(149, 149, 149, 0.8); */
 
     }
-    svg {
-      max-width: 100%;
-      max-height: 100%;
+    .chart-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.1em; /* Add spacing between images */
+        /* border: 1px solid white; */
     }
   </style>
   

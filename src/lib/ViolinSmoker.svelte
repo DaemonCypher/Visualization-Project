@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import type { TInsurance } from "../types";
-  
+    import { colorScaleMap, labelMaps } from "../types";
     // Props
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
@@ -13,18 +13,11 @@
     export let height: number = 700;
   
     let container: HTMLDivElement;
-
-    let colorScaleMap = {
-        "tier": ["#d95f0e", "#fff7bc","#fec44f", "#7fc97f"],
-        "sex": ["#305cde", "#ff6ec7", "#ffa600", "#008000"],
-        "smoker": ["#edf8b1", "#7fcdbb"],
-        "smoker_category": [ "#fdae6b","#fee6ce"],
-    }
-  
+    let labelMap =  labelMaps[x] ?? {}
     onMount(() => {
       d3.select(container).selectAll("*").remove();
   
-      const margin = { top: 10, right: 30, bottom: 30, left: 40 },
+      const margin = { top: 10, right: 30, bottom: 30, left: 70 },
         chartWidth = width - margin.left - margin.right - 100,
         chartHeight = height - margin.top - margin.bottom;
   
@@ -39,8 +32,9 @@
       const grouped = new Map(
         Array.from(d3.group(insurance, (d) => String(d[x])))
           .sort((a, b) => a[0].localeCompare(b[0]))
+          .map(([key, value]) => [labelMap[key as keyof typeof labelMap], value])
       );
-      console.log("grouped", grouped);
+      // console.log("grouped", grouped);
 
       const colorScale = d3.scaleOrdinal<string>()
         .domain([...new Set(insurance.map(d => String(d[color])))] as string[])
@@ -49,18 +43,13 @@
       const sizeExtent = d3.extent(insurance, d => +d[size]) as [number, number];
       const sizeScale = d3.scaleSqrt()
         .domain(sizeExtent)
-        .range([3, 10]);
+        .range([2, 8]);
     
       const xScale = d3
         .scaleBand()
         .range([0, chartWidth])
         .domain(Array.from(grouped.keys()))
         .padding(0.1);
-  
-      svg
-        .append("g")
-        .attr("transform", `translate(0,${chartHeight})`)
-        .call(d3.axisBottom(xScale));
   
       const maxY = d3.max(insurance, (d) => +d[y]) ?? 0;
       const yScale = d3
@@ -69,7 +58,31 @@
         .range([chartHeight, 0]);
   
       // Append Y axis
-      svg.append("g").call(d3.axisLeft(yScale));
+      svg
+        .append("g")
+        .call(d3.axisLeft(yScale).ticks(5))
+        .call((g) => {
+          g.selectAll("text")
+            .style("fill", "white")
+            .style("font-size", "15px")
+            .style("font-weight", "bold");
+          g.selectAll("line").style("stroke", "white");
+          g.selectAll("path").style("stroke", "white");
+        });
+        // x
+        svg
+          .append("g")
+          .attr("transform", `translate(0, ${chartHeight})`)
+          .call(d3.axisBottom(xScale).ticks(5))
+          .call((g) => {
+            g.selectAll("text")
+              .style("fill", "white")
+              .style("font-size", "18px")
+              .style("font-weight", "bold");
+            g.selectAll("line").style("stroke", "white");
+            g.selectAll("path").style("stroke", "white");
+          });
+
 
       let globalMaxBinCount = 0;
       for (const [, values] of grouped.entries()) {
@@ -140,7 +153,7 @@
     });
   </script>
   
-  <div bind:this={container} style="width:100%"></div>
+  <div bind:this={container} style="width:100%" id="violin-smoker"></div>
   
   <style>
     svg:hover {
