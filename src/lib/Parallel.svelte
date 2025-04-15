@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { TInsurance } from "../types";
   import * as d3 from "d3";
+  import { colorScaleMap } from "../types";
 
   type Props = {
     insurance: TInsurance[];
@@ -57,9 +58,10 @@
   const yScales = buildYScales(insurance, xLabels, usableArea.bottom - usableArea.top);
 
   const categories = $derived(Array.from(new Set(insurance.map(d => String(d[colorBy])))));
-  const colorScale = d3.scaleOrdinal<string>()
-    .domain(categories)
-    .range(d3.schemeTableau10);
+  const colorScale = $derived(d3.scaleOrdinal<string>()
+      .domain([...new Set(insurance.map(d => String(d[colorBy])))] as string[])
+      .range(colorScaleMap[colorBy] ?? ["#305cde", "#ff6ec7", "#ffa600", "#008000"]));
+      
 
   let hoveredCategory: string = $state("");
 

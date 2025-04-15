@@ -40,17 +40,19 @@
 
     <div id="virtual">
         <!-- TODO: add a better explanation -->
-        <h2>
-            Overall, insurance charges are influenced by different features.
-        </h2>
-        <label>
-            Category:
-            <select bind:value={axisSelection.category}>
-              {#each categoryOption as key}
-                <option value={key}>{key}</option>
-              {/each}
-            </select>
-          </label>
+        <div class="text-container">
+            <h2>
+                Overall, insurance charges are influenced by different features.
+            </h2>
+            <label>
+                Category:
+                <select bind:value={axisSelection.category}>
+                  {#each categoryOption as key}
+                    <option value={key}>{key}</option>
+                  {/each}
+                </select>
+              </label>
+        </div>
     </div>
    
     <div slot="viz" class="header">
@@ -77,7 +79,7 @@
 
 <style>
     #virtual {
-        height: 100vh; /* Make the page scrollable with a 150% view height */
+        height: 200vh; /* Make the page scrollable with a 150% view height */
         width: 200px;
         color: white;
     }
@@ -86,5 +88,12 @@
         justify-content: center;
         align-items: center;
         gap: 0.5em; /* Add spacing between images */
+    }
+    .text-container {
+      margin-top: 500px;
+      padding-left: 100px;
+      padding-right: 100px;
+      border: 1px solid white;
+      width: 70%;
     }
 </style>

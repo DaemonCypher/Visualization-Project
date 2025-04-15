@@ -158,8 +158,8 @@
         <PageInteract {insurance} />
         <!-- <Page6 /> -->
 
-        <PageMap {uninsuredData} />
         <PageParallel {insurance} colorBy="smoker" />
+        <PageMap {uninsuredData} />
         <!-- <PageHeap {data} /> -->
     </div>
     <!-- <h1>Hello World!</h1> -->
