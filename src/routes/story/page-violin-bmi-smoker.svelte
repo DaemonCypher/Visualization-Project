@@ -3,6 +3,7 @@
     import Violin from "$lib/ViolinBmi.svelte";
     import ViolinScatter from "$lib/ViolinSmoker.svelte";
     import { colorScaleMap } from "../../types";
+    import { fly } from "svelte/transition";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -50,7 +51,7 @@
     <div slot="viz" class="header">
         {#if progress > 10}
             <!-- Add a condition to trigger the transition -->
-            <div class="image-container">
+            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
                 <ViolinScatter
                     {insurance}
                     x="bmi_category"

@@ -3,6 +3,7 @@
     import ScatterP3 from "$lib/ScatterP3.svelte";
     import PieChart from "$lib/PieChart.svelte";
     import Histogram from "$lib/Histogram.svelte";
+    import { fly } from "svelte/transition";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -38,7 +39,7 @@
 
     <div slot="viz" class="header">
         {#if progress > 10}
-            <div class="image-container">
+            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
                 <ScatterP3
                     {insurance}
                     x="bmi"

@@ -3,6 +3,7 @@
     import StackArea from "$lib/ScatterJitter.svelte";
     import PieChart from "$lib/PieChart.svelte";
     import { colorScaleMap } from "../../types";
+    import { fly } from "svelte/transition";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -53,7 +54,7 @@
     <div slot="viz" class="header">
         {#if progress > 5}
             <!-- Add a condition to trigger the transition -->
-            <div class="image-container">
+            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
                 <StackArea
                     {insurance}
                     x="children"

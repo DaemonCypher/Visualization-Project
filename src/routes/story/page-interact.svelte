@@ -294,7 +294,11 @@
     </div>
 
     <div slot="viz">
-        <div class="chart-container" bind:this={container}></div>
+        <div
+            class="chart-container"
+            bind:this={container}
+            in:fly={{ duration: 2000, y: -200 }}
+        ></div>
     </div>
 </Scroll>
 

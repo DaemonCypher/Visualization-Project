@@ -4,6 +4,7 @@
     import PieChart from "$lib/PieChart.svelte";
     import BarChart from "$lib/BarChart.svelte";
     import Histogram from "$lib/Histogram.svelte";
+    import { fly } from "svelte/transition";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
     let progress: number = $state(0);
@@ -42,7 +43,7 @@
     </div>
     <div slot="viz" class="header">
         {#if progress > 10}
-            <div class="image-container">
+            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
                 <ScatterP1
                     {insurance}
                     x="age"
