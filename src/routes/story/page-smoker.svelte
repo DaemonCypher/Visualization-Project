@@ -20,23 +20,20 @@
 >
     <div id="virtual">
         <div class="text-container">
-            <h4>Most of the people do not smoke. 
-              Smokers tend to pay more for insurance.
-            <!-- <progress value={progress} max="50"></progress> -->
-            {#if progress > 10}
-                <PieChart
-                    {insurance} 
-                    group="smoker_category" 
-                />
-            {/if}
+            <h4>
+                Most of the people do not smoke. Smokers tend to pay more for
+                insurance.
+                <!-- <progress value={progress} max="50"></progress> -->
+                {#if progress > 10}
+                    <PieChart {insurance} group="smoker_category" />
+                {/if}
+            </h4>
         </div>
     </div>
 
     <div slot="viz" class="header">
         {#if progress > 10}
-            <div
-                class="image-container"
-            >
+            <div class="image-container">
                 <ViolinSmoker
                     {insurance}
                     x="smoker"
@@ -59,14 +56,14 @@
         justify-content: center;
         align-items: center;
         gap: 0.1em; /* Add spacing between images */
-        width: 180spx; 
-
+        width: 180spx;
+        background-color: rgba(80, 76, 76, 0.8);
     }
     .text-container {
-      margin-top: 500px;
-      padding-left: 10px;
-      padding-right: 10px;
-      border: 1px solid white;
-      width: 350px;
+        margin-top: 500px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid white;
+        width: 350px;
     }
 </style>

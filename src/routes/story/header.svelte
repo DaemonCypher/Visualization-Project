@@ -2,59 +2,64 @@
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
     let progress: number = $state(0);
-  </script>
-  
-  <Scroll bind:progress --scrolly-story-width="0">
+</script>
+
+<Scroll bind:progress --scrolly-story-width="0">
     <div id="virtual"></div>
     <div slot="viz" class="header">
-      <h1>Insurance Holders</h1>
-  
-      {#if progress > 25}
-        <p
-          in:slide={{
-            duration: 1000,
-            axis: "x",
-          }}
-        >
-          A Deep Dive into What features of Insurance Holders Lead to a Higher Insurance Charge
-        </p>
-      {/if}
-  
-      {#if progress > 50}
-      <p
-      in:slide={{
-        duration: 1000,
-        axis: "x",
-      }}
-    >With data visualizations and Exploratory Data Analysis</p>
-      {/if}
+        <h1>Insurance Holders</h1>
 
-      {#if progress > 70}
-      <p in:fly={{ duration: 800, x: 0, y: 200 }}>By William Yang, Peilin Li, Pan Hao, and Ariel Larin</p>
-    {/if}
+        {#if progress > 25}
+            <p
+                in:slide={{
+                    duration: 1000,
+                    axis: "x",
+                }}
+            >
+                A Deep Dive into What features of Insurance Holders Lead to a
+                Higher Insurance Charge
+            </p>
+        {/if}
+
+        {#if progress > 50}
+            <p
+                in:slide={{
+                    duration: 1000,
+                    axis: "x",
+                }}
+            >
+                With data visualizations and Exploratory Data Analysis
+            </p>
+        {/if}
+
+        {#if progress > 70}
+            <p in:fly={{ duration: 800, x: 0, y: 200 }}>
+                By William Yang, Peilin Li, Pan Hao, and Ariel Larin
+            </p>
+        {/if}
     </div>
-  </Scroll>
-  
-  <!-- <svelte:window bind:scrollY={progress} /> -->
-  
-  <style>
+</Scroll>
+
+<!-- <svelte:window bind:scrollY={progress} /> -->
+
+<style>
     .header {
-      padding: 80px 60px;
-      height: 60vh;
-      width: 800px;
+        padding: 80px 60px;
+        height: 60vh;
+        width: 800px;
+        background-color: rgba(80, 76, 76, 0.8);
     }
     #virtual {
-      height: 150vh; /* Make the page scrollable with a 150% view height */
+        height: 150vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
-      font-size: 8vh;
-      color: #ffffff; /* Darker text for better contrast */
-      font-weight: 600; /* Slightly bolder font weight */
+        font-size: 8vh;
+        color: #ffffff; /* Darker text for better contrast */
+        font-weight: 600; /* Slightly bolder font weight */
     }
     p {
-      font-size: 3vh;
-      color:  #ffffff;
-      font-weight: 600; /* Slightly bolder font weight */
+        font-size: 3vh;
+        color: #ffffff;
+        font-weight: 600; /* Slightly bolder font weight */
     }
-  </style>
-  
+</style>

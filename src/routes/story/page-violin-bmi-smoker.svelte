@@ -20,31 +20,37 @@
 >
     <div id="virtual">
         <div class="text-container">
-            <h4>Those who pay in tier 3 (charges > 30k) tend to have higher BMI and smoke.</h4>
+            <h4>
+                Those who pay in tier 3 (charges > 30k) tend to have higher BMI
+                and smoke.
+            </h4>
             <!-- <progress value={progress} max="50"></progress> -->
             <div style="display: flex; justify-content: center; gap:5px">
-                <span 
-                    style="background-color: {colorScaleMap["smoker_category"][0]};
+                <span
+                    style="background-color: {colorScaleMap[
+                        'smoker_category'
+                    ][0]};
                     color: white;
                     padding: 3px;
                     border-radius: 5px;
-                    ">Smoker</span>
-                <span 
-                    style="background-color: {colorScaleMap["smoker_category"][1]};
+                    ">Smoker</span
+                >
+                <span
+                    style="background-color: {colorScaleMap[
+                        'smoker_category'
+                    ][1]};
                     color: white;
                     padding: 3px;
-                    border-radius: 5px;">Non-smoker</span>
+                    border-radius: 5px;">Non-smoker</span
+                >
             </div>
         </div>
-       
     </div>
 
     <div slot="viz" class="header">
         {#if progress > 10}
             <!-- Add a condition to trigger the transition -->
-            <div
-                class="image-container"
-            >
+            <div class="image-container">
                 <ViolinScatter
                     {insurance}
                     x="bmi_category"
@@ -71,13 +77,14 @@
         gap: 0.1em; /* Add spacing between images */
         width: 90%;
         /* border: 1px solid white; */
+        background-color: rgba(80, 76, 76, 0.8);
     }
     .text-container {
-      margin-top: 500px;
-      padding-left: 10px;
-      padding-right: 10px;
-      padding-bottom: 10px;
-      border: 1px solid white;
-      width: 350px;
+        margin-top: 500px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        border: 1px solid white;
+        width: 350px;
     }
 </style>
