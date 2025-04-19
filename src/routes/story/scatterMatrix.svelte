@@ -103,7 +103,6 @@
         justify-content: center;
         align-items: center;
         gap: 0.5em;
-        background-color: rgba(80, 76, 76, 0.8);
     }
     .text-container {
         margin-top: 500px;

@@ -78,7 +78,6 @@
         gap: 0.1em; /* Add spacing between images */
         width: 90%;
         /* border: 1px solid white; */
-        background-color: rgba(80, 76, 76, 0.8);
     }
     .text-container {
         margin-top: 500px;

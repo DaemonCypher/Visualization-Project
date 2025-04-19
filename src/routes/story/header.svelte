@@ -47,7 +47,6 @@
         padding: 80px 60px;
         height: 60vh;
         width: 800px;
-        background-color: rgba(80, 76, 76, 0.8);
     }
     #virtual {
         height: 150vh; /* Make the page scrollable with a 150% view height */

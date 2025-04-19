@@ -75,6 +75,5 @@
         justify-content: center;
         align-items: center;
         gap: 0.5em; /* Add spacing between images */
-        background-color: rgba(80, 76, 76, 0.8);
     }
 </style>

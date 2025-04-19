@@ -315,7 +315,6 @@
         align-items: center;
         gap: 0.1em;
         width: 100%;
-        background-color: rgba(80, 76, 76, 0.8);
     }
     button {
         font-size: 15px;
