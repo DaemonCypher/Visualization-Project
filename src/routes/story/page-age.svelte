@@ -23,6 +23,17 @@
             <h4>
                 There are 1338 datapoints, female and male are almost equal. As
                 the age increases, insurance charges increase.
+                <br />
+                <br />
+                <div style="color: #305cde; font-weight: bold;">
+                    Blue encode female
+                </div>
+                <div style="color: #ff6ec7; font-weight: bold;">
+                    Pink encode male
+                </div>
+                <div style="font-weight: bold;">
+                    size of the circle encode number of children
+                </div>
             </h4>
             <!-- {progress.toFixed(2)} -->
 

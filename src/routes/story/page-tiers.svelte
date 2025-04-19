@@ -24,6 +24,20 @@
                 Most of the charges are within 15k. All charges can be roughly
                 split into 3 tiers based on the trends. Within each tier, the
                 charges increase with age.
+                <br />
+                <br />
+                <div style="color: #d95f0e; font-weight: bold;">
+                    Dark orange encode high charges
+                </div>
+                <div style="color: #fff7bc; font-weight: bold;">
+                    Pale yellow encode medium charges
+                </div>
+                <div style="color: #fec44f; font-weight: bold;">
+                    Golden yellow encode low charges
+                </div>
+                <div style="font-weight: bold;">
+                    size of the circle encode insurance charges
+                </div>
             </h4>
             <!-- <progress value={progress} max="50"></progress> -->
             {#if progress > 10}
