@@ -23,6 +23,15 @@
             <h4>
                 Most of the people do not smoke. Smokers tend to pay more for
                 insurance.
+                <br />
+                <br />
+                <div class="bmi-gradient-legend">
+                    <span>Low BMI</span>
+                    <div class="gradient-bar"></div>
+                    <span>High BMI</span>
+                </div>
+                <p class="legend-caption">Deeper blue indicates higher BMI</p>
+
                 <!-- <progress value={progress} max="50"></progress> -->
                 {#if progress > 10}
                     <PieChart {insurance} group="smoker_category" />
@@ -64,5 +73,33 @@
         padding-right: 10px;
         border: 1px solid white;
         width: 350px;
+    }
+
+    .bmi-gradient-legend {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: sans-serif;
+    }
+
+    .gradient-bar {
+        width: 300px;
+        height: 25px;
+        background: linear-gradient(
+            to right,
+            #ffffcc,
+            #a1dab4,
+            #41b6c4,
+            #2c7fb8,
+            #253494
+        );
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .legend-caption {
+        font-size: 14px;
+        margin-top: 5px;
+        font-style: italic;
     }
 </style>

@@ -26,6 +26,17 @@
                 For the 1st tier, the charges are similar across BMI. But for
                 the 3rd tier, most of the people are obese (BMI>30), and the
                 charges increase with BMI.
+                <br />
+                <br />
+                <div style="color: #fc8d59; font-weight: bold;">
+                    Orange encode smoker
+                </div>
+                <div style="color: #91cf60; font-weight: bold;">
+                    Green encode non-smoker
+                </div>
+                <div style="font-weight: bold;">
+                    size of the circle encode age
+                </div>
             </h4>
             <!-- <progress value={progress} max="50"></progress> -->
             {#if progress > 10}
