@@ -3,6 +3,7 @@
     import StackArea from "$lib/ScatterJitter.svelte";
     import PieChart from "$lib/PieChart.svelte";
     import { colorScaleMap } from "../../types";
+    import { fly } from "svelte/transition";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -18,39 +19,43 @@
     --scrolly-gap="1em"
     --scrolly-layout="story-first"
 >
-
     <div id="virtual">
         <div class="text-container">
             <h3>
-                Across the four main regions, insurance charges follow a similar distribution overall, 
-                and smokers tend to pay higher costs across all regions.
+                Across the four main regions, insurance charges follow a similar
+                distribution overall, and smokers tend to pay higher costs
+                across all regions.
             </h3>
             <!-- <PieChart
                 {insurance} 
                 group="region" 
             /> -->
             <div style="display: flex; justify-content: center; gap:5px">
-                <span 
-                    style="background-color: {colorScaleMap["smoker_category"][0]};
+                <span
+                    style="background-color: {colorScaleMap[
+                        'smoker_category'
+                    ][0]};
                     color: white;
                     padding: 3px;
                     border-radius: 5px;
-                    ">Smoker</span>
-                <span 
-                    style="background-color: {colorScaleMap["smoker_category"][1]};
+                    ">Smoker</span
+                >
+                <span
+                    style="background-color: {colorScaleMap[
+                        'smoker_category'
+                    ][1]};
                     color: white;
                     padding: 3px;
-                    border-radius: 5px;">Non-smoker</span>
+                    border-radius: 5px;">Non-smoker</span
+                >
             </div>
         </div>
     </div>
-   
+
     <div slot="viz" class="header">
         {#if progress > 5}
             <!-- Add a condition to trigger the transition -->
-            <div
-                class="image-container"
-            >
+            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
                 <StackArea
                     {insurance}
                     x="region"
@@ -73,15 +78,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.1em; 
+        gap: 0.1em;
         width: 90%;
     }
     .text-container {
-      margin-top: 500px;
-      padding-left: 10px;
-      padding-right: 10px;
-      border: 1px solid white;
-      width: 350px;
-      /* width: 80%; */
+        margin-top: 500px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid white;
+        width: 350px;
+        /* width: 80%; */
     }
 </style>

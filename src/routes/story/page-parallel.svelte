@@ -10,14 +10,21 @@
     let { insurance }: Props = $props();
 
     let progress: number = $state(0);
-    let categoryOption = ["sex", "children", "smoker", "region","tier","bmi_category"];
+    let categoryOption = [
+        "sex",
+        "children",
+        "smoker",
+        "region",
+        "tier",
+        "bmi_category",
+    ];
     type TAxisSelection = {
-    category: keyof TInsurance;
-  };
+        category: keyof TInsurance;
+    };
 
-  let axisSelection: TAxisSelection = $state({
-    category:"smoker"
-  });
+    let axisSelection: TAxisSelection = $state({
+        category: "smoker",
+    });
 </script>
 
 <!-- 
@@ -37,25 +44,26 @@
     --scrolly-viz-top="2em"
     --scrolly-layout="story-first"
 >
-
     <div id="virtual">
         <!-- TODO: add a better explanation -->
         <div class="text-container">
             <p style="font-size: 18px;">
-                Overall, in this dataset, insurance charges are influenced especially by bmi, smoke or not, and age,
-                 but there are <span style="font-weight: bold;">outliers</span> who pay much more or less than others with similar characteristics.
+                Overall, in this dataset, insurance charges are influenced
+                especially by bmi, smoke or not, and age, but there are <span
+                    style="font-weight: bold;">outliers</span
+                > who pay much more or less than others with similar characteristics.
             </p>
             <label>
                 Category:
                 <select bind:value={axisSelection.category}>
-                  {#each categoryOption as key}
-                    <option value={key}>{key}</option>
-                  {/each}
+                    {#each categoryOption as key}
+                        <option value={key}>{key}</option>
+                    {/each}
                 </select>
-              </label>
+            </label>
         </div>
     </div>
-   
+
     <div slot="viz" class="header">
         {#if progress > 1}
             <!-- Add a condition to trigger the transition -->
@@ -67,9 +75,9 @@
                 }}
             >
                 <!-- <img src={datatype} alt="Data" /> -->
-                <Parallel 
-                    {insurance} 
-                    colorBy = {axisSelection.category}
+                <Parallel
+                    {insurance}
+                    colorBy={axisSelection.category}
                     width={1400}
                     height={800}
                 />
@@ -91,10 +99,10 @@
         gap: 0.5em; /* Add spacing between images */
     }
     .text-container {
-      margin-top: 500px;
-      padding-left: 10px;
-      padding-right: 10px;
-      border: 1px solid white;
-      width: 350px;
+        margin-top: 500px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid white;
+        width: 350px;
     }
 </style>

@@ -19,9 +19,18 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <h2>Let take a look into what combination of attributes leads to an higher insurance charge</h2>
-        <h2>We can note that that individuals who are smokers have a strong correlation with charges at 0.79 correlation</h2>
-        <h2>We can also note that that individuals who have high age or BMI have some correlation with insurance charge as well</h2>
+        <h2>
+            Let take a look into what combination of attributes leads to an
+            higher insurance charge
+        </h2>
+        <h2>
+            We can note that that individuals who are smokers have a strong
+            correlation with charges at 0.79 correlation
+        </h2>
+        <h2>
+            We can also note that that individuals who have high age or BMI have
+            some correlation with insurance charge as well
+        </h2>
     </div>
 
     <div slot="viz" class="header">
@@ -33,8 +42,8 @@
                     duration: 2000,
                     y: -200,
                 }}
-            >        
-            <Correlation {data}/>
+            >
+                <Correlation {data} />
             </div>
         {/if}
     </div>
