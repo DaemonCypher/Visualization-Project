@@ -20,12 +20,11 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <div class="text-container">
-            <h3>
+            <h2>
                 Across the four main regions, insurance charges follow a similar
                 distribution overall, and smokers tend to pay higher costs
                 across all regions.
-            </h3>
+            </h2>
             <!-- <PieChart
                 {insurance} 
                 group="region" 
@@ -49,7 +48,6 @@
                     border-radius: 5px;">Non-smoker</span
                 >
             </div>
-        </div>
     </div>
 
     <div slot="viz" class="header">
@@ -72,6 +70,8 @@
     #virtual {
         height: 150vh; /* Make the page scrollable with a 150% view height */
         color: white;
+        width: 400px;
+
     }
 
     .image-container {

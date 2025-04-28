@@ -19,8 +19,7 @@
     --scrolly-gap="1em"
 >
     <div id="virtual">
-        <div class="text-container">
-            <h4>
+            <h2>
                 Most of the charges are within 15k. All charges can be roughly
                 split into 3 tiers based on the trends. Within each tier, the
                 charges increase with age.
@@ -38,15 +37,18 @@
                 <div style="font-weight: bold;">
                     size of the circle encode insurance charges
                 </div>
-            </h4>
+            </h2>
             <!-- <progress value={progress} max="50"></progress> -->
             {#if progress > 10}
                 <div class="chart-container">
                     <PieChart {insurance} group="tier" />
-                    <Histogram {insurance} group="charge" />
                 </div>
+                <div class="chart-container">
+
+                <Histogram {insurance} group="charge" />
+            </div>
+
             {/if}
-        </div>
     </div>
     <div slot="viz" class="header">
         {#if progress > 10}

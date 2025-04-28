@@ -19,8 +19,7 @@
     --scrolly-gap="1em"
 >
     <div id="virtual">
-        <div class="text-container">
-            <h4>
+            <h2>
                 There are 1338 datapoints, female and male are almost equal. As
                 the age increases, insurance charges increase.
                 <br />
@@ -34,7 +33,7 @@
                 <div style="font-weight: bold;">
                     size of the circle encode number of children
                 </div>
-            </h4>
+            </h2>
             <!-- {progress.toFixed(2)} -->
 
             <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
@@ -45,12 +44,14 @@
             {insurance}
             group="sex"
           /> -->
+          </div>
+          <div class="chart-container">
+
                     <Histogram {insurance} group="age" />
                 </div>
             {/if}
 
             <!-- TODO: age distribution avg / median -->
-        </div>
     </div>
     <div slot="viz" class="header">
         {#if progress > 10}

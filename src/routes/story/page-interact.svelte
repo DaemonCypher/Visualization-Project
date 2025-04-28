@@ -41,10 +41,10 @@
     let container: HTMLDivElement;
 
     let guessValue = $derived(+userGuess || 0);
-    let realAnswer = $derived(Number(dp[0].charge));
+    let realAnswer = $derived(dp.length > 0 ? Number(dp[0].charge) : 0);
     const group = "charge";
 
-    const margin = { top: 30, right: 20, bottom: 30, left: 60 };
+    const margin = { top: 30, right: 20, bottom: 30, left: 70 };
     const width = 1000 - margin.left - margin.right;
     const height = 700 - margin.top - margin.bottom;
 
@@ -100,7 +100,7 @@
             .call((g) => {
                 g.selectAll("text")
                     .style("fill", "white")
-                    .style("font-size", "15px")
+                    .style("font-size", "18px")
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
                 g.selectAll("path").style("stroke", "white");
@@ -117,10 +117,10 @@
                         else return "white";
                     })
                     .style("font-size", (d) => {
-                        if (d == 30000) return "14px";
-                        else if (d == 15000) return "14px";
-                        else if (d == 10000) return "14px";
-                        else return "12px";
+                        if (d == 30000) return "18px";
+                        else if (d == 15000) return "18px";
+                        else if (d == 10000) return "18px";
+                        else return "18px";
                     })
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
@@ -239,11 +239,11 @@
 >
     <div id="virtual">
         <div class="text-container" in:fly={{ duration: 1500, x: -100 }}>
-            <h3>
+            <h2>
                 Estimate Insurance Charges for a 40-year-old non-smoker male
                 with a BMI of 29.7 and 2 children living in the southeast
                 region.
-            </h3>
+            </h2>
             {#each dp as item}
                 <ul style="font-size: 15px; font-weight: bold;">
                     <li>Age: {item.age}</li>
@@ -277,15 +277,20 @@
                     similar background.
                     <div class="extra-box">
                         One similar case is:
-                        <ul>
-                            Age: {dp_[1].age}<br />
-                            Sex: {dp_[1].sex}<br />
-                            BMI: {dp_[1].bmi}<br />
-                            Children: {dp_[1].children}<br />
-                            Smoker: {dp_[1].smoker}<br />
-                            Region: {dp_[1].region}<br />
-                            Charge: {dp_[1].charge}<br />
-                        </ul>
+                        {#if dp_.length > 1}
+                            <ul>
+                                Age: {dp_[1].age}<br />
+                                Sex: {dp_[1].sex}<br />
+                                BMI: {dp_[1].bmi}<br />
+                                Children: {dp_[1].children}<br />
+                                Smoker: {dp_[1].smoker}<br />
+                                Region: {dp_[1].region}<br />
+                                Charge: {dp_[1].charge}<br />
+                            </ul>
+                        {:else}
+                            <div>No similar case found.</div>
+                        {/if}
+                        
                     </div>
                 </div>
                 <!-- todo -->
@@ -331,7 +336,6 @@
         padding-left: 10px;
         padding-right: 10px;
         padding-bottom: 10px;
-        border: 1px solid white;
         width: 350px;
     }
 
@@ -341,8 +345,9 @@
         background-color: rgba(255, 255, 255, 0.1);
         border: 1px solid white;
         border-radius: 4px;
-        font-size: 15px;
+        font-size: 18px;
         font-weight: bold;
         text-align: center;
+        justify-content: center;
     }
 </style>

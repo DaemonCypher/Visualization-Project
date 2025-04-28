@@ -20,11 +20,10 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <div class="text-container">
-            <h3>
+            <h2>
                 Most of the people have no children. For insurance holders with
                 different numbers of children, smokers tend to pay more too.
-            </h3>
+            </h2>
             <!-- <PieChart
                 {insurance} 
                 group="children" 
@@ -48,7 +47,6 @@
                 border-radius: 5px;">Non-smoker</span
                 >
             </div>
-        </div>
     </div>
 
     <div slot="viz" class="header">
@@ -71,6 +69,8 @@
     #virtual {
         height: 200vh; /* Make the page scrollable with a 150% view height */
         color: white;
+        width: 400px;
+
     }
 
     .image-container {

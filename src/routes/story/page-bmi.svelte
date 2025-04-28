@@ -20,8 +20,7 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <div class="text-container">
-            <h4>
+            <h2>
                 Most of the people are overweight (BMI>25) or obese (BMI>30).
                 For the 1st tier, the charges are similar across BMI. But for
                 the 3rd tier, most of the people are obese (BMI>30), and the
@@ -37,15 +36,17 @@
                 <div style="font-weight: bold;">
                     size of the circle encode age
                 </div>
-            </h4>
+            </h2>
             <!-- <progress value={progress} max="50"></progress> -->
             {#if progress > 10}
                 <div class="chart-container">
                     <PieChart {insurance} group="bmi_category" />
+                    </div>
+                    <div class="chart-container">
+
                     <Histogram {insurance} group="bmi" />
                 </div>
             {/if}
-        </div>
     </div>
 
     <div slot="viz" class="header">
@@ -74,6 +75,8 @@
     #virtual {
         height: 200vh; /* Makes the page scrollable */
         color: white;
+        width: 400px;
+
     }
     .image-container {
         display: flex;

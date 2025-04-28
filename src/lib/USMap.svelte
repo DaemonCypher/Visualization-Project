@@ -156,7 +156,10 @@
     legendGroup
       .append("g")
       .attr("transform", `translate(0, ${legendHeight})`)
-      .call(legendAxis);
+      .call(legendAxis)
+      .selectAll("text")               
+      .style("fill", "white")           
+      .style("font-size", "18px"); ;
   }
 
   onMount(async () => {
@@ -203,7 +206,7 @@
         .style("font-size", "24px")
         .style("font-weight", "bold")
         .style("fill", "white")
-        .text("Uninsured Rate by State");
+        .text("Uninsured Rate by State in 2015");
 
       // Draw base map
       drawBaseMap(svg, states, pathGenerator);

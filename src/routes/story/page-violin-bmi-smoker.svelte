@@ -20,11 +20,10 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <div class="text-container">
-            <h4>
+            <h2>
                 Those who pay in tier 3 (charges > 30k) tend to have higher BMI
                 and smoke.
-            </h4>
+            </h2>
             <!-- <progress value={progress} max="50"></progress> -->
             <div style="display: flex; justify-content: center; gap:5px">
                 <span
@@ -45,7 +44,6 @@
                     border-radius: 5px;">Non-smoker</span
                 >
             </div>
-        </div>
     </div>
 
     <div slot="viz" class="header">
@@ -70,6 +68,8 @@
     #virtual {
         height: 200vh; /* Make the page scrollable with a 150% view height */
         color: white;
+        width: 400px;
+
     }
     .image-container {
         display: flex;

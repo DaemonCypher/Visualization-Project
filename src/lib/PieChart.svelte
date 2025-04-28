@@ -15,7 +15,7 @@
     onMount(() => {
         d3.select(container).selectAll("*").remove();
         
-        const dimensions = { width: 150, height: 150, margin: 10 };
+        const dimensions = { width: 200, height: 200, margin: 10 };
         const radius = Math.min(dimensions.width, dimensions.height) / 2 - dimensions.margin;
 
         // Create an SVG and group
@@ -55,7 +55,7 @@
         arcs.append("text")
             .attr("transform", d => `translate(${arcGenerator.centroid(d)})`)
             .attr("text-anchor", "middle")
-            .style("font-size", "9px" )
+            .style("font-size", "18px" )
             .style("fill", "white")
             .text(d => `${d.data.key}: ${d.data.count}`);
     });

@@ -30,7 +30,6 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <div class="text-container">
             <h2>
                 Here we took the most notable data attirbutes from before
                 charges, age, bmi, and smoker and plotted them pairwise against
@@ -74,7 +73,6 @@
                     {/each}
                 </select>
             </label>
-        </div>
     </div>
 
     <div slot="viz" class="header">

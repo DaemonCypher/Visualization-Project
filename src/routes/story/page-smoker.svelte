@@ -19,8 +19,7 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <div class="text-container">
-            <h4>
+            <h2>
                 Most of the people do not smoke. Smokers tend to pay more for
                 insurance.
                 <br />
@@ -36,8 +35,7 @@
                 {#if progress > 10}
                     <PieChart {insurance} group="smoker_category" />
                 {/if}
-            </h4>
-        </div>
+            </h2>
     </div>
 
     <div slot="viz" class="header">
