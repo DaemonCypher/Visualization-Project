@@ -7,7 +7,10 @@
 
 <Scroll bind:progress --scrolly-story-width="0">
     <div id="virtual"></div>
-    <div slot="viz" class="header">"123"</div>
+    <div slot="viz" class="header">
+        "123"
+        <PatientFigure />
+    </div>
 </Scroll>
 
 <!-- <svelte:window bind:scrollY={progress} /> -->

@@ -2,40 +2,66 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
 
-    // a reference to the <div> where we'll insert the SVG
     let container: HTMLDivElement;
+    const W = 400;
+    const H = 600;
 
     onMount(async () => {
-        // 1. Load the SVG document
-        const xml = await d3.xml("/image/body_1.svg");
+        // 1) Create a top‐level SVG inside the div
+        const svg = d3
+            .select(container)
+            .append("svg")
+            .attr("width", W)
+            .attr("height", H);
 
-        // 2. Import its <svg> node into our document
-        const svgNode = document.importNode(xml.documentElement, true);
+        // 2) A <g> that will hold your imported pieces
+        const content = svg.append("g").attr("class", "content");
 
-        // 3. Append it to our container
-        container.appendChild(svgNode);
+        // helper drag behavior
+        const drag = d3.drag<SVGGElement, unknown>().on("start", (event) => {
+            // bring to front
+            d3.select(event.sourceEvent.currentTarget).raise();
+        });
 
-        // 4. Now select that SVG and do D3 ops on it:
-        const svg = d3.select(container).select<SVGSVGElement>("svg");
+        // 3) Load and import your SVGs
+        const [xmlBody, xmlFace] = await Promise.all([
+            d3.xml("./image/body_2.svg"),
+            d3.xml("./image/face_5.svg"),
+        ]);
 
-        // e.g. style all paths
-        svg.selectAll("path").attr("stroke", "gray").attr("stroke-width", 1);
+        const bodyNode = document.importNode(xmlBody.documentElement, true);
+        const faceNode = document.importNode(xmlFace.documentElement, true);
 
-        // highlight something with ID="highlightMe"
-        svg.select("#highlightMe")
-            .transition()
-            .duration(800)
-            .attr("fill", "gold");
+        // 4) Append them into `content` as <g> wrappers so we can drag/position
+        content
+            .append("g")
+            .attr("class", "body")
+            .attr("transform", "translate(50,100) scale(1.5)")
+            .node()!
+            .append(bodyNode);
+        // call drag on that <g>
+        content.select<SVGGElement>("g.draggable").call(drag);
+
+        content
+            .append("g")
+            .attr("class", "face")
+            .attr("transform", "translate(75,15) scale(1)")
+            .node()!
+            .append(faceNode);
     });
 </script>
 
-<!-- the div we mount our external SVG into -->
-<div bind:this={container}></div>
+<div
+    bind:this={container}
+    style="border:2px solid #ccc; width:{W}px; height:{H}px;"
+></div>
 
 <style>
-    /* you can scope styles here */
-    :global(svg) {
-        width: 100%;
-        height: auto;
+    :global(.draggable) {
+        cursor: move;
+    }
+    /* optional: prevent pointer events on the SVG internals */
+    :global(.draggable svg) {
+        pointer-events: none;
     }
 </style>
