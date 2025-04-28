@@ -43,9 +43,10 @@
 >
     <div id="virtual">
             <div class="text-container">
-                <h4>
+                <h1 style="font-size: 30px;">How does coverage look across the U.S.?</h1>
+                <!-- <h4>
                     United States Uninsured Rate in 2015
-                </h4>
+                </h4> -->
                 <p><a href="https://www.kaggle.com/datasets/hhs/health-insurance?resource=download" style="color: white;">The data</a> 
                     was compiled from the US Department of Health and Human Services and US Census Bureau.</p>
                 <p style="font-size: 12px;">Previous data from <a href="https://www.kaggle.com/datasets/teertha/ushealthinsurancedataset" style="color: white;">Kaggle</a></p> 
