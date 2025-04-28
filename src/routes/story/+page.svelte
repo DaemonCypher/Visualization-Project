@@ -14,6 +14,7 @@
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
     import Intro from "./intro.svelte";
+    import Conclusion from "./conclusion.svelte";
     // import PageScatter from "./page-scatter-plots.svelte";
     // import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
@@ -159,6 +160,7 @@
         <PageChildren {insurance} />
         <PageRegion {insurance} />
         <PageInteract {insurance} />
+        <Conclusion />
         <!-- <Page6 /> -->
 
         <PageParallel {insurance} colorBy="smoker" />
