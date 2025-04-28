@@ -13,6 +13,7 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
+    import Intro from "./intro.svelte";
     // import PageScatter from "./page-scatter-plots.svelte";
     // import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
@@ -141,7 +142,9 @@
 
 
         <!-- <Page0 /> -->
-        <Header />        
+        <Header />  
+        <PageMap {uninsuredData} />
+        <Intro />
         <Coefficient {data}/>
         <ScatterMatrix {matrixData}/>
         <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
@@ -159,7 +162,6 @@
         <!-- <Page6 /> -->
 
         <PageParallel {insurance} colorBy="smoker" />
-        <PageMap {uninsuredData} />
         <!-- <PageHeap {data} /> -->
     </div>
     <!-- <h1>Hello World!</h1> -->
