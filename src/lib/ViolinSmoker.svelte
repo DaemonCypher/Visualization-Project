@@ -155,7 +155,7 @@
                 .attr("cy", () => yScale(+datum[y]))
                 .attr("r", size? sizeScale(+datum[size]): 4)
                 .style("fill", colorScale(String(datum[color])))
-                .style("opacity", 0.8)
+                .style("opacity", +datum[y] > 30000 ? 1 : 0.7)
                 .on("mouseover", (event, d) => {
                       tooltip
                         .style("opacity", 1)

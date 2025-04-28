@@ -2,7 +2,7 @@
     import { Scroll } from "$lib";
     import ViolinSmoker from "$lib/ViolinSmoker.svelte";
     import PieChart from "$lib/PieChart.svelte";
-
+    import Histogram from "$lib/Histogram.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -20,14 +20,20 @@
 >
     <div id="virtual">
         <div class="text-container">
-            <h4>Most of the people do not smoke. 
-              Smokers tend to pay more for insurance.
+            <p style="font-size: 20px; font-weight: 600;">Smokers pay more for insurance.</p>
+              <p style="font-size: 15px;">Though Most of the people do not smoke. 
+                <br>For the 3rd tier, <span style="font-weight: 600;">93.8% (152 out of 162) </span> people are smokers.
+                <!-- <br>Smokers tend to pay more for insurance.</p> -->
             <!-- <progress value={progress} max="50"></progress> -->
             {#if progress > 10}
                 <PieChart
                     {insurance} 
                     group="smoker_category" 
                 />
+                <!-- <Histogram
+                    {insurance}
+                    group="smoker_category"
+                /> -->
             {/if}
         </div>
     </div>
