@@ -46,9 +46,9 @@
             {insurance} 
             x="bmi" 
             y="charge" 
-            size="age" 
-            color="smoker_category" 
+            color="sex" 
             />
+            <!-- size="age"  -->
         </div>
         {/if}
     </div>
