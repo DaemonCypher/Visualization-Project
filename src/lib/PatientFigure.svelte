@@ -3,8 +3,8 @@
     import * as d3 from "d3";
 
     let container: HTMLDivElement;
-    const W = 400;
-    const H = 600;
+    const W = 200; // 800px
+    const H = 300;
 
     onMount(async () => {
         // 1) Create a top‐level SVG inside the div
@@ -25,8 +25,8 @@
 
         // 3) Load and import your SVGs
         const [xmlBody, xmlFace] = await Promise.all([
-            d3.xml("./image/body_2.svg"),
-            d3.xml("./image/face_5.svg"),
+            d3.xml("./image/body_6.svg"),
+            d3.xml("./image/face_6.svg"),
         ]);
 
         const bodyNode = document.importNode(xmlBody.documentElement, true);
@@ -36,7 +36,7 @@
         content
             .append("g")
             .attr("class", "body")
-            .attr("transform", "translate(50,100) scale(1.5)")
+            .attr("transform", "translate(0,35) scale(1.2)")
             .node()!
             .append(bodyNode);
         // call drag on that <g>
@@ -45,7 +45,7 @@
         content
             .append("g")
             .attr("class", "face")
-            .attr("transform", "translate(75,15) scale(1)")
+            .attr("transform", "translate(35,0) scale(0.7)")
             .node()!
             .append(faceNode);
     });
