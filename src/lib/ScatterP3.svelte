@@ -94,7 +94,7 @@ svg
         .attr("cy", chartHeight) 
         .attr("r", d => d.sizeValue ? sizeScale(d.sizeValue) : 5.2)
         .attr("fill", d => colorScale(d.colorValue))
-        .attr("opacity", 0.7)
+        .attr("opacity", d => d.yValue> 30000 ? 1 : 0.7)
         .transition()
         .duration(1000)
         .ease(d3.easeCubicOut)

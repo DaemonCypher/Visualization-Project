@@ -50,10 +50,10 @@
                     x="bmi_category"
                     y="charge"
                     color="smoker_category"
-                    size="age"
-                    width="1200"
+                    width="1000"
                     height="700"
                 />
+                <!-- <size="age" -->
             </div>
         {/if}
     </div>

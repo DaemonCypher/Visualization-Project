@@ -20,9 +20,10 @@
   >
     <div id="virtual">
       <div class="text-container">
-        <h4>Most of the people are overweight (BMI>25) or obese (BMI>30). 
-          For the 1st tier, the charges are similar across BMI. 
-          But for the 3rd tier, most of the people are obese (BMI>30), and the charges increase with BMI.</h4>
+        <p style="font-size: 20px; font-weight: 600;">Where does BMI stop being neutral and start multiplying the bill?</p>
+        <!-- <p style="font-size: 15px;">Most of the people are overweight (BMI>25) or obese (BMI>30).  -->
+          <p style="font-size: 15px;">Low-tier charges spread across all BMI ranges.
+          <br>But for the 3rd tier, <span style="font-weight: 600;">92.0% (149 out of 162) </span> people are overweight or obese (BMI>30).</p>
         <!-- <progress value={progress} max="50"></progress> -->
         {#if progress > 10}
         <div class="chart-container">

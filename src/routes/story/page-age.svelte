@@ -20,8 +20,9 @@
   >
     <div id="virtual" >
       <div class="text-container" >
-        <h4>There are 1338 datapoints, female and male are almost equal. 
-          As the age increases, insurance charges increase.</h4>
+        <p style="font-size: 20px; font-weight: 600;">Does age mean higher cost?</p>
+        <p style="font-size: 15px;">There are 1338 datapoints, female and male are almost equal. 
+          Within each tier, as the age increases, insurance charges increase.</p>
         <!-- {progress.toFixed(2)} -->
 
         <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
@@ -31,10 +32,6 @@
           {insurance} 
           group="sex" 
           />
-          <!-- <BarChart
-            {insurance}
-            group="sex"
-          /> -->
           <Histogram
             {insurance}
             group="age"

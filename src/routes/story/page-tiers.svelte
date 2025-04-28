@@ -20,7 +20,12 @@
   >
     <div id="virtual" >
       <div class="text-container" >
-        <h4>Most of the charges are within 15k. All charges can be roughly split into 3 tiers based on the trends. Within each tier, the charges increase with age.</h4>
+        <p style="font-size: 20px; font-weight: 600;">Can we chunk charges into tiers?</p>
+        <p style="font-size: 15px;">Tier 1: <span style="font-weight: 600;">$0-15k</span><br>
+          Tier 2: <span style="font-weight: 600;">$15k-30k</span><br>
+          Tier 3: <span style="font-weight: 600;">$30k+</span><br>
+          <!-- All charges can be roughly split into 3 tiers based on the trends.  -->
+         <br> Within each tier, the charges increase with age.</p>
         <!-- <progress value={progress} max="50"></progress> -->
         {#if progress > 10}
         <div class="chart-container">

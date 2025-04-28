@@ -151,10 +151,10 @@
         <!-- <PageInteract {insurance} /> -->
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
-        <PageAge {insurance} /> 
         <PageTiers {insurance} />
-        <PageSmoker {insurance} />
+        <PageAge {insurance} /> 
         <PageBmi {insurance} />
+        <PageSmoker {insurance} />
         <PageViolinBmiSmoker {insurance} />
         <PageChildren {insurance} />
         <PageRegion {insurance} />
