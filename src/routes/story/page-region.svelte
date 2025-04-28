@@ -3,6 +3,7 @@
     import StackArea from "$lib/ScatterJitter.svelte";
     import PieChart from "$lib/PieChart.svelte";
     import { colorScaleMap } from "../../types";
+    import { difference } from "d3";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -21,10 +22,10 @@
 
     <div id="virtual">
         <div class="text-container">
-            <h3>
-                Across the four main regions, insurance charges follow a similar distribution overall, 
+            <p style="font-size: 20px; font-weight: 600;">Smokers pay more in different regions.</p>
+            <p style="font-size: 15px;">Across the four main regions, insurance charges follow a similar distribution overall, 
                 and smokers tend to pay higher costs across all regions.
-            </h3>
+            </p>
             <!-- <PieChart
                 {insurance} 
                 group="region" 
@@ -56,7 +57,7 @@
                     x="region"
                     y="charge"
                     color="smoker_category"
-                    size="age"
+                    size="bmi"
                 />
             </div>
         {/if}

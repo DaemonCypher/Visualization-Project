@@ -21,11 +21,11 @@
 
     <div id="virtual">
         <div class="text-container">
-            <h3>
-                Most of the people have no children. 
-                For insurance holders with different numbers of children, 
-                smokers tend to pay more too.
-            </h3>
+            <p style="font-size: 20px; font-weight: 600;">Smokers pay more in families with different numbers of children.</p>
+            <p style="font-size: 15px;">Most of the people have no children. 
+                <!-- For insurance holders with different numbers of children, 
+                smokers tend to pay more too. -->
+            </p>
             <!-- <PieChart
                 {insurance} 
                 group="children" 
@@ -58,7 +58,7 @@
                     x="children"
                     y="charge"
                     color="smoker_category"
-                    size="age"
+                    size="bmi"
                 />
             </div>
         {/if}
