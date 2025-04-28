@@ -21,10 +21,8 @@
 >
     <div id="virtual">
         <div class="text-container">
-            <h4>
-                Those who pay in tier 3 (charges > 30k) tend to have higher BMI
-                and smoke.
-            </h4>
+            <p style="font-size: 20px; font-weight: 600;">When weight and smoke combine, does cost stack or multiply?</p>
+            <p style="font-size: 15px;">Within the same BMI range, smokers tend to pay more, and obese smokers pay even more.</p>
             <!-- <progress value={progress} max="50"></progress> -->
             <div style="display: flex; justify-content: center; gap:5px">
                 <span
@@ -57,10 +55,10 @@
                     x="bmi_category"
                     y="charge"
                     color="smoker_category"
-                    size="age"
-                    width="1200"
+                    width="1000"
                     height="700"
                 />
+                <!-- <size="age" -->
             </div>
         {/if}
     </div>

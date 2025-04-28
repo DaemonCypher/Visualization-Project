@@ -13,6 +13,8 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
+    import Intro from "./intro.svelte";
+    import Conclusion from "./conclusion.svelte";
     // import PageScatter from "./page-scatter-plots.svelte";
     // import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
@@ -141,25 +143,27 @@
 <div class="container">
     <div class="story">
         <!-- <Page0 /> -->
-        <Header />
-        <Coefficient {data} />
-        <ScatterMatrix {matrixData} />
+        <Header />  
+        <PageMap {uninsuredData} />
+        <Intro />
+        <Coefficient {data}/>
+        <ScatterMatrix {matrixData}/>
         <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
         <!-- <PageInteract {insurance} /> -->
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
-        <PageAge {insurance} />
         <PageTiers {insurance} />
-        <PageSmoker {insurance} />
+        <PageAge {insurance} /> 
         <PageBmi {insurance} />
+        <PageSmoker {insurance} />
         <PageViolinBmiSmoker {insurance} />
         <PageChildren {insurance} />
         <PageRegion {insurance} />
         <PageInteract {insurance} />
+        <Conclusion />
         <!-- <Page6 /> -->
 
         <PageParallel {insurance} colorBy="smoker" />
-        <PageMap {uninsuredData} />
         <!-- <PageHeap {data} /> -->
     </div>
     <!-- <h1>Hello World!</h1> -->
@@ -188,5 +192,6 @@
         margin: 10px auto;
         padding: 10px;
         align-content: center;
+        /* background-color: black; */
     }
 </style>

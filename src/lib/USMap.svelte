@@ -203,7 +203,7 @@
         .style("font-size", "24px")
         .style("font-weight", "bold")
         .style("fill", "white")
-        .text("Uninsured Rate by State");
+        .text("Uninsured Rate by State in 2015");
 
       // Draw base map
       drawBaseMap(svg, states, pathGenerator);
