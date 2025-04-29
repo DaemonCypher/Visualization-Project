@@ -42,12 +42,17 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <h2><a href="https://www.kaggle.com/datasets/hhs/health-insurance?resource=download" style="color: white;">The data</a> 
-            was compiled from the US Department of Health and Human Services and US Census Bureau.</h2>
-        <br>
-        <h2>We couldn't find more opensource info about the Insurance Premium Charges in US with important details for risk underwriting, which may be due to privacy or proprietary issues.</h2>
-        <br/>
-        <!-- <h2>Previous data from <a href="https://www.kaggle.com/datasets/teertha/ushealthinsurancedataset" style="color: white;">Kaggle</a></h2>  -->
+
+            <div class="text-container">
+                <h1 style="font-size: 30px;">How does coverage look across the U.S.?</h1>
+                <!-- <h4>
+                    United States Uninsured Rate in 2015
+                </h4> -->
+                <p><a href="https://www.kaggle.com/datasets/hhs/health-insurance?resource=download" style="color: white;">The data</a> 
+                    was compiled from the US Department of Health and Human Services and US Census Bureau.</p>
+                <p style="font-size: 12px;">Previous data from <a href="https://www.kaggle.com/datasets/teertha/ushealthinsurancedataset" style="color: white;">Kaggle</a></p> 
+                <!-- <p style="font-size: 12px;">We couldn't find more opensource info about the Insurance Premium Charges in US with important details for risk underwriting, which may be due to privacy or proprietary issues.</p> -->
+            </div>
     </div>
     <!-- Story here -->
 

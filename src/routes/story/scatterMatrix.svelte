@@ -29,13 +29,14 @@
     --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
-    <div id="virtual">
-            <h2>
-                Here we took the most notable data attirbutes from before
-                charges, age, bmi, and smoker and plotted them pairwise against
-                each other
-            </h2>
-            <br />
+
+  <div id="virtual">
+    <div class="text-container">
+      <p>This overview shows <span style="font-weight: 800; font-size: 25px;">interesting clusters</span>, 
+        each one is a puzzle piece we’ll examine more in next pages.</p>
+
+      <!-- <h2>Here we took the most notable data attirbutes from before charges, age, bmi, and smoker and plotted them pairwise against each other</h2>
+      <br>
 
             <h2>
                 We have highlighted the higest correlated value with charges
@@ -49,31 +50,28 @@
             </h2>
             <br />
 
-            <h2>
-                Where there is a linear correlation with chagres and ages, and
-                cluster of data points with bmi and charges
-            </h2>
-            <br />
-            <h2>
-                Additionally with the highlighted datapoints we can observe that
-                smokers on general tend to pay more
-            </h2>
-            <br />
-            <h2>We will take a deeper look into these observations below</h2>
-            <br />
-            <br />
+      <h2>Where there is a linear correlation with chagres and ages, and cluster of data points with bmi and charges</h2>
+      <br>
+      <h2>Additionally with the highlighted datapoints we can observe that smokers on general tend to pay more</h2>
+      <br>
+      <h2>We will take a deeper look into these observations below</h2>
+      <br>
+      <br> -->
 
-            <h3>Feel free to explore more with category highlight below</h3>
 
-            <label>
-                Category:
-                <select bind:value={axisSelection.category}>
-                    {#each categoryOption as key}
-                        <option value={key}>{key}</option>
-                    {/each}
-                </select>
-            </label>
+      <p style="font-size: 15px;">Feel free to explore other color encodings. 
+        <label>
+          <!-- Category: -->
+        <select bind:value={axisSelection.category}>
+          {#each categoryOption as key}
+            <option value={key}>{key}</option>
+          {/each}
+          </select>
+        </label>
+      </p>
+      
     </div>
+  </div>
 
     <div slot="viz" class="header">
         {#if progress > 10 && matrixData.length > 1}
@@ -109,4 +107,14 @@
         border: 1px solid white;
         width: 70%;
     }
+  h1 {
+    font-size: 30px;
+    color: #ffffff; 
+    font-weight: 600; 
+  }
+  p {
+    font-size:20px;
+    color:  #ffffff;
+    font-weight: 100px; 
+  }
 </style>

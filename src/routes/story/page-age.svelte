@@ -17,30 +17,23 @@
     --scrolly-margin="10px"
     --scrolly-viz-top="2em"
     --scrolly-gap="1em"
->
-    <div id="virtual">
-            <h2>
-                There are 1338 datapoints, female and male are almost equal. As
-                the age increases, insurance charges increase.
-                <br />
-                <br />
-                <div style="color: #305cde; font-weight: bold;">
-                    Blue encode female
-                </div>
-                <div style="color: #ff6ec7; font-weight: bold;">
-                    Pink encode male
-                </div>
-                <div style="font-weight: bold;">
-                    size of the circle encode number of children
-                </div>
-            </h2>
-            <!-- {progress.toFixed(2)} -->
 
-            <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
-            {#if progress > 10}
-                <div class="chart-container">
-                    <PieChart {insurance} group="sex" />
-                    <!-- <BarChart
+  >
+    <div id="virtual" >
+      <div class="text-container" >
+        <p style="font-size: 20px; font-weight: 600;">Does age mean higher cost?</p>
+        <p style="font-size: 15px;">There are 1338 datapoints, female and male are almost equal. 
+          Within each tier, as the age increases, insurance charges increase.</p>
+        <!-- {progress.toFixed(2)} -->
+
+        <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
+        {#if progress > 10}
+        <div class="chart-container">
+          <PieChart
+          {insurance} 
+          group="sex" 
+          />
+          <Histogram
             {insurance}
             group="sex"
           /> -->
@@ -50,6 +43,7 @@
                     <Histogram {insurance} group="age" />
                 </div>
             {/if}
+
 
             <!-- TODO: age distribution avg / median -->
     </div>

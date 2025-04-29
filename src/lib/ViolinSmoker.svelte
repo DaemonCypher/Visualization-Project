@@ -16,6 +16,19 @@
     let labelMap =  labelMaps[x] ?? {}
     onMount(() => {
       d3.select(container).selectAll("*").remove();
+
+      const tooltip = d3
+        .select(container)
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("pointer-events", "none")
+        .style("background", "rgba(0,0,0,0.8)")
+        .style("color", "#fff")
+        .style("padding", "4px 8px")
+        .style("border-radius", "4px")
+        .style("font-size", "12px")
+        .style("opacity", 0);
   
       const margin = { top: 10, right: 30, bottom: 30, left: 70 },
         chartWidth = width - margin.left - margin.right - 100,
@@ -140,9 +153,25 @@
                 .append("circle")
                 .attr("cx", () => xScale(groupKey)! + centerX + (Math.random() * 2 - 1) * jitterBound)
                 .attr("cy", () => yScale(+datum[y]))
-                .attr("r", size? sizeScale(+datum[size]): 5)
+                .attr("r", size? sizeScale(+datum[size]): 4)
                 .style("fill", colorScale(String(datum[color])))
-                .style("opacity", 0.8);
+                .style("opacity", +datum[y] > 30000 ? 1 : 0.7)
+                .on("mouseover", (event, d) => {
+                      tooltip
+                        .style("opacity", 1)
+                        .html(
+                          `bmi: ${datum.bmi}<br>
+                          age: ${datum.age}<br>
+                          charge: ${Number(datum.charge).toFixed(2)}<br>smoker: ${datum.smoker}`
+                        );
+                    })
+                    .on("mousemove", (event) => {
+                      const [xPos, yPos] = d3.pointer(event, container);
+                      tooltip
+                        .style("left", `${xPos + 10}px`)
+                        .style("top", `${yPos}px`);
+                    })
+                    .on("mouseout", () => tooltip.style("opacity", 0));
             });
           });
         });
@@ -153,7 +182,7 @@
     });
   </script>
   
-  <div bind:this={container} style="width:100%" id="violin-smoker"></div>
+  <div bind:this={container} style="width:100%; position:relative" id="violin-smoker"></div>
   
   <style>
     svg:hover {
@@ -165,5 +194,15 @@
       stroke: #fff;
       stroke-width: 1;
     }
+   :global(.tooltip) {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+  }
   </style>
   
