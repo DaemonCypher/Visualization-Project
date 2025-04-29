@@ -13,6 +13,7 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
+    import PageGlyph from "./page-glyph.svelte";
     import Intro from "./intro.svelte";
     import Conclusion from "./conclusion.svelte";
     // import PageScatter from "./page-scatter-plots.svelte";
@@ -143,16 +144,21 @@
 <div class="container">
     <div class="story">
         <!-- <Page0 /> -->
-        <Header />  
+        <Header />
         <PageMap {uninsuredData} />
         <Intro />
+        <Coefficient {data} />
+        <ScatterMatrix {matrixData} />
+        <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
+        <!-- <PageGlyph /> -->
+        <!-- <PageInteract {insurance} /> -->
         <PageParallel {insurance} colorBy="smoker" />
-        <Coefficient {data}/>
-        <ScatterMatrix {matrixData}/>
+        <Coefficient {data} />
+        <ScatterMatrix {matrixData} />
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
         <PageTiers {insurance} />
-        <PageAge {insurance} /> 
+        <PageAge {insurance} />
         <PageBmi {insurance} />
         <PageSmoker {insurance} />
         <PageViolinBmiSmoker {insurance} />
