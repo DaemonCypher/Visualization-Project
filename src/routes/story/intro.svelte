@@ -36,12 +36,12 @@
       width: 800px;
     }
     #virtual {
-      height: 150vh; /* Make the page scrollable with a 150% view height */
+      height: 150vh; 
     }
     h1 {
       font-size: 30px;
-      color: #ffffff; /* Darker text for better contrast */
-      font-weight: 600; /* Slightly bolder font weight */
+      color: #ffffff; 
+      font-weight: 600; 
     }
     p {
       font-size:20px;

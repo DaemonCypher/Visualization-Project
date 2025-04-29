@@ -47,7 +47,6 @@
           .sort((a, b) => a[0].localeCompare(b[0]))
           .map(([key, value]) => [labelMap[key as keyof typeof labelMap], value])
       );
-      // console.log("grouped", grouped);
 
       const colorScale = d3.scaleOrdinal<string>()
         .domain([...new Set(insurance.map(d => String(d[color])))] as string[])
@@ -77,7 +76,7 @@
         .call((g) => {
           g.selectAll("text")
             .style("fill", "white")
-            .style("font-size", "15px")
+            .style("font-size", "18px")
             .style("font-weight", "bold");
           g.selectAll("line").style("stroke", "white");
           g.selectAll("path").style("stroke", "white");

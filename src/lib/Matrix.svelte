@@ -3,30 +3,12 @@
   import { colorScaleMap } from "../types";
   import * as d3 from "d3";
 
-  type Props = {
-    insurance: any[];
-    colorBy: keyof TInsurance;
-    width?: number;
-    height?: number;
-  };
-
-  const {
-    insurance,
-    colorBy,
-    width = 1000,
-    height = 1000,
-  }: Props = $props();
-
+  type Props = {insurance: any[]; colorBy: keyof TInsurance; width?: number; height?: number;};
+  const { insurance, colorBy, width = 1000, height = 1000,}: Props = $props();
   const padding = 10;
   const columns = ["age", "bmi", "smoker", "charges"];
   const size = (width - (columns.length + 1) * padding) / columns.length + padding;
-
-  const margin = {
-    top: 35,
-    bottom: 15,
-    left: 15,
-    right: 15,
-  };
+  const margin = { top: 35, bottom: 15, left: 15, right: 15,};
 
   const usableArea = {
     top: margin.top,
@@ -117,13 +99,37 @@
       .attr("transform", ([i, j]) => `translate(${i * size},${j * size})`);
 
     cell.append("rect")
-      .attr("fill", "none")
-      .attr("stroke", "white")
       .attr("x", padding / 2 + 0.5)
       .attr("y", padding / 2 + 0.5)
       .attr("width", size - padding)
       .attr("height", size - padding)
-      .attr("stroke-width", 3);
+      .attr("fill", "none")
+      .attr("stroke", ([i, j]) => {
+        const xCol = columns[i];
+        const yCol = columns[j];
+        if (
+          (xCol === "age" && yCol === "charges") ||
+          (xCol === "charges" && yCol === "age") ||
+          (xCol === "bmi" && yCol === "charges") ||
+          (xCol === "charges" && yCol === "bmi")
+        ) {
+          return "yellow";  
+        }
+        return "white"; 
+      })
+      .attr("stroke-width", ([i, j]) => {
+        const xCol = columns[i];
+        const yCol = columns[j];
+        if (
+          (xCol === "age" && yCol === "charges") ||
+          (xCol === "charges" && yCol === "age") ||
+          (xCol === "bmi" && yCol === "charges") ||
+          (xCol === "charges" && yCol === "bmi")
+        ) {
+          return 5; 
+        }
+        return 3; 
+      });
 
     cell.each(function ([i, j]) {
       d3.select(this)

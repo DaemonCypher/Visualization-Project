@@ -42,14 +42,7 @@
 
     <div slot="viz" class="header">
         {#if progress > 10}
-            <!-- Add a condition to trigger the transition -->
-            <div
-                class="image-container"
-                in:fly={{
-                    duration: 1000,
-                    y: -200,
-                }}
-            >
+            <div class="image-container" in:fly={{ duration: 1000, y: -200,}}>
                 <Correlation {data} />
             </div>
         {/if}
@@ -58,14 +51,14 @@
 
 <style>
     #virtual {
-        height: 150vh; /* Make the page scrollable with a 150% view height */
+        height: 150vh; 
         color: white;
         width: 300px;
     }
     h1 {
       font-size: 30px;
-      color: #ffffff; /* Darker text for better contrast */
-      font-weight: 600; /* Slightly bolder font weight */
+      color: #ffffff; 
+      font-weight: 600; 
     }
     p {
       font-size:20px;
@@ -76,6 +69,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.5em; /* Add spacing between images */
+        gap: 0.5em; 
     }
 </style>

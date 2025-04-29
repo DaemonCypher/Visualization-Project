@@ -17,7 +17,6 @@
     onMount(() => {
       d3.select(container).selectAll("*").remove();
   
-      // Basic margin & chart area
       const margin = { top: 10, right: 30, bottom: 30, left: 70 },
         chartWidth = width - margin.left - margin.right - 100,
         chartHeight = height - margin.top - margin.bottom;
@@ -44,7 +43,6 @@
           .sort((a, b) => a[0].localeCompare(b[0]))
           .map(([key, values]) => [labelMap[key] ?? key, values])
       );
-      // console.log("grouped", grouped);
   
       // X scale
       const xScale = d3
@@ -77,7 +75,7 @@
         .call((g) => {
           g.selectAll("text")
             .style("fill", "white")
-            .style("font-size", "15px")
+            .style("font-size", "18px")
             .style("font-weight", "bold");
           g.selectAll("line").style("stroke", "white");
           g.selectAll("path").style("stroke", "white");
@@ -90,14 +88,12 @@
           .call((g) => {
             g.selectAll("text")
               .style("fill", "white")
-              .style("font-size", "15px")
+              .style("font-size", "18px")
               .style("font-weight", "bold");
             g.selectAll("line").style("stroke", "white");
             g.selectAll("path").style("stroke", "white");
           });
 
-
-  
       let globalMaxBinCount = 0;
       for (const [, values] of grouped.entries()) {
         const input = values.map((d) => +d[y]);
@@ -132,10 +128,6 @@
   
           // Sort the bins so the area generator draws top-to-bottom
           bins.sort((a, b) => d3.ascending(a.x0, b.x0));
-  
-          // Log for debugging:
-          // console.log("GroupKey:", groupKey, "Bins:", bins);
-  
           // X range for the mirrored shape
           const xNum = d3
             .scaleLinear()
@@ -190,11 +182,7 @@
         }
       }
   
-      function drawScatterPoints(
-        groupedData: Map<string, TInsurance[]>,
-        fillColorOverride?: string,
-        jitterFactor: number = 0.4
-      ) {
+      function drawScatterPoints( groupedData: Map<string, TInsurance[]>,fillColorOverride?: string, jitterFactor: number = 0.4) {
         groupedData.forEach((values, groupKey) => {
           const groupCenter = (xScale(groupKey) ?? 0) + xScale.bandwidth() / 2;
           const maxJitter = (xScale.bandwidth() / 2) * jitterFactor;
@@ -217,16 +205,8 @@
             .style("opacity", 0.8);
         });
       }
-  
-      // Draw main violin for entire group
-    //   drawViolins(grouped, "#0000FF", 0.8);
-      // Overlaid violin for colorInsurance subset
-    //   drawViolins(groupedColor, "#ff7f0e", 0.8);
-  
-      // Scatter points for entire dataset
       drawScatterPoints(grouped, "#0000FF", 0.4);
-      // Scatter points for subset
-      // drawScatterPoints(groupedColor, "#ff7f0e", 0.4);
+
     });
   </script>
   
