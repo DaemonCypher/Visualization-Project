@@ -17,7 +17,6 @@
     --scrolly-margin="10px"
     --scrolly-viz-top="2em"
     --scrolly-gap="1em"
-
   >
     <div id="virtual" >
       <div class="text-container" >
@@ -35,17 +34,13 @@
           />
           <Histogram
             {insurance}
-            group="sex"
-          /> -->
-          </div>
-          <div class="chart-container">
-
-                    <Histogram {insurance} group="age" />
-                </div>
-            {/if}
-
+            group="age"
+          />
+        </div>
+        {/if}
 
             <!-- TODO: age distribution avg / median -->
+        </div>
     </div>
     <div slot="viz" class="header">
         {#if progress > 10}

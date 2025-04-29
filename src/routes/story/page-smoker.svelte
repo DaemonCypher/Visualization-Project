@@ -20,7 +20,6 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-
         <div class="text-container">
             <p style="font-size: 20px; font-weight: 600;">Smokers pay more for insurance.</p>
               <p style="font-size: 15px;">Though Most of the people do not smoke. 

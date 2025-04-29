@@ -29,7 +29,6 @@
     --scrolly-gap="10em"
     --scrolly-layout="story-first"
 >
-
   <div id="virtual">
     <div class="text-container">
       <p>This overview shows <span style="font-weight: 800; font-size: 25px;">interesting clusters</span>, 
@@ -57,7 +56,6 @@
       <h2>We will take a deeper look into these observations below</h2>
       <br>
       <br> -->
-
 
       <p style="font-size: 15px;">Feel free to explore other color encodings. 
         <label>

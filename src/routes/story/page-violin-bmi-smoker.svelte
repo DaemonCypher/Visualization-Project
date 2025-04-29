@@ -20,7 +20,6 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-
         <div class="text-container">
             <p style="font-size: 20px; font-weight: 600;">When weight and smoke combine, does cost stack or multiply?</p>
             <p style="font-size: 15px;">Within the same BMI range, smokers tend to pay more, and obese smokers pay even more.</p>
@@ -44,6 +43,7 @@
                     border-radius: 5px;">Non-smoker</span
                 >
             </div>
+        </div>
     </div>
 
     <div slot="viz" class="header">
@@ -68,8 +68,6 @@
     #virtual {
         height: 200vh; /* Make the page scrollable with a 150% view height */
         color: white;
-        width: 400px;
-
     }
     .image-container {
         display: flex;

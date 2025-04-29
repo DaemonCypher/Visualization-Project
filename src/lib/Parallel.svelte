@@ -85,37 +85,11 @@
     return hoveredCategory && hoveredCategory !== category ? 0.2 : 0.8;
   }
 
-function makePath(row: TInsurance): string | null {
-  const points = xLabels.map((key) => [xScale(key)!, yScales[key](+row[key])] as [number, number]);
-
-  // Bundling strength: how much to pull toward center between axes (0 = none, 1 = strong)
-  const bundlingStrength = 0.6;
-
-  // Create control points for smoother bundled lines
-  const bundledPoints: [number, number][] = [];
-  for (let i = 0; i < points.length - 1; i++) {
-    const [x0, y0] = points[i];
-    const [x1, y1] = points[i + 1];
-
-    // Midpoint
-    const mx = (x0 + x1) / 2;
-    const my = (y0 + y1) / 2;
-
-    // Pull toward the center vertically for bundling
-    const controlY = my * (1 - bundlingStrength) + ((usableArea.bottom - usableArea.top) / 2) * bundlingStrength;
-
-    bundledPoints.push([x0, y0]);
-    bundledPoints.push([mx, controlY]);
+  function makePath(row: TInsurance): string | null {
+    const line = d3.line();
+    const points = xLabels.map((key) => [xScale(key)!, yScales[key](+row[key])] as [number, number]);
+    return line(points);
   }
-  // Push the final point
-  bundledPoints.push(points[points.length - 1]);
-
-  const line = d3.line()
-    .curve(d3.curveBasis); // Smooth curve through the control points
-
-  return line(bundledPoints);
-}
-
 
   let axisGroups: SVGGElement[] = [];
 
