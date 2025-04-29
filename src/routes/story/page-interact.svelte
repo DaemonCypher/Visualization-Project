@@ -103,7 +103,9 @@
                     .style("font-size", "15px")
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
-                g.selectAll("path").style("stroke", "white");
+                g.selectAll("path")
+                    .style("stroke", "white")
+                    .style("stroke-width", "3px");
             });
 
         svg.append("g")
@@ -124,7 +126,9 @@
                     })
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
-                g.selectAll("path").style("stroke", "white");
+                g.selectAll("path")
+                    .style("stroke", "white")
+                    .style("stroke-width", "3px");
             });
 
         // Draw histogram bars horizontally.

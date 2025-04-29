@@ -8,7 +8,7 @@
 <Scroll bind:progress --scrolly-story-width="0">
     <div id="virtual"></div>
     <div slot="viz" class="header">
-        <PatientFigure age={20} bmi={15} gender="female" smoker={true} />
+        <PatientFigure age={99} bmi={28} gender="male" smoker={true} />
     </div>
 </Scroll>
 
