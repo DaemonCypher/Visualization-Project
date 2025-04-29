@@ -10,9 +10,9 @@
   
     onMount(() => {
       d3.select(container).selectAll("*").remove();
-      const margin = { top: 30, right: 20, bottom: 20, left: 25 };
-      const width = 200 - margin.left - margin.right;
-      const height = 200 - margin.top - margin.bottom;
+      const margin = { top: 40, right: 20, bottom: 20, left: 35 };
+      const width = 300 - margin.left - margin.right;
+      const height = 300 - margin.top - margin.bottom;
   
 
       const svg = d3.select(container)
@@ -49,28 +49,29 @@
       const statsLine3 = `${group}`;
 
       svg.append("text")
-        .attr("x", width)
-        .attr("y", -10)
-        .attr("text-anchor", "end")
-        .attr("font-size", "10px")
-        .attr("fill", "white")
-        .text(statsLine1);
+      .attr("x", width)
+      .attr("y", -10)
+      .attr("text-anchor", "end")
+      .attr("font-size", "14px")    // <- was 10px
+      .attr("fill", "white")
+      .text(statsLine1);
 
-      svg.append("text")
-        .attr("x", width)
-        .attr("y", 2) // 12px below the previous line
-        .attr("text-anchor", "end")
-        .attr("font-size", "10px")
-        .attr("fill", "white")
-        .text(statsLine2);  
+    svg.append("text")
+      .attr("x", width)
+      .attr("y", 8)                 // <- push it a bit lower (was 2px) since text is bigger
+      .attr("text-anchor", "end")
+      .attr("font-size", "14px")    // <- was 10px
+      .attr("fill", "white")
+      .text(statsLine2);
 
-      svg.append("text")
-        .attr("x", width-45)
-        .attr("y",-21) 
-        .attr("text-anchor", "end")
-        .attr("font-size", "10px")
-        .attr("fill", "white")
-        .text(statsLine3);
+    svg.append("text")
+      .attr("x", width - 45)
+      .attr("y", -31)
+      .attr("text-anchor", "end")
+      .attr("font-size", "14px")    // <- was 10px
+      .attr("fill", "white")
+      .text(statsLine3);
+
 
       const histogramGenerator = d3.bin()
         .domain(d3.extent(values) as [number, number])
@@ -92,12 +93,17 @@
         .nice()
         .range([height, 0]);
   
-      svg.append("g")
+        svg.append("g")
         .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(xScale).ticks(3).tickSizeOuter(0));
-  
+        .call(d3.axisBottom(xScale).ticks(3).tickSizeOuter(0))
+        .selectAll("text")
+        .style("font-size", "14px");    // <- axis x-ticks bigger
+
       svg.append("g")
-        .call(d3.axisLeft(yScale).ticks(3).tickSizeOuter(0));
+        .call(d3.axisLeft(yScale).ticks(3).tickSizeOuter(0))
+        .selectAll("text")
+        .style("font-size", "14px");    // <- axis y-ticks bigger
+
   
       svg.selectAll("rect")
         .data(bins)
@@ -125,10 +131,10 @@
         svg.append("line")
           .attr("x1", xScale(median))
           .attr("x2", xScale(median))
-          .attr("y1", height*1/3)
+          .attr("y1", height*1/20)
           .attr("y2", height)
-          .attr("stroke", "pink")
-          .attr("stroke-width", 2)
+          .attr("stroke", "Red")
+          .attr("stroke-width", 5)
           .attr("stroke-dasharray", "4,2");
       }
     });

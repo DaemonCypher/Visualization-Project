@@ -19,39 +19,25 @@
     --scrolly-gap="1em"
   >
     <div id="virtual" >
-      <div class="text-container" >
         <p style="font-size: 20px; font-weight: 600;">Does age mean higher cost?</p>
         <p style="font-size: 15px;">There are 1338 datapoints, female and male are almost equal. 
-          Within each tier, as the age increases, insurance charges increase.</p>
-        <!-- {progress.toFixed(2)} -->
+            Within each tier, as the age increases, insurance charges increase.</p>
 
-        <!-- <progress value={progress} max="50" style="display: visible;"></progress>  -->
         {#if progress > 10}
-        <div class="chart-container">
-          <PieChart
-          {insurance} 
-          group="sex" 
-          />
-          <Histogram
-            {insurance}
-            group="age"
-          />
-        </div>
+            <div class="chart-container">
+                <PieChart {insurance} group="sex" />
+            </div>
+
+            <div class="chart-container">
+                <Histogram {insurance} group="age"/>
+            </div>
         {/if}
 
-            <!-- TODO: age distribution avg / median -->
-        </div>
     </div>
     <div slot="viz" class="header">
         {#if progress > 10}
             <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
-                <ScatterP1
-                    {insurance}
-                    x="age"
-                    y="charge"
-                    size="children"
-                    color="sex"
-                />
+                <ScatterP1 {insurance} x="age" y="charge" size="children" color="sex"/>
             </div>
         {/if}
     </div>
@@ -59,12 +45,7 @@
 
 <style>
     #virtual {
-        height: 150vh; /* Make the page scrollable with a 150% view height */
-        color: white;
-    }
-
-    #virtual {
-        height: 200vh; /* Makes the page scrollable */
+        height: 200vh; 
         color: white;
     }
     .text-container {
@@ -78,14 +59,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 0.1em; /* Add spacing between images */
-        /* background-color: rgba(149, 149, 149, 0.8); */
+        gap: 0.1em; 
     }
     .chart-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.1em; /* Add spacing between images */
-        /* border: 1px solid white; */
+        gap: 0.1em; 
     }
 </style>

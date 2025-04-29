@@ -10,19 +10,9 @@
     height?: number;
   };
 
-  const {
-    insurance,
-    height = 1000,
-    width = 2500,
-    colorBy = "smoker",
-  }: Props = $props();
+  const { insurance, height = 1000, width = 2500, colorBy = "smoker", }: Props = $props();
 
-  const margin = {
-    top: 45,
-    bottom: 15,
-    left: 0,
-    right: 0,
-  };
+  const margin = { top: 45, bottom: 15, left: 0, right: 0, };
 
   const usableArea = {
     top: margin.top,
@@ -62,7 +52,6 @@
       .domain([...new Set(insurance.map(d => String(d[colorBy])))] as string[])
       .range(colorScaleMap[colorBy] ?? ["#305cde", "#ff6ec7", "#ffa600", "#008000"]));
       
-
   let hoveredCategory: string = $state("");
 
   function handleMouseOver(row: TInsurance) {

@@ -32,7 +32,6 @@
                 item.smoker_category == 0,
         ),
     );
-    // console.log("dp_ male children", dp_);
 
     let progress = $state(0);
     let userGuess = $state(5000);
@@ -45,7 +44,7 @@
     let realAnswer = $derived(Number(dp[0].charge));
     const group = "charge";
 
-    const margin = { top: 30, right: 20, bottom: 30, left: 60 };
+    const margin = { top: 30, right: 20, bottom: 30, left: 70 };
     const width = 1000 - margin.left - margin.right;
     const height = 700 - margin.top - margin.bottom;
 
@@ -101,7 +100,7 @@
             .call((g) => {
                 g.selectAll("text")
                     .style("fill", "white")
-                    .style("font-size", "15px")
+                    .style("font-size", "18px")
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
                 g.selectAll("path")
@@ -120,10 +119,10 @@
                         else return "white";
                     })
                     .style("font-size", (d) => {
-                        if (d == 30000) return "14px";
-                        else if (d == 15000) return "14px";
-                        else if (d == 10000) return "14px";
-                        else return "12px";
+                        if (d == 30000) return "18px";
+                        else if (d == 15000) return "18px";
+                        else if (d == 10000) return "18px";
+                        else return "18px";
                     })
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");

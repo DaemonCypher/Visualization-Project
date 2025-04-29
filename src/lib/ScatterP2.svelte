@@ -10,7 +10,6 @@
     export let color: keyof TInsurance;
     export let width: number = 1000;
     export let height: number = 550;
-    // let progress: number = $props();
 
     let container: HTMLDivElement;
 
@@ -65,26 +64,21 @@
             .call((g) => {
                 g.selectAll("text")
                     .style("fill", "white")
-                    .style("font-size", "15px")
+                    .style("font-size", "18px")
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
-                g.selectAll("path")
-                    .style("stroke", "white")
-                    .style("stroke-width", "3px");
+                g.selectAll("path").style("stroke", "white");
             });
 
-        // Y Axis with white text and ticks
         svg.append("g")
             .call(d3.axisLeft(yScale).ticks(5))
             .call((g) => {
                 g.selectAll("text")
                     .style("fill", "white")
-                    .style("font-size", "15px")
+                    .style("font-size", "18px")
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
-                g.selectAll("path")
-                    .style("stroke", "white")
-                    .style("stroke-width", "3px");
+                g.selectAll("path").style("stroke", "white");
             });
 
         svg.selectAll("circle")
@@ -101,11 +95,6 @@
             .ease(d3.easeCubicOut)
             .attr("cy", (d) => yScale(d.yValue));
     });
-    // $effect(() => {
-    //   if (progress > 50) {
-    //     color = "smoker_category";
-    //   }
-    // });
 </script>
 
 <div bind:this={container} style="width:100%"></div>

@@ -50,7 +50,6 @@
                     value,
                 ]),
         );
-        // console.log("grouped", grouped);
 
         const colorScale = d3
             .scaleOrdinal<string>()
@@ -90,12 +89,10 @@
             .call((g) => {
                 g.selectAll("text")
                     .style("fill", "white")
-                    .style("font-size", "15px")
+                    .style("font-size", "18px")
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
-                g.selectAll("path")
-                    .style("stroke", "white")
-                    .style("stroke-width", "3px");
+                g.selectAll("path").style("stroke", "white");
             });
         // x
         svg.append("g")

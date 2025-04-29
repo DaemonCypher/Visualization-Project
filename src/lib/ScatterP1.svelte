@@ -65,33 +65,22 @@
             .call((g) => {
                 g.selectAll("text")
                     .style("fill", "white")
-                    .style("font-size", "15px")
+                    .style("font-size", "18px")
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
-
-                g.selectAll("path")
-                    .style("stroke", "white")
-                    .style("stroke-width", "3px");
+                g.selectAll("path").style("stroke", "white");
             });
 
-        // Y Axis with white text and ticks
         svg.append("g")
             .call(d3.axisLeft(yScale).ticks(5))
             .call((g) => {
                 g.selectAll("text")
                     .style("fill", "white")
-                    .style("font-size", "15px")
+                    .style("font-size", "18px")
                     .style("font-weight", "bold");
                 g.selectAll("line").style("stroke", "white");
-                g.selectAll("path")
-                    .style("stroke", "white")
-                    .style("stroke-width", "3px");
+                g.selectAll("path").style("stroke", "white");
             });
-
-        // svg
-        //   .append("g")
-        //   .call(d3.axisLeft(yScale).ticks(5));
-
         svg.selectAll("circle")
             .data(data)
             .enter()
