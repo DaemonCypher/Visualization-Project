@@ -20,6 +20,7 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
+
       <div class="text-container">
         <p style="font-size: 20px; font-weight: 600;">Where does BMI stop being neutral and start multiplying the bill?</p>
         <!-- <p style="font-size: 15px;">Most of the people are overweight (BMI>25) or obese (BMI>30).  -->
@@ -67,6 +68,8 @@
     #virtual {
         height: 200vh; /* Makes the page scrollable */
         color: white;
+        width: 400px;
+
     }
     .image-container {
         display: flex;

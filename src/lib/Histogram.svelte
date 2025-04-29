@@ -10,9 +10,9 @@
   
     onMount(() => {
       d3.select(container).selectAll("*").remove();
-      const margin = { top: 30, right: 20, bottom: 20, left: 25 };
-      const width = 200 - margin.left - margin.right;
-      const height = 200 - margin.top - margin.bottom;
+      const margin = { top: 30, right: 20, bottom: 20, left: 35 };
+      const width = 300 - margin.left - margin.right;
+      const height = 300 - margin.top - margin.bottom;
   
 
       const svg = d3.select(container)
@@ -52,7 +52,7 @@
         .attr("x", width)
         .attr("y", -10)
         .attr("text-anchor", "end")
-        .attr("font-size", "10px")
+        .attr("font-size", "12px")
         .attr("fill", "white")
         .text(statsLine1);
 
@@ -60,7 +60,7 @@
         .attr("x", width)
         .attr("y", 2) // 12px below the previous line
         .attr("text-anchor", "end")
-        .attr("font-size", "10px")
+        .attr("font-size", "12px")
         .attr("fill", "white")
         .text(statsLine2);  
 
@@ -68,7 +68,7 @@
         .attr("x", width-45)
         .attr("y",-21) 
         .attr("text-anchor", "end")
-        .attr("font-size", "10px")
+        .attr("font-size", "12px")
         .attr("fill", "white")
         .text(statsLine3);
 
@@ -92,12 +92,18 @@
         .nice()
         .range([height, 0]);
   
-      svg.append("g")
-        .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(xScale).ticks(3).tickSizeOuter(0));
-  
-      svg.append("g")
-        .call(d3.axisLeft(yScale).ticks(3).tickSizeOuter(0));
+        svg.append("g")
+          .attr("transform", `translate(0, ${height})`)
+          .call(d3.axisBottom(xScale).ticks(3).tickSizeOuter(0))
+          .selectAll("text")
+          .style("font-size", "16px") 
+          .style("fill", "white");    
+        svg.append("g")
+          .call(d3.axisLeft(yScale).ticks(3).tickSizeOuter(0))
+          .selectAll("text")
+          .style("font-size", "16px") 
+          .style("fill", "white"); 
+
   
       svg.selectAll("rect")
         .data(bins)
@@ -128,7 +134,7 @@
           .attr("y1", height*1/3)
           .attr("y2", height)
           .attr("stroke", "pink")
-          .attr("stroke-width", 2)
+          .attr("stroke-width", 5)
           .attr("stroke-dasharray", "4,2");
       }
     });

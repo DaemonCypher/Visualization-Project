@@ -45,14 +45,12 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <!-- TODO: add a better explanation -->
-        <div class="text-container">
-            <p style="font-size: 18px;">
+            <h2>
                 Overall, in this dataset, insurance charges are influenced
                 especially by bmi, smoke or not, and age, but there are <span
                     style="font-weight: bold;">outliers</span
                 > who pay much more or less than others with similar characteristics.
-            </p>
+            </h2>
             <label>
                 Category:
                 <select bind:value={axisSelection.category}>
@@ -61,7 +59,6 @@
                     {/each}
                 </select>
             </label>
-        </div>
     </div>
 
     <div slot="viz" class="header">
@@ -89,7 +86,7 @@
 <style>
     #virtual {
         height: 200vh; /* Make the page scrollable with a 150% view height */
-        width: 200px;
+        width: 300px;
         color: white;
     }
     .image-container {

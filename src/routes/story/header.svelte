@@ -33,7 +33,12 @@
         {/if}
 
         {#if progress > 70}
-            <p in:fly={{ duration: 800, x: 0, y: 200 }}>
+                <p
+                in:slide={{
+                    duration: 1000,
+                    axis: "x",
+                }}
+            >
                 By William Yang, Peilin Li, Pan Hao, and Ariel Larin
             </p>
         {/if}

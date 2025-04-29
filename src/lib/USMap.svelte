@@ -156,7 +156,10 @@
     legendGroup
       .append("g")
       .attr("transform", `translate(0, ${legendHeight})`)
-      .call(legendAxis);
+      .call(legendAxis)
+      .selectAll("text")               
+      .style("fill", "white")           
+      .style("font-size", "18px"); ;
   }
 
   onMount(async () => {

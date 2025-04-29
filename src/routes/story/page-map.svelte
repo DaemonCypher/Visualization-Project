@@ -42,6 +42,7 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
+
             <div class="text-container">
                 <h1 style="font-size: 30px;">How does coverage look across the U.S.?</h1>
                 <!-- <h4>
@@ -74,19 +75,18 @@
 <style>
     #virtual {
         height: 150vh; /* Make the page scrollable with a 150% view height */
-        position: relative;
         top: 100px;
         color: white;
+        width: 400px;
+
     }
 
-    div {
-        text-align: center;
-    }
+
     .text-container {
-      margin-top: 500px;
-      padding-left: 10px;
-      padding-right: 10px;
-      border: 1px solid white;
-      width: 350px;
+        margin-top: 500px;
+        padding-left: 100px;
+        padding-right: 100px;
+        border: 1px solid white;
+        width: 70%;
     }
 </style>
