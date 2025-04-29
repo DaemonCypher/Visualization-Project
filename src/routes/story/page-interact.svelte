@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { Scroll } from "$lib";
+    import PatientFigure from "$lib/PatientFigure.svelte";
     import { fly } from "svelte/transition";
     import * as d3 from "d3";
     import { fill } from "three/src/extras/TextureUtils.js";
@@ -249,14 +250,27 @@
                 region.
             </h3>
             {#each dp as item}
-                <ul style="font-size: 15px; font-weight: bold;">
+                <!-- <ul style="font-size: 15px; font-weight: bold;">
                     <li>Age: {item.age}</li>
                     <li>Sex: {item.sex}</li>
                     <li>BMI: {item.bmi}</li>
                     <li>Children: {item.children}</li>
                     <li>Smoker: {item.smoker}</li>
                     <li>Region: {item.region}</li>
-                </ul>
+                </ul> -->
+                <div
+                    class="patient-figure-container"
+                    style="display: flex; justify-content: center; align-items: center; height: 100%;"
+                >
+                    <PatientFigure
+                        age={item.age}
+                        bmi={item.bmi}
+                        gender={item.sex}
+                        charge={item.charge}
+                        smoker={item.smoker_category == 1}
+                        scale={0.6}
+                    />
+                </div>
             {/each}
             {#if !guessStarted && userGuess === 5000}
                 <button
@@ -281,7 +295,7 @@
                     similar background.
                     <div class="extra-box">
                         One similar case is:
-                        <ul>
+                        <!-- <ul>
                             Age: {dp_[1].age}<br />
                             Sex: {dp_[1].sex}<br />
                             BMI: {dp_[1].bmi}<br />
@@ -289,7 +303,20 @@
                             Smoker: {dp_[1].smoker}<br />
                             Region: {dp_[1].region}<br />
                             Charge: {dp_[1].charge}<br />
-                        </ul>
+                        </ul> -->
+                        <div
+                            class="patient-figure-container"
+                            style="display: flex; justify-content: center; align-items: center; height: 100%;"
+                        >
+                            <PatientFigure
+                                age={dp_[1].age}
+                                bmi={dp_[1].bmi}
+                                gender={dp_[1].sex}
+                                charge={dp_[1].charge}
+                                smoker={dp_[1].smoker_category == 1}
+                                scale={0.6}
+                            />
+                        </div>
                     </div>
                 </div>
                 <!-- todo -->

@@ -150,7 +150,7 @@
         <Coefficient {data} />
         <ScatterMatrix {matrixData} />
         <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
-        <PageGlyph />
+        <!-- <PageGlyph /> -->
         <!-- <PageInteract {insurance} /> -->
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->

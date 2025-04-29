@@ -54,7 +54,7 @@
 
     /** Base SVG size (unscaled) **/
     const W = 400;
-    const H = 400;
+    const H = 360;
 
     onMount(async () => {
         // Create the SVG
@@ -101,7 +101,7 @@
         content
             .append("g")
             .attr("class", "draggable body")
-            .attr("transform", "translate(0,135) scale(1.2)")
+            .attr("transform", "translate(0,85) scale(1.2)")
             .each(function () {
                 this.appendChild(bodyNode);
             });
@@ -110,7 +110,7 @@
         content
             .append("g")
             .attr("class", "draggable face")
-            .attr("transform", "translate(35,100) scale(0.7)")
+            .attr("transform", "translate(35,50) scale(0.7)")
             .each(function () {
                 this.appendChild(faceNode);
             });
@@ -124,7 +124,7 @@
                 .attr("class", "draggable cash")
                 .attr(
                     "transform",
-                    `translate(${250 + 45 * pile},${320 - 15 * heightIdx}) scale(0.1)`,
+                    `translate(${280 + 45 * pile},${320 - 50 - 12 * heightIdx}) scale(0.08)`,
                 )
                 .each(function () {
                     this.appendChild(cashNode.cloneNode(true));
@@ -136,7 +136,7 @@
             content
                 .append("g")
                 .attr("class", "draggable cigarette")
-                .attr("transform", "translate(130,220) scale(0.08)")
+                .attr("transform", "translate(125,160) scale(0.08)")
                 .each(function () {
                     this.appendChild(cigaretteNode);
                 });

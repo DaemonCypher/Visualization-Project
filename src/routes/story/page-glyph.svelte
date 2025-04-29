@@ -13,8 +13,8 @@
             bmi={7}
             gender="female"
             smoker={true}
-            charge={20000}
-            scale={0.6}
+            charge={23333}
+            scale={1.0}
         />
     </div>
 </Scroll>
