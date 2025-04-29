@@ -5,16 +5,8 @@
     import { fly } from "svelte/transition";
 
     export let matrixData: TInsurance[] = [];
-
     let progress: number = 0;
-
-    let categoryOption: (keyof TInsurance)[] = [
-        "sex",
-        "children",
-        "smoker",
-        "tier",
-        "weight",
-    ];
+    let categoryOption: (keyof TInsurance)[] = ["sex", "children", "smoker", "tier", "weight",];
     let axisSelection = {
         category: "smoker" as keyof TInsurance,
     };
@@ -30,9 +22,10 @@
     --scrolly-layout="story-first"
 >
   <div id="virtual">
-    <div class="text-container">
       <p>This overview shows <span style="font-weight: 800; font-size: 25px;">interesting clusters</span>, 
         each one is a puzzle piece we’ll examine more in next pages.</p>
+        <br>
+        <p>We can note some interesting patterns highlinted in yellow</p>
 
       <!-- <h2>Here we took the most notable data attirbutes from before charges, age, bmi, and smoker and plotted them pairwise against each other</h2>
       <br>
@@ -68,12 +61,11 @@
         </label>
       </p>
       
-    </div>
   </div>
 
     <div slot="viz" class="header">
         {#if progress > 10 && matrixData.length > 1}
-            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
+            <div class="image-container" in:fly={{ duration: 1000, y: -200 }}>
                 <Matrix
                     insurance={matrixData}
                     colorBy={axisSelection.category}

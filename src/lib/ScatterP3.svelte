@@ -65,7 +65,7 @@ svg
   .call((g) => {
     g.selectAll("text")
       .style("fill", "white")
-      .style("font-size", "15px")
+      .style("font-size", "18px")
       .style("font-weight", "bold");
     g.selectAll("line").style("stroke", "white");
     g.selectAll("path").style("stroke", "white");
@@ -78,7 +78,7 @@ svg
   .call((g) => {
     g.selectAll("text")
       .style("fill", "white")
-      .style("font-size", "15px")
+      .style("font-size", "18px")
       .style("font-weight", "bold");
     g.selectAll("line").style("stroke", "white");
     g.selectAll("path").style("stroke", "white");

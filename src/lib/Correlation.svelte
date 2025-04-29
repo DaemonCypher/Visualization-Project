@@ -30,8 +30,6 @@
     return  res;
   }
 
-
-
   const xwithY = $derived(create2DLookup(data));
   const labels = ["age","sex","bmi","children","smoker","region","charges"]
 
@@ -39,12 +37,7 @@
     d3.scaleSequential(d3.interpolateOranges).domain([-0.16, 1])
   );
 
-  const margin = {
-    top: 15,
-    bottom: 65,
-    left: 85,
-    right: 75,
-  };
+  const margin = { top: 15, bottom: 65, left: 85, right: 75,};
 
   const usableArea = {
     top: margin.top,
@@ -72,18 +65,14 @@
       .style("text-anchor", "start")
       .style("fill", "white")
       .style("font-weight", "bold")   
-      .style("font-size", "18px"); // Increase text size
-
+      .style("font-size", "18px"); 
 
     d3.select(yAxis)
     .call(d3.axisLeft(yScale))
     .selectAll("text")
     .style("fill", "white")
     .style("font-weight", "bold") 
-    .style("font-size", "18px"); // Increase text size
-
-
-
+    .style("font-size", "18px"); 
   }
 
   $effect(() => {
@@ -106,7 +95,6 @@
           height={yScale.bandwidth()}
           fill={colorScale(xwithY[labelX][labelY])}
           stroke="black"
-
         />
         <text
           x={xScale(labelX) + xScale.bandwidth() / 2}

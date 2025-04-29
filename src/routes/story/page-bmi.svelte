@@ -20,38 +20,28 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-      <div class="text-container">
         <p style="font-size: 20px; font-weight: 600;">Where does BMI stop being neutral and start multiplying the bill?</p>
         <!-- <p style="font-size: 15px;">Most of the people are overweight (BMI>25) or obese (BMI>30).  -->
-          <p style="font-size: 15px;">Low-tier charges spread across all BMI ranges.
-          <br>But for the 3rd tier, <span style="font-weight: 600;">92.0% (149 out of 162) </span> people are overweight or obese (BMI>30).</p>
+        <p style="font-size: 15px;">Low-tier charges spread across all BMI ranges.
+        <br>
+        But for the 3rd tier, <span style="font-weight: 600;">92.0% (149 out of 162) </span> 
+        people are overweight or obese (BMI>30).</p>
         <!-- <progress value={progress} max="50"></progress> -->
         {#if progress > 10}
-        <div class="chart-container">
-          <PieChart
-          {insurance} 
-          group="bmi_category" 
-          />
-          <Histogram
-            {insurance}
-            group="bmi"
-          />
-        </div>
+            <div class="chart-container">
+                <PieChart {insurance} group="bmi_category" />
+            </div>
+            <div class="chart-container">
+                <Histogram {insurance} group="bmi"/>
+            </div>
         {/if}
-      </div>
     </div>
 
     <div slot="viz" class="header">
         {#if progress > 10}
-      <div class="image-container">
-        <ScatterP3 
-            {insurance} 
-            x="bmi" 
-            y="charge" 
-            color="sex" 
-            />
-            <!-- size="age"  -->
-        </div>
+            <div class="image-container">
+                <ScatterP3 {insurance} x="bmi" y="charge" color="sex"/>
+            </div>
         {/if}
     </div>
 </Scroll>

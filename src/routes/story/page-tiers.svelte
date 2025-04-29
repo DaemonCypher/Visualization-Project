@@ -17,43 +17,34 @@
     --scrolly-margin="10px"
     --scrolly-viz-top="2em"
     --scrolly-gap="1em"
-  >
+>
     <div id="virtual" >
-      <div class="text-container" >
         <p style="font-size: 20px; font-weight: 600;">Can we chunk charges into tiers?</p>
         <p style="font-size: 15px;">Tier 1: <span style="font-weight: 600;">$0-15k</span><br>
-          Tier 2: <span style="font-weight: 600;">$15k-30k</span><br>
-          Tier 3: <span style="font-weight: 600;">$30k+</span><br>
-          <!-- All charges can be roughly split into 3 tiers based on the trends.  -->
-         <br> Within each tier, the charges increase with age.</p>
-        <!-- <progress value={progress} max="50"></progress> -->
+            Tier 2: <span style="font-weight: 600;">$15k-30k</span><br>
+            Tier 3: <span style="font-weight: 600;">$30k+</span><br>
+            <!-- All charges can be roughly split into 3 tiers based on the trends.  -->
+        <br> 
+            Within each tier, the charges increase with age.</p>
         {#if progress > 10}
-        <div class="chart-container">
-        <PieChart
-          {insurance} 
-          group="tier" 
-          />
-          <Histogram
-            {insurance}
-            group="charge"
-          />
-        </div>
+            <div class="chart-container">
+                <PieChart {insurance} group="tier" />
+            </div>
+            <div class="chart-container">
+                <Histogram {insurance} group="charge"/>
+            </div>
         {/if}
-    </div>
     </div>
     <div slot="viz" class="header">
         {#if progress > 10}
             <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
-                <ScatterP2
-                    {insurance}
-                    x="age"
+                <ScatterP2 {insurance} x="age"
                     y="charge"
                     size="charge"
                     color="tier"
                     width="1000"
                     height="700"
-                    {progress}
-                />
+                    {progress} />
             </div>
         {/if}
     </div>

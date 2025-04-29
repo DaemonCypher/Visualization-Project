@@ -134,10 +134,10 @@
 </script>
 
 <div id="video-wrapper">
-    <video autoplay muted loop playsinline id="background-video">
+    <!-- <video autoplay muted loop playsinline id="background-video">
         <source src="./videos/money.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-    </video>
+    </video> -->
 </div>
 
 <div class="container">
@@ -146,10 +146,9 @@
         <Header />  
         <PageMap {uninsuredData} />
         <Intro />
+        <PageParallel {insurance} colorBy="smoker" />
         <Coefficient {data}/>
         <ScatterMatrix {matrixData}/>
-        <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
-        <!-- <PageInteract {insurance} /> -->
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
         <PageTiers {insurance} />
@@ -163,10 +162,8 @@
         <Conclusion />
         <!-- <Page6 /> -->
 
-        <PageParallel {insurance} colorBy="smoker" />
         <!-- <PageHeap {data} /> -->
     </div>
-    <!-- <h1>Hello World!</h1> -->
 </div>
 
 <style>
