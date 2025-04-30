@@ -131,17 +131,15 @@
                 .each(function () {
                     this.appendChild(cigaretteNode);
                 });
+        }
 
         if (charge > 999) {
             content
                 .append("text")
-                .attr("x", 50)
-                .attr("y", 50)
-                .attr("font-size", "20px")
+                .attr("transform", "translate(0, 350)")
+                .attr("font-size", "17px")
                 .attr("fill", "white")
-                .text(`Each scack of cash of a human's height is $20000`);
-
-        }
+                .text(`A pile of cash of a human's height is $20000`);
 
         }
     }
