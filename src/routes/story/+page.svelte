@@ -164,7 +164,7 @@
         <PageChildren {insurance} />
         <PageRegion {insurance} />
         <PageInteract {insurance} />
-        <UserInteract {insurance} />
+        <!-- <UserInteract {insurance} /> -->
 
         <Conclusion />
         <PageParallel {insurance} colorBy="smoker" />

@@ -4,8 +4,9 @@
     let progress: number = $state(0);
   </script>
   
-  <Scroll bind:progress --scrolly-story-width="0">
-    <div id="virtual"></div>
+  <Scroll bind:progress --scrolly-story-width="0.1fr">
+    <div id="virtual">
+    </div>
     <div slot="viz" class="header">
       <h1> <span style="font-size: 50px;">Do you know</span> 
          what factors affect different insurance charges?</h1>
@@ -17,7 +18,7 @@
           }}
         >
         We can’t unlock every underwriting secret, 
-        but a public dataset of 1,338 policies shines a light on three transparent factors:
+        but a public dataset of 1,338 policies shines a light on three potential factors:
         <span style="font-size: 25px; font-weight: 600;">Age, BMI, and smoking.</span> 
         </p>
       {/if}

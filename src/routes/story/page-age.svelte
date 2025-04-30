@@ -19,6 +19,7 @@
     --scrolly-gap="1em"
   >
     <div id="virtual" >
+      <div class="text-container">
         <p style="font-size: 20px; font-weight: 600;">Does age mean higher cost?</p>
         <p style="font-size: 15px;">There are 1338 datapoints, female and male are almost equal. 
             Within each tier, as the age increases, insurance charges increase.</p>
@@ -32,6 +33,7 @@
                 <Histogram {insurance} group="age"/>
             </div>
         {/if}
+      </div>
 
     </div>
     <div slot="viz" class="header">
@@ -52,7 +54,7 @@
         margin-top: 500px;
         padding-left: 10px;
         padding-right: 10px;
-        border: 1px solid white;
+        /* border: 0.1px solid rgba(255, 255, 255, 0.30); */
         width: 350px;
     }
     .image-container {
