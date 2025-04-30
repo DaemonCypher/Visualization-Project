@@ -4,6 +4,7 @@
     import type { TInsurance } from "../types";
     import { colorScaleMap, labelMaps } from "../types";
     // Props
+    export let dtpoint = null
     export let insurance: TInsurance[];
     export let x: keyof TInsurance;
     export let y: keyof TInsurance;
@@ -156,6 +157,8 @@
                 .style("fill", colorScale(String(datum[color])))
                 .style("opacity", +datum[y] > 30000 ? 1 : 0.7)
                 .on("mouseover", (event, d) => {
+                      dtpoint = datum;
+                      console.log(dtpoint, "dtpoint")
                       tooltip
                         .style("opacity", 1)
                         .html(
@@ -170,7 +173,7 @@
                         .style("left", `${xPos + 10}px`)
                         .style("top", `${yPos}px`);
                     })
-                    .on("mouseout", () => tooltip.style("opacity", 0));
+                    .on("mouseout", () => {tooltip.style("opacity", 0); dtpoint = null; });
             });
           });
         });

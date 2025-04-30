@@ -115,7 +115,7 @@
                 .attr("class", "draggable cash")
                 .attr(
                     "transform",
-                    `translate(${280 + 45 * pile},${320 - 50 - 12 * heightIdx}) scale(0.08)`,
+                    `translate(${270 + 45 * pile},${320 - 50 - 12 * heightIdx}) scale(0.08)`,
                 )
                 .each(function () {
                     this.appendChild(cashNode.cloneNode(true));
@@ -131,6 +131,18 @@
                 .each(function () {
                     this.appendChild(cigaretteNode);
                 });
+
+        if (charge > 999) {
+            content
+                .append("text")
+                .attr("x", 50)
+                .attr("y", 50)
+                .attr("font-size", "20px")
+                .attr("fill", "white")
+                .text(`Each scack of cash of a human's height is $20000`);
+
+        }
+
         }
     }
 
