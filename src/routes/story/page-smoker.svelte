@@ -4,9 +4,10 @@
     import PieChart from "$lib/PieChart.svelte";
     import { fly } from "svelte/transition";
     import Histogram from "$lib/Histogram.svelte";
+    import PatientFigure from "$lib/PatientFigure.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
-
+    let dtpoint = $state(null);
     let progress: number = $state(0);
 </script>
 
@@ -35,6 +36,17 @@
                 {insurance}
                 group="smoker_category"
             /> -->
+            {#if dtpoint}
+                <PatientFigure
+                    age={dtpoint.age}
+                    bmi={dtpoint.bmi}
+                    gender={dtpoint.sex}
+                    smoker={dtpoint.smoker_category == 1}
+                    charge={dtpoint.charge}
+                    scale={0.7}/>
+            {:else}
+                <p style="font-size: 15px; color:gray">Hover on the chart to see the details of a patient.</p>
+            {/if}
         {/if}   
         </div>
     </div>
@@ -42,7 +54,7 @@
     <div slot="viz" class="header">
         {#if progress > 10}
             <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
-                <ViolinSmoker {insurance} x="smoker" y="charge" color="sex"/>
+                <ViolinSmoker {insurance} x="smoker" y="charge" color="sex" bind:dtpoint/>
                 <!-- size="age" -->
             </div>
         {/if}

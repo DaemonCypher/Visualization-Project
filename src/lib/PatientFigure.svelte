@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import * as d3 from "d3";
+  import { draw } from "svelte/transition";
 
     /** Input props **/
     export let age: number;
@@ -15,39 +16,41 @@
     let faceImage: string;
     let bodyImage: string;
 
-    // Decide which face to use
-    if (gender === "male") {
-        faceImage =
-            age > 70
-                ? "./image/face_1.svg"
-                : age > 35
-                  ? "./image/face_3.svg"
-                  : "./image/face_5.svg";
-    } else {
-        faceImage =
-            age > 70
-                ? "./image/face_2.svg"
-                : age > 35
-                  ? "./image/face_4.svg"
-                  : "./image/face_6.svg";
-    }
+    function load(){
+        // Decide which face to use
+        if (gender === "male") {
+            faceImage =
+                age > 70
+                    ? "./image/face_1.svg"
+                    : age > 35
+                    ? "./image/face_3.svg"
+                    : "./image/face_5.svg";
+        } else {
+            faceImage =
+                age > 70
+                    ? "./image/face_2.svg"
+                    : age > 35
+                    ? "./image/face_4.svg"
+                    : "./image/face_6.svg";
+        }
 
-    // Decide which body to use
-    if (gender === "male") {
-        bodyImage =
-            bmi > 35
-                ? "./image/body_5.svg"
-                : bmi > 25
-                  ? "./image/body_3.svg"
-                  : "./image/body_1.svg";
-    } else {
-        bodyImage =
-            bmi > 30
-                ? "./image/body_6.svg"
-                : bmi > 25
-                  ? "./image/body_4.svg"
-                  : "./image/body_2.svg";
-    }
+        // Decide which body to use
+        if (gender === "male") {
+            bodyImage =
+                bmi > 35
+                    ? "./image/body_5.svg"
+                    : bmi > 25
+                    ? "./image/body_3.svg"
+                    : "./image/body_1.svg";
+        } else {
+            bodyImage =
+                bmi > 30
+                    ? "./image/body_6.svg"
+                    : bmi > 25
+                    ? "./image/body_4.svg"
+                    : "./image/body_2.svg";
+        }
+    }   
 
     /** Container reference **/
     let container: HTMLDivElement;
@@ -56,8 +59,13 @@
     const W = 400;
     const H = 360;
 
-    onMount(async () => {
+    async function drawSVG() {
         // Create the SVG
+        load(); // Load the images based on props
+
+
+
+        d3.select(container).select("svg").remove(); // Remove any existing SVG
         const svg = d3
             .select(container)
             .append("svg")
@@ -67,18 +75,7 @@
         // A <g> that holds everything, scaled uniformly
         const content = svg.append("g").attr("transform", `scale(${scale})`);
 
-        // Simple drag behavior for all parts
-        const drag = d3
-            .drag<SVGGElement, unknown>()
-            .on("start", (event) => {
-                d3.select(event.sourceEvent.currentTarget).raise();
-            })
-            .on("drag", (event) => {
-                d3.select(event.sourceEvent.currentTarget).attr(
-                    "transform",
-                    `translate(${event.x},${event.y})`,
-                );
-            });
+
 
         // Load all needed SVG files in parallel
         const [xmlBody, xmlFace, xmlCigarette, xmlCash] = await Promise.all([
@@ -124,7 +121,7 @@
                 .attr("class", "draggable cash")
                 .attr(
                     "transform",
-                    `translate(${280 + 45 * pile},${320 - 50 - 12 * heightIdx}) scale(0.08)`,
+                    `translate(${270 + 45 * pile},${320 - 50 - 12 * heightIdx}) scale(0.08)`,
                 )
                 .each(function () {
                     this.appendChild(cashNode.cloneNode(true));
@@ -142,9 +139,27 @@
                 });
         }
 
-        // Enable dragging on all parts
-        content.selectAll<SVGGElement, unknown>(".draggable").call(drag);
+        if (charge > 999) {
+            content
+                .append("text")
+                .attr("transform", "translate(0, 350)")
+                .attr("font-size", "17px")
+                .attr("fill", "white")
+                .text(`A pile of cash of a human's height is $20000`);
+
+        }
+    }
+
+    onMount(() => {
+        // Draw the SVG when the component is mounted
+        drawSVG();
     });
+
+    $: if (scale || age || bmi || charge || gender || smoker) {
+        console.log("Re-rendering due to prop change");
+        drawSVG();
+    }
+
 </script>
 
 <!-- Container for the SVG -->
@@ -158,12 +173,3 @@
     "
 ></div>
 
-<style>
-    :global(.draggable) {
-        cursor: move;
-    }
-    /* Prevent pointer events inside the imported SVGs */
-    :global(.draggable svg) {
-        pointer-events: none;
-    }
-</style>

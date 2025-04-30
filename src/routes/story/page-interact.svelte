@@ -264,7 +264,7 @@
                         age={item.age}
                         bmi={item.bmi}
                         gender={item.sex}
-                        charge={item.charge}
+                        charge={hasSubmitted ? item.charge: 0}
                         smoker={item.smoker_category == 1}
                         scale={0.6}
                     />
