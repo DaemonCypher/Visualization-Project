@@ -62,6 +62,9 @@
     async function drawSVG() {
         // Create the SVG
         load(); // Load the images based on props
+
+
+
         d3.select(container).select("svg").remove(); // Remove any existing SVG
         const svg = d3
             .select(container)
@@ -152,10 +155,11 @@
         drawSVG();
     });
 
-    $: {
-        console.log("Drawing SVG" ,charge);
+    $: if (scale || age || bmi || charge || gender || smoker) {
+        console.log("Re-rendering due to prop change");
         drawSVG();
-    } // Redraw when props change
+    }
+
 </script>
 
 <!-- Container for the SVG -->
