@@ -37,76 +37,31 @@
 
   // Helper: Draw the base map (state outlines)
   function drawBaseMap(
-    svg,
-    states,
-    pathGenerator: d3.GeoPath<any, d3.GeoPermissibleObjects>
-  ) {
-    const mapGroup = svg.append("g").attr("class", "states");
+  svg,
+  states,
+  pathGenerator: d3.GeoPath<any, d3.GeoPermissibleObjects>,
+  rateByState: Map<string, number>,
+  colorScale
+) {
+  const mapGroup = svg.append("g").attr("class", "states");
 
-    mapGroup
-      .selectAll("path")
-      .data(states)
-      .join("path")
-      .attr("d", pathGenerator)
-      .attr("fill", "#eee")
-      .attr("stroke", "#fff")
-      .attr("stroke-width", 0.7)
-      // Fade in the outlines
-      .style("opacity", 0)
-      .transition()
-      .duration(1000)
-      .style("opacity", 1);
-  }
+  mapGroup
+    .selectAll("path")
+    .data(states)
+    .join("path")
+    .attr("d", pathGenerator)
+    .attr("fill", (d) => {
+      const rate = rateByState.get(d.properties.name);
+      return rate ? colorScale(rate) : "#ccc"; // Fill with color based on the rate
+    })
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 0.7)
+    .style("opacity", 0)
+    .transition()
+    .duration(1000)
+    .style("opacity", 1);
+}
 
-  // Helper: Draw circles at each state's centroid, with color & size encoding
-  function drawCircles(
-    svg,
-    states,
-    projection,
-    rateByState: Map<string, number>,
-    colorScale,
-    radiusScale,
-    durationScale
-  ) {
-    const circleGroup = svg.append("g").attr("class", "state-circles");
-
-    circleGroup
-      .selectAll("circle")
-      .data(states)
-      .join("circle")
-      .attr("cx", (d) => {
-        const centroid = projection(d3.geoCentroid(d));
-        return centroid ? centroid[0] : 0;
-      })
-      .attr("cy", (d) => {
-        const centroid = projection(d3.geoCentroid(d));
-        return centroid ? centroid[1] : 0;
-      })
-      .attr("fill", (d) => {
-        const rate = rateByState.get(d.properties.name);
-        return rate ? colorScale(rate) : "#ccc";
-      })
-      // Start radius at 0 for transition
-      .attr("r", 0)
-      .attr("stroke", "#333")
-      .attr("stroke-width", 0.5)
-      .append("title") // Tooltip
-      .text(
-        (d) => `${d.properties.name}: ${rateByState.get(d.properties.name) || "N/A"}`
-      );
-
-    // Transition each circle, using a rate-dependent duration
-    circleGroup.selectAll("circle")
-      .transition()
-      .duration((d) => {
-        const rate = rateByState.get(d.properties.name) || 0;
-        return durationScale(rate);
-      })
-      .attr("r", (d) => {
-        const rate = rateByState.get(d.properties.name) || 0;
-        return radiusScale(rate);
-      });
-  }
 
   // Helper: Draw a legend for the color scale
   function drawLegend(svg, colorScale) {
@@ -218,10 +173,7 @@
         .text("Uninsured Rate by State in 2015");
 
       // Draw base map
-      drawBaseMap(svg, states, pathGenerator);
-
-      // Draw circles for each state
-      drawCircles(svg, states, projection, rateByState, colorScale, radiusScale, durationScale);
+drawBaseMap(svg, states, pathGenerator, rateByState, colorScale);
 
       // Legend
       drawLegend(svg, colorScale);
