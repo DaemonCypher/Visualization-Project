@@ -3,6 +3,7 @@
     import { slide, fly } from "svelte/transition";
     import Parallel from "$lib/Parallel.svelte";
     import type { TInsurance } from "../../types";
+    import PatientFigure from "$lib/PatientFigure.svelte";
 
     type Props = {
         insurance: TInsurance[];
@@ -126,6 +127,16 @@
                   <!-- <div class="info-box" style="border: 1px solid #ccc; padding: 1rem;">
                     <p>This is the second box.</p>
                   </div> -->
+                  <div style="display: flex; justify-content: center; align-items: center; height: 100%; margin-left: 50px;"
+                  >
+                    <PatientFigure 
+                    {age} 
+                    gender={gender}
+                    smoker={smoker == "yes"} 
+                    charge={data.toFixed(2)}
+                    bmi= {(pounds * 703) / (feet * 12 + inches) ** 2}
+                    scale={0.6}/>  
+                  </div>
                 </div>
             </div>
               
