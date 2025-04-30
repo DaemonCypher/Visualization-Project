@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import * as d3 from "d3";
+  import { draw } from "svelte/transition";
 
     /** Input props **/
     export let age: number;
@@ -56,8 +57,9 @@
     const W = 400;
     const H = 360;
 
-    onMount(async () => {
+    async function drawSVG() {
         // Create the SVG
+        d3.select(container).select("svg").remove(); // Remove any existing SVG
         const svg = d3
             .select(container)
             .append("svg")
@@ -67,18 +69,7 @@
         // A <g> that holds everything, scaled uniformly
         const content = svg.append("g").attr("transform", `scale(${scale})`);
 
-        // Simple drag behavior for all parts
-        const drag = d3
-            .drag<SVGGElement, unknown>()
-            .on("start", (event) => {
-                d3.select(event.sourceEvent.currentTarget).raise();
-            })
-            .on("drag", (event) => {
-                d3.select(event.sourceEvent.currentTarget).attr(
-                    "transform",
-                    `translate(${event.x},${event.y})`,
-                );
-            });
+
 
         // Load all needed SVG files in parallel
         const [xmlBody, xmlFace, xmlCigarette, xmlCash] = await Promise.all([
@@ -141,10 +132,17 @@
                     this.appendChild(cigaretteNode);
                 });
         }
+    }
 
-        // Enable dragging on all parts
-        content.selectAll<SVGGElement, unknown>(".draggable").call(drag);
+    onMount(() => {
+        // Draw the SVG when the component is mounted
+        drawSVG();
     });
+
+    $: {
+        console.log("Drawing SVG" ,charge);
+        drawSVG();
+    } // Redraw when props change
 </script>
 
 <!-- Container for the SVG -->
@@ -158,12 +156,3 @@
     "
 ></div>
 
-<style>
-    :global(.draggable) {
-        cursor: move;
-    }
-    /* Prevent pointer events inside the imported SVGs */
-    :global(.draggable svg) {
-        pointer-events: none;
-    }
-</style>
