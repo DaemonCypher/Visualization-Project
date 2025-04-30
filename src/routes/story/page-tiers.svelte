@@ -19,6 +19,7 @@
     --scrolly-gap="1em"
 >
     <div id="virtual" >
+      <div class="text-container" >
         <p style="font-size: 20px; font-weight: 600;">Can we chunk charges into tiers?</p>
         <p style="font-size: 15px;">Tier 1: <span style="font-weight: 600;">$0-15k</span><br>
             Tier 2: <span style="font-weight: 600;">$15k-30k</span><br>
@@ -34,6 +35,7 @@
                 <Histogram {insurance} group="charge"/>
             </div>
         {/if}
+        </div>
     </div>
     <div slot="viz" class="header">
         {#if progress > 10}
@@ -43,7 +45,7 @@
                     size="charge"
                     color="tier"
                     width="1000"
-                    height="700"
+                    height="750"
                     {progress} />
             </div>
         {/if}
@@ -55,7 +57,7 @@
         margin-top: 500px;
         padding-left: 10px;
         padding-right: 10px;
-        border: 1px solid white;
+        /* border: 1px solid white; */
         width: 350px;
     }
     #virtual {

@@ -22,6 +22,7 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
+        <div class="text-container">
         {#if progress > 25}
             <h1 style="font-size: 30px;" in:slide={{duration: 1000,axis: "x",}}>
                 How does coverage look across the U.S.?</h1>
@@ -32,11 +33,12 @@
                 <a href="https://www.kaggle.com/datasets/hhs/health-insurance?resource=download" style="color: white;">The data</a> 
             was compiled from the US Department of Health and Human Services and US Census Bureau.</p>
         {/if}
-        {#if progress > 70}
-        <p style="font-size: 12px;" in:slide={{duration: 1000, axis: "x",}}>
-        Previous data from <a href="https://www.kaggle.com/datasets/teertha/ushealthinsurancedataset" style="color: white;">Kaggle</a></p> 
+        <!-- {#if progress > 70} -->
+        <!-- <p style="font-size: 12px;" in:slide={{duration: 1000, axis: "x",}}> -->
+        <!-- Previous data from <a href="https://www.kaggle.com/datasets/teertha/ushealthinsurancedataset" style="color: white;">Kaggle</a></p>  -->
         <!-- <p style="font-size: 12px;">We couldn't find more opensource info about the Insurance Premium Charges in US with important details for risk underwriting, which may be due to privacy or proprietary issues.</p> -->
-        {/if}
+        <!-- {/if} -->
+        </div>
 
     </div>
     <div slot="viz">

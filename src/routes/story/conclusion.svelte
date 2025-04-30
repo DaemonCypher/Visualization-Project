@@ -4,7 +4,7 @@
     let progress: number = $state(0);
   </script>
   
-  <Scroll bind:progress --scrolly-story-width="0">
+  <Scroll bind:progress --scrolly-story-width="0.05fr">
     <div id="virtual"></div>
     <div slot="viz" class="header">
       <h1>Overall, <span style="font-size: 30px;">Age, BMI, and smoking.</span> 

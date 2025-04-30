@@ -20,14 +20,16 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
+        <div class="text-container">
         <p style="font-size: 20px; font-weight: 600;">When weight and smoke combine, does cost stack or multiply?</p>
         <p style="font-size: 15px;">Within the same BMI range, smokers tend to pay more, and obese smokers pay even more.</p>
-        <div style="display: flex; justify-content: center; gap:5px">
+        </div>
+        <div style="display: flex; gap: 10px; padding-left: 10px; padding-right: 10px;">
             <span
                 style="background-color: {colorScaleMap[
                 'smoker_category'][0]};
                 color: white;
-                padding: 3px;
+                padding:2px;
                 border-radius: 5px;
                 ">Smoker
             </span>
@@ -35,9 +37,9 @@
                 style="background-color: {colorScaleMap[
                 'smoker_category'][1]};
                 color: white;
-                padding: 3px;
-                border-radius: 5px;">Non-smoker
-            </span>
+                padding: 2px;
+                border-radius: 5px;">Non-smoker</span
+            >
         </div>
     </div>
 
@@ -77,7 +79,7 @@
         padding-left: 10px;
         padding-right: 10px;
         padding-bottom: 10px;
-        border: 1px solid white;
+        /* border: 1px solid white; */
         width: 350px;
     }
 </style>

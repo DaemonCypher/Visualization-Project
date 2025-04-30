@@ -20,6 +20,7 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
+        <div class="text-container">
         <p style="font-size: 20px; font-weight: 600;">Where does BMI stop being neutral and start multiplying the bill?</p>
         <!-- <p style="font-size: 15px;">Most of the people are overweight (BMI>25) or obese (BMI>30).  -->
         <p style="font-size: 15px;">Low-tier charges spread across all BMI ranges.
@@ -28,14 +29,17 @@
         people are overweight or obese (BMI>30).</p>
         <!-- <progress value={progress} max="50"></progress> -->
         {#if progress > 10}
-            <div class="chart-container">
+            <!-- <div class="chart-container">
                 <PieChart {insurance} group="bmi_category" />
-            </div>
+            </div> -->
             <div class="chart-container">
                 <Histogram {insurance} group="bmi"/>
             </div>
         {/if}
+        </div>
     </div>
+
+
 
     <div slot="viz" class="header">
         {#if progress > 10}
@@ -51,7 +55,7 @@
         margin-top: 500px;
         padding-left: 10px;
         padding-right: 10px;
-        border: 1px solid white;
+        /* border: 1px solid white; */
         width: 350px;
     }
     #virtual {

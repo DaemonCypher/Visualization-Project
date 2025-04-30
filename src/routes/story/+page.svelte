@@ -23,6 +23,7 @@
     import ScatterMatrix from "./scatterMatrix.svelte";
     import Header from "./header.svelte";
     import Coefficient from "./coefficient.svelte";
+    import UserInteract from "./userInteract.svelte";
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
     let data: { variable1: string; variable2: string; value: number }[] =
@@ -147,14 +148,12 @@
         <Header />
         <PageMap {uninsuredData} />
         <Intro />
-        <Coefficient {data} />
-        <ScatterMatrix {matrixData} />
-        <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
+        <Coefficient {data}/>
+        <ScatterMatrix {matrixData}/>
+
         <!-- <PageGlyph /> -->
         <!-- <PageInteract {insurance} /> -->
-        <PageParallel {insurance} colorBy="smoker" />
-        <Coefficient {data} />
-        <ScatterMatrix {matrixData} />
+
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
         <PageTiers {insurance} />
@@ -165,7 +164,10 @@
         <PageChildren {insurance} />
         <PageRegion {insurance} />
         <PageInteract {insurance} />
+        <!-- <UserInteract {insurance} /> -->
+
         <Conclusion />
+        <PageParallel {insurance} colorBy="smoker" />
         <!-- <Page6 /> -->
 
         <!-- <PageHeap {data} /> -->
