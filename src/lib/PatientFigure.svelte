@@ -16,39 +16,41 @@
     let faceImage: string;
     let bodyImage: string;
 
-    // Decide which face to use
-    if (gender === "male") {
-        faceImage =
-            age > 70
-                ? "./image/face_1.svg"
-                : age > 35
-                  ? "./image/face_3.svg"
-                  : "./image/face_5.svg";
-    } else {
-        faceImage =
-            age > 70
-                ? "./image/face_2.svg"
-                : age > 35
-                  ? "./image/face_4.svg"
-                  : "./image/face_6.svg";
-    }
+    function load(){
+        // Decide which face to use
+        if (gender === "male") {
+            faceImage =
+                age > 70
+                    ? "./image/face_1.svg"
+                    : age > 35
+                    ? "./image/face_3.svg"
+                    : "./image/face_5.svg";
+        } else {
+            faceImage =
+                age > 70
+                    ? "./image/face_2.svg"
+                    : age > 35
+                    ? "./image/face_4.svg"
+                    : "./image/face_6.svg";
+        }
 
-    // Decide which body to use
-    if (gender === "male") {
-        bodyImage =
-            bmi > 35
-                ? "./image/body_5.svg"
-                : bmi > 25
-                  ? "./image/body_3.svg"
-                  : "./image/body_1.svg";
-    } else {
-        bodyImage =
-            bmi > 30
-                ? "./image/body_6.svg"
-                : bmi > 25
-                  ? "./image/body_4.svg"
-                  : "./image/body_2.svg";
-    }
+        // Decide which body to use
+        if (gender === "male") {
+            bodyImage =
+                bmi > 35
+                    ? "./image/body_5.svg"
+                    : bmi > 25
+                    ? "./image/body_3.svg"
+                    : "./image/body_1.svg";
+        } else {
+            bodyImage =
+                bmi > 30
+                    ? "./image/body_6.svg"
+                    : bmi > 25
+                    ? "./image/body_4.svg"
+                    : "./image/body_2.svg";
+        }
+    }   
 
     /** Container reference **/
     let container: HTMLDivElement;
@@ -59,6 +61,7 @@
 
     async function drawSVG() {
         // Create the SVG
+        load(); // Load the images based on props
         d3.select(container).select("svg").remove(); // Remove any existing SVG
         const svg = d3
             .select(container)

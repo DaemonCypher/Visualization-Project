@@ -112,22 +112,22 @@
                 </div>
               
                 <!-- Right side: stacked boxes -->
-                <div class="right-boxes" style="display: flex; flex-direction: column; gap: 1rem; flex: 1;">
-                    <div class="result" in:fly={{ duration: 700, x: -80 }} style="font-size: 1.2rem;">
+                <div class="right-boxes" style="display: flex; flex-direction: column; gap: 1rem; flex: 1; height: 300px;">
+                    <div class="result" in:fly={{ duration: 700, x: -80 }} style="font-size: 1.2rem; ">
                         {#if data}
-                          <p>
+                          <p style="height: 100px">
                             A {age}-year‑old {gender} weighing {pounds} lbs, standing {feet}'{inches}" and
                             {smoker === "yes" ? "smoking" : "not smoking"} would pay
                             <strong> ${data.toFixed(2)}</strong> on average in this dataset.
                           </p>
                         {:else}
-                          <p>No similar policy‑holders found in the data.</p>
+                          <p style="height: 100px">No similar policy‑holders found in the data.</p>
                         {/if}
                     </div>
                   <!-- <div class="info-box" style="border: 1px solid #ccc; padding: 1rem;">
                     <p>This is the second box.</p>
                   </div> -->
-                  <div style="display: flex; justify-content: center; align-items: center; height: 100%; margin-left: 50px;"
+                  <div style="display: flex; justify-content: center; align-items: center; height: 100%; margin-left: 60px;"
                   >
                     <PatientFigure 
                     {age} 
