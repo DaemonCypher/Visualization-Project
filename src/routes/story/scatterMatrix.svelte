@@ -22,10 +22,25 @@
     --scrolly-layout="story-first"
 >
   <div id="virtual">
-      <p>This overview shows <span style="font-weight: 800; font-size: 25px;">interesting clusters</span>, 
-        each one is a puzzle piece we’ll examine more in next pages.</p>
-        <br>
-        <p>We can note some interesting patterns highlinted in yellow</p>
+    <div class="text-container">
+      <p>This overview shows <span style="font-weight: 800; font-size: 25px;">interesting clusters</span>, highlighted in 
+        <span style="color: yellow;">yellow</span>.
+        <br><br>
+        Each one is a puzzle piece we’ll examine more in next pages.
+        <span style="font-size: 15px;">Feel free to explore other color encodings. 
+          <label>
+            <!-- Category: -->
+          <select bind:value={axisSelection.category} style="padding: 1px; font-size: 12px;">
+            {#each categoryOption as key}
+              <option value={key}>{key}</option>
+            {/each}
+            </select>
+          </label>
+        </span>
+      </p>
+       
+        <!-- <br> -->
+        <!-- <p>We can note some interesting patterns highlinted in yellow</p> -->
 
       <!-- <h2>Here we took the most notable data attirbutes from before charges, age, bmi, and smoker and plotted them pairwise against each other</h2>
       <br>
@@ -50,16 +65,7 @@
       <br>
       <br> -->
 
-      <p style="font-size: 15px;">Feel free to explore other color encodings. 
-        <label>
-          <!-- Category: -->
-        <select bind:value={axisSelection.category}>
-          {#each categoryOption as key}
-            <option value={key}>{key}</option>
-          {/each}
-          </select>
-        </label>
-      </p>
+    </div>
       
   </div>
 
@@ -97,8 +103,8 @@
     }
     .text-container {
         margin-top: 500px;
-        padding-left: 100px;
-        padding-right: 100px;
+        padding-left: 80px;
+        padding-right: 80px;
         border: 1px solid white;
         width: 70%;
     }
