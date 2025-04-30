@@ -243,11 +243,10 @@
 >
     <div id="virtual">
         <div class="text-container" in:fly={{ duration: 1500, x: -100 }}>
-            <h3>
-                Estimate Insurance Charges for a 40-year-old non-smoker male
-                with a BMI of 29.7 and 2 children living in the southeast
-                region.
-            </h3>
+            <p style="font-size: 20px; font-weight: 100;">
+                Estimate Insurance Charges for a <span style="font-weight: 600;">40-year-old non-smoker male</span>
+                with a <span style="font-weight: 600;">BMI of 29.7</span> and <span style="font-weight: 600;">2 children</span> living in the <span style="font-weight: 600;">southeast</span> region.
+            </p>
             {#each dp as item}
                 <!-- <ul style="font-size: 15px; font-weight: bold;">
                     <li>Age: {item.age}</li>
