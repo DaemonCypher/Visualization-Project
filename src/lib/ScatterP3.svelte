@@ -65,7 +65,7 @@ svg
   .call((g) => {
     g.selectAll("text")
       .style("fill", "white")
-      .style("font-size", "15px")
+      .style("font-size", "18px")
       .style("font-weight", "bold");
     g.selectAll("line").style("stroke", "white");
     g.selectAll("path").style("stroke", "white");
@@ -78,7 +78,7 @@ svg
   .call((g) => {
     g.selectAll("text")
       .style("fill", "white")
-      .style("font-size", "15px")
+      .style("font-size", "18px")
       .style("font-weight", "bold");
     g.selectAll("line").style("stroke", "white");
     g.selectAll("path").style("stroke", "white");
@@ -92,9 +92,9 @@ svg
         .append("circle")
         .attr("cx", d => xScale(d.xValue))
         .attr("cy", chartHeight) 
-        .attr("r", d => sizeScale(d.sizeValue))
+        .attr("r", d => d.sizeValue ? sizeScale(d.sizeValue) : 5.2)
         .attr("fill", d => colorScale(d.colorValue))
-        .attr("opacity", 0.8)
+        .attr("opacity", d => d.yValue> 30000 ? 1 : 0.7)
         .transition()
         .duration(1000)
         .ease(d3.easeCubicOut)

@@ -110,54 +110,66 @@
 
   // Helper: Draw a legend for the color scale
   function drawLegend(svg, colorScale) {
-    const legendWidth = 300;
-    const legendHeight = 10;
+  const legendWidth = 300;
+  const legendHeight = 10;
 
-    const legendGroup = svg
-      .append("g")
-      .attr("class", "legend")
-      .attr("transform", `translate(${(width - legendWidth) / 2}, ${height - 50})`);
+  const legendGroup = svg
+    .append("g")
+    .attr("class", "legend")
+    .attr("transform", `translate(${(width - legendWidth) / 2}, ${height - 50})`);
 
-    // Define gradient
-    const gradient = legendGroup
-      .append("defs")
-      .append("linearGradient")
-      .attr("id", "legend-gradient")
-      .attr("x1", "0%")
-      .attr("x2", "100%")
-      .attr("y1", "0%")
-      .attr("y2", "0%");
+  // Define gradient
+  const gradient = legendGroup
+    .append("defs")
+    .append("linearGradient")
+    .attr("id", "legend-gradient")
+    .attr("x1", "0%")
+    .attr("x2", "100%")
+    .attr("y1", "0%")
+    .attr("y2", "0%");
 
-    colorScale.range().forEach((colorValue, i) => {
-      gradient
-        .append("stop")
-        .attr("offset", `${(i / (colorScale.range().length - 1)) * 100}%`)
-        .attr("stop-color", colorValue);
-    });
+  colorScale.range().forEach((colorValue, i) => {
+    gradient
+      .append("stop")
+      .attr("offset", `${(i / (colorScale.range().length - 1)) * 100}%`)
+      .attr("stop-color", colorValue);
+  });
 
-    // Legend bar
-    legendGroup
-      .append("rect")
-      .attr("width", legendWidth)
-      .attr("height", legendHeight)
-      .style("fill", "url(#legend-gradient)");
+  // Legend bar
+  legendGroup
+    .append("rect")
+    .attr("width", legendWidth)
+    .attr("height", legendHeight)
+    .style("fill", "url(#legend-gradient)");
 
-    // Legend axis
-    const legendScale = d3
-      .scaleLinear()
-      .domain(colorScale.domain())
-      .range([0, legendWidth]);
+  // Legend axis
+  const legendScale = d3
+    .scaleLinear()
+    .domain(colorScale.domain())
+    .range([0, legendWidth]);
 
-    const legendAxis = d3
-      .axisBottom(legendScale)
-      .ticks(5)
-      .tickFormat(d3.format(".0%"));
+  const legendAxis = d3
+    .axisBottom(legendScale)
+    .ticks(5)
+    .tickFormat(d3.format(".0%"));
 
-    legendGroup
-      .append("g")
-      .attr("transform", `translate(0, ${legendHeight})`)
-      .call(legendAxis);
-  }
+  const axisGroup = legendGroup
+    .append("g")
+    .attr("transform", `translate(0, ${legendHeight})`)
+    .call(legendAxis);
+
+  // --- Make legend text and ticks white ---
+  axisGroup.selectAll("text")
+    .style("fill", "white")
+    .style("font-size", "18px");
+
+  axisGroup.selectAll("line")
+    .style("stroke", "white");
+
+  axisGroup.selectAll("path")
+    .style("stroke", "white");
+}
+
 
   onMount(async () => {
     try {
@@ -203,7 +215,7 @@
         .style("font-size", "24px")
         .style("font-weight", "bold")
         .style("fill", "white")
-        .text("Uninsured Rate by State");
+        .text("Uninsured Rate by State in 2015");
 
       // Draw base map
       drawBaseMap(svg, states, pathGenerator);

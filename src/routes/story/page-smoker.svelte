@@ -2,7 +2,8 @@
     import { Scroll } from "$lib";
     import ViolinSmoker from "$lib/ViolinSmoker.svelte";
     import PieChart from "$lib/PieChart.svelte";
-
+    import { fly } from "svelte/transition";
+    import Histogram from "$lib/Histogram.svelte";
     type Props = { insurance: any[] };
     let { insurance }: Props = $props();
 
@@ -19,31 +20,28 @@
     --scrolly-layout="story-first"
 >
     <div id="virtual">
-        <div class="text-container">
-            <h4>Most of the people do not smoke. 
-              Smokers tend to pay more for insurance.
-            <!-- <progress value={progress} max="50"></progress> -->
-            {#if progress > 10}
-                <PieChart
-                    {insurance} 
-                    group="smoker_category" 
-                />
-            {/if}
-        </div>
+        <p style="font-size: 20px; font-weight: 600;">Smokers pay more for insurance.</p>
+        <p style="font-size: 15px;">Though Most of the people do not smoke. 
+        <br>
+        For the 3rd tier, 
+        <span style="font-weight: 600;">93.8% (152 out of 162) </span> 
+        people are smokers.
+            <!-- <br>Smokers tend to pay more for insurance.</p> -->
+        <!-- <progress value={progress} max="50"></progress> -->
+        {#if progress > 10}
+            <PieChart {insurance} group="smoker_category" />
+            <!-- <Histogram
+                {insurance}
+                group="smoker_category"
+            /> -->
+        {/if}   
     </div>
 
     <div slot="viz" class="header">
         {#if progress > 10}
-            <div
-                class="image-container"
-            >
-                <ViolinSmoker
-                    {insurance}
-                    x="smoker"
-                    y="charge"
-                    color="bmi_category"
-                    size="age"
-                />
+            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
+                <ViolinSmoker {insurance} x="smoker" y="charge" color="sex"/>
+                <!-- size="age" -->
             </div>
         {/if}
     </div>
@@ -51,22 +49,49 @@
 
 <style>
     #virtual {
-        height: 200vh; /* Make the page scrollable with a 150% view height */
+        height: 200vh; 
         color: white;
     }
     .image-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.1em; /* Add spacing between images */
-        width: 180spx; 
-
+        gap: 0.1em; 
+        width: 180spx;
     }
     .text-container {
-      margin-top: 500px;
-      padding-left: 10px;
-      padding-right: 10px;
-      border: 1px solid white;
-      width: 350px;
+        margin-top: 500px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid white;
+        width: 350px;
+    }
+
+    .bmi-gradient-legend {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: sans-serif;
+    }
+
+    .gradient-bar {
+        width: 300px;
+        height: 25px;
+        background: linear-gradient(
+            to right,
+            #ffffcc,
+            #a1dab4,
+            #41b6c4,
+            #2c7fb8,
+            #253494
+        );
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .legend-caption {
+        font-size: 14px;
+        margin-top: 5px;
+        font-style: italic;
     }
 </style>

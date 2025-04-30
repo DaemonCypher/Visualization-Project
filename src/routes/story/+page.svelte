@@ -13,6 +13,9 @@
     import PageMap from "./page-map.svelte";
     import PageParallel from "./page-parallel.svelte";
     import PageHeap from "./page-heap.svelte";
+    import PageGlyph from "./page-glyph.svelte";
+    import Intro from "./intro.svelte";
+    import Conclusion from "./conclusion.svelte";
     // import PageScatter from "./page-scatter-plots.svelte";
     // import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
@@ -20,9 +23,11 @@
     import ScatterMatrix from "./scatterMatrix.svelte";
     import Header from "./header.svelte";
     import Coefficient from "./coefficient.svelte";
+    import UserInteract from "./userInteract.svelte";
     let insurance: TInsurance[] = $state([]);
     let uninsuredData = $state<{ state: string; rate: number }[]>([]);
-    let data: { variable1: string; variable2: string; value: number }[] = $state([]);
+    let data: { variable1: string; variable2: string; value: number }[] =
+        $state([]);
     let matrixData: TInsurance[] = $state([]);
 
     // load csv data only once
@@ -89,7 +94,6 @@
             });
             console.log("Loaded CSV Data:", insurance);
 
-
             const insuranceUrl = "./uninsured.csv";
             uninsuredData = await d3.csv(insuranceUrl, (row) => {
                 return {
@@ -104,26 +108,26 @@
     }
 
     async function loadMatrix() {
-    try {
-      const csvUrl = "./matrix.csv";
-      matrixData = await d3.csv(csvUrl, (row) => {
-        return {
-          age: row.age,
-          sex: row.sex,
-          bmi: row.bmi,
-          children: row.children,
-          smoker: row.smoker,
-          region: row.region,
-          charges: row.charges,    
-          tier: row.tier,
-          weight:row.weight
-        };
-      });
-      console.log("Loaded CSV Data:", matrixData);
-    } catch (error) {
-      console.error("Error loading CSV:", error);
+        try {
+            const csvUrl = "./matrix.csv";
+            matrixData = await d3.csv(csvUrl, (row) => {
+                return {
+                    age: row.age,
+                    sex: row.sex,
+                    bmi: row.bmi,
+                    children: row.children,
+                    smoker: row.smoker,
+                    region: row.region,
+                    charges: row.charges,
+                    tier: row.tier,
+                    weight: row.weight,
+                };
+            });
+            console.log("Loaded CSV Data:", matrixData);
+        } catch (error) {
+            console.error("Error loading CSV:", error);
+        }
     }
-  }
     onMount(async () => {
         await loadCsv();
         await loadMatrix();
@@ -131,55 +135,68 @@
     });
 </script>
 
-<video autoplay muted loop playsinline id="background-video">
-    <source src="./videos/money.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-</video>
+<div id="video-wrapper">
+    <!-- <video autoplay muted loop playsinline id="background-video">
+        <source src="./videos/money.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video> -->
+</div>
 
 <div class="container">
     <div class="story">
-
-
         <!-- <Page0 /> -->
-        <Header />        
+        <Header />
+        <PageMap {uninsuredData} />
+        <Intro />
         <Coefficient {data}/>
         <ScatterMatrix {matrixData}/>
-        <!-- TODO: INSERT SCATTER PLOT MATRIX HERE -->
+
+        <!-- <PageGlyph /> -->
         <!-- <PageInteract {insurance} /> -->
+
         <!-- <PageScatter {insurance} /> -->
         <!-- <UnifyScatter {insurance} /> -->
-        <PageAge {insurance} /> 
         <PageTiers {insurance} />
-        <PageSmoker {insurance} />
+        <PageAge {insurance} />
         <PageBmi {insurance} />
+        <PageSmoker {insurance} />
         <PageViolinBmiSmoker {insurance} />
         <PageChildren {insurance} />
         <PageRegion {insurance} />
         <PageInteract {insurance} />
+        <UserInteract {insurance} />
+
+        <Conclusion />
+        <PageParallel {insurance} colorBy="smoker" />
         <!-- <Page6 /> -->
 
-        <PageParallel {insurance} colorBy="smoker" />
-        <PageMap {uninsuredData} />
         <!-- <PageHeap {data} /> -->
     </div>
-    <!-- <h1>Hello World!</h1> -->
 </div>
 
 <style>
-    #background-video {
+    #video-wrapper {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures the video covers the entire viewport */
-        z-index: -1; /* Places the video behind all other content */
-        opacity: 1;
+        background-color: #333; /* translucent grey background */
+        z-index: -1;
     }
+
+    #background-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.3; /* adjust as needed */
+    }
+
     .container {
         width: 80vw;
         margin: 10px auto;
         padding: 10px;
         align-content: center;
+        /* background-color: black; */
     }
 </style>
