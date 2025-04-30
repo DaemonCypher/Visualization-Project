@@ -10,9 +10,9 @@
     height?: number;
   };
 
-  const { insurance, height = 1000, width = 2500, colorBy = "smoker", }: Props = $props();
+  const { insurance, height = 1000, width = 2500, colorBy = "smoker",}: Props = $props();
 
-  const margin = { top: 45, bottom: 15, left: 0, right: 0, };
+  const margin = { top: 45, bottom: 15, left: 0, right: 0,};
 
   const usableArea = {
     top: margin.top,
@@ -20,7 +20,7 @@
     bottom: height - margin.bottom,
     left: margin.left,
   };
-
+  
   const xLabels = ["age", "bmi", "charge", "children"];
 
   const xScale = $derived(
@@ -52,6 +52,7 @@
       .domain([...new Set(insurance.map(d => String(d[colorBy])))] as string[])
       .range(colorScaleMap[colorBy] ?? ["#305cde", "#ff6ec7", "#ffa600", "#008000"]));
       
+
   let hoveredCategory: string = $state("");
 
   function handleMouseOver(row: TInsurance) {
@@ -74,11 +75,37 @@
     return hoveredCategory && hoveredCategory !== category ? 0.2 : 0.8;
   }
 
-  function makePath(row: TInsurance): string | null {
-    const line = d3.line();
-    const points = xLabels.map((key) => [xScale(key)!, yScales[key](+row[key])] as [number, number]);
-    return line(points);
+function makePath(row: TInsurance): string | null {
+  const points = xLabels.map((key) => [xScale(key)!, yScales[key](+row[key])] as [number, number]);
+
+  // Bundling strength: how much to pull toward center between axes (0 = none, 1 = strong)
+  const bundlingStrength = 0.6;
+
+  // Create control points for smoother bundled lines
+  const bundledPoints: [number, number][] = [];
+  for (let i = 0; i < points.length - 1; i++) {
+    const [x0, y0] = points[i];
+    const [x1, y1] = points[i + 1];
+
+    // Midpoint
+    const mx = (x0 + x1) / 2;
+    const my = (y0 + y1) / 2;
+
+    // Pull toward the center vertically for bundling
+    const controlY = my * (1 - bundlingStrength) + ((usableArea.bottom - usableArea.top) / 2) * bundlingStrength;
+
+    bundledPoints.push([x0, y0]);
+    bundledPoints.push([mx, controlY]);
   }
+  // Push the final point
+  bundledPoints.push(points[points.length - 1]);
+
+  const line = d3.line()
+    .curve(d3.curveBasis); // Smooth curve through the control points
+
+  return line(bundledPoints);
+}
+
 
   let axisGroups: SVGGElement[] = [];
 

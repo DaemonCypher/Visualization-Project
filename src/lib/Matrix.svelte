@@ -113,7 +113,7 @@
           (xCol === "bmi" && yCol === "charges") ||
           (xCol === "charges" && yCol === "bmi")
         ) {
-          return "yellow";  
+          return "yellow";  //Highlight color
         }
         return "white"; 
       })
@@ -157,8 +157,9 @@
       .style("fill", "white"); 
   });
 </script>
-
-<svg bind:this={svgEl}></svg>
+<h2 style="color:white"> Y axis</h2>
+<svg bind:this={svgEl}>
+</svg>
 
 <style>
   text {
