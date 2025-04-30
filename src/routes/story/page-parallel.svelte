@@ -73,6 +73,7 @@
     #virtual {
         height: 200vh; 
         color: white;
+        width: 300px;
     }
     .image-container {
         display: flex;

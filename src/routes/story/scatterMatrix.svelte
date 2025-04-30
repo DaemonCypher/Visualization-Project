@@ -74,6 +74,11 @@
                 />
             </div>
         {/if}
+        {#if progress > 25 && matrixData.length > 1}
+
+        <h2 style="color:white; margin-left: 500px;">X axis</h2>
+        {/if}
+
     </div>
 </Scroll>
 
