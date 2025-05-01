@@ -1,29 +1,22 @@
 <script lang="ts">
     import { Scroll } from "$lib";
     import { slide, fly } from "svelte/transition";
+    import BlackBox from "$lib/BlackBox.svelte";
     let progress: number = $state(0);
+   
   </script>
   
   <Scroll bind:progress --scrolly-story-width="0.05fr">
-    <div id="virtual"></div>
+    <div id="virtual">
+    </div>
     <div slot="viz" class="header">
       <h1>Overall, <span style="font-size: 30px;">Age, BMI, and smoking.</span> 
          seem to be the most important factors affecting insurance charges.</h1>
-      {#if progress > 25}
-        <p
-          in:slide={{
-            duration: 200,
-            axis: "x",
-          }}
-        >
-        <p style="font-size: 30px; font-weight: 600;">Yet our outlier—a healthy, non-smoking father of two paying over $30 k</p>.
-        <p style="font-size: 30px; font-weight: 600;">Without the underwriting process, we cannot see the mechanisms that set his price.</p>
+        <p style="font-size: 30px; font-weight: 600;">Yet our outlier—a healthy, non-smoking father of two paying over $30 k.
+        Without the underwriting process, we cannot see the mechanisms that set his price.</p>
         <p style="font-size: 30px; font-weight: 600;">Until insurers disclose those criteria, consumers and regulators can only infer—never verify—whether premiums are fair.</p>
+          <BlackBox />
 
-      {/if}
-  
-
-     
     </div>
   </Scroll>
   
