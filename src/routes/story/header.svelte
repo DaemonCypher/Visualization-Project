@@ -9,24 +9,29 @@
     <div slot="viz" class="header">
         <h1>Insurance Holders</h1>
         {#if progress > 25}
-            <p in:slide={{ duration: 1000, axis: "x",}}>
+            <p in:slide={{ duration: 500, axis: "x",}}>
                 A Deep Dive into What features of Insurance Holders Lead to a
                 Higher Insurance Charge
             </p>
         {/if}
 
         {#if progress > 50}
-            <p in:slide={{duration: 1000, axis: "x",}}>
+            <p in:slide={{duration: 500, axis: "x",}}>
                 With data visualizations and Exploratory Data Analysis
             </p>
         {/if}
 
-        {#if progress > 70}
-            <p in:slide={{duration: 1000,axis: "x",}}>
+        {#if progress > 60}
+            <p in:slide={{duration: 500,axis: "x",}}>
                 By William Yang, Peilin Li, Pan Hao, and Ariel Larin
             </p>
         {/if}
+        <div style="margin-top: 150px; font-size: 16px; color: white; opacity: 0.6;">
+            ↓ scroll to start ↓
+         </div>
     </div>
+
+    
 </Scroll>
 
 <style>

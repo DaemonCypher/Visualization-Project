@@ -7,25 +7,31 @@
   <Scroll bind:progress --scrolly-story-width="0.1fr">
     <div id="virtual">
     </div>
-    <div slot="viz" class="header">
-      <h1> <span style="font-size: 50px;">Do you know</span> 
-         what factors affect different insurance charges?</h1>
-      {#if progress > 25}
+    <div slot="viz" class="header" style="text-align: center; padding: 40px;">
+      <h1 style="font-size: 30px; margin-bottom: 20px; font-weight: 350;">
+        Do you know <span style="font-weight: 500;">what drives the insurance premiums?</span>
+      </h1>
+      <div style="display: flex; justify-content: center; gap: 20px;">
+        <img src="./image/news1.png" alt="intro" style="width: 30%; height: auto; margin-top: 30px;">
+        <img src="./image/news2.png" alt="intro" style="width: 30%; height: auto; margin-top: 30px;">
+      </div>
+    
+      {#if progress > 15}
         <p
-          in:slide={{
-            duration: 500,
-            axis: "x",
-          }}
+          style="font-size: 20px; font-weight: 350; margin-top: 20px;"
+          in:slide={{ duration: 500, axis: "x" }}
         >
-        We can’t unlock every underwriting secret, 
-        but a public dataset of 1,338 policies shines a light on three potential factors:
-        <span style="font-size: 25px; font-weight: 600;">Age, BMI, and smoking.</span> 
+          While insurers keep their exact formulas secret, a dataset of 1,338 policies reveals three major factors:
+          <span style="font-size: 22px; font-weight: 500; ">Age, BMI, and smoking status.</span>
         </p>
       {/if}
-  
 
-     
+      <div style="margin-top: 150px; font-size: 16px; color: white; opacity: 0.6;">
+        ↓ scroll to continue ↓
+      </div>
+      
     </div>
+    
   </Scroll>
   
   <!-- <svelte:window bind:scrollY={progress} /> -->
