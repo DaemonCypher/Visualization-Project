@@ -136,7 +136,7 @@
         const pile = Math.floor(i / 20), h = i - pile * 20;
         wrap(
           cashNode.cloneNode(true) as SVGElement,
-          250 + 45 * pile,
+          220 + 45 * pile,
           320 - 50 - 12 * h,
           0.08,
           () => `charge: $${format2(charge)}`
@@ -149,7 +149,7 @@
           this.appendChild(cigNode);
         });
         const bbox = (gC.node() as SVGGElement).getBBox();
-        const x = 30, y = 110, s = 0.1;
+        const x = 0, y = 100, s = 0.1;
         // translate right by width·s, then scale x by –s to flip
         gC.attr(
           "transform",
@@ -158,14 +158,14 @@
       }
   
       // Extra message if charge is large
-      if (charge > 999) {
-        content
-          .append("text")
-          .attr("transform", "translate(0,350)")
-          .attr("font-size", "17px")
-          .attr("fill", "white")
-          .text(`A pile of cash of a human's height is $20000`);
-      }
+      // if (charge > 999) {
+      //   content
+      //     .append("text")
+      //     .attr("transform", "translate(0,350)")
+      //     .attr("font-size", "17px")
+      //     .attr("fill", "white")
+      //     .text(`A pile of cash of a human's height is $20000`);
+      // }
     }
   
     onMount(drawSVG);
