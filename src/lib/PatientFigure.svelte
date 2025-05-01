@@ -121,12 +121,12 @@
       // Body & face: show BMI (2 decimals) and age
       wrap(
         bodyNode,
-        0, 85, 1.2,
+        15, 85, 1.2,
         () => `bmi: ${format2(bmi)}<br>age: ${age}`
       );
       wrap(
         faceNode,
-        35, 50, 0.7,
+        50, 50, 0.7,
         () => `bmi: ${format2(bmi)}<br>age: ${age}`
       );
   
