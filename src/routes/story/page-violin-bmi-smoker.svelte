@@ -58,8 +58,7 @@
 
     <div slot="viz" class="header">
         {#if progress > 10}
-            <!-- Add a condition to trigger the transition -->
-            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
+            <div class="image-container" in:fly={{ duration: 1500, y: 200 }}>
                 <ViolinScatter
                     {insurance}
                     x="bmi_category"

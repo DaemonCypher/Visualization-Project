@@ -52,7 +52,7 @@
 
     <div slot="viz" class="header">
         {#if progress > 5}
-            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
+            <div class="image-container" in:fly={{ duration: 1500, y: 200 }}>
                 <StackArea {insurance} x="region" y="charge" color="smoker_category" 
                 />
             </div>

@@ -53,7 +53,7 @@
 
     <div slot="viz" class="header">
         {#if progress > 10}
-            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
+            <div class="image-container" in:fly={{ duration: 1500, y: 200 }}>
                 <ViolinSmoker {insurance} x="smoker" y="charge" color="sex" bind:dtpoint/>
                 <!-- size="age" -->
             </div>
