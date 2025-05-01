@@ -20,7 +20,7 @@ export type TUninsuredRate = {
 
 export const colorScaleMap = {
     "tier": ["#fec44f","#fed98e","#d95f0e"],
-    "sex": ["#305cde", "#ff6ec7", "#ffa600", "#008000"],
+    "sex": ["#ff6ec7", "#305cde", "#ffa600", "#008000"],
     "smoker": ["#fc8d59",  "#91cf60"],
     "smoker_category": ["#fc8d59",  "#91cf60"],
     "bmi_category": ["#2c7fb8","#253494","#41b6c4","#ffffcc","#a1dab4"],
