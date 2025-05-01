@@ -11,9 +11,9 @@
     </div>
     <div slot="viz" class="header" style="text-align: center; padding: 40px;">
       <p style="font-size: 24px; font-weight: 300; margin-bottom: 20px;">
-        <span style="color:#d9534f;">Age, BMI, and Smoking status</span> charges in this dataset.
+        <span style="font-weight: 500;">Age, BMI, and Smoking status</span> charges in this dataset.
       
-        Yet, consider the outlier—a healthy, non-smoking father of two paying over <span style="color:#d9534f;">$30,000.</span>
+        Yet, consider the outlier—a healthy, non-smoking father of two paying over <span style="font-weight: 500;">$30,000.</span>
       </p>
 
     
