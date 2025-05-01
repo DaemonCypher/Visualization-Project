@@ -30,7 +30,7 @@
           // .range(d3.schemeSet2);
       case "smoker":
         return d3.scaleOrdinal<string>()
-          .domain(["0", "1"])
+          .domain(["1", "0"])
           .range(colorScaleMap["smoker_category"]);
           // .range(["#2ca02c", "#d62728"]);
       case "sex":
@@ -61,8 +61,87 @@
   }
 
   function getOpacity() {
-    return 0.8;
+    return 0.5;
   }
+
+    function drawViolinDots(
+      cellG: d3.Selection<SVGGElement, unknown, null, undefined>,
+      values: TInsurance[],
+      numericKey: keyof TInsurance,
+      yScale: d3.ScaleLinear<number, number>,
+      size: number,
+      centerX: number,
+      colorScale: (d: TInsurance) => string,
+      opacity: (d: TInsurance) => number
+    ) {
+      const histogramGenerator = d3
+        .histogram<TInsurance, number>()
+        .value(d => +d[numericKey])
+        .domain(yScale.domain() as [number, number])
+        .thresholds(yScale.ticks(40));
+
+      const bins = histogramGenerator(values);
+      const maxCount = d3.max(bins, bin => bin.length) ?? 1;
+
+      const xCountScale = d3
+        .scaleLinear()
+        .domain([0, maxCount])
+        .range([0, (size / 2) - 50]);
+
+      bins.forEach(bin => {
+        bin.forEach(d => {
+          const jitterX = (Math.random() * 2 - 1) * xCountScale(bin.length);
+          const cx = centerX + jitterX;
+          const cy = yScale(+d[numericKey]);
+          cellG.append("circle")
+            .attr("cx", cx)
+            .attr("cy", cy)
+            .attr("r", 2)
+            .attr("fill", colorScale(d))
+            .attr("fill-opacity", opacity(d));
+        });
+      });
+    }
+    function drawHorizontalViolinDots(
+      cellG: d3.Selection<SVGGElement, unknown, null, undefined>,
+      values: TInsurance[],
+      numericKey: keyof TInsurance,
+      xScale: d3.ScaleLinear<number, number>,
+      size: number,
+      centerY: number,
+      colorScale: (d: TInsurance) => string,
+      opacity: (d: TInsurance) => number
+    ) {
+      const histogramGenerator = d3
+        .histogram<TInsurance, number>()
+        .value(d => +d[numericKey])
+        .domain(xScale.domain() as [number, number])
+        .thresholds(xScale.ticks(40));
+
+      const bins = histogramGenerator(values);
+      const maxCount = d3.max(bins, bin => bin.length) ?? 1;
+
+      const yCountScale = d3
+        .scaleLinear()
+        .domain([0, maxCount])
+        .range([0, (size / 2) - 50]);
+
+      bins.forEach(bin => {
+        bin.forEach(d => {
+          const jitterY = (Math.random() * 2 - 1) * yCountScale(bin.length);
+          const cy = centerY + jitterY;
+          const cx = xScale(+d[numericKey]);
+          cellG.append("circle")
+            .attr("cx", cx)
+            .attr("cy", cy)
+            .attr("r", 2)
+            .attr("fill", colorScale(d))
+            .attr("fill-opacity", opacity(d));
+        });
+      });
+    }
+
+
 
   let svgEl: SVGSVGElement = $state();
 
@@ -132,13 +211,64 @@
       });
 
     cell.each(function ([i, j]) {
+      const xCol = columns[i];
+      const yCol = columns[j];
+      const cellG = d3.select(this);
+      const cellData = data.filter((d) => !isNaN(d[xCol]) && !isNaN(d[yCol]));
+
+      if (xCol === "smoker") {
+        const numericKey: keyof TInsurance = yCol;
+        const yScale = y[j] as d3.ScaleLinear<number, number>;
+        const smokerCats = Array.from(new Set(data.map(d => String(d.smoker))));
+        smokerCats.forEach((cat, idx) => {
+          const catData = data.filter(d => String(d.smoker) === cat);
+          const n = smokerCats.length;
+          const laneWidth = size / n;
+          const centerX = laneWidth * (idx + 0.5);
+          drawViolinDots(
+            cellG,
+            catData,
+            numericKey,
+            yScale,
+            size,
+            centerX,
+            d => getColor(d),
+            d => getOpacity(d)
+          );
+        });
+        return;
+      }
+
+      if (yCol === "smoker") {
+        const numericKey: keyof TInsurance = xCol;
+        const xScale = x[i] as d3.ScaleLinear<number, number>;
+        const smokerCats = Array.from(new Set(data.map(d => String(d.smoker))));
+        smokerCats.forEach((cat, idx) => {
+          const catData = data.filter(d => String(d.smoker) === cat);
+          const n = smokerCats.length;
+          const laneHeight = size / n;
+          const centerY = laneHeight * (idx + 0.5);
+          drawHorizontalViolinDots(
+            cellG,
+            catData,
+            numericKey,
+            xScale,
+            size,
+            centerY,
+            d => getColor(d),
+            d => getOpacity(d)
+          );
+        });
+        return;
+      }
+
       d3.select(this)
         .selectAll("circle")
         .data(data.filter((d) => !isNaN(d[columns[i]]) && !isNaN(d[columns[j]])))
         .join("circle")
         .attr("cx", (d) => x[i](d[columns[i]]))
         .attr("cy", (d) => y[j](d[columns[j]]))
-        .attr("r", 3.5)
+        .attr("r", 2.5)
         .attr("fill-opacity", getOpacity)
         .attr("fill", (d) => getColor(d));
     });
