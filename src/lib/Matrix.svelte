@@ -313,7 +313,7 @@
           .style("font", "15px sans-serif");
     });
 </script>
-<h2 style="color:white"> Y axis</h2>
+<!-- <h2 style="color:white"> Y axis</h2> -->
 <svg bind:this={svgEl}>
 </svg>
 

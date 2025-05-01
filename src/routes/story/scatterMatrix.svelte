@@ -3,6 +3,7 @@
     import Matrix from "$lib/Matrix.svelte";
     import { Scroll } from "$lib";
     import { fly } from "svelte/transition";
+    import { colorScaleMap } from "../../types";
 
     export let matrixData: TInsurance[] = [];
     let progress: number = 0;
@@ -37,7 +38,23 @@
             </select>
           </label>
         </span>
-      </p>
+        <div style="display: flex; gap: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
+          <span
+              style="background-color: {colorScaleMap[
+              'smoker_category'][0]};
+              color: white;
+              padding:2px;
+              border-radius: 5px;
+              ">Smoker
+          </span>
+          <span
+              style="background-color: {colorScaleMap[
+              'smoker_category'][1]};
+              color: white;
+              padding: 2px;
+              border-radius: 5px;">Non-smoker</span
+          >
+      </div>
        
         <!-- <br> -->
         <!-- <p>We can note some interesting patterns highlinted in yellow</p> -->
@@ -71,7 +88,7 @@
 
     <div slot="viz" class="header">
         {#if progress > 10 && matrixData.length > 1}
-            <div class="image-container" in:fly={{ duration: 1000, y: -200 }}>
+            <div class="image-container" in:fly={{ duration: 1000, y: 200 }}>
                 <Matrix
                     insurance={matrixData}
                     colorBy={axisSelection.category}
@@ -80,9 +97,9 @@
                 />
             </div>
         {/if}
-        {#if progress > 25 && matrixData.length > 1}
+        {#if progress > 0 && matrixData.length > 1}
 
-        <h2 style="color:white; margin-left: 500px;">X axis</h2>
+        <!-- <h2 style="color:white; margin-left: 500px; font-size: 20px;">X axis</h2> -->
         {/if}
 
     </div>
