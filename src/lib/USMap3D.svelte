@@ -28,7 +28,7 @@
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(50, 4 / 3, 0.1, 1000); // Adjust aspect ratio for smaller frame
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Enable transparency
-      renderer.setSize(1000, 800); // Set smaller frame size
+      renderer.setSize(500, 400); // Set smaller frame size
       renderer.setClearColor(0x000000, 0); // Transparent background
       container.appendChild(renderer.domElement);
   
@@ -111,7 +111,7 @@
       console.log("Scene children after adding objects:", scene.children);
   
       // Set camera position
-      camera.position.set(0, 5, 15); // Adjust camera position for smaller frame
+      camera.position.set(0, 5, 8); // Adjust camera position for smaller frame
       camera.lookAt(0, 0, 0);
       console.log("Camera position:", camera.position);
   
@@ -126,7 +126,7 @@
       // Handle window resize
       window.addEventListener("resize", () => {
         const width = 500; // Fixed width
-        const height = 400; // Fixed height
+        const height = 500; // Fixed height
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height);
@@ -134,7 +134,7 @@
     });
   </script>
   
-  <div bind:this={container} style="width: 500px; height: 400px; margin: 0 auto; position: relative;">
+  <div bind:this={container} style="width: 500px; height: 500px; margin: 0 auto; position: relative;">
     <div
       bind:this={tooltip}
       style="display: none; position: absolute; background: rgba(0, 0, 0, 0.7); color: white; padding: 8px; border-radius: 4px; font-size: 12px; pointer-events: none; z-index: 10;"

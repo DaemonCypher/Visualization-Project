@@ -7,7 +7,7 @@
 </script>
 
 <div>
-  <button on:click={() => (is3D = !is3D)} style="margin-bottom: 10px;">
+  <button on:click={() => (is3D = !is3D)} style="margin-bottom: 0px; font-size: 12px;">
     Switch to {is3D ? "2D" : "3D"} Map
   </button>
 
