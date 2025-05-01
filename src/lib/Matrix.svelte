@@ -5,10 +5,10 @@
 
   type Props = {insurance: any[]; colorBy: keyof TInsurance; width?: number; height?: number;};
   const { insurance, colorBy, width = 1000, height = 1000,}: Props = $props();
-  const padding = 10;
-  const columns = ["age", "bmi", "smoker", "charges"];
+  const padding = 15;
+  const columns = ["charges", "age", "bmi", "smoker"];
   const size = (width - (columns.length + 1) * padding) / columns.length + padding;
-  const margin = { top: 35, bottom: 15, left: 15, right: 15,};
+  const margin = { top: 35, bottom: 15, left: 15, right: 15};
 
   const usableArea = {
     top: margin.top,
@@ -190,7 +190,9 @@
           (xCol === "age" && yCol === "charges") ||
           (xCol === "charges" && yCol === "age") ||
           (xCol === "bmi" && yCol === "charges") ||
-          (xCol === "charges" && yCol === "bmi")
+          (xCol === "charges" && yCol === "bmi") ||
+          (xCol === "smoker" && yCol === "charges") ||
+          (xCol === "charges" && yCol === "smoker")
         ) {
           return "yellow";  //Highlight color
         }
@@ -203,7 +205,9 @@
           (xCol === "age" && yCol === "charges") ||
           (xCol === "charges" && yCol === "age") ||
           (xCol === "bmi" && yCol === "charges") ||
-          (xCol === "charges" && yCol === "bmi")
+          (xCol === "charges" && yCol === "bmi") ||
+          (xCol === "smoker" && yCol === "charges") ||
+          (xCol === "charges" && yCol === "smoker")
         ) {
           return 3; 
         }
@@ -268,24 +272,46 @@
         .join("circle")
         .attr("cx", (d) => x[i](d[columns[i]]))
         .attr("cy", (d) => y[j](d[columns[j]]))
-        .attr("r", 2.5)
+        .attr("r", 2)
         .attr("fill-opacity", getOpacity)
         .attr("fill", (d) => getColor(d));
     });
 
-    svg.append("g")
-      .style("font", "15px sans-serif")
-      .style("pointer-events", "none")
-      .selectAll("text")
-      .data(columns)
-      .join("text")
-      .attr("transform", (_, i) => `translate(${i * size},${i * size})`)
-      .attr("x", padding)
-      .attr("y", padding)
-      .attr("dy", ".71em")
-      .text((d) => d)
-      .style("fill", "white"); 
-  });
+    // svg.append("g")
+    //   .style("font", "15px sans-serif")
+    //   .style("pointer-events", "none")
+    //   .selectAll("text")
+    //   .data(columns)
+    //   .join("text")
+    //   .attr("transform", (_, i) => `translate(${i * size},${i * size})`)
+    //   .attr("x", padding)
+    //   .attr("y", padding)
+    //   .attr("dy", ".71em")
+    //   .text((d) => d)
+    //   .style("fill", "white"); 
+
+      cell
+        .filter(([i, j]) => i === 0)
+        .append("text")
+        .attr("transform", `translate(${padding},${size / 2}) rotate(-90)`)
+        .attr("text-anchor", "middle")      
+        .attr("dy", "-20")                
+        .text(([, j]) => columns[j])
+        .style("fill", "white")
+        .style("font", "15px sans-serif");
+
+
+      cell
+        .filter(([i, j]) => j === columns.length - 1)
+        .append("text")
+          .attr("x", size / 2)             
+          .attr("y", size - padding / 2 + 10)    
+          .attr("dy", ".71em")
+          .attr("text-anchor", "middle")
+          .text(([i]) => columns[i])        
+          .style("fill", "white")
+          .style("font", "15px sans-serif");
+    });
 </script>
 <h2 style="color:white"> Y axis</h2>
 <svg bind:this={svgEl}>
