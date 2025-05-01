@@ -27,6 +27,7 @@
       </p>
       <BlackBox />
       <!-- https://medcitynews.com/2025/04/the-price-is-wrong-we-need-to-solve-the-healthcare-insurance-transparency-crisis/ -->
+      <!-- https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3 -->
     </div>
   </Scroll>
   

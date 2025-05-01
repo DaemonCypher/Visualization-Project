@@ -21,12 +21,12 @@
           style="font-size: 20px; font-weight: 350; margin-top: 20px;"
           in:slide={{ duration: 500, axis: "x" }}
         >
-          While insurers keep their exact formulas secret, a dataset of 1,338 policies reveals three major factors:
+          While insurers keep their exact formulas secret, a <a href="https://www.kaggle.com/datasets/teertha/ushealthinsurancedataset" style=" color: white; text-decoration: underline;">dataset of 1,338 policies</a> reveals three major factors:
           <span style="font-size: 22px; font-weight: 500; ">Age, BMI, and smoking status.</span>
         </p>
       {/if}
 
-      <div style="margin-top: 150px; font-size: 16px; color: white; opacity: 0.6;">
+      <div class="scroll-indicator">
         ↓ scroll to continue ↓
       </div>
       
@@ -54,6 +54,24 @@
       font-size:20px;
       color:  #ffffff;
       font-weight: 100px; 
+    }
+    .scroll-indicator {
+        margin-top: 150px;
+        font-size: 16px;
+        color: white;
+        opacity: 0.6;
+        animation: bounce 1.5s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
     }
   </style>
   

@@ -93,7 +93,8 @@
           y={yScale(labelY)}
           width={xScale.bandwidth()}
           height={yScale.bandwidth()}
-          fill={colorScale(xwithY[labelX][labelY])}
+          fill={ colorScale(xwithY[labelX][labelY])}
+          opacity={labelX == labelY ? 0.8 : 1}
           stroke="black"
         />
         <text
@@ -102,8 +103,8 @@
           font-size="18"
           text-anchor="middle"
           alignment-baseline="middle"
-          fill="black"
-          font-weight="bold"
+          fill={xwithY[labelX][labelY] > 0.9 ? "white" : "black"}
+          font-weight={xwithY[labelX][labelY] > 0.9 ? "normal" : "bold"}
         >
           {(xwithY[labelX][labelY]).toFixed(2)}
         </text>
