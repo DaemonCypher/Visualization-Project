@@ -9,14 +9,23 @@
   <Scroll bind:progress --scrolly-story-width="0.05fr">
     <div id="virtual">
     </div>
-    <div slot="viz" class="header">
-      <h1>Overall, <span style="font-size: 30px;">Age, BMI, and smoking.</span> 
-         seem to be the most important factors affecting insurance charges.</h1>
-        <p style="font-size: 30px; font-weight: 600;">Yet our outlier—a healthy, non-smoking father of two paying over $30 k.
-        Without the underwriting process, we cannot see the mechanisms that set his price.</p>
-        <p style="font-size: 30px; font-weight: 600;">Until insurers disclose those criteria, consumers and regulators can only infer—never verify—whether premiums are fair.</p>
-          <BlackBox />
+    <div slot="viz" class="header" style="text-align: center; padding: 40px;">
+      <p style="font-size: 24px; font-weight: 300; margin-bottom: 20px;">
+        <span style="color:#d9534f;">Age, BMI, and Smoking status</span> charges in this dataset.
+      
+        Yet, consider the outlier—a healthy, non-smoking father of two paying over <span style="color:#d9534f;">$30,000.</span>
+      </p>
 
+    
+      <p style="font-size: 22px; font-weight: 300; margin-top: 20px;">
+        Without transparency in underwriting criteria, insurance pricing mechanisms remains a <span style=" font-weight: 600; font-style: italic;">black box.</span>
+        Consumers and regulators are left guessing—unable to verify whether premiums are truly fair.
+      </p>
+    
+      <p style="font-size: 15px; color: white; margin-top: 15px;">
+        <em>We need more transparency.</em>
+      </p>
+      <BlackBox />
     </div>
   </Scroll>
   
