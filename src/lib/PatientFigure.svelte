@@ -133,7 +133,7 @@
             content
                 .append("g")
                 .attr("class", "draggable cigarette")
-                .attr("transform", "translate(125,160) scale(0.08)")
+                .attr("transform", "translate(125,170) scale(0.16)")
                 .each(function () {
                     this.appendChild(cigaretteNode);
                 });
