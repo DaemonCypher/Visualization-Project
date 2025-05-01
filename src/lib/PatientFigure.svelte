@@ -10,6 +10,9 @@
     export let smoker: boolean;
     export let scale: number = 1.0;
   
+    // D3 formatter for exactly two decimal places
+    const format2 = d3.format(".2f");
+  
     let faceImage: string, bodyImage: string;
     function loadImages() {
       if (gender === "male") {
@@ -37,11 +40,10 @@
     async function drawSVG() {
       loadImages();
   
-      // clear previous SVG and tooltip
-      d3.select(container).selectAll("svg").remove();
-      d3.select(container).selectAll(".tooltip").remove();
+      // Clear previous SVGs and tooltips
+      d3.select(container).selectAll("svg, .tooltip").remove();
   
-      // create tooltip
+      // Create one tooltip <div> inside this component's container
       const tooltip = d3
         .select(container)
         .append("div")
@@ -56,6 +58,7 @@
         .style("opacity", "0")
         .style("z-index", "10");
   
+      // Build the SVG
       const svg = d3
         .select(container)
         .append("svg")
@@ -64,19 +67,21 @@
   
       const content = svg.append("g").attr("transform", `scale(${scale})`);
   
-      // load SVGs
+      // Load all the SVG symbols
       const [xmlBody, xmlFace, xmlCig, xmlCash] = await Promise.all([
         d3.xml(bodyImage),
         d3.xml(faceImage),
         d3.xml("./image/cigarette.svg"),
         d3.xml("./image/cash.svg"),
       ]);
+  
       const bodyNode = document.importNode(xmlBody.documentElement, true) as SVGElement;
       const faceNode = document.importNode(xmlFace.documentElement, true) as SVGElement;
-      const cigNode = document.importNode(xmlCig.documentElement, true) as SVGElement;
+      const cigNode  = document.importNode(xmlCig.documentElement, true) as SVGElement;
       const cashNode = document.importNode(xmlCash.documentElement, true) as SVGElement;
   
-      // Helper: wrap SVGElement in a <g> with transparent hover-rect + tooltip
+      // Helper: wrap an SVGElement in a <g>, insert a transparent hover-rect,
+      // and attach tooltip behavior with the given textFn
       function wrap(
         node: SVGElement,
         x: number,
@@ -91,9 +96,7 @@
             this.appendChild(node);
           });
   
-        const txt = textFn();
-        if (!txt) return;
-  
+        // Determine the hover‐area
         const bbox = (g.node() as SVGGElement).getBBox();
         g.insert("rect", ":first-child")
           .attr("x", bbox.x)
@@ -102,44 +105,53 @@
           .attr("height", bbox.height)
           .style("fill", "transparent");
   
+        // Attach the tooltip events
         g.on("mouseover", () => {
-          tooltip.html(txt).style("opacity", "1");
+          // Call textFn here, so format2() always sees a real number
+          tooltip.html(textFn()).style("opacity", "1");
         })
           .on("mousemove", (event) => {
             tooltip
               .style("left", `${event.offsetX + 10}px`)
-              .style("top", `${event.offsetY + 10}px`);
+              .style("top",  `${event.offsetY + 10}px`);
           })
-          .on("mouseout", () => {
-            tooltip.style("opacity", "0").html("");
-          });
+          .on("mouseout", () => tooltip.style("opacity", "0").html(""));
       }
   
-      // Body & face tooltips
-      wrap(bodyNode, 0, 85, 1.2, () => `bmi: ${bmi}<br>age: ${age}`);
-      wrap(faceNode, 35, 50, 0.7, () => `bmi: ${bmi}<br>age: ${age}`);
+      // Body & face: show BMI (2 decimals) and age
+      wrap(
+        bodyNode,
+        0, 85, 1.2,
+        () => `bmi: ${format2(bmi)}<br>age: ${age}`
+      );
+      wrap(
+        faceNode,
+        35, 50, 0.7,
+        () => `bmi: ${format2(bmi)}<br>age: ${age}`
+      );
   
-      // Cash piles tooltips
-      for (let i = 0; i < charge / 1000; i++) {
-        const pile = Math.floor(i / 20),
-          h = i - pile * 20;
+      // Cash piles: show charge (2 decimals)
+      const piles = Math.floor(charge / 1000);
+      for (let i = 0; i < piles; i++) {
+        const pile = Math.floor(i / 20), h = i - pile * 20;
         wrap(
           cashNode.cloneNode(true) as SVGElement,
           250 + 45 * pile,
           320 - 50 - 12 * h,
           0.08,
-          () => `charge: $${charge}`
+          () => `charge: $${format2(charge)}`
         );
       }
   
-      // Cigarette flipped horizontally
+      // Cigarette flipped horizontally if smoker
       if (smoker) {
-        const gCig = content.append("g").each(function () {
+        const gC = content.append("g").each(function () {
           this.appendChild(cigNode);
         });
-        const bbox = (gCig.node() as SVGGElement).getBBox();
+        const bbox = (gC.node() as SVGGElement).getBBox();
         const x = 30, y = 110, s = 0.1;
-        gCig.attr(
+        // translate right by width·s, then scale x by –s to flip
+        gC.attr(
           "transform",
           `translate(${x + bbox.width * s},${y}) scale(${-s},${s})`
         );
