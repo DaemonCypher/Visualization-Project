@@ -3,14 +3,26 @@
     import Matrix from "$lib/Matrix.svelte";
     import { Scroll } from "$lib";
     import { fly } from "svelte/transition";
-    import { colorScaleMap } from "../../types";
+    import { colorScaleMap, labelMaps } from "../../types";
 
     export let matrixData: TInsurance[] = [];
     let progress: number = 0;
-    let categoryOption: (keyof TInsurance)[] = ["sex", "children", "smoker", "tier", "weight",];
+    let categoryOption: (keyof TInsurance)[] = ["sex","smoker", "tier"];
+    // , "weight"
     let axisSelection = {
         category: "smoker" as keyof TInsurance,
     };
+    
+    const legendOverrides: Record<string,string[]> = {
+      sex:      ['Male',   'Female'],
+      smoker:   ['Smoker', 'Non-smoker'],
+      tier:     ['2nd tier','1st tier', '3rd tier'],
+      weight:   [ `Underweight`, 'Normal', 'Overweight', 'Obesity'],
+    };
+
+    $: legendLabels = legendOverrides[axisSelection.category]
+      ? legendOverrides[axisSelection.category]
+      : Array.from(new Set(matrixData.map(d => String(d[axisSelection.category]))));
 </script>
 
 <Scroll
@@ -38,23 +50,20 @@
             </select>
           </label>
         </span>
-        <div style="display: flex; gap: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
-          <span
-              style="background-color: {colorScaleMap[
-              'smoker_category'][0]};
-              color: white;
-              padding:2px;
-              border-radius: 5px;
-              ">Smoker
-          </span>
-          <span
-              style="background-color: {colorScaleMap[
-              'smoker_category'][1]};
-              color: white;
-              padding: 2px;
-              border-radius: 5px;">Non-smoker</span
-          >
-      </div>
+        <div style="display:flex; gap:10px; padding:0 10px 10px; font-size:13px;">
+          {#each legendLabels as label, i}
+            <span
+              style="
+                background-color: {colorScaleMap[axisSelection.category == "weight" ? "bmi_category" : axisSelection.category][i]};
+                color: black;
+                padding:2px 6px;
+                border-radius:4px;
+              "
+            >
+              {label}
+            </span>
+          {/each}
+        </div>
        
         <!-- <br> -->
         <!-- <p>We can note some interesting patterns highlinted in yellow</p> -->

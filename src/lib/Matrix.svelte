@@ -40,12 +40,12 @@
           // .range(["#1f77b4", "#ff7f0e"]);
       case "tier":
         return d3.scaleOrdinal<string>()
-          .domain(["0", "1", "2"])
+          .domain(["2", "1", "3"])
           .range(colorScaleMap[colorBy]);
           // .range(["#9467bd", "#8c564b", "e377c2"]);
       case "weight":
         return d3.scaleOrdinal<string>()
-          .domain(["0", "1", "2", "3"])
+          .domain(["0", "2", "1", "3"])
           .range(colorScaleMap["bmi_category"]);
           // .range(["#aec7e8", "#ffbb78", "#98df8a", "#c5b0d5"]);
       default:
