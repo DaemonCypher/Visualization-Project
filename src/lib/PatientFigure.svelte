@@ -32,7 +32,7 @@
     }
   
     let container: HTMLDivElement;
-    const W = 400, H = 360;
+    const W = 400, H = 400;
   
     async function drawSVG() {
       loadImages();
@@ -115,8 +115,8 @@
       }
   
       // Body & face
-      wrap(bodyNode, 0, 85, 1.2, () => `bmi: ${bmi.toFixed(2)}<br>age: ${age}`);
-      wrap(faceNode, 35, 50, 0.7, () => `bmi: ${bmi.toFixed(2)}<br>age: ${age}`);
+      wrap(bodyNode, 0, 85, 1.2, () => `bmi: ${bmi}<br>age: ${age}`);
+      wrap(faceNode, 35, 50, 0.7, () => `bmi: ${bmi}<br>age: ${age}`);
   
       // Cash piles
       for (let i = 0; i < charge / 1000; i++) {
