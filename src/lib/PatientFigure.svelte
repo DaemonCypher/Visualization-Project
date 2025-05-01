@@ -149,7 +149,7 @@
           this.appendChild(cigNode);
         });
         const bbox = (gC.node() as SVGGElement).getBBox();
-        const x = 0, y = 100, s = 0.1;
+        const x = 0, y = 130, s = 0.07;
         // translate right by width·s, then scale x by –s to flip
         gC.attr(
           "transform",
