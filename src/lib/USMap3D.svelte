@@ -125,8 +125,8 @@
   
       // Handle window resize
       window.addEventListener("resize", () => {
-        const width = 1000; // Fixed width
-        const height = 800; // Fixed height
+        const width = 500; // Fixed width
+        const height = 400; // Fixed height
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height);
@@ -134,7 +134,7 @@
     });
   </script>
   
-  <div bind:this={container} style="width: 1000px; height: 800px; margin: 0 auto; position: relative;">
+  <div bind:this={container} style="width: 500px; height: 400px; margin: 0 auto; position: relative;">
     <div
       bind:this={tooltip}
       style="display: none; position: absolute; background: rgba(0, 0, 0, 0.7); color: white; padding: 8px; border-radius: 4px; font-size: 12px; pointer-events: none; z-index: 10;"
@@ -143,7 +143,7 @@
       style="position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); width: 300px; height: 20px; background: linear-gradient(to right, #cce5ff, #003366); border-radius: 4px;"
     ></div>
     <div
-      style="position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-between; width: 300px; font-size: 12px; color: white;"
+      style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-between; width: 300px; font-size: 12px; color: white;"
     >
       <span>0%</span>
       <span>Max</span>
