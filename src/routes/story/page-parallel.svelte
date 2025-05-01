@@ -211,7 +211,7 @@
         padding-right: 50px;
         padding-bottom: 50px;
         padding-top: 50px;
-        border: 1px solid white;
+        /* border: 1px solid white; */
         width: 400px;
     }
 </style>

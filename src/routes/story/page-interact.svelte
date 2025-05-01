@@ -360,7 +360,7 @@
         padding-left: 10px;
         padding-right: 10px;
         padding-bottom: 10px;
-        border: 1px solid white;
+        /* border: 1px solid white; */
         width: 350px;
     }
 
@@ -368,7 +368,7 @@
         margin-top: 10px;
         padding: 8px;
         background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid white;
+        /* border: 1px solid white; */
         border-radius: 4px;
         font-size: 15px;
         font-weight: bold;

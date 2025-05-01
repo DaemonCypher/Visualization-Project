@@ -68,7 +68,7 @@
       margin-top: 500px;
       padding-left: 10px;
       padding-right: 10px;
-      border: 1px solid white;
+      /* border: 1px solid white; */
       width: 350px;
     }
 </style>

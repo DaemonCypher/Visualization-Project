@@ -131,7 +131,7 @@
         margin-top: 500px;
         padding-left: 80px;
         padding-right: 80px;
-        border: 1px solid white;
+        /* border: 1px solid white; */
         width: 70%;
     }
   h1 {

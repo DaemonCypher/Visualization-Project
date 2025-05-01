@@ -83,7 +83,7 @@
       margin-top: 500px;
       padding-left: 50px;
       padding-right: 50px;
-      border: 1px solid white;
+      /* border: 1px solid white; */
       width: 300px;
     }
 </style>
