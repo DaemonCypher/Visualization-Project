@@ -63,7 +63,19 @@
         // Create the SVG
         load(); // Load the images based on props
 
-
+        const tooltip = d3
+        .select(container)
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("pointer-events", "none")
+        .style("background", "rgba(0,0,0,0.8)")
+        .style("color", "#fff")
+        .style("padding", "4px 8px")
+        .style("border-radius", "4px")
+        .style("font-size", "12px")
+        .style("opacity", 0);
+  
 
         d3.select(container).select("svg").remove(); // Remove any existing SVG
         const svg = d3
@@ -101,7 +113,22 @@
             .attr("transform", "translate(0,85) scale(1.2)")
             .each(function () {
                 this.appendChild(bodyNode);
-            });
+            })
+            .on("mouseover", (event, d) => {
+                      tooltip
+                        .style("opacity", 1)
+                        .html(
+                          `bmi: ${bmi.toFixed(2)}<br>
+                          age: ${age}<br>`
+                        );
+            })
+            .on("mousemove", (event) => {
+                const [xPos, yPos] = d3.pointer(event, this);
+                tooltip
+                .style("left", `${xPos + scale}px`)
+                .style("top", `${yPos +  scale}px`);
+            })
+            .on("mouseout", () => {tooltip.style("opacity", 0);});
 
         // Append face
         content
@@ -110,7 +137,22 @@
             .attr("transform", "translate(35,50) scale(0.7)")
             .each(function () {
                 this.appendChild(faceNode);
-            });
+            })
+            .on("mouseover", (event, d) => {
+                      tooltip
+                        .style("opacity", 1)
+                        .html(
+                          `bmi: ${bmi.toFixed(2)}<br>
+                          age: ${age}<br>`
+                        );
+            })
+            .on("mousemove", (event) => {
+                const [xPos, yPos] = d3.pointer(event, this);
+                tooltip
+                .style("left", `${xPos + 200}px`)
+                .style("top", `${yPos + 580}px`);
+            })
+            .on("mouseout", () => {tooltip.style("opacity", 0);});
 
         // Append cash icons in stacks
         for (let i = 0; i < charge / 1000; i++) {
@@ -125,7 +167,21 @@
                 )
                 .each(function () {
                     this.appendChild(cashNode.cloneNode(true));
-                });
+                })
+                // .on("mouseover", (event, d) => {
+                //       tooltip
+                //         .style("opacity", 1)
+                //         .html(
+                //           `charge:${charge}<br>`
+                //         );
+                // })
+                // .on("mousemove", (event) => {
+                //     const [xPos, yPos] = d3.pointer(event, container);
+                //     tooltip
+                //     .style("left", `${xPos + 200}px`)
+                //     .style("top", `${yPos + 580}px`);
+                // })
+                // .on("mouseout", () => {tooltip.style("opacity", 0);});
         }
 
         // Append cigarette if smoker
@@ -172,4 +228,26 @@
       overflow: hidden;
     "
 ></div>
+
+<style>
+    svg:hover {
+      opacity: 0.8;
+    }
+  
+    :global(circle:hover) {
+      opacity: 1;
+      stroke: #fff;
+      stroke-width: 1;
+    }
+   :global(.tooltip) {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+  }
+  </style>
 
