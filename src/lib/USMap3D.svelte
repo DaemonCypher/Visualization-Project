@@ -18,11 +18,11 @@
         res.json()
       );
       const states = topojson.feature(us, us.objects.states).features;
-      console.log("States data:", states);
+      // console.log("States data:", states);
   
       // Create a map of state names to uninsured rates
       const rateByState = new Map(uninsuredData.map((d) => [d.state.trim(), d.rate]));
-      console.log("Rate by state:", rateByState);
+      // console.log("Rate by state:", rateByState);
   
       // Set up Three.js scene
       const scene = new THREE.Scene();
@@ -51,7 +51,7 @@
   
       // Define a blue-to-dark-blue color scale
       const colorScale = d3.scaleLinear<string>()
-        .domain([0, d3.max(uninsuredData, (d) => d.rate) || 1]) // Map rates from 0 to max rate
+        .domain([0, d3.max(uninsuredData, (d) => d.rate) + 0.05 || 1]) // Map rates from 0 to max rate
         .range(["#cce5ff", "#003366"]); // Light blue to dark blue
   
       states.forEach((state) => {
@@ -111,7 +111,7 @@
       console.log("Scene children after adding objects:", scene.children);
   
       // Set camera position
-      camera.position.set(0, 5, 8); // Adjust camera position for smaller frame
+      camera.position.set(0, 0, 9); // Adjust camera position for smaller frame
       camera.lookAt(0, 0, 0);
       console.log("Camera position:", camera.position);
   
@@ -146,7 +146,7 @@
       style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-between; width: 300px; font-size: 12px; color: white;"
     >
       <span>0%</span>
-      <span>Max</span>
+      <span>25%</span>
     </div>
   </div>
   

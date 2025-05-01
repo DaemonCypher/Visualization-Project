@@ -28,7 +28,7 @@
   
     // Helper: Create a transition duration scale so smaller values animate faster
     function createTransitionDurationScale(data) {
-      const maxRate = d3.max(data, (d) => d.rate) || 0;
+      const maxRate = d3.max(data, (d) => d.rate) + 0.05 || 0;
       // The smaller the rate, the shorter the duration; adjust range to taste
       return d3.scaleLinear()
         .domain([0, maxRate])
@@ -116,7 +116,7 @@
     // --- Make legend text and ticks white ---
     axisGroup.selectAll("text")
       .style("fill", "white")
-      .style("font-size", "18px");
+      .style("font-size", "15px");
   
     axisGroup.selectAll("line")
       .style("stroke", "white");
