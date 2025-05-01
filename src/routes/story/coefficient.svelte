@@ -40,7 +40,7 @@
         <!-- <h2>We can also note that that individuals who have high age or BMI have some correlation with insurance charge as well</h2> -->
          
         <div class="text-container">
-          This dataset includes 1338 insurance policies with 7 attributes. Age, BMI, smoking status seems to be the most important ones.
+          This dataset includes 1338 insurance policies with 7 attributes. <span style="font-weight: 600;">Age, BMI, smoking status</span> seems to be the most important ones.
         </div>
     </div>
 
@@ -79,10 +79,11 @@
         gap: 0.5em; 
     }
     .text-container {
+      font-size: 20px;
       margin-top: 500px;
       padding-left: 50px;
       padding-right: 50px;
       border: 1px solid white;
-      width: 400px;
+      width: 300px;
     }
 </style>
