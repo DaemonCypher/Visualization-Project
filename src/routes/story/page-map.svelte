@@ -28,7 +28,7 @@
                 How does coverage look across the U.S.?</h1>
         {/if}
         
-        {#if progress > 50}
+        {#if progress > 30}
             <p in:slide={{duration: 1000, axis: "x",}}>
                 <a href="https://www.kaggle.com/datasets/hhs/health-insurance?resource=download" style="color: white;">The data</a> 
             was compiled from the US Department of Health and Human Services and US Census Bureau.</p>

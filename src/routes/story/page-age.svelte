@@ -38,7 +38,7 @@
     </div>
     <div slot="viz" class="header">
         {#if progress > 10}
-            <div class="image-container" in:fly={{ duration: 2000, y: -200 }}>
+            <div class="image-container" in:fly={{ duration: 500, y: -200 }}>
                 <ScatterP1 {insurance} x="age" y="charge" size="children" color="sex"/>
             </div>
         {/if}
