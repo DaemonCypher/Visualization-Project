@@ -41,7 +41,7 @@
       controls.maxDistance = 50; // Maximum zoom distance
   
       // Add a light source
-      const light = new THREE.DirectionalLight(0xffffff, 1);
+      const light = new THREE.DirectionalLight(0xffffff, 8);
       light.position.set(5, 10, 7.5);
       scene.add(light);
   
