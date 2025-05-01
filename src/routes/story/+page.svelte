@@ -16,6 +16,7 @@
     import PageGlyph from "./page-glyph.svelte";
     import Intro from "./intro.svelte";
     import Conclusion from "./conclusion.svelte";
+    import Ack from "./ack.svelte";
     // import PageScatter from "./page-scatter-plots.svelte";
     // import UnifyScatter from "./page-scatter-unify.svelte";
     import type { TInsurance } from "../../types";
@@ -168,6 +169,7 @@
 
         <Conclusion />
         <PageParallel {insurance} colorBy="smoker" />
+        <Ack />
         <!-- <Page6 /> -->
 
         <!-- <PageHeap {data} /> -->
