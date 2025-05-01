@@ -205,9 +205,9 @@
           (xCol === "bmi" && yCol === "charges") ||
           (xCol === "charges" && yCol === "bmi")
         ) {
-          return 5; 
+          return 3; 
         }
-        return 3; 
+        return 1; 
       });
 
     cell.each(function ([i, j]) {
@@ -274,7 +274,7 @@
     });
 
     svg.append("g")
-      .style("font", "bold 18px sans-serif")
+      .style("font", "15px sans-serif")
       .style("pointer-events", "none")
       .selectAll("text")
       .data(columns)
