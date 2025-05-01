@@ -24,7 +24,10 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@deck.gl/core": "^9.1.11",
+		"@deck.gl/layers": "^9.1.11",
 		"d3": "^7.9.0",
+		"mapbox-gl": "^3.11.1",
 		"three": "^0.174.0",
 		"topojson": "^3.0.2",
 		"topojson-client": "^3.1.0"
