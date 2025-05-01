@@ -151,7 +151,7 @@
         <Coefficient {data}/>
         <ScatterMatrix {matrixData}/>
 
-        <PageGlyph />
+        <!-- <PageGlyph /> -->
         <!-- <PageInteract {insurance} /> -->
 
         <!-- <PageScatter {insurance} /> -->
