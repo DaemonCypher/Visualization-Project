@@ -37,11 +37,11 @@
     async function drawSVG() {
       loadImages();
   
-      // remove any prior SVG + tooltip in _this_ container
+      // clear previous SVG and tooltip
       d3.select(container).selectAll("svg").remove();
       d3.select(container).selectAll(".tooltip").remove();
   
-      // create a tooltip in *this* container
+      // create tooltip
       const tooltip = d3
         .select(container)
         .append("div")
@@ -64,7 +64,7 @@
   
       const content = svg.append("g").attr("transform", `scale(${scale})`);
   
-      // load all needed SVG elements
+      // load SVGs
       const [xmlBody, xmlFace, xmlCig, xmlCash] = await Promise.all([
         d3.xml(bodyImage),
         d3.xml(faceImage),
@@ -76,7 +76,7 @@
       const cigNode = document.importNode(xmlCig.documentElement, true) as SVGElement;
       const cashNode = document.importNode(xmlCash.documentElement, true) as SVGElement;
   
-      // Helper: wrap any SVGElement in a <g> + a transparent <rect> and attach tooltip text
+      // Helper: wrap SVGElement in a <g> with transparent hover-rect + tooltip
       function wrap(
         node: SVGElement,
         x: number,
@@ -91,7 +91,9 @@
             this.appendChild(node);
           });
   
-        // figure out its bbox and stick a transparent rect behind it
+        const txt = textFn();
+        if (!txt) return;
+  
         const bbox = (g.node() as SVGGElement).getBBox();
         g.insert("rect", ":first-child")
           .attr("x", bbox.x)
@@ -100,9 +102,8 @@
           .attr("height", bbox.height)
           .style("fill", "transparent");
   
-        // attach the same tooltip but with custom text
         g.on("mouseover", () => {
-          tooltip.html(textFn()).style("opacity", "1");
+          tooltip.html(txt).style("opacity", "1");
         })
           .on("mousemove", (event) => {
             tooltip
@@ -114,25 +115,35 @@
           });
       }
   
-      // Body & face
+      // Body & face tooltips
       wrap(bodyNode, 0, 85, 1.2, () => `bmi: ${bmi}<br>age: ${age}`);
       wrap(faceNode, 35, 50, 0.7, () => `bmi: ${bmi}<br>age: ${age}`);
   
-      // Cash piles
+      // Cash piles tooltips
       for (let i = 0; i < charge / 1000; i++) {
         const pile = Math.floor(i / 20),
           h = i - pile * 20;
         wrap(
           cashNode.cloneNode(true) as SVGElement,
-          270 + 45 * pile,
+          250 + 45 * pile,
           320 - 50 - 12 * h,
           0.08,
           () => `charge: $${charge}`
         );
       }
   
-      // Cigarette (no tooltip text)
-      if (smoker) wrap(cigNode, 125, 170, 0.16, () => "");
+      // Cigarette flipped horizontally
+      if (smoker) {
+        const gCig = content.append("g").each(function () {
+          this.appendChild(cigNode);
+        });
+        const bbox = (gCig.node() as SVGGElement).getBBox();
+        const x = 30, y = 110, s = 0.1;
+        gCig.attr(
+          "transform",
+          `translate(${x + bbox.width * s},${y}) scale(${-s},${s})`
+        );
+      }
   
       // Extra message if charge is large
       if (charge > 999) {
@@ -149,14 +160,13 @@
     $: if (scale || age || bmi || charge || gender || smoker) drawSVG();
   </script>
   
-  <!-- make the container relative so the tooltip (absolute) lives inside it -->
+  <!-- Container -->
   <div
     bind:this={container}
     style="position: relative; width: {W * scale}px; height: {H * scale}px; overflow: visible;"
   ></div>
   
   <style>
-    /* just the styling for the tooltip div */
     :global(.tooltip) {
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     }
