@@ -14,7 +14,7 @@
     };
     
     const legendOverrides: Record<string,string[]> = {
-      sex:      ['Male',   'Female'],
+      sex:      ['Female',   'Male'],
       smoker:   ['Smoker', 'Non-smoker'],
       tier:     ['2nd tier','1st tier', '3rd tier'],
       weight:   [ `Underweight`, 'Normal', 'Overweight', 'Obesity'],
