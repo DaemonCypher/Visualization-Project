@@ -3,13 +3,26 @@
     import Matrix from "$lib/Matrix.svelte";
     import { Scroll } from "$lib";
     import { fly } from "svelte/transition";
+    import { colorScaleMap, labelMaps } from "../../types";
 
     export let matrixData: TInsurance[] = [];
     let progress: number = 0;
-    let categoryOption: (keyof TInsurance)[] = ["sex", "children", "smoker", "tier", "weight",];
+    let categoryOption: (keyof TInsurance)[] = ["sex","smoker", "tier"];
+    // , "weight"
     let axisSelection = {
         category: "smoker" as keyof TInsurance,
     };
+    
+    const legendOverrides: Record<string,string[]> = {
+      sex:      ['Male',   'Female'],
+      smoker:   ['Smoker', 'Non-smoker'],
+      tier:     ['2nd tier','1st tier', '3rd tier'],
+      weight:   [ `Underweight`, 'Normal', 'Overweight', 'Obesity'],
+    };
+
+    $: legendLabels = legendOverrides[axisSelection.category]
+      ? legendOverrides[axisSelection.category]
+      : Array.from(new Set(matrixData.map(d => String(d[axisSelection.category]))));
 </script>
 
 <Scroll
@@ -37,7 +50,20 @@
             </select>
           </label>
         </span>
-      </p>
+        <div style="display:flex; gap:10px; padding:0 10px 10px; font-size:13px;">
+          {#each legendLabels as label, i}
+            <span
+              style="
+                background-color: {colorScaleMap[axisSelection.category == "weight" ? "bmi_category" : axisSelection.category][i]};
+                color: black;
+                padding:2px 6px;
+                border-radius:4px;
+              "
+            >
+              {label}
+            </span>
+          {/each}
+        </div>
        
         <!-- <br> -->
         <!-- <p>We can note some interesting patterns highlinted in yellow</p> -->
@@ -71,7 +97,7 @@
 
     <div slot="viz" class="header">
         {#if progress > 10 && matrixData.length > 1}
-            <div class="image-container" in:fly={{ duration: 1000, y: -200 }}>
+            <div class="image-container" in:fly={{ duration: 1000, y: 200 }}>
                 <Matrix
                     insurance={matrixData}
                     colorBy={axisSelection.category}
@@ -80,9 +106,9 @@
                 />
             </div>
         {/if}
-        {#if progress > 25 && matrixData.length > 1}
+        {#if progress > 0 && matrixData.length > 1}
 
-        <h2 style="color:white; margin-left: 500px;">X axis</h2>
+        <!-- <h2 style="color:white; margin-left: 500px; font-size: 20px;">X axis</h2> -->
         {/if}
 
     </div>
