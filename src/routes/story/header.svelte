@@ -25,10 +25,11 @@
             <p in:slide={{duration: 500,axis: "x",}}>
                 By William Yang, Peilin Li, Pan Hao, and Ariel Larin
             </p>
+            <div class="scroll-indicator">
+                ↓ scroll to start ↓
+             </div>
         {/if}
-        <div style="margin-top: 150px; font-size: 16px; color: white; opacity: 0.6;">
-            ↓ scroll to start ↓
-         </div>
+       
     </div>
 
     
@@ -52,5 +53,23 @@
         font-size: 3vh;
         color: #ffffff;
         font-weight: 600; 
+    }
+    .scroll-indicator {
+        margin-top: 150px;
+        font-size: 16px;
+        color: white;
+        opacity: 0.6;
+        animation: bounce 1.5s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
     }
 </style>
