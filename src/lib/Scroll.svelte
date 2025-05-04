@@ -169,6 +169,18 @@
     max-height: 100vh;
   }
 
+  /* .viz {
+  position: sticky;
+  top: max(var(--scrolly-margin, 0) * 1px, var(--scrolly-viz-top, 2em));
+  max-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+ /* Code to center the text.... */
+
+
   @container style(--scrolly-layout: viz-first) {
     .scrolly {
       grid-template-columns: var(--scrolly-viz-width, 1fr) var(

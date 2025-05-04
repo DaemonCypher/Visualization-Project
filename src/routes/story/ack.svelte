@@ -32,7 +32,33 @@
       <p style="font-size: 22px; font-weight: 300; margin-top: 20px;">
         News <a href="https://www.wsj.com/finance/regulation/home-insurance-premiums-surge-states-approve-8656877d?mod=Searchresults_pos13&page=1" style="color: white;">Home Insurance Premiums Surge States Approve</a> was referenced in intro.
       </p>
-    
+      <h1>Acknowledgments </h1>
+
+      <p style="font-size: 18px; color: white; margin-top: 15px;">
+        Pan Hao: Presentation, Story layout, EDA, Scatter plots, Interaction design, 3D implementation, Glyph design.
+      </p>
+      <p style="font-size: 18px; color: white; margin-top: 15px;">
+        William Yang: Scatter Matrix Plot, Parallel Coordinate Plot, Correlation Coefficient Heat Map, EDA, Presentation, Story layout, Interaction design.
+      </p>
+      <p style="font-size: 18px; color: white; margin-top: 15px;">
+        Ariel Larin: 3D implementation, US Uninsured Map Visual, Interaction Design, Presentation
+      </p>
+      <p style="font-size: 18px; color: white; margin-top: 15px;">
+        Pelin Li: Glyph of human figure, Violin chart, Key findings, Story layout prototype, Presentation
+      </p>
+
+      <p style="font-size: 18px; color: white; margin-top: 15px;">
+        Feedback from CSCI 5609, Spring 2025
+      </p>
+
+        <p style="font-size: 18px; color: white; margin-top: 15px;">
+          Feedback from Professor Qianwen Wang 
+        </p>
+
+        <p style="font-size: 18px; color: white; margin-top: 15px;">
+          Feedback from TA Danhua Zhang
+        </p>
+
       <p style="font-size: 18px; color: white; margin-top: 15px;">
         Thank you.
       </p>
@@ -44,12 +70,15 @@
   
   <!-- <svelte:window bind:scrollY={progress} /> -->
   
-  <style>
-    .header {
-      padding: 80px 60px;
-      height: 60vh;
-      width: 800px;
-    }
+  <style>.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    max-width: 800px;
+    text-align: center;
+  }
     #virtual {
       height: 150vh; /* Make the page scrollable with a 150% view height */
     }
