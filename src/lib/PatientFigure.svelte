@@ -131,7 +131,7 @@
       );
   
       // Cash piles: show charge (2 decimals)
-      const piles = Math.floor(charge / 1000);
+      const piles = Math.ceil(charge / 1000);
       for (let i = 0; i < piles; i++) {
         const pile = Math.floor(i / 20), h = i - pile * 20;
         wrap(
