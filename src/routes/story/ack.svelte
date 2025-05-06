@@ -80,7 +80,7 @@
     text-align: center;
   }
     #virtual {
-      height: 150vh; /* Make the page scrollable with a 150% view height */
+      height: 100vh; /* Make the page scrollable with a 150% view height */
     }
     h1 {
       font-size: 30px;
